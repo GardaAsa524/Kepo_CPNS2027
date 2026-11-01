@@ -1,5 +1,5 @@
 /* Service worker: cache app shell so it opens offline */
-const CACHE = 'kepo-cpns-v1';
+const CACHE = 'kepo-cpns-v2';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-180.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
@@ -14,7 +14,7 @@ self.addEventListener('fetch', e => {
   if (req.mode === 'navigate') {
     // network first for the page, fall back to cache when offline
     e.respondWith(fetch(req).then(r => { const cp = r.clone(); caches.open(CACHE).then(c => c.put('./index.html', cp)); return r; })
-      .catch(() => caches.match('./index.html')));
+      .catch(() => caches.match(req, {ignoreSearch: true}).then(r => r || caches.match("./index.html"))));
     return;
   }
   // cache first for same-origin assets and Google Fonts
