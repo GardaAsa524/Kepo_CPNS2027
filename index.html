@@ -1,0 +1,642 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Kepo CPNS 2027</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one phone-width column; a winding lesson path per SKD subtest (TWK, TIU, TKP), lesson screen with bottom feedback sheet */
+:root{
+  --bg:#F5F3FA; --surface:#FFFFFF; --surface-2:#EFECF7; --ink:#1E1B3A; --muted:#6B6788; --line:#E2DEEF; --line-d:#CFC9E3;
+  --accent:#FFB400; --accent-d:#D18E00; --accent-ink:#5C3A00;
+  --twk:#E0453A; --twk-d:#AF2E25; --twk-bg:#FDE7E4;
+  --tiu:#5A57D6; --tiu-d:#3C39A6; --tiu-bg:#E8E7FB;
+  --tkp:#0F9E8D; --tkp-d:#0A7366; --tkp-bg:#DDF4F0;
+  --good:#1E9E5A; --good-d:#157443; --good-bg:#DCF4E6; --good-ink:#0E5A33;
+  --bad:#D93848; --bad-d:#A72634; --bad-bg:#FCE3E5; --bad-ink:#8A1C28;
+  --lock:#D8D4E6; --lock-d:#BDB7D2;
+  --f-display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#13112A; --surface:#1E1B3A; --surface-2:#272347; --ink:#F2F0FF; --muted:#A6A2C8; --line:#302B55; --line-d:#3E386A;
+  --accent:#FFC233; --accent-d:#C98F00; --accent-ink:#3A2500;
+  --twk:#F0625A; --twk-d:#B23A33; --twk-bg:#3A1C22;
+  --tiu:#7D7AF0; --tiu-d:#4F4CB8; --tiu-bg:#262457;
+  --tkp:#2BC2AE; --tkp-d:#14857A; --tkp-bg:#123A38;
+  --good:#3DC27A; --good-d:#22874F; --good-bg:#12362A; --good-ink:#9DEBC0;
+  --bad:#F0606E; --bad-d:#AE3442; --bad-bg:#3D1A22; --bad-ink:#FFB3BB;
+  --lock:#38335E; --lock-d:#2A264A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#13112A; --surface:#1E1B3A; --surface-2:#272347; --ink:#F2F0FF; --muted:#A6A2C8; --line:#302B55; --line-d:#3E386A;
+  --accent:#FFC233; --accent-d:#C98F00; --accent-ink:#3A2500;
+  --twk:#F0625A; --twk-d:#B23A33; --twk-bg:#3A1C22;
+  --tiu:#7D7AF0; --tiu-d:#4F4CB8; --tiu-bg:#262457;
+  --tkp:#2BC2AE; --tkp-d:#14857A; --tkp-bg:#123A38;
+  --good:#3DC27A; --good-d:#22874F; --good-bg:#12362A; --good-ink:#9DEBC0;
+  --bad:#F0606E; --bad-d:#AE3442; --bad-bg:#3D1A22; --bad-ink:#FFB3BB;
+  --lock:#38335E; --lock-d:#2A264A; color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.app{max-width:540px;margin:0 auto;min-height:100%;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 32px}
+h1,h2,h3{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balance}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;align-items:center;gap:8px;padding-block:12px;border-bottom:2px solid var(--line);margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:800;font-size:22px;margin-right:auto}
+.brand small{font-family:var(--f-body);font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--muted);display:block;line-height:1;margin-top:-2px}
+.stat{display:flex;align-items:center;gap:4px;font-weight:800;padding:6px 8px;border-radius:12px}
+.stat:hover{background:var(--surface-2)}
+.stat svg{width:22px;height:22px}
+.st-streak{color:var(--accent-d)} .st-heart{color:var(--bad)} .st-xp{color:var(--tiu)}
+:root[data-theme="dark"] .st-streak{color:var(--accent)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .st-streak{color:var(--accent)}}
+.st-streak.off{color:var(--muted)}
+
+/* ---------- goal card ---------- */
+.goal{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px}
+.ring{position:relative;width:84px;height:84px}
+.ring svg{transform:rotate(-90deg)}
+.ring .trk{stroke:var(--surface-2)} .ring .val{stroke:var(--accent);transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-size:20px;line-height:1}
+.ring b span{display:block;font-family:var(--f-body);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.06em}
+.goal h2{font-size:20px}
+.goal p{margin:2px 0 10px;color:var(--muted);font-size:14px}
+.week{display:flex;gap:4px;min-width:0}
+.day{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:700;color:var(--muted)}
+.day i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2)}
+.day i svg{width:15px;height:15px;opacity:.35}
+.day.met i{background:var(--accent)} .day.met i svg{opacity:1;color:var(--accent-ink)}
+.day.today{color:var(--ink)} .day.today i{box-shadow:0 0 0 2px var(--accent)}
+.goal-edit{font-size:13px;font-weight:700;color:var(--tiu);text-decoration:underline;text-underline-offset:3px}
+
+.info{display:flex;gap:12px;align-items:flex-start;background:var(--surface-2);border-radius:16px;padding:12px 14px;font-size:13px;color:var(--muted);margin-bottom:24px}
+.info strong{color:var(--ink)}
+.info table{border-collapse:collapse;margin-top:6px;font-variant-numeric:tabular-nums}
+.info td{padding:1px 10px 1px 0}
+
+/* ---------- path ---------- */
+.unit{margin-bottom:28px}
+.uhead{border-radius:20px;padding:16px 18px;color:#fff;background:var(--c);box-shadow:0 5px 0 var(--cd);display:flex;gap:12px;align-items:center}
+.uhead .tag{font-size:12px;font-weight:800;letter-spacing:.1em;opacity:.85}
+.uhead h2{font-size:22px;color:#fff}
+.uhead p{margin:2px 0 0;font-size:13px;opacity:.92}
+.uhead .meta{margin-left:auto;text-align:right;font-family:var(--f-display);font-size:26px;line-height:1;flex:none}
+.uhead .meta span{display:block;font-family:var(--f-body);font-size:10px;font-weight:700;letter-spacing:.08em;opacity:.85}
+.nodes{display:flex;flex-direction:column;align-items:center;gap:18px;padding:28px 0 8px}
+.nwrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px}
+.node{width:76px;height:70px;border-radius:50%;background:var(--c);box-shadow:0 7px 0 var(--cd);display:grid;place-items:center;color:#fff;transition:transform .12s, box-shadow .12s;position:relative}
+.node svg{width:34px;height:34px}
+.node:active{transform:translateY(6px);box-shadow:0 1px 0 var(--cd)}
+.node.locked{background:var(--lock);box-shadow:0 7px 0 var(--lock-d);color:var(--muted)}
+.node.cur{animation:breathe 2.2s ease-in-out infinite}
+.node.cur::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:4px solid var(--c);opacity:.35}
+.nlabel{font-size:13px;font-weight:700;color:var(--muted);text-align:center;max-width:140px;line-height:1.25}
+.nlabel b{display:block;color:var(--ink)}
+.bubble{position:absolute;top:-44px;background:var(--surface);border:2px solid var(--line);color:var(--c);font-weight:800;font-size:14px;letter-spacing:.06em;padding:4px 12px;border-radius:12px;animation:bob 1.6s ease-in-out infinite;white-space:nowrap}
+.bubble::after{content:"";position:absolute;left:50%;bottom:-8px;width:12px;height:12px;background:var(--surface);border-right:2px solid var(--line);border-bottom:2px solid var(--line);transform:translateX(-50%) rotate(45deg)}
+.reps{position:absolute;top:-4px;right:-6px;background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:800;min-width:22px;height:22px;border-radius:11px;display:grid;place-items:center;padding:0 5px;border:2px solid var(--bg)}
+@keyframes breathe{50%{transform:scale(1.05)}}
+@keyframes bob{50%{transform:translateY(-5px)}}
+
+.mascot-row{display:flex;align-items:flex-end;gap:10px;margin:0 0 20px}
+.speech{background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:10px 14px;font-size:14px;font-weight:600;position:relative;min-width:0}
+.speech::before{content:"";position:absolute;left:-9px;bottom:16px;width:14px;height:14px;background:var(--surface);border-left:2px solid var(--line);border-bottom:2px solid var(--line);transform:rotate(45deg)}
+.kepo{flex:none;animation:hover 3s ease-in-out infinite}
+@keyframes hover{50%{transform:translateY(-4px)}}
+
+/* ---------- buttons ---------- */
+.btn{display:block;width:100%;padding:14px 18px;border-radius:16px;font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;background:var(--b,var(--tiu));color:#fff;box-shadow:0 5px 0 var(--bd,var(--tiu-d));transition:transform .1s, box-shadow .1s, filter .2s}
+.btn:active:not(:disabled){transform:translateY(5px);box-shadow:0 0 0 var(--bd,var(--tiu-d))}
+.btn:disabled{background:var(--lock);box-shadow:0 5px 0 var(--lock-d);color:var(--muted);cursor:default}
+.btn.ghost{background:transparent;box-shadow:none;color:var(--tiu);border:2px solid var(--line)}
+.btn.good{--b:var(--good);--bd:var(--good-d)} .btn.bad{--b:var(--bad);--bd:var(--bad-d)}
+
+/* ---------- lesson ---------- */
+.lesson{display:flex;flex-direction:column;min-height:calc(100vh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));padding-bottom:0}
+.lbar{display:flex;align-items:center;gap:12px;padding-block:16px}
+.x{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;color:var(--muted)}
+.x:hover{background:var(--surface-2)}
+.prog{flex:1;height:16px;border-radius:8px;background:var(--surface-2);overflow:hidden}
+.prog i{display:block;height:100%;width:0;border-radius:8px;background:var(--good);transition:width .5s cubic-bezier(.3,1.4,.5,1);position:relative}
+.prog i::after{content:"";position:absolute;left:8px;right:8px;top:3px;height:4px;border-radius:2px;background:rgba(255,255,255,.35)}
+.combo{font-family:var(--f-display);font-size:15px;color:var(--accent-d);height:22px;text-align:center;font-weight:800;opacity:0;transition:opacity .3s}
+.combo.on{opacity:1;animation:pop .4s}
+.qbody{flex:1;display:flex;flex-direction:column;gap:16px;padding-bottom:24px}
+.chip{align-self:flex-start;font-size:12px;font-weight:800;letter-spacing:.08em;padding:4px 10px;border-radius:8px;background:var(--cbg);color:var(--c)}
+.qtext{font-size:19px;font-weight:700;line-height:1.45;margin:0}
+.qtext em{font-style:normal;background:var(--surface-2);padding:0 6px;border-radius:6px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;padding:12px 14px;border:2px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:0 4px 0 var(--line);font-weight:600;font-size:15px;transition:transform .1s, box-shadow .1s, border-color .15s, background .15s;animation:rise .35s backwards}
+.opt:nth-child(2){animation-delay:.04s}.opt:nth-child(3){animation-delay:.08s}.opt:nth-child(4){animation-delay:.12s}.opt:nth-child(5){animation-delay:.16s}
+.opt .k{flex:none;width:28px;height:28px;border-radius:8px;border:2px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:800;color:var(--muted)}
+.opt:active:not(:disabled){transform:translateY(4px);box-shadow:0 0 0 var(--line)}
+.opt.sel{border-color:var(--tiu);background:var(--tiu-bg);box-shadow:0 4px 0 var(--tiu)}
+.opt.sel .k{border-color:var(--tiu);color:var(--tiu)}
+.opt.right{border-color:var(--good);background:var(--good-bg);box-shadow:0 4px 0 var(--good)}
+.opt.right .k{border-color:var(--good);color:var(--good)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg);box-shadow:0 4px 0 var(--bad);animation:shake .4s}
+.opt.wrong .k{border-color:var(--bad);color:var(--bad)}
+.opt:disabled{cursor:default}
+.opt .pts{margin-left:auto;flex:none;font-size:12px;font-weight:800;color:var(--muted)}
+.ctx{background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:12px 14px;font-size:14.5px;line-height:1.55}
+.ctx b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin-bottom:4px}
+.ctx ul{margin:6px 0 0;padding-left:20px}
+.figbox{background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:12px;overflow-x:auto}
+.figrow{display:flex;align-items:center;gap:6px;justify-content:center;min-width:max-content}
+.fsvg{color:var(--ink);display:block;flex:none}
+.figq{width:60px;height:60px;border:2px dashed var(--c);border-radius:8px;display:grid;place-items:center;font-family:var(--f-display);font-size:26px;color:var(--c);flex:none}
+.figsep{font-family:var(--f-display);font-size:22px;color:var(--muted)}
+.figopts{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
+.figopts .opt{flex-direction:column;gap:6px;padding:10px 8px}
+.foot{position:sticky;bottom:0;margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0;padding:16px max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));border-top:2px solid var(--line);background:var(--bg)}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:20;transform:translateY(105%);transition:transform .38s cubic-bezier(.2,.9,.25,1.1)}
+.sheet.on{transform:none}
+.sheet-in{max-width:540px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:var(--sbg);border-radius:24px 24px 0 0;color:var(--sink)}
+.sheet.good{--sbg:var(--good-bg);--sink:var(--good-ink)} .sheet.bad{--sbg:var(--bad-bg);--sink:var(--bad-ink)}
+.sheet.mid{--sbg:color-mix(in srgb,var(--accent) 22%,var(--surface));--sink:var(--ink)}
+.sh-h{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:24px;font-weight:800}
+.sh-h .ic{width:36px;height:36px;border-radius:50%;background:var(--surface);display:grid;place-items:center;animation:pop .45s}
+.sh-h .ic svg{width:22px;height:22px}
+.sh-ans{font-size:14px;font-weight:700;margin:6px 0 0}
+.sh-ex{font-size:14.5px;line-height:1.55;margin:8px 0 14px;max-height:34vh;overflow:auto;color:var(--ink);background:var(--surface);border-radius:14px;padding:12px 14px}
+.sh-ex b{color:var(--ink)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@keyframes pop{0%{transform:scale(.4)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+
+/* ---------- results ---------- */
+.res{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding-top:32px}
+.res h1{font-size:34px;color:var(--accent-d)}
+.res .sub{color:var(--muted);margin:-8px 0 0;font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.card{border:2px solid var(--c);border-radius:16px;overflow:hidden;animation:rise .5s backwards}
+.card:nth-child(2){animation-delay:.15s}.card:nth-child(3){animation-delay:.3s}
+.card h3{background:var(--c);color:#fff;font-family:var(--f-body);font-size:11px;font-weight:800;letter-spacing:.08em;padding:5px}
+.card div{font-family:var(--f-display);font-size:26px;font-weight:800;padding:8px 4px;color:var(--c)}
+.gbar{width:100%;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:14px 16px;text-align:left}
+.gbar .row{display:flex;justify-content:space-between;font-weight:700;font-size:14px;margin-bottom:8px}
+.gbar .track{height:14px;border-radius:7px;background:var(--surface-2);overflow:hidden}
+.gbar .track i{display:block;height:100%;background:var(--accent);border-radius:7px;width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1) .4s}
+.flame-big{animation:pop .6s .2s backwards}
+.met-banner{background:var(--accent);color:var(--accent-ink);border-radius:16px;padding:10px 14px;font-weight:800;width:100%;animation:pop .5s .9s backwards}
+.res .actions{width:100%;display:flex;flex-direction:column;gap:10px;margin-top:8px}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:30;background:rgba(15,12,40,.55);display:grid;place-items:end center;animation:fade .2s}
+.modal[hidden]{display:none!important}
+.mbox{width:100%;max-width:540px;background:var(--surface);border-radius:24px 24px 0 0;padding:22px max(16px,env(safe-area-inset-right,0px)) calc(22px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));animation:up .35s cubic-bezier(.2,.9,.25,1.1)}
+.mbox h2{font-size:24px;margin-bottom:4px}
+.mbox > p{color:var(--muted);margin:0 0 16px;font-size:14px}
+.goals{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.gopt{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border:2px solid var(--line);border-radius:16px;box-shadow:0 4px 0 var(--line);font-weight:700;text-align:left;gap:10px}
+.gopt small{display:block;color:var(--muted);font-weight:600;font-size:13px}
+.gopt span{font-family:var(--f-display);font-size:18px;color:var(--muted);flex:none}
+.gopt.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--surface));box-shadow:0 4px 0 var(--accent-d)}
+.gopt.sel span{color:var(--accent-d)}
+@keyframes fade{from{opacity:0}}
+@keyframes up{from{transform:translateY(100%)}}
+
+.screen{animation:enter .35s ease-out}
+@keyframes enter{from{opacity:.001;transform:translateY(12px)}}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:40}
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 16px);transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:12px;font-weight:700;font-size:14px;z-index:50;animation:enter .3s}
+.foot-note{font-size:12px;color:var(--muted);text-align:center;margin-top:24px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media (max-width:380px){.qtext{font-size:17px}.cards div{font-size:22px}.brand small{display:none}}
+</style>
+
+<div class="app" id="app"></div>
+<canvas id="fx"></canvas>
+<div class="modal" id="modal" hidden><div class="mbox" id="mbox"></div></div>
+
+<script>
+/* ================= BANK SOAL ================= */
+/* --- gambar figural (SVG) --- */
+const SV=(inner,s=60)=>`<svg class="fsvg" viewBox="0 0 64 64" width="${s}" height="${s}" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="8" fill="none" stroke="currentColor" stroke-width="2" opacity=".3"/>${inner}</svg>`;
+const ACC='style="fill:var(--accent)"';
+const fArrow=d=>SV(`<g transform="rotate(${d} 32 32)"><path d="M32 11 L45 28 H36.5 V53 H27.5 V28 H19 Z" fill="currentColor"/></g>`);
+const fDots=n=>{let g='';for(let i=0;i<n;i++){const x=14+(i%4)*12,y=20+Math.floor(i/4)*12;g+=`<circle cx="${x}" cy="${y}" r="4.2" fill="currentColor"/>`}return SV(g)};
+const F_PATH='M22 12h22v9H31v7h10v9H31v15h-9Z';
+const fF=(rot,mir)=>SV(`<g transform="rotate(${rot} 32 32)${mir?' translate(64 0) scale(-1 1)':''}"><path d="${F_PATH}" fill="currentColor"/></g>`);
+const shp=(t,r,acc)=>{const f=acc?ACC:'fill="currentColor"';
+ if(t==='c')return `<circle cx="32" cy="32" r="${r}" ${f}/>`;
+ if(t==='s')return `<rect x="${32-r*.85}" y="${32-r*.85}" width="${r*1.7}" height="${r*1.7}" ${f}/>`;
+ return `<path d="M32 ${32-r} L${32+r*.95} ${32+r*.7} H${32-r*.95} Z" ${f}/>`};
+const fNest=(o,i)=>SV(shp(o,24,false)+shp(i,9,true));
+const fCells=(b,g)=>{let s='';for(let k=0;k<4;k++){const x=6+k*13.5;const fill=k===b?'fill="currentColor"':k===g?ACC:'fill="none"';
+ s+=`<rect x="${x}" y="25" width="11" height="14" rx="2" ${fill} stroke="currentColor" stroke-width="1.6"/>`}return SV(s)};
+const row=(...a)=>`<div class="figrow">${a.join('')}</div>`;
+const Q_='<span class="figq">?</span>', SEP=t=>`<span class="figsep">${t}</span>`;
+
+const CTX_ANTRE='Lima peserta, yaitu P, Q, R, S, dan T, mengantre di depan loket. Diketahui:<ul><li>S berada paling belakang.</li><li>P berdiri tepat di depan R.</li><li>T berada di depan P.</li><li>Q tidak berada paling depan dan tidak paling belakang.</li><li>R tidak berdiri tepat di depan S.</li></ul>';
+const CTX_RAPAT='Rapat koordinasi digelar Senin sampai Jumat, satu dinas per hari: Kesehatan (K), Pendidikan (P), Sosial (S), Perhubungan (H), dan Lingkungan (L). Diketahui:<ul><li>K dijadwalkan sehari sebelum P.</li><li>S tidak dijadwalkan hari Senin maupun Jumat.</li><li>H dijadwalkan hari Rabu.</li><li>L tidak dijadwalkan hari Senin.</li></ul>';
+
+const UNITS = [
+ {id:'twk', tag:'UNIT 1 · TWK', name:'Wawasan Kebangsaan', desc:'Nasionalisme, integritas, bela negara, pilar negara, bahasa', exam:'30 soal', c:'twk', lessons:[
+  {title:'Nasionalisme', sub:'Studi kasus', qs:[
+   {q:'Seorang atlet bulu tangkis menolak tawaran naturalisasi dari negara lain yang menjanjikan gaji jauh lebih besar. Ia memilih tetap membela Indonesia walaupun fasilitas latihannya terbatas. Sikap atlet tersebut mencerminkan ...', o:['Chauvinisme','Nasionalisme dan rela berkorban','Primordialisme','Etnosentrisme','Sektoralisme'], a:1,
+    ex:'Kata kuncinya <b>memilih bangsa sendiri meski harus berkorban</b> (gaji besar ditolak). Itu <b>nasionalisme + rela berkorban</b>. Chauvinisme beda: itu merasa bangsa sendiri paling hebat sambil merendahkan bangsa lain.'},
+   {q:'Sekelompok warga menolak semua produk dan budaya asing, menganggap bangsa lain lebih rendah, bahkan mengusir pedagang dari negara lain. Sikap ini termasuk ...', o:['Nasionalisme Pancasila','Patriotisme','Nasionalisme sempit (chauvinisme)','Kosmopolitanisme','Internasionalisme'], a:2,
+    ex:'Menganggap bangsa lain <b>lebih rendah</b> = <b>chauvinisme</b>, alias nasionalisme sempit. Nasionalisme Pancasila justru cinta bangsa sendiri <b>tanpa</b> merendahkan bangsa lain.'},
+   {q:'Nasionalisme Indonesia disebut nasionalisme Pancasila. Makna yang paling tepat adalah ...', o:['Mengutamakan bangsa sendiri di atas bangsa lain dalam segala hal','Cinta tanah air dengan tetap menghormati bangsa lain dan terbuka pada kerja sama','Kesetiaan utama kepada suku dan daerah asal','Menolak segala bentuk kerja sama internasional','Persatuan yang didasarkan pada kelompok mayoritas'], a:1,
+    ex:'Nasionalisme Pancasila itu <b>cinta tanah air yang tetap ramah ke luar</b>. Sila ke-2 (kemanusiaan) membuatnya tidak sempit, sila ke-3 menjaga persatuan. Opsi lain kebablasan atau malah memecah.'},
+   {q:'Sebuah video viral memperlihatkan seorang pembuat konten memakai bendera Merah Putih sebagai alas duduk untuk konten lucu. Tindakan tersebut melanggar UU Nomor 24 Tahun 2009 dan menunjukkan lemahnya ...', o:['Kreativitas dalam bermedia sosial','Rasa hormat terhadap simbol negara','Pemahaman tentang hak asasi manusia','Kebebasan berekspresi','Kemampuan literasi digital'], a:1,
+    ex:'Bendera itu <b>simbol negara</b> yang wajib dihormati, diatur dalam <b>UU 24/2009</b> tentang Bendera, Bahasa, Lambang Negara, dan Lagu Kebangsaan. Jadi masalah utamanya adalah <b>rasa hormat pada simbol negara</b>, bukan soal kreativitas.'},
+   {q:'Pemerintah daerah mewajibkan nama gedung, jalan, dan kompleks perumahan baru memakai bahasa Indonesia. Tujuan utama kebijakan ini adalah ...', o:['Menolak penggunaan bahasa asing sepenuhnya','Memperkuat bahasa Indonesia sebagai jati diri dan pemersatu bangsa','Mempermudah turis asing membaca nama tempat','Meningkatkan nilai jual properti','Melestarikan bahasa daerah'], a:1,
+    ex:'Bahasa Indonesia itu <b>identitas dan pemersatu bangsa</b>. UU 24/2009 memang mewajibkan bahasa Indonesia untuk nama bangunan dan permukiman. Bahasa asing tetap boleh dipakai, asal tidak menggeser bahasa Indonesia.'}
+  ]},
+  {title:'Integritas', sub:'Antikorupsi & BerAKHLAK', qs:[
+   {q:'Seorang kepala dinas mengangkat keponakannya menjadi tenaga honorer tanpa seleksi, padahal ada pelamar lain yang lebih kompeten. Praktik ini disebut ...', o:['Kolusi','Gratifikasi','Nepotisme','Suap','Pungutan liar'], a:2,
+    ex:'Mengutamakan <b>keluarga atau kerabat</b> dalam jabatan = <b>nepotisme</b>. Kolusi itu kongkalikong antarpihak, gratifikasi itu pemberian hadiah. Trik: <b>nepo</b> mirip "nephew" (keponakan).'},
+   {q:'Seorang pegawai menerima hadiah dari rekanan proyek dan tidak bisa menolaknya. Agar tidak dianggap suap, gratifikasi tersebut wajib dilaporkan ke KPK paling lambat ...', o:['7 hari kerja','14 hari kerja','30 hari kerja','60 hari kerja','90 hari kerja'], a:2,
+    ex:'Aturannya <b>30 hari kerja</b> sejak gratifikasi diterima (UU 20/2001 Pasal 12C). Kalau dilaporkan tepat waktu, statusnya tidak dianggap suap. Ingat: <b>30 hari kerja, bukan 30 hari kalender</b>.'},
+   {q:'Berikut ini yang tidak termasuk nilai dasar ASN BerAKHLAK adalah ...', o:['Akuntabel','Harmonis','Karismatik','Adaptif','Kolaboratif'], a:2,
+    ex:'BerAKHLAK = <b>Ber</b>orientasi pelayanan, <b>A</b>kuntabel, <b>K</b>ompeten, <b>H</b>armonis, <b>L</b>oyal, <b>A</b>daptif, <b>K</b>olaboratif. Tidak ada <b>karismatik</b>. Hafalkan dari huruf-hurufnya.'},
+   {q:'Petugas loket sengaja memperlambat pengurusan izin dan memberi isyarat bahwa berkas bisa cepat selesai bila ada "uang pelicin". Tindakan ini termasuk ...', o:['Gratifikasi','Pungutan liar','Nepotisme','Kolusi','Wanprestasi'], a:1,
+    ex:'Meminta bayaran di luar ketentuan untuk layanan publik = <b>pungutan liar (pungli)</b>. Bedanya dengan gratifikasi: gratifikasi itu pemberian, pungli itu <b>diminta/dipaksa</b> oleh petugas.'},
+   {q:'Seorang pegawai menemukan amplop berisi uang di ruang tunggu kantor. Ia langsung menyerahkannya ke bagian keamanan agar dikembalikan kepada pemiliknya. Nilai integritas yang paling menonjol adalah ...', o:['Kedisiplinan','Kejujuran','Kepedulian sosial','Kesederhanaan','Kemandirian'], a:1,
+    ex:'Tidak mengambil yang bukan haknya = <b>kejujuran</b>, inti dari integritas. Kepedulian juga ada, tapi yang paling menonjol tetap jujur.'}
+  ]},
+  {title:'Pilar Negara', sub:'Pancasila, UUD, NKRI', qs:[
+   {q:'Warga sebuah desa menangkap dan memukuli terduga pencuri motor sebelum polisi datang. Tindakan warga tersebut bertentangan dengan prinsip bahwa Indonesia adalah ...', o:['Negara kesatuan','Negara hukum','Negara demokrasi','Negara kepulauan','Negara kesejahteraan'], a:1,
+    ex:'<b>Pasal 1 ayat (3) UUD 1945</b>: Indonesia adalah <b>negara hukum</b>. Artinya yang berhak mengadili itu aparat dan pengadilan, bukan warga. Main hakim sendiri juga melanggar sila ke-2.'},
+   {q:'Sebuah kelompok mendeklarasikan kemerdekaan wilayahnya dan menyatakan lepas dari Indonesia melalui siaran pers di luar negeri. Tindakan ini paling bertentangan dengan Pancasila sila ke ...', o:['Pertama','Kedua','Ketiga','Keempat','Kelima'], a:2,
+    ex:'Memisahkan diri dari Indonesia = ancaman disintegrasi, langsung bertabrakan dengan <b>sila ke-3, Persatuan Indonesia</b>, dan pilar NKRI.'},
+   {q:'Menurut UUD 1945, ketentuan yang tidak dapat dilakukan perubahan adalah ...', o:['Sistem pemerintahan presidensial','Masa jabatan presiden','Bentuk Negara Kesatuan Republik Indonesia','Jumlah anggota MPR','Kewenangan Mahkamah Konstitusi'], a:2,
+    ex:'<b>Pasal 37 ayat (5)</b>: bentuk <b>NKRI tidak dapat diubah</b>. Bagian lain UUD boleh diamandemen lewat MPR, tapi bentuk negara kesatuan dikunci.'},
+   {q:'Terjadi perselisihan antara warga tentang pembangunan rumah ibadah di sebuah kompleks. Penyelesaian yang paling sesuai dengan nilai Pancasila adalah ...', o:['Menyerahkan keputusan pada kelompok mayoritas','Musyawarah antarwarga yang difasilitasi pemerintah setempat sesuai aturan','Membiarkan pembangunan tanpa izin','Melarang semua pembangunan rumah ibadah','Menyelesaikan lewat media sosial agar transparan'], a:1,
+    ex:'Dua sila bekerja bareng: <b>sila ke-1</b> (kebebasan beribadah) dan <b>sila ke-4</b> (musyawarah). Jadi jalan terbaik: <b>musyawarah difasilitasi pemerintah, sesuai aturan</b>. Suara mayoritas saja tidak cukup.'},
+   {q:'Hal yang membedakan demokrasi Pancasila dari demokrasi liberal adalah ...', o:['Adanya pemilihan umum','Adanya lembaga perwakilan rakyat','Mengutamakan musyawarah mufakat serta keseimbangan hak dan kewajiban','Kebebasan individu tanpa batas','Keputusan selalu diambil melalui voting'], a:2,
+    ex:'Pemilu dan DPR ada di kedua sistem, jadi bukan pembeda. Ciri khas demokrasi Pancasila: <b>musyawarah mufakat</b> dan <b>hak seimbang dengan kewajiban</b>. Voting tetap boleh, tapi jadi jalan terakhir.'}
+  ]},
+  {title:'Bela Negara', sub:'Ancaman & bahasa negara', qs:[
+   {q:'Berikut ini yang tidak termasuk nilai dasar bela negara menurut UU Nomor 23 Tahun 2019 adalah ...', o:['Cinta tanah air','Setia kepada Pancasila sebagai ideologi negara','Rela berkorban untuk bangsa dan negara','Menguasai teknik bertempur','Kemampuan awal bela negara'], a:3,
+    ex:'Lima nilai dasar bela negara: <b>cinta tanah air, sadar berbangsa dan bernegara, setia pada Pancasila, rela berkorban, dan kemampuan awal bela negara</b>. Teknik bertempur bukan syarat. Bela negara tidak harus angkat senjata.'},
+   {q:'Sekelompok mahasiswa membuat aplikasi pendeteksi berita hoaks dan membagikannya gratis kepada masyarakat. Tindakan ini merupakan bentuk bela negara ...', o:['Fisik di bidang pertahanan','Non-fisik di bidang teknologi informasi','Fisik di bidang keamanan','Militer di bidang siber','Non-fisik di bidang ekonomi'], a:1,
+    ex:'Tidak pakai senjata, jadi <b>non-fisik</b>. Medannya aplikasi dan informasi, jadi bidang <b>teknologi informasi</b>. Hoaks memang termasuk ancaman non-militer.'},
+   {q:'Berikut ini yang termasuk ancaman militer adalah ...', o:['Penyebaran hoaks yang memecah belah','Peredaran narkoba di kalangan pelajar','Pelanggaran wilayah udara oleh pesawat tempur asing','Krisis ekonomi global','Wabah penyakit menular'], a:2,
+    ex:'Ancaman <b>militer</b> = memakai kekuatan bersenjata, misalnya <b>pelanggaran wilayah oleh pesawat tempur asing</b>. Hoaks, narkoba, krisis, dan wabah termasuk ancaman <b>non-militer</b>.'},
+   {q:'Kedudukan bahasa Indonesia sebagai bahasa negara bersumber pada ...', o:['Ikrar Sumpah Pemuda 1928','Pasal 36 UUD 1945','Kongres Bahasa Indonesia I tahun 1938','Pasal 32 UUD 1945','Dekrit Presiden 5 Juli 1959'], a:1,
+    ex:'Dua kedudukan, dua sumber. Sebagai <b>bahasa persatuan</b>: Sumpah Pemuda 1928. Sebagai <b>bahasa negara</b>: <b>Pasal 36 UUD 1945</b>. Soal ini sering menjebak di situ.'},
+   {q:'Penulisan kata baku yang tepat terdapat pada ...', o:['Apotik','Analisa','Kwitansi','Risiko','Hakekat'], a:3,
+    ex:'Bentuk bakunya: apo<b>tek</b>, anali<b>sis</b>, <b>kui</b>tansi, <b>risiko</b>, haki<b>kat</b>. Jadi cuma <b>risiko</b> yang sudah benar. Kata baku sering keluar di TWK bagian bahasa negara.'}
+  ]}
+ ]},
+ {id:'tiu', tag:'UNIT 2 · TIU', name:'Intelegensia Umum', desc:'Verbal, silogisme, analitis, numerik, figural', exam:'35 soal', c:'tiu', lessons:[
+  {title:'Verbal', sub:'Sinonim, antonim, analogi', qs:[
+   {q:'KONKLUSI = ...', o:['Pendahuluan','Kesimpulan','Pertimbangan','Perbandingan','Penjelasan'], a:1,
+    ex:'<b>Konklusi = kesimpulan</b>. Kalau lupa, ingat kata Inggris "conclusion". Lawannya justru pendahuluan.'},
+   {q:'KONKRET >< ...', o:['Nyata','Jelas','Abstrak','Padat','Kasat mata'], a:2,
+    ex:'Konkret itu <b>nyata, berwujud</b>. Lawannya <b>abstrak</b>. Nyata, jelas, kasat mata malah sinonim, jadi itu jebakan.'},
+   {q:'DISPENSASI = ...', o:['Penundaan','Pembebasan dari kewajiban','Pembagian','Hukuman','Penyaluran'], a:1,
+    ex:'<b>Dispensasi</b> = pengecualian atau <b>pembebasan dari kewajiban</b> karena alasan khusus. Contoh: dapat dispensasi tidak ikut upacara karena sakit.'},
+   {q:'KUAS : .... = .... : PENULIS', o:['Cat – Buku','Pelukis – Pena','Kanvas – Kertas','Warna – Tinta','Seni – Novel'], a:1,
+    ex:'Analogi dua bagian kosong: coba isi tiap opsi lalu baca utuh. <b>Kuas : pelukis = pena : penulis</b>, polanya <b>alat : penggunanya</b>. Opsi lain tidak bisa dibaca dengan pola yang sama di kedua sisi.'},
+   {q:'AIR : HAUS = .... : ....', o:['Makanan : Lapar','Obat : Dokter','Tidur : Mimpi','Api : Panas','Garam : Asin'], a:0,
+    ex:'Air <b>menghilangkan</b> haus, makanan <b>menghilangkan</b> lapar. Api : panas dan garam : asin itu pola "menghasilkan sifat", jadi beda hubungan.'}
+  ]},
+  {title:'Silogisme', sub:'Penalaran logis', qs:[
+   {q:'Semua pegawai bank memakai seragam. Sebagian pemakai seragam adalah pegawai baru. Kesimpulan yang tepat adalah ...', o:['Sebagian pegawai bank adalah pegawai baru','Semua pegawai baru adalah pegawai bank','Sebagian pegawai baru tidak memakai seragam','Semua pemakai seragam adalah pegawai bank','Tidak dapat ditarik kesimpulan yang pasti'], a:4,
+    ex:'Jebakan klasik! "Pemakai seragam" itu kelompok besar, isinya bukan cuma pegawai bank. Pegawai baru yang berseragam bisa saja dari tempat lain. Jadi <b>tidak ada kesimpulan pasti</b>.'},
+   {q:'Jika harga BBM naik, ongkos angkut naik. Jika ongkos angkut naik, harga sayur naik. Ternyata harga sayur tidak naik. Kesimpulannya ...', o:['Harga BBM naik','Ongkos angkut naik','Harga BBM tidak naik','Harga sayur turun','Ongkos angkut tetap tetapi BBM naik'], a:2,
+    ex:'Rantainya: BBM naik → ongkos naik → sayur naik. Ujungnya ternyata <b>tidak</b> terjadi, berarti semua mata rantai sebelumnya juga tidak terjadi (modus tollens). Jadi <b>harga BBM tidak naik</b>.'},
+   {q:'Hanya peserta yang lulus SKD yang boleh mengikuti SKB. Rina mengikuti SKB. Kesimpulannya ...', o:['Rina belum tentu lulus SKD','Rina lulus SKD','Rina tidak lulus SKD','Rina lulus SKB','Semua peserta SKD ikut SKB'], a:1,
+    ex:'Kata "<b>hanya</b>" artinya SKB = pasti sudah lulus SKD. Rina ikut SKB, berarti <b>Rina lulus SKD</b>. Lulus SKB belum tentu, karena itu belum diketahui.'},
+   {q:'Ingkaran dari "Jika hujan, maka saya membawa payung" adalah ...', o:['Jika tidak hujan, maka saya tidak membawa payung','Hujan dan saya tidak membawa payung','Tidak hujan atau saya membawa payung','Jika saya membawa payung, maka hujan','Tidak hujan dan saya membawa payung'], a:1,
+    ex:'Rumus: ingkaran "<b>jika p maka q</b>" adalah "<b>p dan tidak q</b>". Jadi: <b>hujan dan saya tidak membawa payung</b>. Ini satu-satunya kondisi yang membuat janji itu terbukti bohong.'},
+   {q:'Semua yang lolos seleksi mengikuti pelatihan. Tidak ada peserta pelatihan yang datang terlambat. Kesimpulannya ...', o:['Semua yang tidak terlambat lolos seleksi','Tidak ada yang lolos seleksi yang datang terlambat','Sebagian yang lolos seleksi datang terlambat','Peserta pelatihan belum tentu lolos seleksi','Semua yang terlambat lolos seleksi'], a:1,
+    ex:'Lolos seleksi → ikut pelatihan → tidak terlambat. Jadi <b>tidak ada yang lolos seleksi yang terlambat</b>. Opsi "semua yang tidak terlambat lolos seleksi" itu membalik arah.'}
+  ]},
+  {title:'Analitis', sub:'Urutan & jadwal', qs:[
+   {ctx:CTX_ANTRE, q:'Siapa yang berdiri paling depan?', o:['P','Q','R','S','T'], a:4,
+    ex:'Susun dulu: S di posisi 5. T–P–R harus berurutan (T di depan P, P tepat di depan R). Q tidak boleh di posisi 1, dan R tidak boleh di posisi 4. Satu-satunya susunan: <b>T – P – R – Q – S</b>. Jadi paling depan <b>T</b>.'},
+   {ctx:CTX_ANTRE, q:'Siapa yang berdiri tepat di depan S?', o:['P','Q','R','T','Tidak dapat ditentukan'], a:1,
+    ex:'Susunannya <b>T – P – R – Q – S</b>, jadi yang tepat di depan S adalah <b>Q</b>. Tips analitis: gambar dulu kotak 1–5, isi yang pasti (S di 5), baru coba-coba sisanya.'},
+   {ctx:CTX_ANTRE, q:'Pernyataan berikut yang benar adalah ...', o:['P berada di urutan pertama','R berada di urutan ketiga','Q berdiri tepat di belakang T','R berada di belakang Q','T berdiri tepat di depan R'], a:1,
+    ex:'Dari susunan <b>T(1) – P(2) – R(3) – Q(4) – S(5)</b>, yang benar hanya <b>R di urutan ketiga</b>. Cek opsi lain satu per satu, semuanya bertentangan dengan susunan.'},
+   {ctx:CTX_RAPAT, q:'Dinas yang dijadwalkan rapat hari Kamis adalah ...', o:['Kesehatan','Pendidikan','Sosial','Perhubungan','Lingkungan'], a:2,
+    ex:'H = Rabu. K–P berurutan, jadi pilihannya Senin–Selasa atau Kamis–Jumat. Kalau K–P di Kamis–Jumat, Senin sisa untuk S atau L, padahal keduanya dilarang di Senin. Jadi <b>K Senin, P Selasa</b>. S bukan Jumat → <b>S Kamis</b>, L Jumat.'},
+   {ctx:CTX_RAPAT, q:'Pernyataan berikut yang pasti benar adalah ...', o:['Pendidikan rapat hari Rabu','Sosial rapat sehari setelah Pendidikan','Lingkungan rapat paling akhir','Kesehatan rapat hari Selasa','Perhubungan rapat sebelum Pendidikan'], a:2,
+    ex:'Jadwal lengkapnya: <b>Senin K, Selasa P, Rabu H, Kamis S, Jumat L</b>. Jadi <b>Lingkungan paling akhir</b>. Sosial rapat Kamis, dua hari setelah Pendidikan, bukan sehari.'}
+  ]},
+  {title:'Numerik', sub:'Deret & soal cerita', qs:[
+   {q:'3, 20, 6, 17, 12, 14, ..., ...', o:['24, 11','18, 11','24, 12','15, 10','20, 11'], a:0,
+    ex:'Ini <b>deret 2 larik</b>, pisahkan posisi ganjil dan genap. Ganjil: 3, 6, 12 (×2) → <b>24</b>. Genap: 20, 17, 14 (−3) → <b>11</b>. Kalau angkanya naik-turun tidak jelas, curigai 2 larik.'},
+   {q:'2, 3, 5, 8, 13, 21, ...', o:['29','31','34','36','42'], a:2,
+    ex:'Ini <b>deret Fibonacci</b>: tiap angka = jumlah dua angka sebelumnya. 13 + 21 = <b>34</b>.'},
+   {q:'4, 5, 8, 13, 20, ...', o:['27','28','29','30','31'], a:2,
+    ex:'Selisihnya +1, +3, +5, +7, bilangan ganjil berurutan. Berikutnya <b>+9</b>, jadi 20 + 9 = <b>29</b>. Ini disebut deret bertingkat.'},
+   {q:'Andi berangkat pukul 07.00 dengan kecepatan rata-rata 60 km/jam menuju kota yang berjarak 150 km. Andi akan tiba pukul ...', o:['09.00','09.15','09.30','09.50','10.00'], a:2,
+    ex:'Waktu = jarak ÷ kecepatan = 150 ÷ 60 = <b>2,5 jam</b> = 2 jam 30 menit. 07.00 + 2.30 = <b>09.30</b>. Hati-hati, 2,5 jam itu bukan 2 jam 50 menit.'},
+   {q:'Perbandingan umur ayah dan anak adalah 7 : 2. Selisih umur mereka 30 tahun. Umur anak sekarang adalah ...', o:['10 tahun','12 tahun','14 tahun','15 tahun','42 tahun'], a:1,
+    ex:'Selisih bagian 7 − 2 = 5 bagian = 30 tahun, jadi 1 bagian = 6 tahun. Anak = 2 × 6 = <b>12 tahun</b>. Ayahnya 42, dan itu dipasang sebagai jebakan.'}
+  ]},
+  {title:'Figural', sub:'Pola gambar', fig:true, qs:[
+   {fig:row(fArrow(0),fArrow(45),fArrow(90),fArrow(135),Q_), q:'Gambar berikutnya yang tepat adalah ...', o:[fArrow(180),fArrow(225),fArrow(90),fArrow(0),fArrow(270)], a:0, html:true,
+    ex:'Panahnya <b>berputar 45° searah jarum jam</b> tiap langkah: atas → serong kanan → kanan → serong kanan bawah. Berikutnya <b>menunjuk ke bawah</b> (180°).'},
+   {fig:row(fDots(1),fDots(3),fDots(5),fDots(7),Q_), q:'Gambar berikutnya yang tepat adalah ...', o:[fDots(8),fDots(9),fDots(10),fDots(11),fDots(6)], a:1, html:true,
+    ex:'Hitung titiknya: 1, 3, 5, 7, selalu <b>bertambah 2</b>. Berikutnya <b>9 titik</b>. Di soal figural, menghitung elemen sering jadi kunci tercepat.'},
+   {q:'Manakah gambar yang berbeda dari yang lain?', o:[fF(0),fF(90),fF(180),fF(90,true),fF(270)], a:3, html:true,
+    ex:'Empat gambar sebenarnya <b>bentuk yang sama, hanya diputar</b>. Satu gambar <b>dicerminkan</b> (dibalik kiri-kanan), dan bentuk cermin tidak bisa didapat hanya dengan memutar. Trik: perhatikan ke arah mana "tangan" bentuknya menghadap.'},
+   {fig:row(fNest('c','s'),SEP(':'),fNest('s','c'),SEP('='),fNest('t','c'),SEP(':'),Q_), q:'Gambar yang tepat untuk melengkapi analogi di atas adalah ...', o:[fNest('c','t'),fNest('t','c'),fNest('c','s'),fNest('s','t'),fNest('t','t')], a:0, html:true,
+    ex:'Polanya: <b>bentuk luar dan bentuk dalam bertukar tempat</b>. Lingkaran berisi persegi → persegi berisi lingkaran. Jadi segitiga berisi lingkaran → <b>lingkaran berisi segitiga</b>.'},
+   {fig:row(fCells(0,3),fCells(1,2),fCells(2,1),Q_), q:'Gambar berikutnya yang tepat adalah ...', o:[fCells(3,0),fCells(0,3),fCells(3,1),fCells(2,0),fCells(1,3)], a:0, html:true,
+    ex:'Ada dua gerakan sekaligus: kotak <b>hitam bergeser ke kanan</b>, kotak <b>kuning bergeser ke kiri</b>, masing-masing satu langkah. Berikutnya hitam di paling kanan, kuning di paling kiri.'}
+  ]}
+ ]},
+ {id:'tkp', tag:'UNIT 3 · TKP', name:'Karakteristik Pribadi', desc:'Pelayanan, jejaring kerja, sosial budaya, TIK, anti-radikalisme', exam:'45 soal', c:'tkp', lessons:[
+  {title:'Pelayanan Publik', sub:'& profesionalisme', tkp:true, qs:[
+   {q:'Seorang warga marah-marah di loket karena berkasnya ditolak sistem, padahal menurutnya sudah lengkap. Saya akan ...', o:['Menjelaskan aturan sistem dan memintanya melengkapi berkas','Mendengarkan keluhannya dengan tenang, mengecek ulang berkas, lalu menjelaskan bagian yang kurang dan cara melengkapinya','Meminta maaf atas ketidaknyamanan dan mengarahkannya ke bagian pengaduan','Mengecek ulang berkasnya untuk memastikan apakah sistem yang keliru','Meminta petugas keamanan menenangkannya agar antrean tidak terganggu'], p:[3,5,2,4,1],
+    ex:'Aspek <b>pelayanan publik</b>. Skor 5 punya tiga unsur: <b>tenang mendengar, mengecek, dan memberi solusi</b>. Mengecek saja dapat 4. Melempar ke bagian pengaduan dinilai kurang bertanggung jawab.'},
+   {q:'Sistem antrean online di kantor saya sedang gangguan dan warga mulai menumpuk. Saya akan ...', o:['Meminta warga bersabar sampai sistem pulih','Membuat antrean manual, mencatat data warga, dan melaporkan gangguan ke tim TI','Melaporkan gangguan ke tim TI dan menunggu arahan','Melayani warga secara manual sebisanya','Menutup layanan sementara sampai sistem normal'], p:[2,5,3,4,1],
+    ex:'TKP menyukai <b>inisiatif saat ada masalah</b>. Layanan tetap jalan (antrean manual) <b>dan</b> masalah dilaporkan = 5. Hanya melapor lalu menunggu = 3, karena warga tetap terlantar.'},
+   {q:'Atasan memberi saya target kerja yang menurut saya terlalu tinggi. Saya akan ...', o:['Menerima, menyusun rencana kerja, dan berdiskusi dengan atasan bila ada kendala','Menerima walaupun ragu dapat mencapainya','Meminta target diturunkan sebelum mulai bekerja','Berusaha semaksimal mungkin, termasuk lembur setiap hari','Mengerjakan sebisanya karena target tidak realistis'], p:[5,3,2,4,1],
+    ex:'Aspek <b>profesionalisme</b>: terima tantangan, tapi dengan <b>perencanaan dan komunikasi</b>. Lembur tiap hari menunjukkan semangat (4), tapi tanpa strategi.'},
+   {q:'Atasan mengkritik hasil kerja saya yang kurang rapi di depan rekan-rekan. Saya akan ...', o:['Merasa malu tetapi diam saja','Menerima kritik, menanyakan bagian yang perlu diperbaiki, lalu memperbaikinya','Menjelaskan alasan pekerjaan saya kurang rapi','Memperbaiki pekerjaan tanpa banyak bicara','Menunjukkan bahwa rekan lain juga melakukan kesalahan serupa'], p:[2,5,3,4,1],
+    ex:'Kritik = bahan perbaikan. Skor 5: <b>terima, tanya detail, perbaiki</b>. Langsung memperbaiki juga bagus (4). Menjelaskan alasan cenderung terlihat defensif (3).'},
+   {q:'Saya dipindahkan ke bidang baru yang tidak sesuai dengan latar pendidikan saya. Saya akan ...', o:['Mempelajari tugas baru, bertanya kepada yang berpengalaman, dan mengikuti pelatihan yang tersedia','Menjalankan tugas sambil belajar sedikit demi sedikit','Menerima walaupun kurang bersemangat','Meminta dikembalikan ke bidang lama','Menjalankan tugas sesuai perintah saja'], p:[5,4,2,1,3],
+    ex:'Nilai <b>adaptif</b> dari BerAKHLAK. Yang paling aktif mengembangkan diri dapat 5. Bedanya 5 dan 4 ada di <b>kecepatan dan kesungguhan</b> belajar.'}
+  ]},
+  {title:'Jejaring Kerja', sub:'& kepemimpinan', tkp:true, qs:[
+   {q:'Saya ketua tim. Dua anggota berselisih sehingga pekerjaan tim terhambat. Saya akan ...', o:['Mempertemukan keduanya, mendengar kedua pihak, dan mencari solusi bersama demi target tim','Menegur keduanya agar bersikap profesional','Membagi ulang tugas agar mereka tidak saling bergantung, lalu berbicara dengan masing-masing','Melaporkan perselisihan itu kepada atasan','Membiarkan karena nanti akan reda sendiri'], p:[5,3,4,2,1],
+    ex:'Pemimpin yang baik <b>menyelesaikan akar konflik</b>, bukan sekadar menegur. Mempertemukan dan mencari solusi bersama = 5. Membagi ulang tugas efektif jangka pendek (4).'},
+   {q:'Instansi lain meminta data yang dikelola unit saya untuk program bersama. Saya akan ...', o:['Memberikan data sesuai prosedur dan izin pimpinan, serta menawarkan koordinasi lanjutan','Memberikan data secepatnya agar program lancar','Meminta surat resmi terlebih dahulu, lalu memprosesnya sesuai prosedur','Menolak karena data itu milik unit saya','Meneruskan permintaan ke atasan dan menunggu'], p:[5,3,4,1,2],
+    ex:'Aspek <b>jejaring kerja</b>: kolaboratif <b>tapi tetap taat prosedur</b>. Memberi data tanpa izin itu cepat, tapi berisiko (3). Plus menawarkan koordinasi lanjutan yang membuatnya 5.'},
+   {q:'Saya diminta menjadi penghubung dalam proyek kolaborasi lintas bidang. Saya akan ...', o:['Menerima, memetakan kebutuhan tiap bidang, dan membuat jadwal koordinasi rutin','Menerima dan menjalankan sesuai arahan atasan','Menerima walaupun khawatir menambah beban kerja','Menolak karena pekerjaan saya sudah banyak','Menerima dan membuat grup komunikasi agar informasi cepat tersampaikan'], p:[5,3,2,1,4],
+    ex:'Semua opsi "menerima" terlihat baik, jadi bedanya di <b>seberapa proaktif</b>. Memetakan kebutuhan + jadwal rutin = 5. Grup komunikasi sudah inisiatif, tapi belum menyentuh kebutuhan tiap bidang (4).'},
+   {q:'Anggota tim saya sering terlambat menyelesaikan bagian tugasnya. Saya akan ...', o:['Mengambil alih tugasnya agar target aman','Berbicara empat mata untuk mengetahui kendalanya dan membantu menyusun jadwal','Menegurnya di rapat tim agar menjadi pelajaran bagi yang lain','Memberi tenggat lebih awal untuk bagiannya','Mengingatkannya secara berkala dan menawarkan bantuan'], p:[2,5,1,3,4],
+    ex:'Cari <b>akar masalahnya</b> lewat obrolan empat mata = 5. Menegur di depan umum mempermalukan dan merusak tim (1). Mengambil alih tugas menyelesaikan target, tapi orangnya tidak berkembang (2).'},
+   {q:'Rekan dari unit lain meminta bantuan saat saya sedang dikejar tenggat. Saya akan ...', o:['Menolak dengan sopan dan menjelaskan kesibukan saya','Membantu sebentar lalu kembali ke pekerjaan saya','Menjelaskan kondisi saya, menjadwalkan waktu membantu setelah tenggat, atau menghubungkannya dengan rekan yang bisa membantu','Membantu sampai selesai walaupun pekerjaan saya tertunda','Pura-pura tidak membaca pesannya'], p:[2,4,5,3,1],
+    ex:'Opsi 5 menjaga <b>tanggung jawab sendiri sekaligus tetap membantu</b>. Membantu sampai pekerjaan sendiri tertunda terlihat baik hati, tapi kurang profesional (3).'}
+  ]},
+  {title:'Sosial Budaya', sub:'& anti-radikalisme', tkp:true, qs:[
+   {q:'Dalam rapat, rekan dari daerah lain berbicara dengan logat dan nada yang terdengar keras bagi saya. Saya akan ...', o:['Memahami bahwa itu kebiasaan budayanya dan tetap fokus pada isi pembicaraan','Menegurnya agar berbicara lebih pelan','Merasa tersinggung tetapi diam saja','Bertanya dengan sopan bila ada maksud yang kurang jelas','Menyesuaikan diri seperlunya'], p:[5,2,1,4,3],
+    ex:'Aspek <b>sosial budaya</b>: hargai perbedaan cara bicara dan <b>fokus pada substansi</b>. Menegur soal logat itu kurang peka budaya.'},
+   {q:'Masyarakat di wilayah kerja saya mengadakan upacara adat yang menutup jalan utama pada jam layanan kantor. Saya akan ...', o:['Menghormati acara tersebut, berkoordinasi dengan tokoh adat dan aparat untuk jalur alternatif, serta mengumumkan perubahan layanan','Meminta upacara dipindahkan ke hari libur','Menutup layanan pada hari itu','Mengumumkan jalur alternatif kepada warga','Tetap membuka layanan seperti biasa'], p:[5,1,2,4,3],
+    ex:'Skor 5 menggabungkan <b>hormat pada adat + layanan tetap jalan + koordinasi</b>. Meminta upacara dipindah = tidak menghormati budaya setempat.'},
+   {q:'Saya melihat unggahan teman kantor di media sosial yang mengajak membenci kelompok agama tertentu. Saya akan ...', o:['Membiarkan karena itu akun pribadinya','Mengingatkannya secara pribadi tentang bahaya ujaran kebencian dan memintanya menghapus unggahan','Melaporkan unggahan tersebut ke platform media sosial','Berhenti mengikuti akunnya','Menegurnya di kolom komentar'], p:[1,5,4,2,3],
+    ex:'Aspek <b>anti-radikalisme dan TIK</b>. Mengingatkan secara pribadi sambil meminta menghapus = 5, karena efektif dan tidak mempermalukan. Menegur di komentar bisa memicu keributan baru (3).'},
+   {q:'Teman mengajak saya ikut forum kajian yang mengajarkan bahwa sistem negara harus diganti karena Pancasila dianggap salah. Saya akan ...', o:['Ikut sekali untuk mengetahui isinya','Menolak, menjelaskan bahwa Pancasila adalah kesepakatan bangsa, dan melaporkan forum itu ke pihak berwenang','Menolak tanpa memberi alasan','Menolak dan mengingatkan teman tentang bahayanya','Ikut demi menjaga pertemanan'], p:[2,5,3,4,1],
+    ex:'Untuk paham yang ingin mengganti Pancasila, skor tertinggi selalu: <b>tolak, edukasi, dan laporkan</b>. "Ikut sekali saja" tetap berisiko terpapar (2).'},
+   {q:'Tetangga baru saya berbeda suku dan agama, dan belum dikenal warga sekitar. Saya akan ...', o:['Menyapa, memperkenalkannya kepada warga, dan mengajaknya ikut kegiatan lingkungan','Menyapa bila bertemu','Menunggu ia memperkenalkan diri lebih dulu','Membatasi interaksi agar tidak terjadi salah paham','Berkunjung ke rumahnya untuk berkenalan'], p:[5,3,2,1,4],
+    ex:'Inisiatif <b>merangkul</b> dan menyatukan dengan lingkungan = 5. Berkenalan sendiri sudah baik (4), tapi belum membantu ia diterima warga lain.'}
+  ]},
+  {title:'TIK & Integritas', sub:'Digital & antikorupsi', tkp:true, qs:[
+   {q:'Kantor beralih ke tanda tangan elektronik, dan banyak rekan senior kesulitan. Saya akan ...', o:['Mempelajarinya, membuat panduan singkat, dan membantu rekan senior','Mempelajarinya sendiri sampai lancar','Membantu rekan senior jika mereka meminta','Tetap menggunakan tanda tangan basah selama masih diperbolehkan','Meminta rekan lain mengerjakan bagian saya'], p:[5,3,4,2,1],
+    ex:'Aspek <b>TIK</b>: cepat menguasai <b>dan</b> menularkan ke rekan. Membantu kalau diminta sudah baik (4), tapi kurang proaktif.'},
+   {q:'Saya menerima email dari "bagian kepegawaian" berisi tautan yang meminta saya memasukkan kata sandi akun kantor. Saya akan ...', o:['Langsung mengisinya agar urusan cepat selesai','Mengabaikan email itu','Mengonfirmasi ke bagian kepegawaian lewat jalur resmi dan melaporkan email tersebut ke tim TI','Menghapus email itu','Melaporkan email tersebut ke tim TI'], p:[1,3,5,2,4],
+    ex:'Ini ciri <b>phishing</b>. Skor 5: <b>verifikasi lewat jalur resmi dan lapor ke TI</b>, supaya rekan lain juga terlindungi. Menghapus saja tidak mencegah orang lain tertipu.'},
+   {q:'Atasan meminta saya menandatangani daftar hadir kegiatan yang tidak saya ikuti agar anggaran bisa dicairkan. Saya akan ...', o:['Menolak dengan sopan dan menjelaskan bahwa hal itu tidak sesuai aturan','Menandatangani karena itu perintah atasan','Menandatangani tetapi menyimpan catatan sebagai bukti','Menolak dan langsung melaporkan atasan ke inspektorat','Menghindar dengan alasan sibuk'], p:[5,1,2,4,3],
+    ex:'Aspek <b>integritas</b>. Menolak dengan sopan sekaligus menjelaskan aturan = 5. Langsung lapor tanpa mengingatkan dulu dinilai sedikit di bawahnya (4). Ikut tanda tangan berarti ikut memalsukan.'},
+   {q:'Saya menemukan aplikasi bajakan terpasang di komputer kantor yang saya gunakan. Saya akan ...', o:['Membiarkan karena sudah terpasang sebelumnya','Melaporkannya ke tim TI dan meminta diganti dengan aplikasi berlisensi atau alternatif resmi','Menghapusnya sendiri','Tetap memakainya sambil menunggu pengadaan aplikasi resmi','Melaporkannya kepada atasan'], p:[1,5,3,2,4],
+    ex:'Software bajakan = melanggar hak cipta dan rawan virus. Skor 5: <b>lapor ke pihak yang tepat (TI) sekaligus minta solusi</b>. Menghapus sendiri bisa mengganggu pekerjaan tanpa pengganti (3).'},
+   {q:'Rekan kerja meminta saya mengisikan presensi online-nya karena ia akan datang terlambat. Saya akan ...', o:['Mengisikannya karena ia teman dekat','Menolak dan menyarankannya melaporkan keterlambatan kepada atasan','Menolak dengan sopan','Mengisikannya sekali ini saja','Pura-pura tidak membaca pesannya'], p:[1,5,4,2,3],
+    ex:'Mengisi presensi orang lain = <b>pemalsuan data</b>. Menolak sambil memberi jalan keluar yang jujur = 5. Menolak saja tetap benar (4), tapi kurang membantu.'}
+  ]}
+ ]}
+];
+
+/* ================= STATE ================= */
+const KEY='kepo-cpns-v1', HEART_MS=10*60*1000, MAXH=5;
+function load(){let d={};try{d=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
+ return Object.assign({goal:null,xp:0,days:{},met:{},done:{},hearts:MAXH,hts:Date.now(),sound:true},d)}
+const S=load();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const pad=n=>String(n).padStart(2,'0');
+const dk=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const today=()=>dk(new Date());
+const todayXP=()=>S.days[today()]||0;
+function regen(){if(S.hearts>=MAXH){S.hts=Date.now();return}
+ const n=Math.floor((Date.now()-S.hts)/HEART_MS);if(n>0){S.hearts=Math.min(MAXH,S.hearts+n);S.hts+=n*HEART_MS;if(S.hearts>=MAXH)S.hts=Date.now();save()}}
+function streak(){let n=0,d=new Date();if(!S.met[dk(d)])d.setDate(d.getDate()-1);while(S.met[dk(d)]){n++;d.setDate(d.getDate()-1)}return n}
+function unlocked(u,l){return l===0||!!S.done[UNITS[u].id+'-'+(l-1)]}
+function curNode(){for(let u=0;u<UNITS.length;u++)for(let l=0;l<UNITS[u].lessons.length;l++){if(!S.done[UNITS[u].id+'-'+l])return u+'-'+l}return null}
+
+/* ================= ICONS ================= */
+const I={
+ flame:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.6 3.2-1.2 5-2.6 6.6C8 10.2 7 11.8 7 14a5 5 0 0 0 10 0c0-1.6-.6-3-1.6-4.2-.3 1.3-1 2.2-2 2.6.6-3.6-.2-7.6-1.4-10.4Z"/></svg>',
+ heart:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21Z"/></svg>',
+ bolt:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.6L13.5 2Z"/></svg>',
+ star:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.8 2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8L12 2.8Z"/></svg>',
+ check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+ lock:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 10V8a5 5 0 0 1 10 0v2h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h1Zm2 0h6V8a3 3 0 0 0-6 0v2Z"/></svg>',
+ x:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+ cross:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></svg>',
+ sound:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4l5-4v14l-5-4H4V9Zm12.5 3a3.5 3.5 0 0 0-2-3.2v6.4a3.5 3.5 0 0 0 2-3.2Z"/></svg>',
+ mute:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4l5-4v14l-5-4H4V9Z"/><path d="m16 9 5 6m0-6-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+ info:'<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="flex:none;margin-top:2px"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm-1 8v7h2v-7h-2Zm0-3v2h2V7h-2Z"/></svg>'
+};
+/* Kepo: maskot burung kepodang (original) */
+function kepo(size=72,mood='idle'){
+ const mouth=mood==='sad'?'<path d="M44 58q6-4 12 0" stroke="#5C3A00" stroke-width="2.4" fill="none" stroke-linecap="round"/>':'';
+ const eyes=mood==='happy'?'<path d="M33 41q4-5 8 0M59 41q4-5 8 0" stroke="#1E1B3A" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
+  :'<circle cx="37" cy="41" r="4.6" fill="#1E1B3A"/><circle cx="63" cy="41" r="4.6" fill="#1E1B3A"/><circle cx="38.6" cy="39.4" r="1.6" fill="#fff"/><circle cx="64.6" cy="39.4" r="1.6" fill="#fff"/>';
+ return `<svg class="kepo" width="${size}" height="${size}" viewBox="0 0 100 100" aria-hidden="true">
+ <ellipse cx="50" cy="94" rx="24" ry="4" fill="currentColor" opacity=".12"/>
+ <path d="M20 60c-8 4-12 12-10 18 8-2 13-7 15-13Z" fill="#1E1B3A"/>
+ <path d="M80 60c8 4 12 12 10 18-8-2-13-7-15-13Z" fill="#1E1B3A"/>
+ <ellipse cx="50" cy="56" rx="32" ry="34" fill="#FFC21A"/>
+ <ellipse cx="50" cy="66" rx="20" ry="20" fill="#FFE08A"/>
+ <path d="M18 40q14-8 28-2 4 2 8 0 14-6 28 2-2 9-14 9-9 0-16-5-7 5-16 5-16 0-18-9Z" fill="#1E1B3A"/>
+ ${eyes}
+ <path d="M44 48 50 57l6-9Z" fill="#FF7A59"/>${mouth}
+ <path d="M44 24q6-10 10-4" stroke="#1E1B3A" stroke-width="3" fill="none" stroke-linecap="round"/>
+ <rect x="40" y="86" width="5" height="6" rx="2" fill="#FF7A59"/><rect x="55" y="86" width="5" height="6" rx="2" fill="#FF7A59"/></svg>`}
+
+/* ================= SOUND ================= */
+let AC=null;
+function tone(seq){if(!S.sound)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const t0=AC.currentTime;
+ seq.forEach(([f,d,st],i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='triangle';o.frequency.value=f;const t=t0+st;
+ g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.18,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g).connect(AC.destination);o.start(t);o.stop(t+d+.02)})}catch(e){}}
+const sfx={good:()=>tone([[660,.12,0],[990,.2,.09]]),bad:()=>tone([[220,.22,0],[180,.25,.12]]),tap:()=>tone([[520,.05,0]]),
+ win:()=>tone([[523,.15,0],[659,.15,.12],[784,.15,.24],[1047,.35,.36]])};
+
+/* ================= CONFETTI ================= */
+const cv=document.getElementById('fx'),cx=cv.getContext('2d');let parts=[],raf=0;
+function confetti(n=140){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;
+ const cs=getComputedStyle(document.documentElement);const cols=['--accent','--twk','--tiu','--tkp','--good'].map(v=>cs.getPropertyValue(v).trim());
+ for(let i=0;i<n;i++)parts.push({x:innerWidth/2+(Math.random()-.5)*80,y:innerHeight*.35,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,r:Math.random()*Math.PI,vr:(Math.random()-.5)*.4,w:6+Math.random()*6,h:8+Math.random()*8,c:cols[i%cols.length],life:0});
+ if(!raf)raf=requestAnimationFrame(step)}
+function step(){cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);cx.clearRect(0,0,innerWidth,innerHeight);
+ parts.forEach(p=>{p.vy+=.35;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life++;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.life*.1)));cx.restore()});
+ parts=parts.filter(p=>p.y<innerHeight+40&&p.life<260);raf=parts.length?requestAnimationFrame(step):0;if(!raf)cx.clearRect(0,0,innerWidth,innerHeight)}
+
+/* ================= UI HELPERS ================= */
+const app=document.getElementById('app'),modal=document.getElementById('modal'),mbox=document.getElementById('mbox');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2200)}
+function countUp(el,to,ms=900){const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/ms);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const DAYN=['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+function greet(){const h=new Date().getHours(),s=streak(),x=todayXP(),g=S.goal||20;
+ if(x>=g)return `Target hari ini beres! Streak kamu ${s} hari. Mau tambah satu pelajaran lagi?`;
+ if(x>0)return `Tinggal ${g-x} XP lagi buat capai target hari ini. Gas!`;
+ if(s>0)return `Streak ${s} hari, jangan sampai putus ya. Satu pelajaran aja cukup buat mulai.`;
+ return h<11?'Selamat pagi, calon ASN! Pemanasan otak dulu yuk.':h<15?'Siang-siang enaknya latihan 5 soal. Yuk!':h<19?'Sore yang pas buat latihan SKD. Mulai yuk!':'Malam ini latihan sebentar sebelum tidur, gimana?'}
+
+/* ================= HOME ================= */
+function topbar(){const s=streak();regen();
+ return `<header class="top"><div class="brand">${kepo(34,'idle').replace('class="kepo"','')}<div>Kepo<small>CPNS 2027</small></div></div>
+ <button class="stat st-streak ${s?'':'off'}" id="bStreak" aria-label="Streak ${s} hari">${I.flame}<span class="tnum">${s}</span></button>
+ <button class="stat st-xp" id="bXP" aria-label="Total XP">${I.bolt}<span class="tnum">${S.xp}</span></button>
+ <button class="stat st-heart" id="bHeart" aria-label="Hati ${S.hearts}">${I.heart}<span class="tnum">${S.hearts}</span></button>
+ <button class="stat" id="bSound" aria-label="Suara" style="color:var(--muted)">${S.sound?I.sound:I.mute}</button></header>`}
+
+function home(){
+ const g=S.goal||20,x=todayXP(),pct=Math.min(1,x/g),C=2*Math.PI*36;
+ const now=new Date(),dow=(now.getDay()+6)%7,mon=new Date(now);mon.setDate(now.getDate()-dow);
+ let week='';for(let i=0;i<7;i++){const d=new Date(mon);d.setDate(mon.getDate()+i);const k=dk(d);
+  week+=`<div class="day ${S.met[k]?'met':''} ${k===today()?'today':''}"><i>${I.flame}</i>${DAYN[d.getDay()]}</div>`}
+ const cur=curNode();
+ let path='';UNITS.forEach((U,u)=>{
+  const doneN=U.lessons.filter((_,l)=>S.done[U.id+'-'+l]).length;
+  path+=`<section class="unit" style="--c:var(--${U.c});--cd:var(--${U.c}-d);--cbg:var(--${U.c}-bg)">
+  <div class="uhead"><div><div class="tag">${U.tag}</div><h2>${U.name}</h2><p>${U.desc} · di SKD ${U.exam}</p></div>
+  <div class="meta tnum">${doneN}/${U.lessons.length}<span>SELESAI</span></div></div><div class="nodes">`;
+  U.lessons.forEach((L,l)=>{const id=U.id+'-'+l,ok=unlocked(u,l),dn=S.done[id],isCur=cur===u+'-'+l;
+   const off=[0,56,0,-56][l%4];
+   path+=`<div class="nwrap" style="transform:translateX(${off}px)">
+   ${isCur?'<div class="bubble">MULAI</div>':''}
+   <button class="node ${ok?'':'locked'} ${isCur?'cur':''}" data-u="${u}" data-l="${l}" aria-label="${esc(L.title)}${ok?'':' (terkunci)'}">${dn?I.check:ok?I.star:I.lock}${dn>1?`<span class="reps tnum">×${dn}</span>`:''}</button>
+   <div class="nlabel"><b>${L.title}</b>${L.sub}</div></div>`});
+  path+='</div></section>'});
+ app.innerHTML=topbar()+`<main class="screen">
+  <div class="mascot-row">${kepo(76,x>=g?'happy':'idle')}<div class="speech">${greet()}</div></div>
+  <section class="goal" aria-label="Target harian">
+   <div class="ring"><svg width="84" height="84" viewBox="0 0 84 84"><circle class="trk" cx="42" cy="42" r="36" fill="none" stroke-width="9"/>
+   <circle class="val" id="ringVal" cx="42" cy="42" r="36" fill="none" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}"/></svg>
+   <b class="tnum"><div>${x}<span>/ ${g} XP</span></div></b></div>
+   <div style="min-width:0"><h2>Target harian</h2><p>${x>=g?'Tercapai! Streak aman hari ini.':`Kumpulkan ${g} XP tiap hari agar streak terus menyala.`} <button class="goal-edit" id="bGoal">Ubah</button></p>
+   <div class="week">${week}</div></div></section>
+  <div class="info">${I.info}<div><strong>Format SKD (acuan seleksi 2024)</strong>: 110 soal dalam 100 menit.
+   <table><tr><td>TWK</td><td>30 soal</td><td>ambang 65</td></tr><tr><td>TIU</td><td>35 soal</td><td>ambang 80</td></tr><tr><td>TKP</td><td>45 soal</td><td>ambang 166</td></tr></table>
+   Ketentuan CPNS 2027 bisa berubah, pantau pengumuman resmi di SSCASN BKN.</div></div>
+  ${path}
+  <p class="foot-note">TKP tidak ada jawaban salah: tiap opsi bernilai 1–5. Di sini, opsi bernilai 5 dihitung "benar". Semua soal ditulis baru mengikuti pola soal SKD.</p></main>`;
+ requestAnimationFrame(()=>{const r=document.getElementById('ringVal');if(r)r.style.strokeDashoffset=C*(1-pct)});
+ app.querySelectorAll('.node').forEach(b=>b.onclick=()=>{const u=+b.dataset.u,l=+b.dataset.l;
+  if(!unlocked(u,l)){sfx.tap();toast('Selesaikan pelajaran sebelumnya dulu ya');return}startLesson(u,l)});
+ bind()}
+function bind(){
+ const g=id=>document.getElementById(id);
+ g('bGoal')&&(g('bGoal').onclick=()=>goalModal());
+ g('bSound').onclick=()=>{S.sound=!S.sound;save();g('bSound').innerHTML=S.sound?I.sound:I.mute;sfx.tap()};
+ g('bStreak').onclick=()=>toast(streak()?`Streak ${streak()} hari berturut-turut capai target`:'Capai target harian untuk menyalakan streak');
+ g('bXP').onclick=()=>toast(`Total ${S.xp} XP terkumpul`);
+ g('bHeart').onclick=()=>{regen();toast(S.hearts>=MAXH?'Hati penuh. Salah jawab = kurang 1 hati':`Hati pulih 1 tiap 10 menit (${S.hearts}/${MAXH})`)}}
+
+/* ================= GOAL MODAL ================= */
+const GOALS=[[20,'Santai','±2 pelajaran sehari'],[40,'Serius','±3 pelajaran sehari'],[60,'Ambis','±4 pelajaran sehari']];
+function goalModal(first){let sel=S.goal||40;
+ const draw=()=>{mbox.innerHTML=`<div style="display:flex;gap:12px;align-items:center;margin-bottom:8px">${kepo(60,'happy')}<div><h2>${first?'Halo, calon ASN!':'Ubah target harian'}</h2></div></div>
+ <p>${first?'Aku Kepo, teman latihan SKD kamu. Pilih target harian dulu, nanti aku ingatkan biar rajin.':'Target baru berlaku mulai sekarang.'}</p>
+ <div class="goals">${GOALS.map(([v,n,d])=>`<button class="gopt ${sel===v?'sel':''}" data-v="${v}"><div>${n}<small>${d}</small></div><span class="tnum">${v} XP</span></button>`).join('')}</div>
+ <button class="btn" id="gOk" style="--b:var(--accent);--bd:var(--accent-d);color:var(--accent-ink)">${first?'Mulai belajar':'Simpan'}</button>`;
+  mbox.querySelectorAll('.gopt').forEach(b=>b.onclick=()=>{sel=+b.dataset.v;sfx.tap();draw()});
+  document.getElementById('gOk').onclick=()=>{S.goal=sel;save();modal.hidden=true;if(todayXP()>=S.goal&&!S.met[today()]){S.met[today()]=1;save()}home()}};
+ draw();modal.hidden=false}
+modal.onclick=e=>{if(e.target===modal&&S.goal){modal.hidden=true}};
+
+/* ================= LESSON ================= */
+let L=null;
+function startLesson(u,l){regen();
+ if(S.hearts<=0){const wait=Math.ceil((HEART_MS-(Date.now()-S.hts))/60000);
+  mbox.innerHTML=`<div style="display:flex;gap:12px;align-items:center">${kepo(60,'sad')}<h2>Hati kamu habis</h2></div><p>Istirahat sebentar. 1 hati pulih dalam ${wait} menit. Sambil menunggu, baca ulang penjelasan soal yang tadi salah ya.</p><button class="btn" id="hOk">Oke</button>`;
+  modal.hidden=false;document.getElementById('hOk').onclick=()=>modal.hidden=true;return}
+ const U=UNITS[u],Ls=U.lessons[l];
+ L={u,l,U,Ls,queue:shuffle(Ls.qs.map((_,i)=>i)).map(i=>({i,retry:false})),pos:0,firstRight:0,answered:new Set(),combo:0,t0:Date.now(),sel:null,checked:false,total:Ls.qs.length,doneCount:0,order:null};
+ sfx.tap();renderQ()}
+function renderQ(){
+ const item=L.queue[L.pos],q=L.Ls.qs[item.i];
+ L.order=shuffle(q.o.map((_,k)=>k));L.sel=null;L.checked=false;
+ app.innerHTML=`<main class="lesson screen" style="--c:var(--${L.U.c});--cbg:var(--${L.U.c}-bg)">
+ <div class="lbar"><button class="x" id="lx" aria-label="Keluar">${I.x}</button>
+ <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${L.total}" aria-valuenow="${L.doneCount}"><i id="pg"></i></div>
+ <div class="stat st-heart">${I.heart}<span class="tnum" id="hh">${S.hearts}</span></div></div>
+ <div class="combo" id="combo"></div>
+ <div class="qbody"><span class="chip">${item.retry?'ULANGI SOAL':L.U.id.toUpperCase()+' · '+L.Ls.title.toUpperCase()}</span>
+ ${q.ctx?`<div class="ctx"><b>Bacaan</b>${q.ctx}</div>`:''}
+ ${q.fig?`<div class="figbox">${q.fig}</div>`:''}
+ <p class="qtext">${q.q}</p>
+ <div class="opts ${q.html?'figopts':''}" id="opts">${L.order.map((k,n)=>`<button class="opt" data-k="${k}" aria-label="Opsi ${'ABCDE'[n]}"><span class="k">${'ABCDE'[n]}</span><span>${q.html?q.o[k]:esc(q.o[k])}</span></button>`).join('')}</div></div>
+ <div class="foot"><button class="btn good" id="chk" disabled>Periksa</button></div></main>
+ <div class="sheet" id="sheet"><div class="sheet-in" id="sheetIn"></div></div>`;
+ requestAnimationFrame(()=>document.getElementById('pg').style.width=(L.doneCount/L.total*100)+'%');
+ document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(L.checked)return;sfx.tap();
+  document.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');L.sel=+b.dataset.k;document.getElementById('chk').disabled=false});
+ document.getElementById('chk').onclick=check;
+ document.getElementById('lx').onclick=()=>{mbox.innerHTML=`<div style="display:flex;gap:12px;align-items:center">${kepo(60,'sad')}<h2>Yakin berhenti?</h2></div><p>Progres pelajaran ini akan hilang.</p>
+  <div style="display:flex;flex-direction:column;gap:10px"><button class="btn" id="mStay">Lanjut belajar</button><button class="btn ghost" id="mQuit" style="color:var(--bad)">Keluar</button></div>`;
+  modal.hidden=false;document.getElementById('mStay').onclick=()=>modal.hidden=true;document.getElementById('mQuit').onclick=()=>{modal.hidden=true;L=null;home()}}}
+function check(){if(L.sel==null||L.checked)return;L.checked=true;
+ const item=L.queue[L.pos],q=L.Ls.qs[item.i],tkp=!!L.Ls.tkp;
+ const best=tkp?q.p.indexOf(5):q.a,score=tkp?q.p[L.sel]:(L.sel===q.a?5:0);
+ const res=score===5?'good':(tkp&&score===4)?'mid':'bad';
+ document.querySelectorAll('.opt').forEach(b=>{const k=+b.dataset.k;b.disabled=true;b.classList.remove('sel');
+  if(k===best)b.classList.add('right');else if(k===L.sel)b.classList.add('wrong');
+  if(tkp)b.insertAdjacentHTML('beforeend',`<span class="pts tnum">${q.p[k]} poin</span>`)});
+ const comboEl=document.getElementById('combo');
+ if(res==='good'){sfx.good();L.combo++;if(!item.retry)L.firstRight++;if(L.combo>=3){comboEl.textContent=`${L.combo} benar beruntun!`;comboEl.classList.remove('on');void comboEl.offsetWidth;comboEl.classList.add('on')}}
+ else{L.combo=0;comboEl.classList.remove('on');
+  if(res==='bad'){sfx.bad();if(S.hearts>=MAXH)S.hts=Date.now();S.hearts=Math.max(0,S.hearts-1);save();document.getElementById('hh').textContent=S.hearts;
+   if(!item.retry)L.queue.push({i:item.i,retry:true})}else{sfx.good();if(!item.retry)L.firstRight+=.5}}
+ if(res!=='bad'||item.retry)L.doneCount=Math.min(L.total,L.doneCount+(item.retry||res!=='bad'?1:0));
+ document.getElementById('pg').style.width=(L.doneCount/L.total*100)+'%';
+ const heads={good:['Mantap, benar!','Pas banget!','Keren!','Betul sekali!'],mid:['Hampir sempurna!'],bad:['Belum tepat']};
+ const h=heads[res][Math.floor(Math.random()*heads[res].length)];
+ const ans=res==='good'?(tkp?'+5 poin, jawaban terbaik':''):`${tkp?`Kamu dapat ${score} poin. `:''}Jawaban terbaik: ${q.html?'opsi '+'ABCDE'[L.order.indexOf(best)]:esc(q.o[best])}`;
+ const sh=document.getElementById('sheet');sh.className='sheet '+res;
+ document.getElementById('sheetIn').innerHTML=`<div class="sh-h"><span class="ic" style="color:var(--${res==='bad'?'bad':res==='good'?'good':'accent-d'})">${res==='bad'?I.cross:res==='good'?I.check:I.star}</span>${h}</div>
+ ${ans?`<p class="sh-ans">${ans}</p>`:''}<div class="sh-ex">${q.ex}</div>
+ ${res==='bad'&&S.hearts<=0?'':''}<button class="btn ${res==='bad'?'bad':'good'}" id="nx">${res==='bad'&&!item.retry?'Oke, nanti diulang':'Lanjut'}</button>`;
+ requestAnimationFrame(()=>sh.classList.add('on'));
+ document.getElementById('nx').onclick=next;document.getElementById('nx').focus({preventScroll:true})}
+function next(){if(S.hearts<=0){return fail()}
+ L.pos++;if(L.pos>=L.queue.length)return finish();
+ document.getElementById('sheet').classList.remove('on');setTimeout(renderQ,180)}
+function fail(){const x=L;L=null;
+ app.innerHTML=`<main class="res screen">${kepo(120,'sad')}<h1 style="color:var(--bad)">Hati habis!</h1><p class="sub">Tidak apa-apa, salah itu bagian dari belajar. Hati pulih 1 tiap 10 menit.</p>
+ <div class="actions"><button class="btn" id="rHome">Kembali ke peta</button></div></main>`;document.getElementById('rHome').onclick=home}
+function finish(){
+ const secs=Math.round((Date.now()-L.t0)/1000),acc=Math.round(L.firstRight/L.total*100),perfect=L.firstRight>=L.total;
+ const id=L.U.id+'-'+L.l,first=!S.done[id];
+ const gain=10+Math.round(L.firstRight)+(perfect?5:0);
+ const before=todayXP(),g=S.goal||20;
+ S.xp+=gain;S.days[today()]=before+gain;S.done[id]=(S.done[id]||0)+1;
+ const justMet=before<g&&before+gain>=g;if(before+gain>=g)S.met[today()]=1;save();
+ const st=streak(),U=L.U;L=null;sfx.win();
+ app.innerHTML=`<main class="res screen">${kepo(120,'happy')}
+ <h1>${perfect?'Sempurna!':'Pelajaran selesai!'}</h1><p class="sub">${perfect?'Semua benar di percobaan pertama.':'Soal yang salah sudah kamu ulang. Makin paham!'}</p>
+ <div class="cards"><div class="card" style="--c:var(--accent-d)"><h3>TOTAL XP</h3><div class="tnum" id="cXP">0</div></div>
+ <div class="card" style="--c:var(--good)"><h3>AKURASI</h3><div class="tnum"><span id="cAcc">0</span>%</div></div>
+ <div class="card" style="--c:var(--tiu)"><h3>WAKTU</h3><div class="tnum">${Math.floor(secs/60)}:${pad(secs%60)}</div></div></div>
+ <div class="gbar"><div class="row"><span>Target harian</span><span class="tnum">${Math.min(before+gain,g)}/${g} XP</span></div><div class="track"><i id="gb"></i></div></div>
+ ${justMet?`<div class="met-banner">Target harian tercapai! Streak sekarang ${st} hari</div>`:''}
+ ${first&&!perfect?'':''}
+ <div class="actions"><button class="btn" id="rHome" style="--b:var(--accent);--bd:var(--accent-d);color:var(--accent-ink)">Lanjut</button>
+ <button class="btn ghost" id="rAgain">Ulangi pelajaran</button></div></main>`;
+ countUp(document.getElementById('cXP'),gain);countUp(document.getElementById('cAcc'),acc);
+ requestAnimationFrame(()=>document.getElementById('gb').style.width=Math.min(100,(before+gain)/g*100)+'%');
+ setTimeout(()=>confetti(justMet?220:120),250);if(justMet)setTimeout(sfx.win,1000);
+ const u=UNITS.indexOf(U),l=+id.split('-')[1];
+ document.getElementById('rHome').onclick=home;document.getElementById('rAgain').onclick=()=>startLesson(u,l)}
+
+/* keyboard: 1-5 pilih, Enter periksa/lanjut */
+addEventListener('keydown',e=>{if(!L||!modal.hidden)return;
+ if(/^[1-5]$/.test(e.key)&&!L.checked){const b=document.querySelectorAll('.opt')[+e.key-1];b&&b.click()}
+ if(e.key==='Enter'){const nx=document.getElementById('nx'),ck=document.getElementById('chk');
+  if(L.checked&&nx){e.preventDefault();nx.click()}else if(ck&&!ck.disabled){e.preventDefault();ck.click()}}});
+setInterval(()=>{if(!L){const before=S.hearts;regen();if(S.hearts!==before){const h=document.querySelector('#bHeart span');h&&(h.textContent=S.hearts)}}},30000);
+
+home();if(!S.goal)goalModal(true);
+</script>
+
+</body></html>
