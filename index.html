@@ -98,7 +98,7 @@ h1,h2,h3{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balanc
 .uhead p{margin:2px 0 0;font-size:13px;opacity:.92}
 .uhead .meta{margin-left:auto;text-align:right;font-family:var(--f-display);font-size:26px;line-height:1;flex:none}
 .uhead .meta span{display:block;font-family:var(--f-body);font-size:10px;font-weight:700;letter-spacing:.08em;opacity:.85}
-.nodes{display:flex;flex-direction:column;align-items:center;gap:18px;padding:28px 0 8px}
+.nodes{display:flex;flex-direction:column;align-items:center;gap:30px;padding:52px 0 8px}
 .nwrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px}
 .node{width:76px;height:70px;border-radius:50%;background:var(--c);box-shadow:0 7px 0 var(--cd);display:grid;place-items:center;color:#fff;transition:transform .12s, box-shadow .12s;position:relative}
 .node svg{width:34px;height:34px}
@@ -217,6 +217,30 @@ h1,h2,h3{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balanc
 #fx{position:fixed;inset:0;pointer-events:none;z-index:40}
 .toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 16px);transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:12px;font-weight:700;font-size:14px;z-index:50;animation:enter .3s}
 .foot-note{font-size:12px;color:var(--muted);text-align:center;margin-top:24px}
+.lvl{display:flex;flex-direction:column;align-items:center;gap:2px;margin:22px 0 0;text-align:center}
+.lvl span{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--c);background:var(--cbg);padding:4px 12px;border-radius:999px}
+.lvl.off span{color:var(--muted);background:var(--surface-2)}
+.lvl small{font-size:12px;color:var(--muted);font-weight:600}
+.node.hard:not(.locked){box-shadow:0 7px 0 var(--cd),0 0 0 4px var(--accent) inset}
+.quick{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--tiu);color:#fff;border-radius:20px;padding:14px 16px;box-shadow:0 5px 0 var(--tiu-d);margin-bottom:14px;transition:transform .1s,box-shadow .1s}
+.quick:active{transform:translateY(5px);box-shadow:0 0 0 var(--tiu-d)}
+.quick .qi{flex:none;width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.quick .qi svg{width:26px;height:26px}
+.quick b{display:block;font-family:var(--f-display);font-size:19px}
+.quick small{display:block;font-size:13px;opacity:.9;line-height:1.35}
+.prog-all{display:grid;grid-template-columns:1fr auto;gap:6px;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:12px}
+.prog-all .track{grid-column:1/-1;height:10px;border-radius:5px;background:var(--surface-2);overflow:hidden}
+.prog-all .track i{display:block;height:100%;background:var(--good);border-radius:5px}
+.nine{display:grid;grid-template-columns:repeat(3,56px);gap:6px;justify-content:center}
+.nine > div{display:grid;place-items:center}
+.nine .nq{width:52px;height:52px;border:2px dashed var(--c);border-radius:8px;font-family:var(--f-display);font-size:24px;color:var(--c)}
+.tblwrap{overflow-x:auto}
+.dtbl{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+.dtbl caption{text-align:left;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;padding-bottom:6px}
+.dtbl th,.dtbl td{padding:6px 10px;border-bottom:1px solid var(--line);text-align:right}
+.dtbl th:first-child,.dtbl td:first-child{text-align:left}
+.dtbl th{color:var(--muted);font-size:12px}
+.qtext sup{font-size:.7em}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media (max-width:380px){.qtext{font-size:17px}.cards div{font-size:22px}.brand small{display:none}}
 </style>
@@ -227,207 +251,455 @@ h1,h2,h3{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balanc
 <div class="modal" id="modal" hidden><div class="mbox" id="mbox"></div></div>
 
 <script>
-/* ================= BANK SOAL ================= */
-/* --- gambar figural (SVG) --- */
-const SV=(inner,s=60)=>`<svg class="fsvg" viewBox="0 0 64 64" width="${s}" height="${s}" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="8" fill="none" stroke="currentColor" stroke-width="2" opacity=".3"/>${inner}</svg>`;
-const ACC='style="fill:var(--accent)"';
-const fArrow=d=>SV(`<g transform="rotate(${d} 32 32)"><path d="M32 11 L45 28 H36.5 V53 H27.5 V28 H19 Z" fill="currentColor"/></g>`);
-const fDots=n=>{let g='';for(let i=0;i<n;i++){const x=14+(i%4)*12,y=20+Math.floor(i/4)*12;g+=`<circle cx="${x}" cy="${y}" r="4.2" fill="currentColor"/>`}return SV(g)};
-const F_PATH='M22 12h22v9H31v7h10v9H31v15h-9Z';
-const fF=(rot,mir)=>SV(`<g transform="rotate(${rot} 32 32)${mir?' translate(64 0) scale(-1 1)':''}"><path d="${F_PATH}" fill="currentColor"/></g>`);
-const shp=(t,r,acc)=>{const f=acc?ACC:'fill="currentColor"';
- if(t==='c')return `<circle cx="32" cy="32" r="${r}" ${f}/>`;
- if(t==='s')return `<rect x="${32-r*.85}" y="${32-r*.85}" width="${r*1.7}" height="${r*1.7}" ${f}/>`;
- return `<path d="M32 ${32-r} L${32+r*.95} ${32+r*.7} H${32-r*.95} Z" ${f}/>`};
-const fNest=(o,i)=>SV(shp(o,24,false)+shp(i,9,true));
-const fCells=(b,g)=>{let s='';for(let k=0;k<4;k++){const x=6+k*13.5;const fill=k===b?'fill="currentColor"':k===g?ACC:'fill="none"';
- s+=`<rect x="${x}" y="25" width="11" height="14" rx="2" ${fill} stroke="currentColor" stroke-width="1.6"/>`}return SV(s)};
-const row=(...a)=>`<div class="figrow">${a.join('')}</div>`;
-const Q_='<span class="figq">?</span>', SEP=t=>`<span class="figsep">${t}</span>`;
+/* ================= UTIL ================= */
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function fmtN(x){const neg=x<0;x=Math.abs(x);let [i,d]=(Math.round(x*1000)/1000).toString().split('.');i=i.replace(/\B(?=(\d{3})+(?!\d))/g,'.');return (neg?'−':'')+i+(d?','+d:'')}
+const rp=x=>'Rp'+fmtN(x);
+const pad=n=>String(n).padStart(2,'0');
+const clock=m=>`${pad(Math.floor(m/60)%24)}.${pad(m%60)}`;
+function mk(ans,cands,fmt=String){const seen=new Set([fmt(ans)]),o=[fmt(ans)];
+ for(const c of shuffle(cands)){if(typeof c==='number'&&(!isFinite(c)))continue;const s=fmt(c);if(!seen.has(s)&&o.length<5){seen.add(s);o.push(s)}}
+ let k=1;while(o.length<5&&typeof ans==='number'){for(const c of [ans+k,ans-k]){const s=fmt(c);if(!seen.has(s)&&o.length<5){seen.add(s);o.push(s)}}k++}
+ return o}
+const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1};
+const lcm=(a,b)=>a/gcd(a,b)*b;
+const Fr=(n,d)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d);return {n:n/g,d:d/g}};
+const fAdd=(a,b)=>Fr(a.n*b.d+b.n*a.d,a.d*b.d), fSub=(a,b)=>Fr(a.n*b.d-b.n*a.d,a.d*b.d), fMul=(a,b)=>Fr(a.n*b.n,a.d*b.d);
+function fStr(f){if(f.d===1)return fmtN(f.n);const neg=f.n<0,n=Math.abs(f.n),w=Math.floor(n/f.d),r=n%f.d;return (neg?'−':'')+(w?w+' ':'')+r+'/'+f.d}
 
+/* ================= FIGURAL SVG ================= */
+const SV=(inner,s=60)=>`<svg class="fsvg" viewBox="0 0 64 64" width="${s}" height="${s}" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="8" fill="none" stroke="currentColor" stroke-width="2" opacity=".3"/>${inner}</svg>`;
+const FILL=acc=>acc?'style="fill:var(--accent)"':'fill="currentColor"';
+const CHI={F:'M22 12h22v9H31v7h10v9H31v15h-9Z',L:'M21 12h10v30h14v10H21Z',P:'M18 10h6v44h-6Z M24 12 L46 20 L24 28Z',S:'M26 18h24v12H38v12H14V30h12Z'};
+const chi=(t,rot,mir,acc)=>SV(`<g transform="rotate(${rot} 32 32)${mir?' translate(64 0) scale(-1 1)':''}"><path d="${CHI[t]}" ${FILL(acc)}/></g>`);
+const ckey=(t,rot,mir)=>`${t}${mir?'m':''}${((rot%360)+360)%360}`;
+function shp(t,cx,cy,r,acc){const f=FILL(acc);
+ if(t==='c')return `<circle cx="${cx}" cy="${cy}" r="${r}" ${f}/>`;
+ if(t==='s')return `<rect x="${cx-r*.85}" y="${cy-r*.85}" width="${r*1.7}" height="${r*1.7}" ${f}/>`;
+ return `<path d="M${cx} ${cy-r} L${cx+r*.95} ${cy+r*.75} H${cx-r*.95} Z" ${f}/>`}
+const fNest=(o,i)=>SV(shp(o,32,32,24,false)+shp(i,32,32,9,true));
+const fDots=n=>{let g='';for(let i=0;i<n;i++){g+=`<circle cx="${14+(i%4)*12}" cy="${20+Math.floor(i/4)*12}" r="4.2" fill="currentColor"/>`}return SV(g)};
+const fCells=(b,g)=>{let s='';for(let k=0;k<4;k++){const fill=k===b?'fill="currentColor"':k===g?'style="fill:var(--accent)"':'fill="none"';s+=`<rect x="${6+k*13.5}" y="25" width="11" height="14" rx="2" ${fill} stroke="currentColor" stroke-width="1.6"/>`}return SV(s)};
+const POS={1:[[32,32]],2:[[21,32],[43,32]],3:[[16,32],[32,32],[48,32]]};
+const fMulti=(t,n,acc,s=52)=>SV(POS[n].map(([x,y])=>shp(t,x,y,n===3?7.5:9,acc)).join(''),s);
+const row=(...a)=>`<div class="figrow">${a.join('')}</div>`;
+const QM='<span class="figq">?</span>', SEP=t=>`<span class="figsep">${t}</span>`;
+const SHN={c:'lingkaran',s:'persegi',t:'segitiga'};
+
+/* ================= GENERATOR: TIU ================= */
+const G={};
+G.deret=lv=>{const T=lv===1?pick(['ar','ar','geo','sq']):lv===2?pick(['ting','larik','mix','geo']):pick(['fib','ting2','larik2','cube','mix']);
+ let s=[],ans,ex,d=[],two=false;
+ if(T==='ar'){const k=pick([3,4,5,6,7,8,9,11,12,13]),neg=Math.random()<.3,a=neg?R(70,120):R(1,30);for(let i=0;i<6;i++)s.push(a+(neg?-k:k)*i);
+  ex=`Selisih antarsuku selalu <b>${neg?'−':'+'}${k}</b>. Ini deret aritmetika biasa, jadi ${fmtN(s[4])} ${neg?'−':'+'} ${k} = <b>${fmtN(s[5])}</b>.`}
+ else if(T==='geo'){const r=pick([2,3]),a=r===2?R(1,6):R(1,3);for(let i=0;i<6;i++)s.push(a*r**i);
+  ex=`Tiap suku <b>dikali ${r}</b>. Kalau selisihnya makin lama makin besar dan rapi berlipat, curigai deret kali. ${fmtN(s[4])} × ${r} = <b>${fmtN(s[5])}</b>.`}
+ else if(T==='sq'){const st=R(1,5),c=pick([0,1,-1,2,3]);for(let i=0;i<6;i++){const n=st+i;s.push(n*n+c)}
+  ex=`Ini bilangan <b>kuadrat ${c?(c>0?'+ '+c:'− '+(-c)):''}</b>: ${st}², ${st+1}², ${st+2}², dan seterusnya${c?`, masing-masing ${c>0?'ditambah':'dikurangi'} ${Math.abs(c)}`:''}. Berikutnya ${st+5}² ${c?(c>0?'+ '+c:'− '+(-c)):''} = <b>${s[5]}</b>.`}
+ else if(T==='ting'||T==='ting2'){let a=R(2,20),df=R(1,5),inc=T==='ting'?pick([1,2,3]):R(1,3),t=R(1,2);s.push(a);
+  for(let i=0;i<6;i++){d.push(df);s.push(s[s.length-1]+df);df+=inc;if(T==='ting2')inc+=t}
+  s=s.slice(0,T==='ting'?6:7);
+  ex=T==='ting'?`Lihat selisihnya: ${d.slice(0,4).map(x=>'+'+x).join(', ')}. Selisihnya naik <b>${d[1]-d[0]}</b> tiap langkah (deret bertingkat). Berikutnya +${d[4]}, jadi <b>${s[5]}</b>.`
+  :`Selisih tingkat 1: ${d.slice(0,5).map(x=>'+'+x).join(', ')}. Selisihnya lagi (tingkat 2) juga naik teratur, jadi ini <b>deret bertingkat dua</b>. Selisih berikutnya +${d[5]}, hasilnya <b>${s[6]}</b>.`}
+ else if(T==='larik'||T==='larik2'){two=true;let a1=R(2,12),k1=T==='larik'?R(2,7):2,a2=R(20,45),k2=R(2,6);const odd=[],even=[];
+  for(let i=0;i<4;i++){odd.push(T==='larik'?a1+k1*i:a1*k1**i);even.push(a2-k2*i)}
+  for(let i=0;i<3;i++)s.push(odd[i],even[i]);ans=`${odd[3]}, ${even[3]}`;
+  const opts=mk(ans,[`${even[3]}, ${odd[3]}`,`${odd[3]+(T==='larik'?k1:odd[2])}, ${even[3]}`,`${odd[3]}, ${even[3]-k2}`,`${odd[2]+1}, ${even[3]+1}`,`${odd[3]}, ${even[3]+k2}`]);
+  return {q:`${s.join(', ')}, ..., ...`,o:opts,a:0,ex:`Angkanya naik-turun, tanda <b>deret 2 larik</b>. Pisahkan posisi ganjil dan genap.<br>Ganjil: ${odd.slice(0,3).join(', ')} (${T==='larik'?'+'+k1:'×2'}) → <b>${odd[3]}</b><br>Genap: ${even.slice(0,3).join(', ')} (−${k2}) → <b>${even[3]}</b>`}}
+ else if(T==='mix'){const p=R(1,4),q=2;let x=R(1,5);s.push(x);for(let i=0;i<5;i++){x=i%2===0?x+p:x*q;s.push(x)}
+  ex=`Operasinya <b>bergantian</b>: +${p}, ×${q}, +${p}, ×${q}, ... Suku terakhir yang tampil didapat dari +${p}, jadi berikutnya <b>×${q}</b>: ${s[4]} × ${q} = <b>${s[5]}</b>.`}
+ else if(T==='fib'){let a=R(1,6),b=R(2,8);s=[a,b];for(let i=0;i<5;i++)s.push(s[s.length-1]+s[s.length-2]);
+  ex=`Tiap suku = <b>jumlah dua suku sebelumnya</b> (pola Fibonacci). ${s[4]} + ${s[5]} = <b>${s[6]}</b>.`}
+ else if(T==='cube'){const c=pick([0,1,-1,2]);for(let n=1;n<=6;n++)s.push(n**3+c);
+  ex=`Ini bilangan <b>pangkat tiga</b> ${c?(c>0?'+ '+c:'− 1'):''}: 1³, 2³, 3³, ... Berikutnya 6³ ${c?(c>0?'+ '+c:'− 1'):''} = <b>${s[5]}</b>.`}
+ ans=s[s.length-1];const shown=s.slice(0,-1);const last=shown[shown.length-1],gap=ans-last;
+ return {q:`${shown.map(fmtN).join(', ')}, ...`,o:mk(ans,[ans+1,ans-1,ans+gap,last+gap-2,ans+2,ans-2,ans*2-last+1],fmtN),a:0,ex}};
+
+G.hitung=()=>{const T=pick(['persen','pecahan','desimal','pangkat']);
+ if(T==='persen'){const p=pick([5,10,12.5,15,20,25,40,60,75]),N=40*R(3,40),a=p*N/100;const tip={25:'¼',50:'½',20:'⅕',12.5:'⅛',75:'¾',10:'1/10'}[p];
+  return {q:`${fmtN(p)}% dari ${fmtN(N)} adalah ...`,o:mk(a,[a+N/20,a-N/40,N*p/1000,a*2,a+10],fmtN),a:0,ex:`${tip?`Trik: ${fmtN(p)}% = <b>${tip}</b>, jadi tinggal ${fmtN(N)} × ${tip}. `:`Hitung ${fmtN(N)} × ${fmtN(p)} ÷ 100. `}Hasilnya <b>${fmtN(a)}</b>.`}}
+ if(T==='pecahan'){const D=[2,3,4,5,6,8];const f=()=>{const d=pick(D);let n;do{n=R(1,d*2-1)}while(n%d===0);return {n,d}};const a=f(),b=f(),c=f();const op1=pick(['+','−','×']),op2=pick(['+','−']);
+  const t1=op1==='×'?fMul(a,b):op1==='+'?fAdd(a,b):fSub(a,b);const ans=op1==='×'?(op2==='+'?fAdd(t1,c):fSub(t1,c)):(op2==='+'?fAdd(t1,c):fSub(t1,c));
+  const wrong=[Fr(ans.n+1,ans.d),Fr(ans.n-1,ans.d),Fr(ans.n,ans.d*2),Fr(ans.n*2+1,ans.d*2),fAdd(ans,Fr(1,2)),fAdd(ans,Fr(1,4)),fSub(ans,Fr(1,3)),Fr(ans.n+2,ans.d)];
+  const s=x=>`${x.n}/${x.d}`;
+  return {q:`${s(a)} ${op1} ${s(b)} ${op2} ${s(c)} = ...`,o:mk(fStr(ans),wrong.map(fStr)),a:0,
+   ex:`${op1==='×'?`Ingat urutan: <b>kali dulu</b>. ${s(a)} × ${s(b)} = ${fStr(t1)}.`:`Samakan penyebut dulu, lalu hitung dari kiri. ${s(a)} ${op1} ${s(b)} = ${fStr(t1)}.`} Kemudian ${fStr(t1)} ${op2} ${s(c)} = <b>${fStr(ans)}</b>.`}}
+ if(T==='desimal'){const a=pick([0.25,0.5,0.75,1.5,2.5,0.2,0.4]),b=R(2,20)*0.2,c=R(1,9)/10;const ab=Math.round(a*b*1000)/1000,ans=Math.round((ab+c)*1000)/1000;
+  return {q:`${fmtN(a)} × ${fmtN(b)} + ${fmtN(c)} = ...`,o:mk(ans,[Math.round((a*(b+c))*1000)/1000,ans+0.1,ans-0.1,ab,ans*10],fmtN),a:0,
+   ex:`Kerjakan <b>perkalian dulu</b>: ${fmtN(a)} × ${fmtN(b)} = ${fmtN(ab)}. Baru ditambah ${fmtN(c)} → <b>${fmtN(ans)}</b>. Tips: ubah desimal ke pecahan kalau lebih mudah, misal 0,25 = ¼.`}}
+ const k=R(6,15),p=R(2,4),m=R(2,5),ans=k*k===0?0:k+2**p*m;
+ return {q:`√${k*k} + 2<sup>${p}</sup> × ${m} = ...`,o:mk(ans,[(k+2**p)*m,k+2*p*m,k*k+2**p*m,ans+2,ans-m]),a:0,ex:`√${k*k} = ${k}, dan 2<sup>${p}</sup> = ${2**p}. Kali dulu: ${2**p} × ${m} = ${2**p*m}. Jadi ${k} + ${2**p*m} = <b>${ans}</b>.`}};
+
+const XYO=['x > y','x < y','x = y','x dan y tidak dapat ditentukan','x = 2y'];
+G.xy=lv=>{for(let tries=0;tries<50;tries++){const T=pick(lv>=3?['tak','per','frac','kuad','tak']:['per','frac','kuad','tak']);let x,y,q,ex,rel;
+ if(T==='per'){const P=[10,15,20,25,30,40,50,60,75],p=pick(P),pp=pick(P),A=40*R(2,25),B=40*R(2,25);x=p*A/100;y=pp*B/100;q=`x = ${p}% dari ${fmtN(A)}<br>y = ${pp}% dari ${fmtN(B)}`;ex=`x = <b>${fmtN(x)}</b>, y = <b>${fmtN(y)}</b>.`}
+ else if(T==='frac'){const L=[[1,4],[3,8],[2,5],[5,8],[3,4],[7,20],[9,25],[3,5]],[n,d]=pick(L),v=n/d,off=pick([0,0,0.01,-0.01,0.05,-0.05,0.025]);x=v;y=Math.round((v+off)*1000)/1000;
+  q=`x = ${n}/${d}<br>y = ${fmtN(y)}`;ex=`Ubah pecahan ke desimal: ${n}/${d} = <b>${fmtN(v)}</b>. Bandingkan dengan y = ${fmtN(y)}.`}
+ else if(T==='kuad'){const a=R(2,9),b=R(2,9);x=(a+b)**2;y=a*a+b*b;q=`x = (${a} + ${b})²<br>y = ${a}² + ${b}²`;ex=`x = ${a+b}² = <b>${x}</b>, y = ${a*a} + ${b*b} = <b>${y}</b>. Ingat (a+b)² = a² + 2ab + b², selalu lebih besar dari a² + b² untuk a, b positif.`}
+ else {const k=R(3,12);const v=pick(['a','b','c']);
+  if(v==='a'){q=`x² = ${k*k}<br>y = ${k}`;rel=3;ex=`x² = ${k*k} berarti x bisa <b>${k} atau −${k}</b>. Kalau x = ${k}, maka x = y. Kalau x = −${k}, maka x &lt; y. Hubungannya tidak pasti, jadi <b>tidak dapat ditentukan</b>.`}
+  else if(v==='b'){q=`x² = ${k*k}, dengan x &gt; 0<br>y = ${k}`;rel=2;ex=`Karena ada syarat x &gt; 0, x hanya bisa <b>${k}</b>. Jadi x = y. Perhatikan syarat tambahan di soal, itu yang membedakan dari soal "tidak dapat ditentukan".`}
+  else {q=`x = √${k*k}<br>y = ${k}`;rel=2;ex=`Tanda √ selalu menghasilkan nilai <b>positif</b>, jadi √${k*k} = ${k}. Maka x = y. Beda dengan x² = ${k*k} yang punya dua kemungkinan.`}
+  return {q:`Diketahui:<br>${q}<br>Hubungan x dan y yang tepat adalah ...`,o:[XYO[rel],...XYO.filter((_,i)=>i!==rel)],a:0,ex}}
+ if(Math.abs(x-2*y)<1e-9)continue;rel=Math.abs(x-y)<1e-9?2:x>y?0:1;
+ return {q:`Diketahui:<br>${q}<br>Hubungan x dan y yang tepat adalah ...`,o:[XYO[rel],...XYO.filter((_,i)=>i!==rel)],a:0,ex:ex+` Jadi <b>${XYO[rel]}</b>.`}}};
+
+G.aritsos=()=>{const T=pick(['diskon','untung','rugi','bunga','balik','senilai','skala']);
+ if(T==='diskon'){const P=R(10,60)*10000,[d1,d2]=shuffle([10,20,25,30,40,50]).slice(0,2),a=P/10000*(100-d1)*(100-d2);
+  return {q:`Sebuah barang seharga ${rp(P)} mendapat diskon ${d1}%, lalu diskon lagi ${d2}%. Harga yang harus dibayar adalah ...`,o:mk(a,[P*(100-d1-d2)/100,P*(100-d1)/100,a+10000,a-5000,P*d1*d2/10000],rp),a:0,
+   ex:`Diskon bertingkat <b>jangan dijumlah</b>. ${rp(P)} × ${100-d1}% = ${rp(P*(100-d1)/100)}, lalu × ${100-d2}% = <b>${rp(a)}</b>. Kalau langsung ${d1+d2}%, hasilnya ${rp(P*(100-d1-d2)/100)} dan itu jebakan.`}}
+ if(T==='untung'){const M=R(5,50)*10000,u=pick([10,15,20,25,30,40]),a=M*(100+u)/100;
+  return {q:`Pedagang membeli barang seharga ${rp(M)} dan ingin untung ${u}%. Harga jualnya adalah ...`,o:mk(a,[M*(100-u)/100,M+u*1000,a+5000,M*u/100,a-10000],rp),a:0,ex:`Harga jual = modal × (100% + untung) = ${rp(M)} × ${100+u}% = <b>${rp(a)}</b>.`}}
+ if(T==='rugi'){const M=R(4,40)*10000,r=pick([5,10,15,20,25,30]),J=M*(100-r)/100;
+  return {q:`Sebuah barang dibeli seharga ${rp(M)} lalu dijual ${rp(J)}. Persentase kerugiannya adalah ...`,o:mk(`${r}%`,[r+5,r-5,r*2,Math.round((M-J)/J*100),r+10,r+15,r+2,r+20].filter(v=>v>0&&v!==r).map(v=>v+'%')),a:0,
+   ex:`Rugi = ${rp(M)} − ${rp(J)} = ${rp(M-J)}. Persentase dihitung dari <b>harga beli</b>: ${rp(M-J)} ÷ ${rp(M)} × 100% = <b>${r}%</b>.`}}
+ if(T==='bunga'){const M=R(1,10)*1000000,p=pick([6,12]),n=pick([2,4,6,8,10]),b=M*p*n/1200;
+  return {q:`Rina menabung ${rp(M)} di bank dengan bunga tunggal ${p}% per tahun. Jumlah tabungannya setelah ${n} bulan adalah ...`,o:mk(M+b,[M+M*p/100,M+b*2,b,M+b/2,M+M*p*n/100],rp),a:0,
+   ex:`Bunga = ${rp(M)} × ${p}% × ${n}/12 = ${rp(b)}. Tabungan akhir = ${rp(M)} + ${rp(b)} = <b>${rp(M+b)}</b>. Ingat bunga per <b>tahun</b>, jadi dikali ${n}/12.`}}
+ if(T==='balik'){for(;;){const w1=pick([6,8,10,12,15,20]),d1=pick([10,12,15,18,20,24,30]),d2=R(4,d1-2);if((w1*d1)%d2)continue;const w2=w1*d1/d2;if(w2-w1<2||w2>80)continue;
+  return {q:`Sebuah pekerjaan dapat diselesaikan ${w1} orang dalam ${d1} hari. Agar selesai dalam ${d2} hari, dibutuhkan tambahan pekerja sebanyak ...`,o:mk(w2-w1,[w2,w1*d2/d1,w2-w1+2,w2-w1-1,d1-d2].filter(v=>v>0&&Number.isInteger(v)),v=>v+' orang'),a:0,
+   ex:`Ini perbandingan <b>berbalik nilai</b>: makin banyak orang, makin cepat. Total kerja = ${w1} × ${d1} = ${w1*d1} orang-hari. Untuk ${d2} hari butuh ${w1*d1} ÷ ${d2} = ${w2} orang. Tambahannya ${w2} − ${w1} = <b>${w2-w1} orang</b>.`}}}
+ if(T==='senilai'){const k=pick([12,14,15,16]),L=R(3,8),L2=R(9,20);
+  return {q:`Sebuah mobil menghabiskan ${L} liter bensin untuk menempuh ${L*k} km. Untuk menempuh ${L2*k} km dibutuhkan bensin sebanyak ...`,o:mk(L2,[L2+1,L2-1,L2+L,Math.round(L*k/L2)],v=>v+' liter'),a:0,
+   ex:`Perbandingan <b>senilai</b>: jarak naik, bensin naik. 1 liter = ${k} km. Jadi ${L2*k} ÷ ${k} = <b>${L2} liter</b>.`}}
+ const S=pick([50000,100000,200000,250000,500000,1500000]),c=R(2,16)/2,km=c*S/100000;
+ return {q:`Jarak dua kota pada peta berskala 1 : ${fmtN(S)} adalah ${fmtN(c)} cm. Jarak sebenarnya adalah ...`,o:mk(km,[km*10,km/10,km+c,km*2,c*S/1000],v=>fmtN(v)+' km'),a:0,
+  ex:`Jarak sebenarnya = ${fmtN(c)} cm × ${fmtN(S)} = ${fmtN(c*S)} cm. Ubah ke km: bagi <b>100.000</b>. Hasilnya <b>${fmtN(km)} km</b>.`}};
+
+G.cerita=()=>{const T=pick(['papas','susul','kpk','rata','kerja']);
+ if(T==='papas'){const t=pick([1,1.5,2,2.5,3]),v1=5*R(8,14),v2=5*R(8,16),D=t*(v1+v2),st=pick([360,420,450,480]),ans=st+t*60;
+  return {q:`Jarak kota A dan B ${fmtN(D)} km. Pukul ${clock(st)} Budi berangkat dari A ke B dengan kecepatan ${v1} km/jam. Pada saat yang sama Andi berangkat dari B ke A dengan kecepatan ${v2} km/jam. Mereka akan berpapasan pukul ...`,
+   o:mk(clock(ans),[clock(ans+30),clock(ans-30),clock(st+Math.round(D/v1*60)),clock(ans+15),clock(st+Math.round(D/Math.abs(v2-v1||1)*60)%1440)]),a:0,
+   ex:`Kalau berlawanan arah, kecepatannya <b>dijumlah</b>: ${v1} + ${v2} = ${v1+v2} km/jam. Waktu = ${fmtN(D)} ÷ ${v1+v2} = ${fmtN(t)} jam. Jadi ${clock(st)} + ${fmtN(t)} jam = <b>${clock(ans)}</b>.`}}
+ if(T==='susul'){for(;;){const v1=pick([40,45,50,60]),v2=v1+pick([10,15,20,30]),h0=pick([0.5,1,1.5,2]),t=v1*h0/(v2-v1);if(t*2!==Math.round(t*2)||t>5)continue;const st=pick([420,450,480]),s2=st+h0*60,ans=s2+t*60;
+  return {q:`Pukul ${clock(st)} Dodi berangkat bersepeda motor dengan kecepatan ${v1} km/jam. ${fmtN(h0)} jam kemudian, Eko menyusul dari tempat yang sama dengan kecepatan ${v2} km/jam. Eko akan menyusul Dodi pukul ...`,
+   o:mk(clock(ans),[clock(ans+30),clock(ans-30),clock(st+t*60),clock(ans+60),clock(s2+v1*h0/v2*60)]),a:0,
+   ex:`Saat Eko berangkat, Dodi sudah unggul ${v1} × ${fmtN(h0)} = ${fmtN(v1*h0)} km. Kalau searah, kecepatannya <b>dikurang</b>: ${v2} − ${v1} = ${v2-v1} km/jam. Waktu menyusul = ${fmtN(v1*h0)} ÷ ${v2-v1} = ${fmtN(t)} jam. Jadi ${clock(s2)} + ${fmtN(t)} jam = <b>${clock(ans)}</b>.`}}}
+ if(T==='kpk'){for(;;){const [a,b,c]=shuffle([4,6,8,9,10,12,15,18,20]).slice(0,3),L=lcm(lcm(a,b),c);if(L>180||L<20)continue;const st=pick([420,480,540]);
+  return {q:`Tiga lampu berkedip setiap ${a} menit, ${b} menit, dan ${c} menit. Jika ketiganya berkedip bersamaan pukul ${clock(st)}, mereka akan berkedip bersamaan lagi pukul ...`,
+   o:mk(clock(st+L),[clock(st+a*b*c%600),clock(st+L/2),clock(st+L+a),clock(st+a+b+c),clock(st+L*2)]),a:0,
+   ex:`"Bersamaan lagi" = cari <b>KPK</b> dari ${a}, ${b}, dan ${c}, yaitu <b>${L} menit</b>. Jadi ${clock(st)} + ${L} menit = <b>${clock(st+L)}</b>.`}}}
+ if(T==='rata'){const n=pick([9,14,19,24,29]),k=pick([1,2]),m=R(68,80);const nw=m+k*(n+1);if(nw>100)return G.cerita();
+  return {q:`Rata-rata nilai ${n} peserta adalah ${m}. Setelah satu peserta baru bergabung, rata-ratanya menjadi ${m+k}. Nilai peserta baru tersebut adalah ...`,o:mk(nw,[m+k,m+k*n,nw-k,nw+1,m+2*k]),a:0,
+   ex:`Jumlah awal = ${n} × ${m} = ${n*m}. Jumlah baru = ${n+1} × ${m+k} = ${(n+1)*(m+k)}. Nilai peserta baru = selisihnya = <b>${nw}</b>. Cara kilat: ${m} + ${k} × ${n+1} = ${nw}.`}}
+ for(;;){const x=pick([6,8,9,10,12,15,18,20]),y=pick([4,5,6,8,10,12,15]),k=R(1,x-2);const rem=Fr(x-k,x),rate=fAdd(Fr(1,x),Fr(1,y)),t=Fr(rem.n*rate.d,rem.d*rate.n);if(t.d!==1)continue;
+  return {q:`Pak Ali dapat menyelesaikan sebuah pekerjaan dalam ${x} hari, sedangkan Pak Budi dalam ${y} hari. Pak Ali bekerja sendiri selama ${k} hari, lalu dibantu Pak Budi sampai selesai. Total waktu penyelesaian pekerjaan adalah ...`,
+   o:mk(k+t.n,[t.n,k+t.n+1,Math.round(x*y/(x+y)),k+t.n-1,x-k],v=>v+' hari'),a:0,
+   ex:`Dalam ${k} hari, Pak Ali menyelesaikan ${k}/${x} bagian, sisa ${fStr(rem)}. Kecepatan berdua = 1/${x} + 1/${y} = ${fStr(rate)} per hari. Sisa selesai dalam ${fStr(rem)} ÷ ${fStr(rate)} = ${t.n} hari. Total = ${k} + ${t.n} = <b>${k+t.n} hari</b>.`}}};
+
+G.tabel=()=>{const names=shuffle(['Beras','Jagung','Kedelai','Kopi','Teh','Kakao']).slice(0,4),gs=shuffle([5,10,15,20,25,30,40,50]).slice(0,4);
+ const base=names.map(()=>20*R(10,40)),nw=base.map((b,i)=>b*(100+gs[i])/100),yr=R(2021,2024);
+ const tbl=`<div class="tblwrap"><table class="dtbl"><caption>Produksi (ton)</caption><thead><tr><th>Komoditas</th><th>${yr}</th><th>${yr+1}</th></tr></thead><tbody>${names.map((n,i)=>`<tr><td>${n}</td><td>${fmtN(base[i])}</td><td>${fmtN(nw[i])}</td></tr>`).join('')}</tbody></table></div>`;
+ const T=pick(['pct','max','total']),i=R(0,3);
+ if(T==='pct')return {fig:tbl,q:`Persentase kenaikan produksi ${names[i]} dari ${yr} ke ${yr+1} adalah ...`,o:mk(gs[i]+'%',[...gs.filter((_,j)=>j!==i).map(g=>g+'%'),Math.round((nw[i]-base[i])/nw[i]*100)+'%',(gs[i]+5)+'%',(gs[i]*2)+'%',(gs[i]+10)+'%',(gs[i]+15)+'%']),a:0,
+  ex:`Kenaikan = ${fmtN(nw[i])} − ${fmtN(base[i])} = ${fmtN(nw[i]-base[i])}. Persentase selalu dibagi data <b>tahun awal</b>: ${fmtN(nw[i]-base[i])} ÷ ${fmtN(base[i])} × 100% = <b>${gs[i]}%</b>.`};
+ if(T==='max'){const m=gs.indexOf(Math.max(...gs));return {fig:tbl,q:`Komoditas dengan persentase kenaikan produksi tertinggi adalah ...`,o:[names[m],...names.filter((_,j)=>j!==m),'Semua sama'],a:0,
+  ex:`Hitung persentase tiap komoditas: ${names.map((n,j)=>`${n} ${gs[j]}%`).join(', ')}. Tertinggi <b>${names[m]}</b>. Hati-hati, kenaikan ton terbesar belum tentu persentasenya terbesar.`}}
+ const tot=nw.reduce((a,b)=>a+b,0);return {fig:tbl,q:`Total produksi keempat komoditas pada tahun ${yr+1} adalah ...`,o:mk(tot,[base.reduce((a,b)=>a+b,0),tot+20,tot-40,tot+100],v=>fmtN(v)+' ton'),a:0,ex:`Jumlahkan kolom ${yr+1}: ${nw.map(fmtN).join(' + ')} = <b>${fmtN(tot)} ton</b>. Pastikan kamu mengambil kolom tahun yang benar.`}};
+
+/* ================= GENERATOR: FIGURAL ================= */
+G.figRot=lv=>{const t=pick(['F','L','P']),step=lv===1?pick([90,-90]):pick([45,-45,135,90]),a0=pick([0,45,90,180]);const frames=[0,1,2,3].map(i=>chi(t,a0+step*i));
+ const ans=a0+step*4,seen=new Set(),o=[];const add=(r,m)=>{const k=ckey(t,r,m);if(!seen.has(k)&&o.length<5){seen.add(k);o.push(chi(t,r,m))}};
+ add(ans,false);add(ans,true);add(ans+step,false);add(ans-step,false);add(ans+180,false);add(ans+90,false);add(ans-90,true);
+ return {fig:row(...frames,QM),q:'Gambar berikutnya yang tepat adalah ...',o,a:0,html:true,ex:`Bentuknya sama, hanya <b>diputar ${Math.abs(step)}° ${step>0?'searah':'berlawanan arah'} jarum jam</b> tiap langkah. Putar sekali lagi dari gambar keempat. Jangan tertipu opsi yang bentuknya <b>dicerminkan</b>.`}};
+G.figCount=()=>{for(;;){const a=R(1,3),d=R(1,3),ans=a+d*4;if(ans>12)continue;const c=[...new Set([ans+1,ans-1,ans+d,ans-d,ans+2,ans-2,ans-3])].filter(v=>v>=1&&v<=12&&v!==ans);if(c.length<4)continue;
+ return {fig:row(...[0,1,2,3].map(i=>fDots(a+d*i)),QM),q:'Gambar berikutnya yang tepat adalah ...',o:[ans,...shuffle(c).slice(0,4)].map(fDots),a:0,html:true,
+  ex:`Hitung titiknya: ${[0,1,2,3].map(i=>a+d*i).join(', ')}. Selalu bertambah <b>${d}</b>, jadi berikutnya <b>${ans} titik</b>.`}}};
+G.figOdd=()=>{const t=pick(['F','L','P','S']),angs=t==='S'?shuffle([0,45,90,135]):shuffle([0,45,90,135,180,225,270,315]);const rs=angs.slice(0,4),mrot=t==='S'?pick([0,90]):angs[4];
+ return {q:'Manakah gambar yang berbeda dari yang lain?',o:[chi(t,mrot,true),...rs.map(r=>chi(t,r,false))],a:0,html:true,
+  ex:'Empat gambar sebenarnya <b>bentuk yang sama, hanya diputar</b>. Satu gambar <b>dicerminkan</b> (dibalik kiri-kanan), dan bentuk cermin tidak bisa didapat hanya dengan memutar. Trik: bayangkan memutar gambar itu, lalu cek arah "tangan" atau tonjolannya.'}};
+G.figAna=()=>{if(Math.random()<.5){const [o1,i1]=shuffle(['c','s','t']).slice(0,2);let [o2,i2]=shuffle(['c','s','t']).slice(0,2);if(o2===o1&&i2===i1)[o2,i2]=[i1,o1];
+  const seen=new Set(),o=[];const add=(a,b)=>{const k=a+b;if(!seen.has(k)&&o.length<5){seen.add(k);o.push(fNest(a,b))}};add(i2,o2);add(o2,i2);add(i2,i2);add(o2,o2);add(o1,i2);add(i2,o1);add(i1,o1);for(const a of shuffle(['c','s','t']))for(const b of shuffle(['c','s','t']))add(a,b);
+  return {fig:row(fNest(o1,i1),SEP(':'),fNest(i1,o1),SEP('='),fNest(o2,i2),SEP(':'),QM),q:'Gambar yang tepat untuk melengkapi analogi di atas adalah ...',o,a:0,html:true,ex:`Polanya: <b>bentuk luar dan bentuk dalam bertukar tempat</b>. ${SHN[o2]} berisi ${SHN[i2]} → <b>${SHN[i2]} berisi ${SHN[o2]}</b>.`}}
+ const [s1,s2]=shuffle(['F','L','P']).slice(0,2),th=pick([90,180,-90]),a0=pick([0,90]),c0=pick([0,45,90,180]),ans=c0+th;const seen=new Set(),o=[];
+ const add=(r,m)=>{const k=ckey(s2,r,m);if(!seen.has(k)&&o.length<5){seen.add(k);o.push(chi(s2,r,m))}};add(ans,false);add(c0-th,false);add(ans,true);add(c0,false);add(ans+90,false);add(ans+45,false);add(c0,true);add(ans-45,false);add(ans+180,true);
+ return {fig:row(chi(s1,a0),SEP(':'),chi(s1,a0+th),SEP('='),chi(s2,c0),SEP(':'),QM),q:'Gambar yang tepat untuk melengkapi analogi di atas adalah ...',o,a:0,html:true,
+  ex:`Gambar pertama ke kedua <b>diputar ${Math.abs(th)}° ${th>0?'searah':'berlawanan arah'} jarum jam</b>. Terapkan putaran yang sama pada gambar ketiga. Opsi yang dicerminkan sengaja dipasang sebagai jebakan.`}};
+G.figCells=()=>{for(;;){const b0=R(0,3),g0=R(0,3),sb=pick([1,-1]),sg=pick([1,-1,2]);const P=i=>[((b0+sb*i)%4+4)%4,((g0+sg*i)%4+4)%4];if([0,1,2,3].some(i=>P(i)[0]===P(i)[1]))continue;
+ const [ab,ag]=P(3),seen=new Set([ab+''+ag]),o=[fCells(ab,ag)];for(const [x,y] of shuffle([[ag,ab],[P(2)[0],ag],[ab,P(2)[1]],[(ab+1)%4,ag],[ab,(ag+1)%4],[(ab+2)%4,(ag+2)%4],[P(1)[0],P(1)[1]]])){const k=x+''+y;if(x!==y&&!seen.has(k)&&o.length<5){seen.add(k);o.push(fCells(x,y))}}
+ if(o.length<5)continue;const dir=s=>s>0?`ke kanan ${s} langkah`:`ke kiri ${-s} langkah`;
+ return {fig:row(...[0,1,2].map(i=>fCells(...P(i))),QM),q:'Gambar berikutnya yang tepat adalah ...',o,a:0,html:true,ex:`Ada dua gerakan sekaligus. Kotak <b>hitam bergeser ${dir(sb)}</b>, kotak <b>kuning bergeser ${dir(sg)}</b>, dan kalau sampai ujung, lanjut lagi dari sisi seberang. Lacak satu warna dulu, baru warna lainnya.`}}};
+G.figNine=()=>{const S=shuffle(['c','s','t']),V=pick(['A','B','C']);let cell;
+ if(V==='A')cell=(r,c)=>({s:S[(r+c)%3],n:c+1,f:0});else if(V==='B')cell=(r,c)=>({s:S[r],n:(r+c)%3+1,f:0});else cell=(r,c)=>({s:S[c],n:r+1,f:(r+c)%2===0?1:0});
+ const draw=p=>fMulti(p.s,p.n,!!p.f,52);let g='';for(let r=0;r<3;r++)for(let c=0;c<3;c++)g+=r===2&&c===2?'<div class="nq">?</div>':`<div>${draw(cell(r,c))}</div>`;
+ const ans=cell(2,2),k=p=>p.s+p.n+p.f,seen=new Set([k(ans)]),o=[draw(ans)];const cand=[];for(const s of S)for(let n=1;n<=3;n++)for(const f of (V==='C'?[0,1]:[0])){const p={s,n,f};const diff=(p.s!==ans.s)+(p.n!==ans.n)+(p.f!==ans.f);if(diff)cand.push([diff,Math.random(),p])}
+ cand.sort((a,b)=>a[0]-b[0]||a[1]-b[1]);for(const [,,p] of cand){if(o.length<5&&!seen.has(k(p))){seen.add(k(p));o.push(draw(p))}}
+ const ex={A:'Perhatikan per kolom: <b>jumlah bentuk = nomor kolom</b> (1, 2, 3). Jenis bentuknya <b>bergeser satu</b> tiap baris, dan tiap baris memuat ketiga bentuk.',B:'Tiap baris punya <b>satu jenis bentuk</b>. Jumlahnya berputar 1 → 2 → 3, dan polanya bergeser satu langkah di tiap baris. Isi kotak kosong mengikuti pola baris ketiga.',C:'Tiap kolom punya <b>jenis bentuk tetap</b>, dan <b>jumlahnya = nomor baris</b>. Warnanya berselang-seling seperti papan catur (kuning, hitam, kuning).'}[V];
+ return {fig:`<div class="nine">${g}</div>`,q:'Gambar yang tepat untuk mengisi kotak bertanda tanya adalah ...',o,a:0,html:true,ex:ex+' Cocokkan bentuk, jumlah, dan warna satu per satu.'}};
+G.figAlt=()=>{const t=pick(['F','L','P']),step=pick([90,-90]),a0=pick([0,90]);const f=i=>chi(t,a0+step*i,i%2===1);const ans=a0+step*4;const seen=new Set(),o=[];
+ const add=(r,m)=>{const kk=ckey(t,r,m);if(!seen.has(kk)&&o.length<5){seen.add(kk);o.push(chi(t,r,m))}};add(ans,false);add(ans,true);add(ans+step,true);add(ans-step,false);add(ans+180,false);add(ans+180,true);
+ return {fig:row(f(0),f(1),f(2),f(3),QM),q:'Gambar berikutnya yang tepat adalah ...',o,a:0,html:true,ex:`Ada dua aturan sekaligus: tiap langkah gambar <b>diputar ${Math.abs(step)}°</b> dan <b>bergantian dicerminkan</b> (normal, cermin, normal, cermin). Gambar kelima kembali ke bentuk <b>normal</b>.`}};
+
+/* ================= BANK SOAL (TULISAN) ================= */
 const CTX_ANTRE='Lima peserta, yaitu P, Q, R, S, dan T, mengantre di depan loket. Diketahui:<ul><li>S berada paling belakang.</li><li>P berdiri tepat di depan R.</li><li>T berada di depan P.</li><li>Q tidak berada paling depan dan tidak paling belakang.</li><li>R tidak berdiri tepat di depan S.</li></ul>';
 const CTX_RAPAT='Rapat koordinasi digelar Senin sampai Jumat, satu dinas per hari: Kesehatan (K), Pendidikan (P), Sosial (S), Perhubungan (H), dan Lingkungan (L). Diketahui:<ul><li>K dijadwalkan sehari sebelum P.</li><li>S tidak dijadwalkan hari Senin maupun Jumat.</li><li>H dijadwalkan hari Rabu.</li><li>L tidak dijadwalkan hari Senin.</li></ul>';
+const CTX_NILAI='Enam peserta tes, yaitu A, B, C, D, E, dan F, mendapat nilai yang berbeda-beda. Diketahui:<ul><li>Nilai A lebih tinggi daripada B.</li><li>Nilai C lebih rendah daripada D, tetapi lebih tinggi daripada A.</li><li>E mendapat nilai tertinggi.</li><li>Nilai F lebih rendah daripada B.</li></ul>';
+const PARA_DIGI='Digitalisasi layanan publik membuat warga tidak perlu lagi antre berjam-jam di kantor pemerintahan. Pengurusan dokumen seperti KTP dan akta kelahiran kini bisa diajukan secara daring. Selain menghemat waktu, digitalisasi juga mengurangi peluang pungutan liar karena interaksi tatap muka berkurang. Meski demikian, pemerintah masih perlu memperluas akses internet di daerah terpencil agar manfaat ini dirasakan merata.';
+const PARA_SAMPAH='Sampah plastik menjadi masalah serius di banyak kota pesisir. Setiap musim hujan, saluran air tersumbat dan banjir datang lebih cepat. Nelayan pun mengeluh karena jaring mereka lebih sering menjaring plastik daripada ikan. Karena itu, sejumlah pemerintah daerah mulai membatasi kantong plastik sekali pakai dan menggandeng bank sampah untuk mengelola sampah warga.';
 
-const UNITS = [
- {id:'twk', tag:'UNIT 1 · TWK', name:'Wawasan Kebangsaan', desc:'Nasionalisme, integritas, bela negara, pilar negara, bahasa', exam:'30 soal', c:'twk', lessons:[
-  {title:'Nasionalisme', sub:'Studi kasus', qs:[
-   {q:'Seorang atlet bulu tangkis menolak tawaran naturalisasi dari negara lain yang menjanjikan gaji jauh lebih besar. Ia memilih tetap membela Indonesia walaupun fasilitas latihannya terbatas. Sikap atlet tersebut mencerminkan ...', o:['Chauvinisme','Nasionalisme dan rela berkorban','Primordialisme','Etnosentrisme','Sektoralisme'], a:1,
-    ex:'Kata kuncinya <b>memilih bangsa sendiri meski harus berkorban</b> (gaji besar ditolak). Itu <b>nasionalisme + rela berkorban</b>. Chauvinisme beda: itu merasa bangsa sendiri paling hebat sambil merendahkan bangsa lain.'},
-   {q:'Sekelompok warga menolak semua produk dan budaya asing, menganggap bangsa lain lebih rendah, bahkan mengusir pedagang dari negara lain. Sikap ini termasuk ...', o:['Nasionalisme Pancasila','Patriotisme','Nasionalisme sempit (chauvinisme)','Kosmopolitanisme','Internasionalisme'], a:2,
-    ex:'Menganggap bangsa lain <b>lebih rendah</b> = <b>chauvinisme</b>, alias nasionalisme sempit. Nasionalisme Pancasila justru cinta bangsa sendiri <b>tanpa</b> merendahkan bangsa lain.'},
-   {q:'Nasionalisme Indonesia disebut nasionalisme Pancasila. Makna yang paling tepat adalah ...', o:['Mengutamakan bangsa sendiri di atas bangsa lain dalam segala hal','Cinta tanah air dengan tetap menghormati bangsa lain dan terbuka pada kerja sama','Kesetiaan utama kepada suku dan daerah asal','Menolak segala bentuk kerja sama internasional','Persatuan yang didasarkan pada kelompok mayoritas'], a:1,
-    ex:'Nasionalisme Pancasila itu <b>cinta tanah air yang tetap ramah ke luar</b>. Sila ke-2 (kemanusiaan) membuatnya tidak sempit, sila ke-3 menjaga persatuan. Opsi lain kebablasan atau malah memecah.'},
-   {q:'Sebuah video viral memperlihatkan seorang pembuat konten memakai bendera Merah Putih sebagai alas duduk untuk konten lucu. Tindakan tersebut melanggar UU Nomor 24 Tahun 2009 dan menunjukkan lemahnya ...', o:['Kreativitas dalam bermedia sosial','Rasa hormat terhadap simbol negara','Pemahaman tentang hak asasi manusia','Kebebasan berekspresi','Kemampuan literasi digital'], a:1,
-    ex:'Bendera itu <b>simbol negara</b> yang wajib dihormati, diatur dalam <b>UU 24/2009</b> tentang Bendera, Bahasa, Lambang Negara, dan Lagu Kebangsaan. Jadi masalah utamanya adalah <b>rasa hormat pada simbol negara</b>, bukan soal kreativitas.'},
-   {q:'Pemerintah daerah mewajibkan nama gedung, jalan, dan kompleks perumahan baru memakai bahasa Indonesia. Tujuan utama kebijakan ini adalah ...', o:['Menolak penggunaan bahasa asing sepenuhnya','Memperkuat bahasa Indonesia sebagai jati diri dan pemersatu bangsa','Mempermudah turis asing membaca nama tempat','Meningkatkan nilai jual properti','Melestarikan bahasa daerah'], a:1,
-    ex:'Bahasa Indonesia itu <b>identitas dan pemersatu bangsa</b>. UU 24/2009 memang mewajibkan bahasa Indonesia untuk nama bangunan dan permukiman. Bahasa asing tetap boleh dipakai, asal tidak menggeser bahasa Indonesia.'}
-  ]},
-  {title:'Integritas', sub:'Antikorupsi & BerAKHLAK', qs:[
-   {q:'Seorang kepala dinas mengangkat keponakannya menjadi tenaga honorer tanpa seleksi, padahal ada pelamar lain yang lebih kompeten. Praktik ini disebut ...', o:['Kolusi','Gratifikasi','Nepotisme','Suap','Pungutan liar'], a:2,
-    ex:'Mengutamakan <b>keluarga atau kerabat</b> dalam jabatan = <b>nepotisme</b>. Kolusi itu kongkalikong antarpihak, gratifikasi itu pemberian hadiah. Trik: <b>nepo</b> mirip "nephew" (keponakan).'},
-   {q:'Seorang pegawai menerima hadiah dari rekanan proyek dan tidak bisa menolaknya. Agar tidak dianggap suap, gratifikasi tersebut wajib dilaporkan ke KPK paling lambat ...', o:['7 hari kerja','14 hari kerja','30 hari kerja','60 hari kerja','90 hari kerja'], a:2,
-    ex:'Aturannya <b>30 hari kerja</b> sejak gratifikasi diterima (UU 20/2001 Pasal 12C). Kalau dilaporkan tepat waktu, statusnya tidak dianggap suap. Ingat: <b>30 hari kerja, bukan 30 hari kalender</b>.'},
-   {q:'Berikut ini yang tidak termasuk nilai dasar ASN BerAKHLAK adalah ...', o:['Akuntabel','Harmonis','Karismatik','Adaptif','Kolaboratif'], a:2,
-    ex:'BerAKHLAK = <b>Ber</b>orientasi pelayanan, <b>A</b>kuntabel, <b>K</b>ompeten, <b>H</b>armonis, <b>L</b>oyal, <b>A</b>daptif, <b>K</b>olaboratif. Tidak ada <b>karismatik</b>. Hafalkan dari huruf-hurufnya.'},
-   {q:'Petugas loket sengaja memperlambat pengurusan izin dan memberi isyarat bahwa berkas bisa cepat selesai bila ada "uang pelicin". Tindakan ini termasuk ...', o:['Gratifikasi','Pungutan liar','Nepotisme','Kolusi','Wanprestasi'], a:1,
-    ex:'Meminta bayaran di luar ketentuan untuk layanan publik = <b>pungutan liar (pungli)</b>. Bedanya dengan gratifikasi: gratifikasi itu pemberian, pungli itu <b>diminta/dipaksa</b> oleh petugas.'},
-   {q:'Seorang pegawai menemukan amplop berisi uang di ruang tunggu kantor. Ia langsung menyerahkannya ke bagian keamanan agar dikembalikan kepada pemiliknya. Nilai integritas yang paling menonjol adalah ...', o:['Kedisiplinan','Kejujuran','Kepedulian sosial','Kesederhanaan','Kemandirian'], a:1,
-    ex:'Tidak mengambil yang bukan haknya = <b>kejujuran</b>, inti dari integritas. Kepedulian juga ada, tapi yang paling menonjol tetap jujur.'}
-  ]},
-  {title:'Pilar Negara', sub:'Pancasila, UUD, NKRI', qs:[
-   {q:'Warga sebuah desa menangkap dan memukuli terduga pencuri motor sebelum polisi datang. Tindakan warga tersebut bertentangan dengan prinsip bahwa Indonesia adalah ...', o:['Negara kesatuan','Negara hukum','Negara demokrasi','Negara kepulauan','Negara kesejahteraan'], a:1,
-    ex:'<b>Pasal 1 ayat (3) UUD 1945</b>: Indonesia adalah <b>negara hukum</b>. Artinya yang berhak mengadili itu aparat dan pengadilan, bukan warga. Main hakim sendiri juga melanggar sila ke-2.'},
-   {q:'Sebuah kelompok mendeklarasikan kemerdekaan wilayahnya dan menyatakan lepas dari Indonesia melalui siaran pers di luar negeri. Tindakan ini paling bertentangan dengan Pancasila sila ke ...', o:['Pertama','Kedua','Ketiga','Keempat','Kelima'], a:2,
-    ex:'Memisahkan diri dari Indonesia = ancaman disintegrasi, langsung bertabrakan dengan <b>sila ke-3, Persatuan Indonesia</b>, dan pilar NKRI.'},
-   {q:'Menurut UUD 1945, ketentuan yang tidak dapat dilakukan perubahan adalah ...', o:['Sistem pemerintahan presidensial','Masa jabatan presiden','Bentuk Negara Kesatuan Republik Indonesia','Jumlah anggota MPR','Kewenangan Mahkamah Konstitusi'], a:2,
-    ex:'<b>Pasal 37 ayat (5)</b>: bentuk <b>NKRI tidak dapat diubah</b>. Bagian lain UUD boleh diamandemen lewat MPR, tapi bentuk negara kesatuan dikunci.'},
-   {q:'Terjadi perselisihan antara warga tentang pembangunan rumah ibadah di sebuah kompleks. Penyelesaian yang paling sesuai dengan nilai Pancasila adalah ...', o:['Menyerahkan keputusan pada kelompok mayoritas','Musyawarah antarwarga yang difasilitasi pemerintah setempat sesuai aturan','Membiarkan pembangunan tanpa izin','Melarang semua pembangunan rumah ibadah','Menyelesaikan lewat media sosial agar transparan'], a:1,
-    ex:'Dua sila bekerja bareng: <b>sila ke-1</b> (kebebasan beribadah) dan <b>sila ke-4</b> (musyawarah). Jadi jalan terbaik: <b>musyawarah difasilitasi pemerintah, sesuai aturan</b>. Suara mayoritas saja tidak cukup.'},
-   {q:'Hal yang membedakan demokrasi Pancasila dari demokrasi liberal adalah ...', o:['Adanya pemilihan umum','Adanya lembaga perwakilan rakyat','Mengutamakan musyawarah mufakat serta keseimbangan hak dan kewajiban','Kebebasan individu tanpa batas','Keputusan selalu diambil melalui voting'], a:2,
-    ex:'Pemilu dan DPR ada di kedua sistem, jadi bukan pembeda. Ciri khas demokrasi Pancasila: <b>musyawarah mufakat</b> dan <b>hak seimbang dengan kewajiban</b>. Voting tetap boleh, tapi jadi jalan terakhir.'}
-  ]},
-  {title:'Bela Negara', sub:'Ancaman & bahasa negara', qs:[
-   {q:'Berikut ini yang tidak termasuk nilai dasar bela negara menurut UU Nomor 23 Tahun 2019 adalah ...', o:['Cinta tanah air','Setia kepada Pancasila sebagai ideologi negara','Rela berkorban untuk bangsa dan negara','Menguasai teknik bertempur','Kemampuan awal bela negara'], a:3,
-    ex:'Lima nilai dasar bela negara: <b>cinta tanah air, sadar berbangsa dan bernegara, setia pada Pancasila, rela berkorban, dan kemampuan awal bela negara</b>. Teknik bertempur bukan syarat. Bela negara tidak harus angkat senjata.'},
-   {q:'Sekelompok mahasiswa membuat aplikasi pendeteksi berita hoaks dan membagikannya gratis kepada masyarakat. Tindakan ini merupakan bentuk bela negara ...', o:['Fisik di bidang pertahanan','Non-fisik di bidang teknologi informasi','Fisik di bidang keamanan','Militer di bidang siber','Non-fisik di bidang ekonomi'], a:1,
-    ex:'Tidak pakai senjata, jadi <b>non-fisik</b>. Medannya aplikasi dan informasi, jadi bidang <b>teknologi informasi</b>. Hoaks memang termasuk ancaman non-militer.'},
-   {q:'Berikut ini yang termasuk ancaman militer adalah ...', o:['Penyebaran hoaks yang memecah belah','Peredaran narkoba di kalangan pelajar','Pelanggaran wilayah udara oleh pesawat tempur asing','Krisis ekonomi global','Wabah penyakit menular'], a:2,
-    ex:'Ancaman <b>militer</b> = memakai kekuatan bersenjata, misalnya <b>pelanggaran wilayah oleh pesawat tempur asing</b>. Hoaks, narkoba, krisis, dan wabah termasuk ancaman <b>non-militer</b>.'},
-   {q:'Kedudukan bahasa Indonesia sebagai bahasa negara bersumber pada ...', o:['Ikrar Sumpah Pemuda 1928','Pasal 36 UUD 1945','Kongres Bahasa Indonesia I tahun 1938','Pasal 32 UUD 1945','Dekrit Presiden 5 Juli 1959'], a:1,
-    ex:'Dua kedudukan, dua sumber. Sebagai <b>bahasa persatuan</b>: Sumpah Pemuda 1928. Sebagai <b>bahasa negara</b>: <b>Pasal 36 UUD 1945</b>. Soal ini sering menjebak di situ.'},
-   {q:'Penulisan kata baku yang tepat terdapat pada ...', o:['Apotik','Analisa','Kwitansi','Risiko','Hakekat'], a:3,
-    ex:'Bentuk bakunya: apo<b>tek</b>, anali<b>sis</b>, <b>kui</b>tansi, <b>risiko</b>, haki<b>kat</b>. Jadi cuma <b>risiko</b> yang sudah benar. Kata baku sering keluar di TWK bagian bahasa negara.'}
-  ]}
- ]},
- {id:'tiu', tag:'UNIT 2 · TIU', name:'Intelegensia Umum', desc:'Verbal, silogisme, analitis, numerik, figural', exam:'35 soal', c:'tiu', lessons:[
-  {title:'Verbal', sub:'Sinonim, antonim, analogi', qs:[
-   {q:'KONKLUSI = ...', o:['Pendahuluan','Kesimpulan','Pertimbangan','Perbandingan','Penjelasan'], a:1,
-    ex:'<b>Konklusi = kesimpulan</b>. Kalau lupa, ingat kata Inggris "conclusion". Lawannya justru pendahuluan.'},
-   {q:'KONKRET >< ...', o:['Nyata','Jelas','Abstrak','Padat','Kasat mata'], a:2,
-    ex:'Konkret itu <b>nyata, berwujud</b>. Lawannya <b>abstrak</b>. Nyata, jelas, kasat mata malah sinonim, jadi itu jebakan.'},
-   {q:'DISPENSASI = ...', o:['Penundaan','Pembebasan dari kewajiban','Pembagian','Hukuman','Penyaluran'], a:1,
-    ex:'<b>Dispensasi</b> = pengecualian atau <b>pembebasan dari kewajiban</b> karena alasan khusus. Contoh: dapat dispensasi tidak ikut upacara karena sakit.'},
-   {q:'KUAS : .... = .... : PENULIS', o:['Cat – Buku','Pelukis – Pena','Kanvas – Kertas','Warna – Tinta','Seni – Novel'], a:1,
-    ex:'Analogi dua bagian kosong: coba isi tiap opsi lalu baca utuh. <b>Kuas : pelukis = pena : penulis</b>, polanya <b>alat : penggunanya</b>. Opsi lain tidak bisa dibaca dengan pola yang sama di kedua sisi.'},
-   {q:'AIR : HAUS = .... : ....', o:['Makanan : Lapar','Obat : Dokter','Tidur : Mimpi','Api : Panas','Garam : Asin'], a:0,
-    ex:'Air <b>menghilangkan</b> haus, makanan <b>menghilangkan</b> lapar. Api : panas dan garam : asin itu pola "menghasilkan sifat", jadi beda hubungan.'}
-  ]},
-  {title:'Silogisme', sub:'Penalaran logis', qs:[
-   {q:'Semua pegawai bank memakai seragam. Sebagian pemakai seragam adalah pegawai baru. Kesimpulan yang tepat adalah ...', o:['Sebagian pegawai bank adalah pegawai baru','Semua pegawai baru adalah pegawai bank','Sebagian pegawai baru tidak memakai seragam','Semua pemakai seragam adalah pegawai bank','Tidak dapat ditarik kesimpulan yang pasti'], a:4,
-    ex:'Jebakan klasik! "Pemakai seragam" itu kelompok besar, isinya bukan cuma pegawai bank. Pegawai baru yang berseragam bisa saja dari tempat lain. Jadi <b>tidak ada kesimpulan pasti</b>.'},
-   {q:'Jika harga BBM naik, ongkos angkut naik. Jika ongkos angkut naik, harga sayur naik. Ternyata harga sayur tidak naik. Kesimpulannya ...', o:['Harga BBM naik','Ongkos angkut naik','Harga BBM tidak naik','Harga sayur turun','Ongkos angkut tetap tetapi BBM naik'], a:2,
-    ex:'Rantainya: BBM naik → ongkos naik → sayur naik. Ujungnya ternyata <b>tidak</b> terjadi, berarti semua mata rantai sebelumnya juga tidak terjadi (modus tollens). Jadi <b>harga BBM tidak naik</b>.'},
-   {q:'Hanya peserta yang lulus SKD yang boleh mengikuti SKB. Rina mengikuti SKB. Kesimpulannya ...', o:['Rina belum tentu lulus SKD','Rina lulus SKD','Rina tidak lulus SKD','Rina lulus SKB','Semua peserta SKD ikut SKB'], a:1,
-    ex:'Kata "<b>hanya</b>" artinya SKB = pasti sudah lulus SKD. Rina ikut SKB, berarti <b>Rina lulus SKD</b>. Lulus SKB belum tentu, karena itu belum diketahui.'},
-   {q:'Ingkaran dari "Jika hujan, maka saya membawa payung" adalah ...', o:['Jika tidak hujan, maka saya tidak membawa payung','Hujan dan saya tidak membawa payung','Tidak hujan atau saya membawa payung','Jika saya membawa payung, maka hujan','Tidak hujan dan saya membawa payung'], a:1,
-    ex:'Rumus: ingkaran "<b>jika p maka q</b>" adalah "<b>p dan tidak q</b>". Jadi: <b>hujan dan saya tidak membawa payung</b>. Ini satu-satunya kondisi yang membuat janji itu terbukti bohong.'},
-   {q:'Semua yang lolos seleksi mengikuti pelatihan. Tidak ada peserta pelatihan yang datang terlambat. Kesimpulannya ...', o:['Semua yang tidak terlambat lolos seleksi','Tidak ada yang lolos seleksi yang datang terlambat','Sebagian yang lolos seleksi datang terlambat','Peserta pelatihan belum tentu lolos seleksi','Semua yang terlambat lolos seleksi'], a:1,
-    ex:'Lolos seleksi → ikut pelatihan → tidak terlambat. Jadi <b>tidak ada yang lolos seleksi yang terlambat</b>. Opsi "semua yang tidak terlambat lolos seleksi" itu membalik arah.'}
-  ]},
-  {title:'Analitis', sub:'Urutan & jadwal', qs:[
-   {ctx:CTX_ANTRE, q:'Siapa yang berdiri paling depan?', o:['P','Q','R','S','T'], a:4,
-    ex:'Susun dulu: S di posisi 5. T–P–R harus berurutan (T di depan P, P tepat di depan R). Q tidak boleh di posisi 1, dan R tidak boleh di posisi 4. Satu-satunya susunan: <b>T – P – R – Q – S</b>. Jadi paling depan <b>T</b>.'},
-   {ctx:CTX_ANTRE, q:'Siapa yang berdiri tepat di depan S?', o:['P','Q','R','T','Tidak dapat ditentukan'], a:1,
-    ex:'Susunannya <b>T – P – R – Q – S</b>, jadi yang tepat di depan S adalah <b>Q</b>. Tips analitis: gambar dulu kotak 1–5, isi yang pasti (S di 5), baru coba-coba sisanya.'},
-   {ctx:CTX_ANTRE, q:'Pernyataan berikut yang benar adalah ...', o:['P berada di urutan pertama','R berada di urutan ketiga','Q berdiri tepat di belakang T','R berada di belakang Q','T berdiri tepat di depan R'], a:1,
-    ex:'Dari susunan <b>T(1) – P(2) – R(3) – Q(4) – S(5)</b>, yang benar hanya <b>R di urutan ketiga</b>. Cek opsi lain satu per satu, semuanya bertentangan dengan susunan.'},
-   {ctx:CTX_RAPAT, q:'Dinas yang dijadwalkan rapat hari Kamis adalah ...', o:['Kesehatan','Pendidikan','Sosial','Perhubungan','Lingkungan'], a:2,
-    ex:'H = Rabu. K–P berurutan, jadi pilihannya Senin–Selasa atau Kamis–Jumat. Kalau K–P di Kamis–Jumat, Senin sisa untuk S atau L, padahal keduanya dilarang di Senin. Jadi <b>K Senin, P Selasa</b>. S bukan Jumat → <b>S Kamis</b>, L Jumat.'},
-   {ctx:CTX_RAPAT, q:'Pernyataan berikut yang pasti benar adalah ...', o:['Pendidikan rapat hari Rabu','Sosial rapat sehari setelah Pendidikan','Lingkungan rapat paling akhir','Kesehatan rapat hari Selasa','Perhubungan rapat sebelum Pendidikan'], a:2,
-    ex:'Jadwal lengkapnya: <b>Senin K, Selasa P, Rabu H, Kamis S, Jumat L</b>. Jadi <b>Lingkungan paling akhir</b>. Sosial rapat Kamis, dua hari setelah Pendidikan, bukan sehari.'}
-  ]},
-  {title:'Numerik', sub:'Deret & soal cerita', qs:[
-   {q:'3, 20, 6, 17, 12, 14, ..., ...', o:['24, 11','18, 11','24, 12','15, 10','20, 11'], a:0,
-    ex:'Ini <b>deret 2 larik</b>, pisahkan posisi ganjil dan genap. Ganjil: 3, 6, 12 (×2) → <b>24</b>. Genap: 20, 17, 14 (−3) → <b>11</b>. Kalau angkanya naik-turun tidak jelas, curigai 2 larik.'},
-   {q:'2, 3, 5, 8, 13, 21, ...', o:['29','31','34','36','42'], a:2,
-    ex:'Ini <b>deret Fibonacci</b>: tiap angka = jumlah dua angka sebelumnya. 13 + 21 = <b>34</b>.'},
-   {q:'4, 5, 8, 13, 20, ...', o:['27','28','29','30','31'], a:2,
-    ex:'Selisihnya +1, +3, +5, +7, bilangan ganjil berurutan. Berikutnya <b>+9</b>, jadi 20 + 9 = <b>29</b>. Ini disebut deret bertingkat.'},
-   {q:'Andi berangkat pukul 07.00 dengan kecepatan rata-rata 60 km/jam menuju kota yang berjarak 150 km. Andi akan tiba pukul ...', o:['09.00','09.15','09.30','09.50','10.00'], a:2,
-    ex:'Waktu = jarak ÷ kecepatan = 150 ÷ 60 = <b>2,5 jam</b> = 2 jam 30 menit. 07.00 + 2.30 = <b>09.30</b>. Hati-hati, 2,5 jam itu bukan 2 jam 50 menit.'},
-   {q:'Perbandingan umur ayah dan anak adalah 7 : 2. Selisih umur mereka 30 tahun. Umur anak sekarang adalah ...', o:['10 tahun','12 tahun','14 tahun','15 tahun','42 tahun'], a:1,
-    ex:'Selisih bagian 7 − 2 = 5 bagian = 30 tahun, jadi 1 bagian = 6 tahun. Anak = 2 × 6 = <b>12 tahun</b>. Ayahnya 42, dan itu dipasang sebagai jebakan.'}
-  ]},
-  {title:'Figural', sub:'Pola gambar', fig:true, qs:[
-   {fig:row(fArrow(0),fArrow(45),fArrow(90),fArrow(135),Q_), q:'Gambar berikutnya yang tepat adalah ...', o:[fArrow(180),fArrow(225),fArrow(90),fArrow(0),fArrow(270)], a:0, html:true,
-    ex:'Panahnya <b>berputar 45° searah jarum jam</b> tiap langkah: atas → serong kanan → kanan → serong kanan bawah. Berikutnya <b>menunjuk ke bawah</b> (180°).'},
-   {fig:row(fDots(1),fDots(3),fDots(5),fDots(7),Q_), q:'Gambar berikutnya yang tepat adalah ...', o:[fDots(8),fDots(9),fDots(10),fDots(11),fDots(6)], a:1, html:true,
-    ex:'Hitung titiknya: 1, 3, 5, 7, selalu <b>bertambah 2</b>. Berikutnya <b>9 titik</b>. Di soal figural, menghitung elemen sering jadi kunci tercepat.'},
-   {q:'Manakah gambar yang berbeda dari yang lain?', o:[fF(0),fF(90),fF(180),fF(90,true),fF(270)], a:3, html:true,
-    ex:'Empat gambar sebenarnya <b>bentuk yang sama, hanya diputar</b>. Satu gambar <b>dicerminkan</b> (dibalik kiri-kanan), dan bentuk cermin tidak bisa didapat hanya dengan memutar. Trik: perhatikan ke arah mana "tangan" bentuknya menghadap.'},
-   {fig:row(fNest('c','s'),SEP(':'),fNest('s','c'),SEP('='),fNest('t','c'),SEP(':'),Q_), q:'Gambar yang tepat untuk melengkapi analogi di atas adalah ...', o:[fNest('c','t'),fNest('t','c'),fNest('c','s'),fNest('s','t'),fNest('t','t')], a:0, html:true,
-    ex:'Polanya: <b>bentuk luar dan bentuk dalam bertukar tempat</b>. Lingkaran berisi persegi → persegi berisi lingkaran. Jadi segitiga berisi lingkaran → <b>lingkaran berisi segitiga</b>.'},
-   {fig:row(fCells(0,3),fCells(1,2),fCells(2,1),Q_), q:'Gambar berikutnya yang tepat adalah ...', o:[fCells(3,0),fCells(0,3),fCells(3,1),fCells(2,0),fCells(1,3)], a:0, html:true,
-    ex:'Ada dua gerakan sekaligus: kotak <b>hitam bergeser ke kanan</b>, kotak <b>kuning bergeser ke kiri</b>, masing-masing satu langkah. Berikutnya hitam di paling kanan, kuning di paling kiri.'}
-  ]}
- ]},
- {id:'tkp', tag:'UNIT 3 · TKP', name:'Karakteristik Pribadi', desc:'Pelayanan, jejaring kerja, sosial budaya, TIK, anti-radikalisme', exam:'45 soal', c:'tkp', lessons:[
-  {title:'Pelayanan Publik', sub:'& profesionalisme', tkp:true, qs:[
-   {q:'Seorang warga marah-marah di loket karena berkasnya ditolak sistem, padahal menurutnya sudah lengkap. Saya akan ...', o:['Menjelaskan aturan sistem dan memintanya melengkapi berkas','Mendengarkan keluhannya dengan tenang, mengecek ulang berkas, lalu menjelaskan bagian yang kurang dan cara melengkapinya','Meminta maaf atas ketidaknyamanan dan mengarahkannya ke bagian pengaduan','Mengecek ulang berkasnya untuk memastikan apakah sistem yang keliru','Meminta petugas keamanan menenangkannya agar antrean tidak terganggu'], p:[3,5,2,4,1],
-    ex:'Aspek <b>pelayanan publik</b>. Skor 5 punya tiga unsur: <b>tenang mendengar, mengecek, dan memberi solusi</b>. Mengecek saja dapat 4. Melempar ke bagian pengaduan dinilai kurang bertanggung jawab.'},
-   {q:'Sistem antrean online di kantor saya sedang gangguan dan warga mulai menumpuk. Saya akan ...', o:['Meminta warga bersabar sampai sistem pulih','Membuat antrean manual, mencatat data warga, dan melaporkan gangguan ke tim TI','Melaporkan gangguan ke tim TI dan menunggu arahan','Melayani warga secara manual sebisanya','Menutup layanan sementara sampai sistem normal'], p:[2,5,3,4,1],
-    ex:'TKP menyukai <b>inisiatif saat ada masalah</b>. Layanan tetap jalan (antrean manual) <b>dan</b> masalah dilaporkan = 5. Hanya melapor lalu menunggu = 3, karena warga tetap terlantar.'},
-   {q:'Atasan memberi saya target kerja yang menurut saya terlalu tinggi. Saya akan ...', o:['Menerima, menyusun rencana kerja, dan berdiskusi dengan atasan bila ada kendala','Menerima walaupun ragu dapat mencapainya','Meminta target diturunkan sebelum mulai bekerja','Berusaha semaksimal mungkin, termasuk lembur setiap hari','Mengerjakan sebisanya karena target tidak realistis'], p:[5,3,2,4,1],
-    ex:'Aspek <b>profesionalisme</b>: terima tantangan, tapi dengan <b>perencanaan dan komunikasi</b>. Lembur tiap hari menunjukkan semangat (4), tapi tanpa strategi.'},
-   {q:'Atasan mengkritik hasil kerja saya yang kurang rapi di depan rekan-rekan. Saya akan ...', o:['Merasa malu tetapi diam saja','Menerima kritik, menanyakan bagian yang perlu diperbaiki, lalu memperbaikinya','Menjelaskan alasan pekerjaan saya kurang rapi','Memperbaiki pekerjaan tanpa banyak bicara','Menunjukkan bahwa rekan lain juga melakukan kesalahan serupa'], p:[2,5,3,4,1],
-    ex:'Kritik = bahan perbaikan. Skor 5: <b>terima, tanya detail, perbaiki</b>. Langsung memperbaiki juga bagus (4). Menjelaskan alasan cenderung terlihat defensif (3).'},
-   {q:'Saya dipindahkan ke bidang baru yang tidak sesuai dengan latar pendidikan saya. Saya akan ...', o:['Mempelajari tugas baru, bertanya kepada yang berpengalaman, dan mengikuti pelatihan yang tersedia','Menjalankan tugas sambil belajar sedikit demi sedikit','Menerima walaupun kurang bersemangat','Meminta dikembalikan ke bidang lama','Menjalankan tugas sesuai perintah saja'], p:[5,4,2,1,3],
-    ex:'Nilai <b>adaptif</b> dari BerAKHLAK. Yang paling aktif mengembangkan diri dapat 5. Bedanya 5 dan 4 ada di <b>kecepatan dan kesungguhan</b> belajar.'}
-  ]},
-  {title:'Jejaring Kerja', sub:'& kepemimpinan', tkp:true, qs:[
-   {q:'Saya ketua tim. Dua anggota berselisih sehingga pekerjaan tim terhambat. Saya akan ...', o:['Mempertemukan keduanya, mendengar kedua pihak, dan mencari solusi bersama demi target tim','Menegur keduanya agar bersikap profesional','Membagi ulang tugas agar mereka tidak saling bergantung, lalu berbicara dengan masing-masing','Melaporkan perselisihan itu kepada atasan','Membiarkan karena nanti akan reda sendiri'], p:[5,3,4,2,1],
-    ex:'Pemimpin yang baik <b>menyelesaikan akar konflik</b>, bukan sekadar menegur. Mempertemukan dan mencari solusi bersama = 5. Membagi ulang tugas efektif jangka pendek (4).'},
-   {q:'Instansi lain meminta data yang dikelola unit saya untuk program bersama. Saya akan ...', o:['Memberikan data sesuai prosedur dan izin pimpinan, serta menawarkan koordinasi lanjutan','Memberikan data secepatnya agar program lancar','Meminta surat resmi terlebih dahulu, lalu memprosesnya sesuai prosedur','Menolak karena data itu milik unit saya','Meneruskan permintaan ke atasan dan menunggu'], p:[5,3,4,1,2],
-    ex:'Aspek <b>jejaring kerja</b>: kolaboratif <b>tapi tetap taat prosedur</b>. Memberi data tanpa izin itu cepat, tapi berisiko (3). Plus menawarkan koordinasi lanjutan yang membuatnya 5.'},
-   {q:'Saya diminta menjadi penghubung dalam proyek kolaborasi lintas bidang. Saya akan ...', o:['Menerima, memetakan kebutuhan tiap bidang, dan membuat jadwal koordinasi rutin','Menerima dan menjalankan sesuai arahan atasan','Menerima walaupun khawatir menambah beban kerja','Menolak karena pekerjaan saya sudah banyak','Menerima dan membuat grup komunikasi agar informasi cepat tersampaikan'], p:[5,3,2,1,4],
-    ex:'Semua opsi "menerima" terlihat baik, jadi bedanya di <b>seberapa proaktif</b>. Memetakan kebutuhan + jadwal rutin = 5. Grup komunikasi sudah inisiatif, tapi belum menyentuh kebutuhan tiap bidang (4).'},
-   {q:'Anggota tim saya sering terlambat menyelesaikan bagian tugasnya. Saya akan ...', o:['Mengambil alih tugasnya agar target aman','Berbicara empat mata untuk mengetahui kendalanya dan membantu menyusun jadwal','Menegurnya di rapat tim agar menjadi pelajaran bagi yang lain','Memberi tenggat lebih awal untuk bagiannya','Mengingatkannya secara berkala dan menawarkan bantuan'], p:[2,5,1,3,4],
-    ex:'Cari <b>akar masalahnya</b> lewat obrolan empat mata = 5. Menegur di depan umum mempermalukan dan merusak tim (1). Mengambil alih tugas menyelesaikan target, tapi orangnya tidak berkembang (2).'},
-   {q:'Rekan dari unit lain meminta bantuan saat saya sedang dikejar tenggat. Saya akan ...', o:['Menolak dengan sopan dan menjelaskan kesibukan saya','Membantu sebentar lalu kembali ke pekerjaan saya','Menjelaskan kondisi saya, menjadwalkan waktu membantu setelah tenggat, atau menghubungkannya dengan rekan yang bisa membantu','Membantu sampai selesai walaupun pekerjaan saya tertunda','Pura-pura tidak membaca pesannya'], p:[2,4,5,3,1],
-    ex:'Opsi 5 menjaga <b>tanggung jawab sendiri sekaligus tetap membantu</b>. Membantu sampai pekerjaan sendiri tertunda terlihat baik hati, tapi kurang profesional (3).'}
-  ]},
-  {title:'Sosial Budaya', sub:'& anti-radikalisme', tkp:true, qs:[
-   {q:'Dalam rapat, rekan dari daerah lain berbicara dengan logat dan nada yang terdengar keras bagi saya. Saya akan ...', o:['Memahami bahwa itu kebiasaan budayanya dan tetap fokus pada isi pembicaraan','Menegurnya agar berbicara lebih pelan','Merasa tersinggung tetapi diam saja','Bertanya dengan sopan bila ada maksud yang kurang jelas','Menyesuaikan diri seperlunya'], p:[5,2,1,4,3],
-    ex:'Aspek <b>sosial budaya</b>: hargai perbedaan cara bicara dan <b>fokus pada substansi</b>. Menegur soal logat itu kurang peka budaya.'},
-   {q:'Masyarakat di wilayah kerja saya mengadakan upacara adat yang menutup jalan utama pada jam layanan kantor. Saya akan ...', o:['Menghormati acara tersebut, berkoordinasi dengan tokoh adat dan aparat untuk jalur alternatif, serta mengumumkan perubahan layanan','Meminta upacara dipindahkan ke hari libur','Menutup layanan pada hari itu','Mengumumkan jalur alternatif kepada warga','Tetap membuka layanan seperti biasa'], p:[5,1,2,4,3],
-    ex:'Skor 5 menggabungkan <b>hormat pada adat + layanan tetap jalan + koordinasi</b>. Meminta upacara dipindah = tidak menghormati budaya setempat.'},
-   {q:'Saya melihat unggahan teman kantor di media sosial yang mengajak membenci kelompok agama tertentu. Saya akan ...', o:['Membiarkan karena itu akun pribadinya','Mengingatkannya secara pribadi tentang bahaya ujaran kebencian dan memintanya menghapus unggahan','Melaporkan unggahan tersebut ke platform media sosial','Berhenti mengikuti akunnya','Menegurnya di kolom komentar'], p:[1,5,4,2,3],
-    ex:'Aspek <b>anti-radikalisme dan TIK</b>. Mengingatkan secara pribadi sambil meminta menghapus = 5, karena efektif dan tidak mempermalukan. Menegur di komentar bisa memicu keributan baru (3).'},
-   {q:'Teman mengajak saya ikut forum kajian yang mengajarkan bahwa sistem negara harus diganti karena Pancasila dianggap salah. Saya akan ...', o:['Ikut sekali untuk mengetahui isinya','Menolak, menjelaskan bahwa Pancasila adalah kesepakatan bangsa, dan melaporkan forum itu ke pihak berwenang','Menolak tanpa memberi alasan','Menolak dan mengingatkan teman tentang bahayanya','Ikut demi menjaga pertemanan'], p:[2,5,3,4,1],
-    ex:'Untuk paham yang ingin mengganti Pancasila, skor tertinggi selalu: <b>tolak, edukasi, dan laporkan</b>. "Ikut sekali saja" tetap berisiko terpapar (2).'},
-   {q:'Tetangga baru saya berbeda suku dan agama, dan belum dikenal warga sekitar. Saya akan ...', o:['Menyapa, memperkenalkannya kepada warga, dan mengajaknya ikut kegiatan lingkungan','Menyapa bila bertemu','Menunggu ia memperkenalkan diri lebih dulu','Membatasi interaksi agar tidak terjadi salah paham','Berkunjung ke rumahnya untuk berkenalan'], p:[5,3,2,1,4],
-    ex:'Inisiatif <b>merangkul</b> dan menyatukan dengan lingkungan = 5. Berkenalan sendiri sudah baik (4), tapi belum membantu ia diterima warga lain.'}
-  ]},
-  {title:'TIK & Integritas', sub:'Digital & antikorupsi', tkp:true, qs:[
-   {q:'Kantor beralih ke tanda tangan elektronik, dan banyak rekan senior kesulitan. Saya akan ...', o:['Mempelajarinya, membuat panduan singkat, dan membantu rekan senior','Mempelajarinya sendiri sampai lancar','Membantu rekan senior jika mereka meminta','Tetap menggunakan tanda tangan basah selama masih diperbolehkan','Meminta rekan lain mengerjakan bagian saya'], p:[5,3,4,2,1],
-    ex:'Aspek <b>TIK</b>: cepat menguasai <b>dan</b> menularkan ke rekan. Membantu kalau diminta sudah baik (4), tapi kurang proaktif.'},
-   {q:'Saya menerima email dari "bagian kepegawaian" berisi tautan yang meminta saya memasukkan kata sandi akun kantor. Saya akan ...', o:['Langsung mengisinya agar urusan cepat selesai','Mengabaikan email itu','Mengonfirmasi ke bagian kepegawaian lewat jalur resmi dan melaporkan email tersebut ke tim TI','Menghapus email itu','Melaporkan email tersebut ke tim TI'], p:[1,3,5,2,4],
-    ex:'Ini ciri <b>phishing</b>. Skor 5: <b>verifikasi lewat jalur resmi dan lapor ke TI</b>, supaya rekan lain juga terlindungi. Menghapus saja tidak mencegah orang lain tertipu.'},
-   {q:'Atasan meminta saya menandatangani daftar hadir kegiatan yang tidak saya ikuti agar anggaran bisa dicairkan. Saya akan ...', o:['Menolak dengan sopan dan menjelaskan bahwa hal itu tidak sesuai aturan','Menandatangani karena itu perintah atasan','Menandatangani tetapi menyimpan catatan sebagai bukti','Menolak dan langsung melaporkan atasan ke inspektorat','Menghindar dengan alasan sibuk'], p:[5,1,2,4,3],
-    ex:'Aspek <b>integritas</b>. Menolak dengan sopan sekaligus menjelaskan aturan = 5. Langsung lapor tanpa mengingatkan dulu dinilai sedikit di bawahnya (4). Ikut tanda tangan berarti ikut memalsukan.'},
-   {q:'Saya menemukan aplikasi bajakan terpasang di komputer kantor yang saya gunakan. Saya akan ...', o:['Membiarkan karena sudah terpasang sebelumnya','Melaporkannya ke tim TI dan meminta diganti dengan aplikasi berlisensi atau alternatif resmi','Menghapusnya sendiri','Tetap memakainya sambil menunggu pengadaan aplikasi resmi','Melaporkannya kepada atasan'], p:[1,5,3,2,4],
-    ex:'Software bajakan = melanggar hak cipta dan rawan virus. Skor 5: <b>lapor ke pihak yang tepat (TI) sekaligus minta solusi</b>. Menghapus sendiri bisa mengganggu pekerjaan tanpa pengganti (3).'},
-   {q:'Rekan kerja meminta saya mengisikan presensi online-nya karena ia akan datang terlambat. Saya akan ...', o:['Mengisikannya karena ia teman dekat','Menolak dan menyarankannya melaporkan keterlambatan kepada atasan','Menolak dengan sopan','Mengisikannya sekali ini saja','Pura-pura tidak membaca pesannya'], p:[1,5,4,2,3],
-    ex:'Mengisi presensi orang lain = <b>pemalsuan data</b>. Menolak sambil memberi jalan keluar yang jujur = 5. Menolak saja tetap benar (4), tapi kurang membantu.'}
-  ]}
- ]}
+const P={
+ pancasila:[
+  {q:'Rumusan Pancasila yang sah dan resmi tercantum di dalam ...',o:['Piagam Jakarta','Pidato Ir. Soekarno 1 Juni 1945','Pembukaan UUD 1945 alinea keempat','Batang tubuh UUD 1945 Pasal 1','Dekrit Presiden 5 Juli 1959'],a:2,ex:'Pancasila resmi ada di <b>Pembukaan UUD 1945 alinea ke-4</b>, disahkan PPKI 18 Agustus 1945. Piagam Jakarta masih rancangan.'},
+  {q:'Tanggal 1 Juni diperingati sebagai Hari Lahir Pancasila karena pada hari itu ...',o:['PPKI mengesahkan UUD 1945','Ir. Soekarno berpidato tentang dasar negara di sidang BPUPKI','Panitia Sembilan menandatangani Piagam Jakarta','Proklamasi kemerdekaan dibacakan','Sidang MPR pertama dilaksanakan'],a:1,ex:'Tanggal <b>1 Juni 1945</b> Bung Karno berpidato di sidang BPUPKI dan memperkenalkan istilah "Pancasila". Urutan: <b>1 Juni lahir → 22 Juni Piagam Jakarta → 18 Agustus disahkan</b>.'},
+  {q:'Lambang pohon beringin pada perisai Garuda Pancasila melambangkan sila ke ...',o:['Pertama','Kedua','Ketiga','Keempat','Kelima'],a:2,ex:'Beringin = <b>sila ke-3, Persatuan Indonesia</b>. Akarnya menjalar ke mana-mana tapi tetap satu pohon.'},
+  {q:'Rapat warga RT memutuskan jadwal ronda lewat musyawarah sampai semua sepakat. Ini wujud pengamalan sila ke ...',o:['Pertama','Kedua','Ketiga','Keempat','Kelima'],a:3,ex:'Kata kunci <b>musyawarah</b> = <b>sila ke-4</b>, Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan.'},
+  {q:'Pancasila sebagai ideologi terbuka mengandung arti ...',o:['Nilai dasarnya dapat diganti sesuai perkembangan zaman','Nilai dasarnya tetap, tetapi penerapannya dapat berkembang mengikuti zaman','Pancasila terbuka untuk digabung dengan ideologi lain','Setiap warga bebas menafsirkan Pancasila sesuka hati','Pancasila hanya berlaku bagi kelompok tertentu'],a:1,ex:'Ideologi terbuka: <b>nilai dasar tetap</b>, sedangkan <b>nilai instrumental dan praksis</b> (aturan dan penerapannya) boleh menyesuaikan zaman. Nilai dasarnya tidak boleh diganti.'},
+  {q:'Pemerintah membangun sekolah dan memberi beasiswa khusus bagi anak-anak di daerah tertinggal. Kebijakan ini mencerminkan pengamalan sila ke ...',o:['Pertama','Kedua','Ketiga','Keempat','Kelima'],a:4,ex:'Pemerataan kesempatan agar daerah tertinggal tidak tertinggal lagi = <b>sila ke-5, Keadilan sosial bagi seluruh rakyat Indonesia</b>.'},
+  {q:'Indonesia mengirim tim medis dan bantuan logistik ke negara lain yang dilanda gempa besar. Tindakan ini paling mencerminkan sila ke ...',o:['Pertama','Kedua','Ketiga','Keempat','Kelima'],a:1,ex:'Menolong sesama manusia tanpa memandang bangsa = <b>sila ke-2, Kemanusiaan yang adil dan beradab</b>.'},
+  {q:'Pada 18 Agustus 1945, rumusan sila pertama dalam Piagam Jakarta diubah menjadi "Ketuhanan Yang Maha Esa". Perubahan ini dilakukan dengan tujuan utama ...',o:['Menghapus peran agama dalam negara','Menjaga persatuan bangsa yang beragam','Menyesuaikan dengan ideologi negara lain','Memenuhi permintaan pemerintah Jepang','Mempersingkat rumusan Pancasila'],a:1,ex:'Perubahan itu disepakati demi <b>persatuan</b>, karena ada keberatan dari wakil Indonesia bagian timur. Mohammad Hatta menyampaikannya setelah berdiskusi dengan tokoh-tokoh Islam. Ini contoh besar mengutamakan kepentingan bangsa.'}
+ ],
+ uud:[
+  {q:'Sejak reformasi, UUD 1945 sudah mengalami amandemen sebanyak ...',o:['1 kali','2 kali','3 kali','4 kali','5 kali'],a:3,ex:'<b>4 kali</b>, setahun sekali dari <b>1999 sampai 2002</b>.'},
+  {q:'Lembaga yang berwenang mengubah dan menetapkan Undang-Undang Dasar adalah ...',o:['DPR','Presiden','MPR','Mahkamah Konstitusi','DPD'],a:2,ex:'<b>Pasal 3 ayat (1)</b>: <b>MPR</b> mengubah dan menetapkan UUD. DPR membuat undang-undang biasa.'},
+  {q:'"Bumi dan air dan kekayaan alam yang terkandung di dalamnya dikuasai oleh negara ..." Bunyi ini terdapat pada ...',o:['Pasal 27 ayat (1)','Pasal 28A','Pasal 31 ayat (1)','Pasal 33 ayat (3)','Pasal 34 ayat (1)'],a:3,ex:'<b>Pasal 33 ayat (3)</b>, bab perekonomian. Pasal 31 pendidikan, Pasal 34 fakir miskin.'},
+  {q:'Menguji undang-undang terhadap UUD 1945 merupakan kewenangan ...',o:['Mahkamah Agung','Mahkamah Konstitusi','Komisi Yudisial','MPR','DPR'],a:1,ex:'Uji UU terhadap UUD = <b>Mahkamah Konstitusi</b> (Pasal 24C). MA menguji peraturan di bawah UU terhadap UU.'},
+  {q:'Pasal dalam UUD 1945 yang mengatur bahwa bendera negara Indonesia adalah Sang Merah Putih adalah ...',o:['Pasal 35','Pasal 36','Pasal 36A','Pasal 36B','Pasal 37'],a:0,ex:'Urut: <b>Pasal 35 bendera</b>, 36 bahasa, 36A lambang, 36B lagu kebangsaan.'},
+  {q:'"Setiap orang berhak untuk hidup serta berhak mempertahankan hidup dan kehidupannya." Ketentuan ini terdapat dalam ...',o:['Pasal 27 ayat (2)','Pasal 28A','Pasal 28E ayat (1)','Pasal 29 ayat (2)','Pasal 30 ayat (1)'],a:1,ex:'<b>Pasal 28A</b>, pasal pembuka bab HAM (28A sampai 28J). Hak hidup memang ditaruh paling depan.'},
+  {q:'Menurut UUD 1945, anggaran pendidikan sekurang-kurangnya 20% dari APBN dan APBD diatur dalam ...',o:['Pasal 31 ayat (1)','Pasal 31 ayat (2)','Pasal 31 ayat (4)','Pasal 32 ayat (1)','Pasal 34 ayat (2)'],a:2,ex:'Semua soal pendidikan ada di <b>Pasal 31</b>. Ayat (1) hak pendidikan, ayat (2) wajib pendidikan dasar, <b>ayat (4) anggaran minimal 20%</b>.'},
+  {q:'Kekuasaan kehakiman di Indonesia dilakukan oleh ...',o:['Mahkamah Agung dan Komisi Yudisial','Mahkamah Agung dan Mahkamah Konstitusi','Mahkamah Konstitusi dan Kejaksaan Agung','Komisi Yudisial dan Mahkamah Konstitusi','Mahkamah Agung dan Kejaksaan Agung'],a:1,ex:'<b>Pasal 24 ayat (2)</b>: kekuasaan kehakiman dijalankan <b>MA dan MK</b>. Komisi Yudisial mengawasi hakim, bukan pelaku kekuasaan kehakiman.'},
+  {q:'Lembaga negara yang anggotanya dipilih dari setiap provinsi melalui pemilu untuk mewakili kepentingan daerah adalah ...',o:['DPR','DPRD','DPD','MPR','BPK'],a:2,ex:'<b>DPD (Dewan Perwakilan Daerah)</b>, diatur Pasal 22C. DPR mewakili rakyat lewat partai, DPD mewakili daerah.'}
+ ],
+ sejarah:[
+  {q:'Semboyan "Bhinneka Tunggal Ika" diambil dari kitab ...',o:['Negarakertagama karya Mpu Prapanca','Sutasoma karya Mpu Tantular','Arjunawiwaha karya Mpu Kanwa','Pararaton','Bharatayuddha karya Mpu Sedah'],a:1,ex:'Dari <b>Sutasoma karya Mpu Tantular</b> (Majapahit). Trik: <b>Tantular → Tunggal</b>.'},
+  {q:'Ikrar Sumpah Pemuda dibacakan pada Kongres Pemuda II tanggal ...',o:['20 Mei 1908','28 Oktober 1928','17 Agustus 1945','10 November 1945','1 Oktober 1965'],a:1,ex:'<b>28 Oktober 1928</b>. 20 Mei 1908 itu Budi Utomo.'},
+  {q:'Hari Kebangkitan Nasional diperingati setiap 20 Mei untuk mengenang berdirinya ...',o:['Sarekat Islam','Indische Partij','Budi Utomo','Perhimpunan Indonesia','Muhammadiyah'],a:2,ex:'<b>Budi Utomo</b>, 20 Mei 1908, organisasi modern pertama pemicu kesadaran kebangsaan.'},
+  {q:'Ketua Badan Penyelidik Usaha-Usaha Persiapan Kemerdekaan Indonesia (BPUPKI) adalah ...',o:['Ir. Soekarno','Drs. Mohammad Hatta','dr. K.R.T. Radjiman Wedyodiningrat','Mr. Soepomo','Mr. Muhammad Yamin'],a:2,ex:'BPUPKI diketuai <b>dr. Radjiman Wedyodiningrat</b>. Yang diketuai Soekarno itu <b>PPKI</b>. Dua lembaga ini sering ditukar di soal.'},
+  {q:'Golongan muda membawa Soekarno dan Hatta ke Rengasdengklok pada 16 Agustus 1945 dengan tujuan ...',o:['Menyembunyikan mereka dari Sekutu','Menjauhkan mereka dari pengaruh Jepang dan mendesak proklamasi segera','Mengadakan sidang PPKI di luar Jakarta','Menyusun teks proklamasi bersama tokoh daerah','Menunggu keputusan resmi dari Jepang'],a:1,ex:'Golongan muda ingin proklamasi <b>secepatnya tanpa campur tangan Jepang</b>, terutama setelah Jepang menyerah kepada Sekutu.'},
+  {q:'Naskah proklamasi yang ditulis tangan oleh Soekarno kemudian diketik oleh ...',o:['B.M. Diah','Sayuti Melik','Achmad Soebardjo','Sukarni','Fatmawati'],a:1,ex:'Pengetiknya <b>Sayuti Melik</b>, dengan beberapa perubahan kata. Fatmawati menjahit bendera pusaka.'},
+  {q:'Salah satu isi Dekrit Presiden 5 Juli 1959 adalah ...',o:['Pembentukan Republik Indonesia Serikat','Pembubaran Konstituante dan berlakunya kembali UUD 1945','Pemilihan umum pertama','Pembubaran PPKI','Penetapan Pancasila sebagai asas tunggal'],a:1,ex:'Dekrit 5 Juli 1959: <b>Konstituante dibubarkan</b>, <b>UUD 1945 berlaku lagi</b>, UUDS 1950 tidak berlaku, dan dibentuk MPRS serta DPAS.'},
+  {q:'Lagu Indonesia Raya pertama kali diperdengarkan di depan umum oleh W.R. Supratman pada peristiwa ...',o:['Proklamasi Kemerdekaan','Kongres Pemuda II','Sidang BPUPKI','Kongres Budi Utomo','Konferensi Meja Bundar'],a:1,ex:'Diperdengarkan dengan biola pada <b>Kongres Pemuda II</b>, 28 Oktober 1928, momen yang sama dengan Sumpah Pemuda.'}
+ ],
+ bahasa:[
+  {q:'Penulisan kata baku yang tepat terdapat pada ...',o:['Apotik','Analisa','Kwitansi','Risiko','Hakekat'],a:3,ex:'Bakunya: apotek, analisis, kuitansi, <b>risiko</b>, hakikat.'},
+  {q:'Kalimat berikut yang efektif adalah ...',o:['Para peserta-peserta diharapkan hadir tepat waktu.','Bagi peserta yang terlambat harap melapor ke panitia.','Para peserta diharapkan hadir tepat waktu.','Kepada hadirin dipersilakan berdiri.','Harga mobil itu sangat mahal sekali.'],a:2,ex:'"Para peserta-peserta" dan "sangat ... sekali" itu <b>pleonasme</b> (berlebihan). "Bagi ..." dan "Kepada ..." di awal kalimat membuat <b>subjeknya hilang</b>. Yang efektif: <b>Para peserta diharapkan hadir tepat waktu.</b>'},
+  {ctx:PARA_DIGI,q:'Gagasan utama paragraf tersebut adalah ...',o:['Pengurusan KTP kini dapat dilakukan secara daring','Digitalisasi layanan publik bermanfaat bagi warga, tetapi aksesnya perlu diperluas','Pungutan liar terjadi karena interaksi tatap muka','Daerah terpencil belum memiliki akses internet','Warga sering antre berjam-jam di kantor pemerintahan'],a:1,ex:'Gagasan utama = <b>ide yang mewadahi seluruh kalimat</b>. KTP daring, pungli, dan internet daerah hanya detail pendukung. Paragraf ini membahas manfaat digitalisasi dan catatannya.'},
+  {ctx:PARA_SAMPAH,q:'Gagasan utama paragraf tersebut adalah ...',o:['Nelayan sulit mendapat ikan','Banjir datang setiap musim hujan','Sampah plastik merupakan masalah serius di kota pesisir sehingga mulai ditangani pemerintah daerah','Bank sampah mengelola sampah warga','Kantong plastik sekali pakai dilarang di seluruh Indonesia'],a:2,ex:'Kalimat pertama berisi topik (<b>sampah plastik masalah serius</b>), kalimat tengah jadi buktinya, dan kalimat akhir solusinya. Gagasan utamanya merangkum keduanya. Opsi E melebih-lebihkan isi paragraf.'},
+  {q:'Penulisan huruf kapital yang tepat terdapat pada kalimat ...',o:['Ayah dirawat di Rumah Sakit sejak kemarin.','Kami berlibur ke pulau Bali.','Ia berasal dari suku Sunda.','Ibu membeli Gula Jawa di pasar.','Kakak kuliah di universitas Padjadjaran.'],a:2,ex:'Kata "suku" ditulis kecil, nama sukunya kapital: <b>suku Sunda</b> ✓. Yang lain: rumah sakit (bukan nama), <b>Pulau Bali</b> (bagian nama geografi), gula jawa (nama jenis), <b>Universitas Padjadjaran</b> (nama lembaga).'},
+  {q:'Penulisan kata depan dan imbuhan yang tepat terdapat pada kalimat ...',o:['Buku itu di letakkan diatas meja.','Buku itu diletakkan di atas meja.','Buku itu diletakkan diatas meja.','Buku itu di letakkan di atas meja.','Buku itu diletak kan di atas meja.'],a:1,ex:'Trik cepat: kalau diikuti <b>tempat</b> (atas, meja, rumah), "di" adalah kata depan dan <b>dipisah</b>. Kalau diikuti <b>kata kerja</b>, "di-" adalah imbuhan dan <b>disambung</b>. Jadi: <b>diletakkan di atas</b>.'},
+  {q:'Penulisan kata serapan yang baku adalah ...',o:['Sistim','Kualitas','Kwalitas','Aktifitas','Nasehat'],a:1,ex:'Bakunya: sistem, <b>kualitas</b>, aktivitas, nasihat. Kata serapan dari "-ivity" menjadi <b>-ivitas</b>, bukan -ifitas.'},
+  {q:'Kalimat berikut yang tidak efektif karena mengandung pleonasme adalah ...',o:['Kita harus saling membantu.','Kita harus bantu-membantu.','Kita harus saling bantu-membantu.','Rapat dimulai pukul 08.00.','Ia mundur demi kebaikan bersama.'],a:2,ex:'"Saling" dan bentuk ulang "bantu-membantu" <b>sama-sama bermakna timbal balik</b>. Dipakai bersamaan jadi berlebihan. Pakai salah satunya saja.'}
+ ],
+ nasionalisme:[
+  {q:'Seorang atlet bulu tangkis menolak tawaran naturalisasi dari negara lain yang menjanjikan gaji jauh lebih besar. Ia tetap membela Indonesia walaupun fasilitas latihannya terbatas. Sikap ini mencerminkan ...',o:['Chauvinisme','Nasionalisme dan rela berkorban','Primordialisme','Etnosentrisme','Sektoralisme'],a:1,ex:'Memilih bangsa sendiri meski harus berkorban = <b>nasionalisme + rela berkorban</b>. Chauvinisme itu merendahkan bangsa lain.'},
+  {q:'Sekelompok warga menolak semua produk dan budaya asing, menganggap bangsa lain lebih rendah, bahkan mengusir pedagang dari negara lain. Sikap ini termasuk ...',o:['Nasionalisme Pancasila','Patriotisme','Nasionalisme sempit (chauvinisme)','Kosmopolitanisme','Internasionalisme'],a:2,ex:'Menganggap bangsa lain lebih rendah = <b>chauvinisme</b>.'},
+  {q:'Nasionalisme Indonesia disebut nasionalisme Pancasila. Makna yang paling tepat adalah ...',o:['Mengutamakan bangsa sendiri di atas bangsa lain dalam segala hal','Cinta tanah air dengan tetap menghormati bangsa lain dan terbuka pada kerja sama','Kesetiaan utama kepada suku dan daerah asal','Menolak segala bentuk kerja sama internasional','Persatuan berdasarkan kelompok mayoritas'],a:1,ex:'Nasionalisme Pancasila = <b>cinta tanah air yang tetap ramah ke luar</b>.'},
+  {q:'Video viral memperlihatkan pembuat konten memakai bendera Merah Putih sebagai alas duduk. Tindakan ini melanggar UU Nomor 24 Tahun 2009 dan menunjukkan lemahnya ...',o:['Kreativitas dalam bermedia sosial','Rasa hormat terhadap simbol negara','Pemahaman tentang HAM','Kebebasan berekspresi','Kemampuan literasi digital'],a:1,ex:'Bendera adalah <b>simbol negara</b> yang wajib dihormati (UU 24/2009).'},
+  {q:'Para pejuang mempertahankan Surabaya pada 10 November 1945 walaupun kalah persenjataan dari pasukan Sekutu. Sikap mereka paling tepat disebut ...',o:['Patriotisme','Chauvinisme','Liberalisme','Primordialisme','Kosmopolitanisme'],a:0,ex:'<b>Patriotisme</b> = cinta tanah air yang diwujudkan dengan <b>kesediaan berkorban</b>, bahkan nyawa. Nasionalisme itu rasa kebangsaannya, patriotisme itu aksi pengorbanannya.'},
+  {q:'Kampanye "Bangga Buatan Indonesia" yang mengajak masyarakat membeli produk UMKM lokal mencerminkan nasionalisme di bidang ...',o:['Politik','Ekonomi','Pertahanan','Hukum','Agama'],a:1,ex:'Membeli dan memajukan produk dalam negeri = nasionalisme di bidang <b>ekonomi</b>.'},
+  {q:'Faktor dari luar negeri yang ikut mendorong tumbuhnya nasionalisme Indonesia pada awal abad ke-20 adalah ...',o:['Kenangan kejayaan Sriwijaya dan Majapahit','Penderitaan rakyat akibat penjajahan','Kemenangan Jepang atas Rusia tahun 1905','Munculnya golongan terpelajar','Penggunaan bahasa Melayu sebagai bahasa pergaulan'],a:2,ex:'Kemenangan <b>Jepang atas Rusia (1905)</b> membuktikan bangsa Asia bisa mengalahkan bangsa Eropa. Opsi lain adalah faktor <b>dari dalam</b> negeri.'}
+ ],
+ integritas:[
+  {q:'Seorang kepala dinas mengangkat keponakannya menjadi tenaga honorer tanpa seleksi, padahal ada pelamar lain yang lebih kompeten. Praktik ini disebut ...',o:['Kolusi','Gratifikasi','Nepotisme','Suap','Pungutan liar'],a:2,ex:'Mengutamakan kerabat dalam jabatan = <b>nepotisme</b>.'},
+  {q:'Hadiah dari rekanan proyek yang tidak dapat ditolak wajib dilaporkan ke KPK paling lambat ...',o:['7 hari kerja','14 hari kerja','30 hari kerja','60 hari kerja','90 hari kerja'],a:2,ex:'<b>30 hari kerja</b> sejak diterima (UU 20/2001 Pasal 12C).'},
+  {q:'Berikut ini yang tidak termasuk nilai dasar ASN BerAKHLAK adalah ...',o:['Akuntabel','Harmonis','Karismatik','Adaptif','Kolaboratif'],a:2,ex:'BerAKHLAK: Berorientasi pelayanan, Akuntabel, Kompeten, Harmonis, Loyal, Adaptif, Kolaboratif. Tidak ada <b>karismatik</b>.'},
+  {q:'Petugas loket sengaja memperlambat pengurusan izin dan memberi isyarat bahwa berkas bisa cepat selesai bila ada "uang pelicin". Tindakan ini termasuk ...',o:['Gratifikasi','Pungutan liar','Nepotisme','Kolusi','Wanprestasi'],a:1,ex:'Meminta bayaran di luar ketentuan = <b>pungutan liar</b>.'},
+  {q:'Seorang pegawai menemukan amplop berisi uang di ruang tunggu kantor dan langsung menyerahkannya ke bagian keamanan. Nilai integritas yang paling menonjol adalah ...',o:['Kedisiplinan','Kejujuran','Kepedulian sosial','Kesederhanaan','Kemandirian'],a:1,ex:'Tidak mengambil yang bukan haknya = <b>kejujuran</b>.'},
+  {q:'Seorang pegawai melaporkan dugaan kecurangan pengadaan di kantornya melalui saluran pengaduan resmi. Pegawai tersebut disebut sebagai ...',o:['Justice collaborator','Whistleblower','Saksi ahli','Auditor','Provokator'],a:1,ex:'<b>Whistleblower</b> = pelapor pelanggaran. Justice collaborator itu <b>pelaku</b> yang bekerja sama dengan penegak hukum.'},
+  {q:'Pegawai yang menggunakan mobil dinas hanya untuk keperluan kantor dan tidak untuk urusan pribadi mencerminkan nilai BerAKHLAK ...',o:['Harmonis','Adaptif','Akuntabel','Kolaboratif','Kompeten'],a:2,ex:'<b>Akuntabel</b> = bertanggung jawab atas kepercayaan, termasuk memakai fasilitas negara sesuai peruntukannya.'},
+  {q:'Anggota panitia lelang ikut menilai tender yang diikuti perusahaan milik saudaranya. Sikap yang paling tepat adalah ...',o:['Tetap menilai secara objektif','Menyatakan adanya konflik kepentingan dan mundur dari penilaian tender tersebut','Memberi nilai rendah agar tidak dicurigai','Meminta saudaranya mundur dari tender','Merahasiakan hubungan keluarga tersebut'],a:1,ex:'Ini <b>konflik kepentingan</b>. Walaupun merasa objektif, yang benar adalah <b>menyatakannya dan mundur</b> dari penilaian. Integritas juga soal menghindari situasi yang rawan.'}
+ ],
+ belanegara:[
+  {q:'Berikut ini yang tidak termasuk nilai dasar bela negara menurut UU Nomor 23 Tahun 2019 adalah ...',o:['Cinta tanah air','Setia kepada Pancasila sebagai ideologi negara','Rela berkorban untuk bangsa dan negara','Menguasai teknik bertempur','Kemampuan awal bela negara'],a:3,ex:'Lima nilai dasar: <b>cinta tanah air, sadar berbangsa dan bernegara, setia pada Pancasila, rela berkorban, kemampuan awal bela negara</b>.'},
+  {q:'Sekelompok mahasiswa membuat aplikasi pendeteksi hoaks dan membagikannya gratis. Tindakan ini merupakan bela negara ...',o:['Fisik di bidang pertahanan','Non-fisik di bidang teknologi informasi','Fisik di bidang keamanan','Militer di bidang siber','Non-fisik di bidang ekonomi'],a:1,ex:'Tanpa senjata = <b>non-fisik</b>, medannya informasi = <b>teknologi informasi</b>.'},
+  {q:'Berikut ini yang termasuk ancaman militer adalah ...',o:['Penyebaran hoaks yang memecah belah','Peredaran narkoba di kalangan pelajar','Pelanggaran wilayah udara oleh pesawat tempur asing','Krisis ekonomi global','Wabah penyakit menular'],a:2,ex:'Ancaman militer memakai <b>kekuatan bersenjata</b>. Sisanya non-militer.'},
+  {q:'Kedudukan bahasa Indonesia sebagai bahasa negara bersumber pada ...',o:['Ikrar Sumpah Pemuda 1928','Pasal 36 UUD 1945','Kongres Bahasa Indonesia I tahun 1938','Pasal 32 UUD 1945','Dekrit Presiden 5 Juli 1959'],a:1,ex:'Bahasa persatuan: Sumpah Pemuda. Bahasa <b>negara</b>: <b>Pasal 36 UUD 1945</b>.'},
+  {q:'"Setiap warga negara berhak dan wajib ikut serta dalam upaya pembelaan negara." Bunyi ini terdapat pada ...',o:['Pasal 27 ayat (3)','Pasal 28 ayat (1)','Pasal 30 ayat (2)','Pasal 31 ayat (2)','Pasal 29 ayat (1)'],a:0,ex:'<b>Pasal 27 ayat (3)</b>. Perhatikan: <b>berhak dan wajib</b>.'},
+  {q:'Bentuk bela negara non-fisik yang paling tepat dilakukan oleh seorang pegawai negeri adalah ...',o:['Ikut wajib militer','Bekerja jujur, disiplin, dan melayani masyarakat dengan baik','Membeli senjata untuk berjaga-jaga','Menghindari pergaulan dengan warga asing','Mengikuti demonstrasi setiap ada kebijakan baru'],a:1,ex:'Bela negara non-fisik = <b>berkontribusi sesuai peran</b>. Bagi ASN: kerja jujur, disiplin, melayani publik.'},
+  {q:'Deklarasi Djuanda tahun 1957 penting bagi keutuhan wilayah Indonesia karena menyatakan bahwa ...',o:['Indonesia adalah negara kesatuan berbentuk republik','Laut di antara pulau-pulau Indonesia merupakan bagian wilayah Indonesia','Irian Barat adalah bagian dari Indonesia','Indonesia keluar dari PBB','Batas laut teritorial adalah 3 mil dari pantai'],a:1,ex:'Deklarasi Djuanda menyatukan pulau dan laut: <b>laut di antara pulau termasuk wilayah Indonesia</b>. Sebelumnya, aturan kolonial hanya 3 mil dari pantai, sehingga ada laut bebas di tengah nusantara.'}
+ ],
+ nkri:[
+  {q:'Warga menangkap dan memukuli terduga pencuri motor sebelum polisi datang. Tindakan ini bertentangan dengan prinsip bahwa Indonesia adalah ...',o:['Negara kesatuan','Negara hukum','Negara demokrasi','Negara kepulauan','Negara kesejahteraan'],a:1,ex:'<b>Pasal 1 ayat (3)</b>: Indonesia <b>negara hukum</b>. Yang mengadili adalah aparat dan pengadilan.'},
+  {q:'Sebuah kelompok mendeklarasikan kemerdekaan wilayahnya dan menyatakan lepas dari Indonesia melalui siaran pers di luar negeri. Tindakan ini paling bertentangan dengan Pancasila sila ke ...',o:['Pertama','Kedua','Ketiga','Keempat','Kelima'],a:2,ex:'Ancaman disintegrasi, bertabrakan dengan <b>sila ke-3, Persatuan Indonesia</b>.'},
+  {q:'Menurut UUD 1945, ketentuan yang tidak dapat dilakukan perubahan adalah ...',o:['Sistem pemerintahan presidensial','Masa jabatan presiden','Bentuk Negara Kesatuan Republik Indonesia','Jumlah anggota MPR','Kewenangan Mahkamah Konstitusi'],a:2,ex:'<b>Pasal 37 ayat (5)</b>: bentuk <b>NKRI tidak dapat diubah</b>.'},
+  {q:'Terjadi perselisihan antarwarga tentang pembangunan rumah ibadah di sebuah kompleks. Penyelesaian yang paling sesuai dengan nilai Pancasila adalah ...',o:['Menyerahkan keputusan pada kelompok mayoritas','Musyawarah antarwarga yang difasilitasi pemerintah setempat sesuai aturan','Membiarkan pembangunan tanpa izin','Melarang semua pembangunan rumah ibadah','Menyelesaikan lewat media sosial agar transparan'],a:1,ex:'Sila ke-1 (kebebasan beribadah) + sila ke-4 (<b>musyawarah</b>), sesuai aturan.'},
+  {q:'Hal yang membedakan demokrasi Pancasila dari demokrasi liberal adalah ...',o:['Adanya pemilihan umum','Adanya lembaga perwakilan rakyat','Mengutamakan musyawarah mufakat serta keseimbangan hak dan kewajiban','Kebebasan individu tanpa batas','Keputusan selalu diambil melalui voting'],a:2,ex:'Ciri khasnya: <b>musyawarah mufakat</b> dan <b>hak seimbang dengan kewajiban</b>.'},
+  {q:'Berikut ini yang bukan termasuk empat konsensus dasar berbangsa dan bernegara adalah ...',o:['Pancasila','UUD 1945','NKRI','Bhinneka Tunggal Ika','Sumpah Pemuda'],a:4,ex:'Empat konsensus (dulu disebut empat pilar): <b>Pancasila, UUD 1945, NKRI, dan Bhinneka Tunggal Ika</b>. Sumpah Pemuda adalah peristiwa sejarah, bukan konsensus dasar.'}
+ ],
+ hotsTWK:[
+  {q:'Sebuah pesantren di Jawa Timur dan sebuah desa adat di Bali menjalin program pertukaran pelajar. Santri tinggal beberapa minggu di rumah warga Bali, begitu pula sebaliknya. Program ini dinilai berhasil menumbuhkan saling pengertian antarumat beragama. Nilai yang paling tepat menggambarkan program tersebut adalah ...',o:['Toleransi sebatas tidak saling mengganggu','Bhinneka Tunggal Ika yang diwujudkan melalui interaksi dan saling memahami','Asimilasi budaya agar perbedaan hilang','Sekularisme dalam pendidikan','Primordialisme yang positif'],a:1,ex:'Kata kuncinya <b>berinteraksi dan saling memahami</b>, bukan sekadar membiarkan. Perbedaan tetap ada, tapi menjadi kekuatan. Itu inti <b>Bhinneka Tunggal Ika</b>. Asimilasi salah, karena tujuannya bukan menghapus perbedaan.'},
+  {q:'Menjelang pilkada, seorang calon kepala daerah gencar berkampanye bahwa hanya warga dari suku dan agamanya yang layak memimpin daerah tersebut. Analisis yang paling tepat terhadap kampanye itu adalah ...',o:['Sah karena termasuk kebebasan berpendapat','Mengancam persatuan karena memecah masyarakat berdasarkan SARA','Wajar karena mayoritas warga berasal dari suku yang sama','Melanggar hukum hanya jika calon tersebut kalah','Bagian dari strategi politik yang lazim'],a:1,ex:'Kampanye berbasis <b>SARA</b> memecah masyarakat dan bertentangan dengan <b>sila ke-3</b> serta semangat demokrasi Pancasila. Kebebasan berpendapat tetap dibatasi oleh kewajiban menjaga persatuan.'},
+  {q:'Pemerintah membangun bendungan untuk irigasi ribuan hektare sawah. Sebagian warga yang tanahnya terdampak menolak pindah. Pemerintah lalu mengadakan dialog, memberikan ganti rugi yang layak, dan membantu relokasi. Langkah pemerintah tersebut mencerminkan ...',o:['Kepentingan pribadi warga harus selalu didahulukan','Kepentingan umum didahulukan, tetapi hak warga tetap dihormati melalui musyawarah dan ganti rugi yang adil','Pemerintah boleh mengambil tanah warga tanpa syarat','Pembangunan sebaiknya dibatalkan bila ada penolakan','Warga wajib menerima keputusan tanpa dialog'],a:1,ex:'Ada dua nilai yang seimbang: <b>kepentingan umum</b> (sila ke-5) dan <b>hak warga lewat musyawarah</b> (sila ke-4). Jawaban HOTS biasanya yang paling <b>seimbang</b>, bukan yang ekstrem.'},
+  {q:'Seorang kepala sekolah menerima "titipan" orang tua agar anaknya diterima lewat jalur zonasi dengan alamat domisili palsu. Akibatnya, siswa lain yang benar-benar tinggal di zona itu tidak diterima. Analisis yang paling tepat adalah ...',o:['Hanya pelanggaran administratif kecil','Kolusi dan pemalsuan data yang merampas hak calon siswa lain','Bentuk kepedulian kepala sekolah pada orang tua','Kesalahan sistem zonasi, bukan kesalahan pelaku','Gratifikasi yang boleh asal dilaporkan'],a:1,ex:'Ada kerja sama curang (<b>kolusi</b>) dan <b>pemalsuan data</b>. Dampaknya nyata: <b>hak orang lain dirampas</b>. Soal HOTS integritas biasanya meminta kamu melihat korbannya.'},
+  {q:'Seorang perawat memilih bertugas di puskesmas pedalaman Papua yang fasilitasnya minim, padahal ia mendapat tawaran kerja di rumah sakit swasta di kota besar. Tindakan perawat tersebut paling tepat dinilai sebagai ...',o:['Keputusan yang kurang rasional secara ekonomi','Bela negara non-fisik melalui pengabdian sesuai profesinya','Bentuk primordialisme','Kewajiban yang diatur dalam undang-undang','Upaya mencari pengalaman pribadi'],a:1,ex:'Mengabdi sesuai keahlian demi pemerataan layanan = <b>bela negara non-fisik</b>, plus nilai rela berkorban.'},
+  {q:'Setelah tim nasional kalah, ribuan warganet Indonesia menyerbu akun media sosial pemain negara lawan dengan hinaan, sampai media internasional memberitakannya. Analisis yang paling tepat adalah ...',o:['Wujud nasionalisme yang tinggi','Nasionalisme sempit yang justru merusak citra bangsa','Kebebasan berekspresi yang dijamin UUD','Hal wajar dalam persaingan olahraga','Bentuk patriotisme digital'],a:1,ex:'Membela bangsa dengan <b>merendahkan bangsa lain</b> adalah nasionalisme sempit. Hasilnya malah merusak citra Indonesia. Nasionalisme Pancasila tetap menjunjung kemanusiaan.'},
+  {q:'Sebuah desa menolak pemakaman jenazah warga yang berbeda agama di tempat pemakaman umum desa, padahal tidak ada larangan dalam aturan. Sikap yang paling sesuai dengan nilai Pancasila bagi perangkat desa adalah ...',o:['Mengikuti kehendak mayoritas warga','Memfasilitasi musyawarah dan menegakkan aturan bahwa pemakaman umum terbuka bagi semua warga','Menyarankan keluarga memakamkan di desa lain','Menunda pemakaman sampai warga setuju','Menyerahkan sepenuhnya kepada keluarga jenazah'],a:1,ex:'Perangkat desa harus menegakkan <b>hak yang sama</b> bagi semua warga (sila ke-1 dan ke-2) lewat <b>musyawarah</b>. Mengikuti mayoritas begitu saja mengorbankan hak minoritas.'}
+ ],
+ sinant:[
+  {q:'KONKLUSI = ...',o:['Pendahuluan','Kesimpulan','Pertimbangan','Perbandingan','Penjelasan'],a:1,ex:'<b>Konklusi = kesimpulan</b> (ingat "conclusion").'},
+  {q:'KONKRET >< ...',o:['Nyata','Jelas','Abstrak','Padat','Kasat mata'],a:2,ex:'Lawan <b>konkret</b> adalah <b>abstrak</b>.'},
+  {q:'DISPENSASI = ...',o:['Penundaan','Pembebasan dari kewajiban','Pembagian','Hukuman','Penyaluran'],a:1,ex:'<b>Dispensasi</b> = pengecualian atau pembebasan dari kewajiban.'},
+  {q:'NISBI = ...',o:['Mutlak','Relatif','Pasti','Abadi','Nyata'],a:1,ex:'<b>Nisbi = relatif</b>. Mutlak justru lawannya.'},
+  {q:'ABSURD >< ...',o:['Mustahil','Aneh','Masuk akal','Rumit','Ganjil'],a:2,ex:'Absurd = tidak masuk akal, lawannya <b>masuk akal</b>.'},
+  {q:'MANGKUS = ...',o:['Efisien','Efektif','Lugas','Tangkas','Cakap'],a:1,ex:'<b>Mangkus = efektif</b>, <b>sangkil = efisien</b>.'},
+  {q:'PROLOG >< ...',o:['Dialog','Monolog','Epilog','Katalog','Analog'],a:2,ex:'Prolog pembuka, <b>epilog</b> penutup.'},
+  {q:'SPORADIS = ...',o:['Terus-menerus','Kadang-kadang','Menyebar luas','Serentak','Teratur'],a:1,ex:'<b>Sporadis</b> = tidak tentu, <b>kadang-kadang</b> muncul. Contoh: hujan turun secara sporadis.'},
+  {q:'FRIKSI = ...',o:['Persatuan','Perselisihan','Perkiraan','Pemisahan wilayah','Persetujuan'],a:1,ex:'<b>Friksi</b> = perpecahan atau <b>perselisihan</b> karena beda pendapat.'},
+  {q:'NAIF = ...',o:['Cerdik','Lugu','Sombong','Licik','Pemalu'],a:1,ex:'<b>Naif</b> = sangat sederhana pikirannya, <b>lugu</b>.'},
+  {q:'PROGRESIF >< ...',o:['Maju','Modern','Konservatif','Dinamis','Agresif'],a:2,ex:'Progresif = ke arah kemajuan. Lawannya <b>konservatif</b>, yaitu mempertahankan keadaan lama.'},
+  {q:'AMATIR >< ...',o:['Pemula','Profesional','Penggemar','Relawan','Peserta'],a:1,ex:'Amatir lawannya <b>profesional</b>.'},
+  {q:'ELABORASI = ...',o:['Kerja sama','Penjabaran terperinci','Penyederhanaan','Pengumpulan','Perlombaan'],a:1,ex:'<b>Elaborasi</b> = penggarapan atau <b>penjabaran secara terperinci</b>. Jangan tertukar dengan kolaborasi (kerja sama).'},
+  {q:'KONTEMPORER = ...',o:['Kuno','Masa kini','Sementara','Tradisional','Abadi'],a:1,ex:'<b>Kontemporer</b> = pada waktu yang sama, <b>masa kini</b>. Sementara itu "temporer" (beda kata).'}
+ ],
+ analogi:[
+  {q:'PILOT : PESAWAT = ... : ...',o:['Masinis : Rel','Nakhoda : Kapal','Sopir : Penumpang','Kusir : Kuda','Petani : Sawah'],a:1,ex:'Pola <b>pengemudi : kendaraannya</b>. Nakhoda mengemudikan kapal.'},
+  {q:'KUAS : .... = .... : PENULIS',o:['Cat – Buku','Pelukis – Pena','Kanvas – Kertas','Warna – Tinta','Seni – Novel'],a:1,ex:'Kuas : <b>pelukis</b> = <b>pena</b> : penulis. Pola <b>alat : penggunanya</b>.'},
+  {q:'AIR : HAUS = .... : ....',o:['Makanan : Lapar','Obat : Dokter','Tidur : Mimpi','Api : Panas','Garam : Asin'],a:0,ex:'Air <b>menghilangkan</b> haus, makanan menghilangkan lapar.'},
+  {q:'DOKTER : STETOSKOP = TUKANG KAYU : ...',o:['Rumah','Gergaji','Kayu','Mebel','Bengkel'],a:1,ex:'Pola <b>profesi : alat kerjanya</b>. Kayu itu bahan, bukan alat.'},
+  {q:'BENIH : POHON = TELUR : ...',o:['Ayam','Sarang','Cangkang','Kuning telur','Peternak'],a:0,ex:'Benih <b>tumbuh menjadi</b> pohon, telur <b>menetas menjadi</b> ayam. Pola tahap awal : bentuk dewasa.'},
+  {q:'GEMPA : SEISMOGRAF = SUHU : ...',o:['Barometer','Termometer','Higrometer','Anemometer','Speedometer'],a:1,ex:'Pola <b>yang diukur : alat ukurnya</b>. Barometer tekanan udara, higrometer kelembapan, anemometer angin.'},
+  {q:'LAPAR : MAKAN = MENGANTUK : ...',o:['Malam','Tidur','Lelah','Bantal','Mimpi'],a:1,ex:'Pola <b>keadaan : tindakan untuk mengatasinya</b>.'},
+  {q:'RODA : MOBIL = .... : ....',o:['Baling-baling : Helikopter','Pilot : Pesawat','Rel : Kereta','Bensin : Motor','Jalan : Sepeda'],a:0,ex:'Roda adalah <b>bagian yang berputar untuk menggerakkan</b> mobil. Baling-baling juga bagian penggerak helikopter. Rel dan jalan bukan bagian kendaraan.'},
+  {q:'KATAK : AMFIBI = ULAR : ...',o:['Mamalia','Reptil','Amfibi','Unggas','Invertebrata'],a:1,ex:'Pola <b>hewan : kelompoknya</b>. Ular termasuk reptil.'},
+  {q:'PENA : MENULIS = .... : ....',o:['Gunting : Memotong','Buku : Membaca','Guru : Mengajar','Meja : Belajar','Kertas : Mencatat'],a:0,ex:'Pena adalah <b>alat untuk</b> menulis, gunting <b>alat untuk</b> memotong. Buku itu objek yang dibaca, bukan alat.'}
+ ],
+ silog:[
+  {q:'Semua PNS wajib mengikuti apel pagi. Budi adalah PNS. Kesimpulan yang tepat ...',o:['Budi mungkin ikut apel pagi','Budi wajib mengikuti apel pagi','Semua yang ikut apel pagi adalah PNS','Budi tidak wajib apel pagi','Tidak dapat disimpulkan'],a:1,ex:'Semua A adalah B, x adalah A → <b>x adalah B</b>.'},
+  {q:'Jika hujan, maka jalan basah. Jalan tidak basah. Kesimpulannya ...',o:['Hujan','Tidak hujan','Mungkin hujan','Jalan kering karena panas','Tidak dapat disimpulkan'],a:1,ex:'<b>Modus tollens</b>: p → q, tidak q, maka <b>tidak p</b>.'},
+  {q:'Beberapa mahasiswa suka kopi. Semua penyuka kopi sering begadang. Kesimpulan yang tepat ...',o:['Semua mahasiswa sering begadang','Beberapa mahasiswa sering begadang','Semua yang begadang adalah mahasiswa','Mahasiswa tidak suka begadang','Beberapa penyuka kopi bukan mahasiswa'],a:1,ex:'Premis "beberapa" → kesimpulan "<b>beberapa</b>".'},
+  {q:'Ingkaran dari "Semua peserta lulus SKD" adalah ...',o:['Semua peserta tidak lulus SKD','Tidak ada peserta yang lulus SKD','Ada peserta yang tidak lulus SKD','Beberapa peserta lulus SKD','Peserta lulus SKD'],a:2,ex:'Ingkaran "semua" = "<b>ada ... tidak</b>".'},
+  {q:'Semua pegawai bank memakai seragam. Sebagian pemakai seragam adalah pegawai baru. Kesimpulan yang tepat adalah ...',o:['Sebagian pegawai bank adalah pegawai baru','Semua pegawai baru adalah pegawai bank','Sebagian pegawai baru tidak memakai seragam','Semua pemakai seragam adalah pegawai bank','Tidak dapat ditarik kesimpulan yang pasti'],a:4,ex:'"Pemakai seragam" itu kelompok besar, pegawai baru berseragam bisa dari tempat lain. <b>Tidak ada kesimpulan pasti</b>.'},
+  {q:'Jika harga BBM naik, ongkos angkut naik. Jika ongkos angkut naik, harga sayur naik. Harga sayur tidak naik. Kesimpulannya ...',o:['Harga BBM naik','Ongkos angkut naik','Harga BBM tidak naik','Harga sayur turun','Ongkos angkut tetap tetapi BBM naik'],a:2,ex:'Ujung rantai tidak terjadi → pangkalnya juga tidak. <b>BBM tidak naik</b>.'},
+  {q:'Hanya peserta yang lulus SKD yang boleh mengikuti SKB. Rina mengikuti SKB. Kesimpulannya ...',o:['Rina belum tentu lulus SKD','Rina lulus SKD','Rina tidak lulus SKD','Rina lulus SKB','Semua peserta SKD ikut SKB'],a:1,ex:'"<b>Hanya</b>" → ikut SKB pasti lulus SKD.'},
+  {q:'Ingkaran dari "Jika hujan, maka saya membawa payung" adalah ...',o:['Jika tidak hujan, maka saya tidak membawa payung','Hujan dan saya tidak membawa payung','Tidak hujan atau saya membawa payung','Jika saya membawa payung, maka hujan','Tidak hujan dan saya membawa payung'],a:1,ex:'Ingkaran p → q = <b>p dan tidak q</b>.'},
+  {q:'Semua yang lolos seleksi mengikuti pelatihan. Tidak ada peserta pelatihan yang datang terlambat. Kesimpulannya ...',o:['Semua yang tidak terlambat lolos seleksi','Tidak ada yang lolos seleksi yang datang terlambat','Sebagian yang lolos seleksi datang terlambat','Peserta pelatihan belum tentu lolos seleksi','Semua yang terlambat lolos seleksi'],a:1,ex:'Lolos → pelatihan → tidak terlambat.'},
+  {q:'Semua karyawan berprestasi mendapat bonus. Andi tidak mendapat bonus. Kesimpulannya ...',o:['Andi karyawan berprestasi','Andi bukan karyawan berprestasi','Andi mungkin berprestasi','Semua yang tidak mendapat bonus malas','Tidak dapat disimpulkan'],a:1,ex:'Berprestasi → bonus. Tidak bonus → <b>tidak berprestasi</b> (modus tollens versi "semua").'},
+  {q:'Jika Dina rajin belajar, ia lulus ujian. Jika Dina tidak rajin belajar, ia dimarahi ibu. Ternyata Dina tidak lulus ujian. Kesimpulannya ...',o:['Dina rajin belajar','Dina lulus ujian','Dina dimarahi ibu','Dina tidak dimarahi ibu','Dina mungkin rajin belajar'],a:2,ex:'Tidak lulus → berarti <b>tidak rajin</b> (modus tollens). Tidak rajin → <b>dimarahi ibu</b> (modus ponens). Dua langkah, tetap pasti.'},
+  {q:'Semua dokter adalah lulusan perguruan tinggi. Sebagian dokter gemar menulis. Kesimpulan yang tepat adalah ...',o:['Semua lulusan perguruan tinggi gemar menulis','Sebagian lulusan perguruan tinggi gemar menulis','Semua yang gemar menulis adalah dokter','Sebagian dokter bukan lulusan perguruan tinggi','Tidak dapat disimpulkan'],a:1,ex:'Dokter yang gemar menulis pasti lulusan perguruan tinggi. Jadi <b>sebagian lulusan perguruan tinggi gemar menulis</b>.'}
+ ],
+ analitis:[
+  {ctx:CTX_ANTRE,q:'Siapa yang berdiri paling depan?',o:['P','Q','R','S','T'],a:4,ex:'S di posisi 5. T–P–R berurutan, Q bukan posisi 1, R bukan posisi 4. Susunannya <b>T – P – R – Q – S</b>.'},
+  {ctx:CTX_ANTRE,q:'Siapa yang berdiri tepat di depan S?',o:['P','Q','R','T','Tidak dapat ditentukan'],a:1,ex:'Susunan <b>T – P – R – Q – S</b>, jadi tepat di depan S adalah <b>Q</b>.'},
+  {ctx:CTX_ANTRE,q:'Pernyataan berikut yang benar adalah ...',o:['P berada di urutan pertama','R berada di urutan ketiga','Q berdiri tepat di belakang T','R berada di belakang Q','T berdiri tepat di depan R'],a:1,ex:'T(1) – P(2) – <b>R(3)</b> – Q(4) – S(5).'},
+  {ctx:CTX_RAPAT,q:'Dinas yang dijadwalkan rapat hari Kamis adalah ...',o:['Kesehatan','Pendidikan','Sosial','Perhubungan','Lingkungan'],a:2,ex:'H = Rabu. Kalau K–P di Kamis–Jumat, Senin harus diisi S atau L, padahal keduanya dilarang. Jadi K Senin, P Selasa, <b>S Kamis</b>, L Jumat.'},
+  {ctx:CTX_RAPAT,q:'Pernyataan berikut yang pasti benar adalah ...',o:['Pendidikan rapat hari Rabu','Sosial rapat sehari setelah Pendidikan','Lingkungan rapat paling akhir','Kesehatan rapat hari Selasa','Perhubungan rapat sebelum Pendidikan'],a:2,ex:'Senin K, Selasa P, Rabu H, Kamis S, <b>Jumat L</b>.'},
+  {ctx:CTX_NILAI,q:'Peserta yang berada di peringkat ketiga adalah ...',o:['A','B','C','D','E'],a:2,ex:'E tertinggi. D > C > A > B > F. Urutannya <b>E, D, C, A, B, F</b>. Peringkat ketiga: <b>C</b>.'},
+  {ctx:CTX_NILAI,q:'Peserta dengan nilai terendah adalah ...',o:['A','B','D','F','Tidak dapat ditentukan'],a:3,ex:'Urutannya E, D, C, A, B, <b>F</b>. F di bawah B, dan B di bawah semua yang lain kecuali F.'},
+  {ctx:CTX_NILAI,q:'Pernyataan berikut yang benar adalah ...',o:['D mendapat nilai tertinggi','A berada di peringkat keempat','B berada di peringkat ketiga','C lebih rendah daripada A','F berada di peringkat kelima'],a:1,ex:'E(1), D(2), C(3), <b>A(4)</b>, B(5), F(6).'}
+ ],
+ pelayanan:[
+  {q:'Seorang warga marah-marah di loket karena berkasnya ditolak sistem, padahal menurutnya sudah lengkap. Saya akan ...',o:['Menjelaskan aturan sistem dan memintanya melengkapi berkas','Mendengarkan keluhannya dengan tenang, mengecek ulang berkas, lalu menjelaskan bagian yang kurang dan cara melengkapinya','Meminta maaf atas ketidaknyamanan dan mengarahkannya ke bagian pengaduan','Mengecek ulang berkasnya untuk memastikan apakah sistem yang keliru','Meminta petugas keamanan menenangkannya'],p:[3,5,2,4,1],ex:'Skor 5: <b>tenang mendengar, mengecek, dan memberi solusi</b>.'},
+  {q:'Sistem antrean online di kantor saya sedang gangguan dan warga mulai menumpuk. Saya akan ...',o:['Meminta warga bersabar sampai sistem pulih','Membuat antrean manual, mencatat data warga, dan melaporkan gangguan ke tim TI','Melaporkan gangguan ke tim TI dan menunggu arahan','Melayani warga secara manual sebisanya','Menutup layanan sementara sampai sistem normal'],p:[2,5,3,4,1],ex:'Layanan tetap jalan <b>dan</b> masalah dilaporkan = 5.'},
+  {q:'Seorang warga datang 5 menit sebelum jam layanan tutup dengan berkas lengkap. Saya akan ...',o:['Meminta warga datang lagi besok','Melayani sampai selesai dengan ramah meskipun melewati jam kerja','Menerima berkas, memprosesnya besok pagi, dan mengabari warga','Mengarahkan warga ke rekan lain yang masih di meja','Pura-pura sibuk agar warga pergi sendiri'],p:[2,5,4,3,1],ex:'Masih jam layanan dan berkas lengkap: <b>layani sampai tuntas</b>.'},
+  {q:'Setelah dilayani, seorang warga memberi amplop sebagai "uang terima kasih". Saya akan ...',o:['Menerima karena diberikan dengan ikhlas','Menerima lalu membaginya dengan rekan','Menolak dengan sopan dan menjelaskan bahwa layanan ini tidak dipungut biaya','Menolak tanpa penjelasan','Menyarankan warga memasukkannya ke kotak amal'],p:[2,1,5,4,3],ex:'Integritas: <b>tolak dengan sopan sekaligus edukasi</b>.'},
+  {q:'Seorang warga lansia kesulitan mengisi formulir online di kantor. Saya akan ...',o:['Membantu mengisikan formulir sambil menjelaskan langkah-langkahnya','Menyarankannya datang lagi bersama anggota keluarga','Memberikan panduan tertulis cara mengisi formulir','Meminta rekan yang tidak sibuk untuk membantunya','Memintanya mengisi formulir di rumah'],p:[5,2,3,4,1],ex:'Pelayanan prima memperhatikan <b>kelompok rentan</b>. Membantu langsung sambil mengajari = 5.'},
+  {q:'Seorang warga meminta didahulukan karena mengaku kenal dengan kepala kantor. Saya akan ...',o:['Mendahulukannya karena ia kenalan atasan','Menjelaskan dengan sopan bahwa semua warga dilayani sesuai nomor antrean','Menolak tanpa penjelasan','Menanyakan dulu kepada kepala kantor','Mempersilakannya menunggu sambil tetap melayani sesuai urutan'],p:[1,5,3,2,4],ex:'Pelayanan publik harus <b>adil dan tidak diskriminatif</b>. Menjelaskan aturan dengan sopan = 5.'},
+  {q:'Seorang warga mengunggah keluhan tentang pelayanan kantor saya di media sosial dan unggahannya viral. Saya akan ...',o:['Meminta warga tersebut menghapus unggahannya','Menanggapi dengan klarifikasi resmi, meminta maaf bila ada kekurangan, dan menindaklanjuti keluhannya','Membalas dengan menjelaskan prosedur yang berlaku','Melaporkan unggahan itu ke bagian humas','Mengabaikannya karena nanti akan reda'],p:[1,5,3,4,2],ex:'Keluhan = masukan. Skor 5: <b>respons resmi, akui kekurangan, dan perbaiki</b>.'}
+ ],
+ profesional:[
+  {q:'Saat sedang menyelesaikan laporan, atasan memberi tugas mendadak yang juga harus selesai hari ini. Saya akan ...',o:['Menolak karena laporan belum selesai','Mengerjakan tugas baru dan meninggalkan laporan','Mendiskusikan prioritas dengan atasan, lalu mengatur waktu untuk keduanya','Mengerjakan keduanya seadanya asal cepat selesai','Mengerjakan keduanya bergantian sambil lembur'],p:[1,3,5,2,4],ex:'<b>Komunikasikan prioritas</b>, lalu atur waktu = 5.'},
+  {q:'Kesalahan input data yang saya buat baru ketahuan setelah laporan dikirim. Saya akan ...',o:['Mengakui kepada atasan dan segera memperbaikinya','Memperbaiki diam-diam tanpa memberi tahu siapa pun','Menyalahkan sistem aplikasi yang error','Mengatakan bahwa itu kesalahan rekan','Mengakui kepada atasan lalu menunggu arahan'],p:[5,3,2,1,4],ex:'<b>Jujur + bertanggung jawab + inisiatif</b>.'},
+  {q:'Atasan memberi saya target kerja yang menurut saya terlalu tinggi. Saya akan ...',o:['Menerima, menyusun rencana kerja, dan berdiskusi dengan atasan bila ada kendala','Menerima walaupun ragu dapat mencapainya','Meminta target diturunkan sebelum mulai bekerja','Berusaha semaksimal mungkin, termasuk lembur setiap hari','Mengerjakan sebisanya karena target tidak realistis'],p:[5,3,2,4,1],ex:'Terima tantangan dengan <b>perencanaan dan komunikasi</b>.'},
+  {q:'Atasan mengkritik hasil kerja saya yang kurang rapi di depan rekan-rekan. Saya akan ...',o:['Merasa malu tetapi diam saja','Menerima kritik, menanyakan bagian yang perlu diperbaiki, lalu memperbaikinya','Menjelaskan alasan pekerjaan saya kurang rapi','Memperbaiki pekerjaan tanpa banyak bicara','Menunjukkan bahwa rekan lain juga melakukan kesalahan serupa'],p:[2,5,3,4,1],ex:'Kritik = bahan perbaikan: <b>terima, tanya, perbaiki</b>.'},
+  {q:'Saya dipindahkan ke bidang baru yang tidak sesuai dengan latar pendidikan saya. Saya akan ...',o:['Mempelajari tugas baru, bertanya kepada yang berpengalaman, dan mengikuti pelatihan yang tersedia','Menjalankan tugas sambil belajar sedikit demi sedikit','Menerima walaupun kurang bersemangat','Meminta dikembalikan ke bidang lama','Menjalankan tugas sesuai perintah saja'],p:[5,4,2,1,3],ex:'Nilai <b>adaptif</b>: paling aktif mengembangkan diri = 5.'},
+  {q:'Atasan meminta saya menandatangani daftar hadir kegiatan yang tidak saya ikuti agar anggaran bisa dicairkan. Saya akan ...',o:['Menolak dengan sopan dan menjelaskan bahwa hal itu tidak sesuai aturan','Menandatangani karena itu perintah atasan','Menandatangani tetapi menyimpan catatan sebagai bukti','Menolak dan langsung melaporkan atasan ke inspektorat','Menghindar dengan alasan sibuk'],p:[5,1,2,4,3],ex:'Integritas: <b>tolak dengan sopan + jelaskan aturan</b>.'},
+  {q:'Rekan kerja meminta saya mengisikan presensi online-nya karena ia akan terlambat. Saya akan ...',o:['Mengisikannya karena ia teman dekat','Menolak dan menyarankannya melaporkan keterlambatan kepada atasan','Menolak dengan sopan','Mengisikannya sekali ini saja','Pura-pura tidak membaca pesannya'],p:[1,5,4,2,3],ex:'Mengisi presensi orang lain = <b>pemalsuan data</b>. Tolak dan beri jalan keluar yang jujur.'}
+ ],
+ jejaring:[
+  {q:'Saya ketua tim. Dua anggota berselisih sehingga pekerjaan tim terhambat. Saya akan ...',o:['Mempertemukan keduanya, mendengar kedua pihak, dan mencari solusi bersama demi target tim','Menegur keduanya agar bersikap profesional','Membagi ulang tugas agar mereka tidak saling bergantung, lalu berbicara dengan masing-masing','Melaporkan perselisihan itu kepada atasan','Membiarkan karena nanti akan reda sendiri'],p:[5,3,4,2,1],ex:'Selesaikan <b>akar konflik</b>.'},
+  {q:'Instansi lain meminta data yang dikelola unit saya untuk program bersama. Saya akan ...',o:['Memberikan data sesuai prosedur dan izin pimpinan, serta menawarkan koordinasi lanjutan','Memberikan data secepatnya agar program lancar','Meminta surat resmi terlebih dahulu, lalu memprosesnya sesuai prosedur','Menolak karena data itu milik unit saya','Meneruskan permintaan ke atasan dan menunggu'],p:[5,3,4,1,2],ex:'Kolaboratif <b>tetapi taat prosedur</b>.'},
+  {q:'Saya diminta menjadi penghubung dalam proyek kolaborasi lintas bidang. Saya akan ...',o:['Menerima, memetakan kebutuhan tiap bidang, dan membuat jadwal koordinasi rutin','Menerima dan menjalankan sesuai arahan atasan','Menerima walaupun khawatir menambah beban kerja','Menolak karena pekerjaan saya sudah banyak','Menerima dan membuat grup komunikasi agar informasi cepat tersampaikan'],p:[5,3,2,1,4],ex:'Bedanya di <b>seberapa proaktif</b>.'},
+  {q:'Anggota tim saya sering terlambat menyelesaikan bagian tugasnya. Saya akan ...',o:['Mengambil alih tugasnya agar target aman','Berbicara empat mata untuk mengetahui kendalanya dan membantu menyusun jadwal','Menegurnya di rapat tim agar menjadi pelajaran','Memberi tenggat lebih awal untuk bagiannya','Mengingatkannya secara berkala dan menawarkan bantuan'],p:[2,5,1,3,4],ex:'Cari <b>akar masalah</b> lewat obrolan empat mata.'},
+  {q:'Rekan dari unit lain meminta bantuan saat saya sedang dikejar tenggat. Saya akan ...',o:['Menolak dengan sopan dan menjelaskan kesibukan saya','Membantu sebentar lalu kembali ke pekerjaan saya','Menjelaskan kondisi saya, menjadwalkan waktu membantu setelah tenggat, atau menghubungkannya dengan rekan yang bisa membantu','Membantu sampai selesai walaupun pekerjaan saya tertunda','Pura-pura tidak membaca pesannya'],p:[2,4,5,3,1],ex:'Jaga <b>tanggung jawab sendiri sekaligus tetap membantu</b>.'},
+  {q:'Rekan kerja kesulitan memakai aplikasi baru yang sudah saya kuasai. Saya akan ...',o:['Langsung menawarkan bantuan dan mengajarinya','Menyuruhnya membaca buku panduan','Membiarkan karena itu urusannya','Membantu setelah pekerjaan saya sendiri selesai','Melapor ke atasan bahwa rekan lambat belajar'],p:[5,3,1,4,2],ex:'<b>Kerja sama tim</b>: tawarkan bantuan.'},
+  {q:'Program unit saya sering tumpang tindih dengan program unit lain. Saya akan ...',o:['Mengusulkan rapat koordinasi berkala dan pembagian peran yang jelas','Membiarkan karena masing-masing punya target','Melapor kepada atasan agar beliau memutuskan','Menghubungi unit lain hanya saat ada masalah','Membuat catatan program bersama yang bisa diakses kedua unit'],p:[5,1,3,2,4],ex:'Jejaring kerja yang baik <b>mencegah masalah lewat koordinasi rutin</b>. Catatan bersama membantu (4), tapi belum ada pembagian peran.'}
+ ],
+ sosbud:[
+  {q:'Dalam rapat, rekan dari daerah lain berbicara dengan logat dan nada yang terdengar keras bagi saya. Saya akan ...',o:['Memahami bahwa itu kebiasaan budayanya dan tetap fokus pada isi pembicaraan','Menegurnya agar berbicara lebih pelan','Merasa tersinggung tetapi diam saja','Bertanya dengan sopan bila ada maksud yang kurang jelas','Menyesuaikan diri seperlunya'],p:[5,2,1,4,3],ex:'Hargai perbedaan, <b>fokus pada substansi</b>.'},
+  {q:'Masyarakat di wilayah kerja saya mengadakan upacara adat yang menutup jalan utama pada jam layanan kantor. Saya akan ...',o:['Menghormati acara tersebut, berkoordinasi dengan tokoh adat dan aparat untuk jalur alternatif, serta mengumumkan perubahan layanan','Meminta upacara dipindahkan ke hari libur','Menutup layanan pada hari itu','Mengumumkan jalur alternatif kepada warga','Tetap membuka layanan seperti biasa'],p:[5,1,2,4,3],ex:'<b>Hormati adat + layanan tetap jalan + koordinasi</b>.'},
+  {q:'Tetangga baru saya berbeda suku dan agama, dan belum dikenal warga sekitar. Saya akan ...',o:['Menyapa, memperkenalkannya kepada warga, dan mengajaknya ikut kegiatan lingkungan','Menyapa bila bertemu','Menunggu ia memperkenalkan diri lebih dulu','Membatasi interaksi agar tidak terjadi salah paham','Berkunjung ke rumahnya untuk berkenalan'],p:[5,3,2,1,4],ex:'Inisiatif <b>merangkul</b> = 5.'},
+  {q:'Saya ditempatkan bertugas di daerah dengan adat dan bahasa yang sangat berbeda. Saya akan ...',o:['Mempelajari adat setempat dan aktif berbaur dengan masyarakat','Bergaul hanya dengan sesama pendatang','Mengajukan pindah tugas secepatnya','Menyesuaikan diri seperlunya saja saat bekerja','Belajar bahasa daerah agar komunikasi lancar'],p:[5,2,1,3,4],ex:'<b>Adaptasi</b>: belajar adat sekaligus berbaur.'},
+  {q:'Rekan kerja yang berbeda agama sedang merayakan hari besar keagamaannya. Saya akan ...',o:['Bersikap biasa saja','Menghormati dan menyampaikan ucapan selamat sesuai keyakinan saya','Menghindari pembicaraan soal hari raya','Ikut bergembira dan menggantikan tugasnya agar ia bisa merayakan dengan tenang','Mengkritik cara perayaannya'],p:[3,4,2,5,1],ex:'Toleransi lewat <b>tindakan nyata</b>.'},
+  {q:'Rekan saya penyandang disabilitas kesulitan mengakses ruang rapat di lantai dua. Saya akan ...',o:['Mengusulkan rapat dipindah ke ruang yang mudah diakses dan mengusulkan perbaikan fasilitas','Membantunya naik tangga setiap kali rapat','Mengirimkan notulen rapat kepadanya setelah selesai','Membiarkannya tidak ikut rapat','Mengusulkan agar ia ikut rapat secara daring'],p:[5,4,2,1,3],ex:'Skor 5 menyelesaikan masalah <b>secara sistem</b> (ruang dan fasilitas), bukan bantuan sesaat. Ini soal kesetaraan.'},
+  {q:'Kantor saya akan mengadakan makan bersama, dan ada rekan yang tidak dapat makan menu tertentu karena keyakinannya. Saya akan ...',o:['Memastikan sejak perencanaan tersedia menu yang sesuai untuknya','Menyarankannya membawa makanan sendiri','Menanyakan apa yang bisa ia makan saat acara','Menganggap itu urusan pribadinya','Memesan menu tambahan secara mendadak saat acara'],p:[5,2,4,1,3],ex:'Kepekaan sosial budaya terbaik itu <b>dipikirkan sejak awal</b>, bukan dadakan.'}
+ ],
+ tik:[
+  {q:'Kantor beralih ke tanda tangan elektronik, dan banyak rekan senior kesulitan. Saya akan ...',o:['Mempelajarinya, membuat panduan singkat, dan membantu rekan senior','Mempelajarinya sendiri sampai lancar','Membantu rekan senior jika mereka meminta','Tetap menggunakan tanda tangan basah selama masih diperbolehkan','Meminta rekan lain mengerjakan bagian saya'],p:[5,3,4,2,1],ex:'Kuasai <b>dan</b> tularkan.'},
+  {q:'Saya menerima email dari "bagian kepegawaian" berisi tautan yang meminta saya memasukkan kata sandi akun kantor. Saya akan ...',o:['Langsung mengisinya agar urusan cepat selesai','Mengabaikan email itu','Mengonfirmasi ke bagian kepegawaian lewat jalur resmi dan melaporkan email tersebut ke tim TI','Menghapus email itu','Melaporkan email tersebut ke tim TI'],p:[1,3,5,2,4],ex:'Ciri <b>phishing</b>: verifikasi dan lapor.'},
+  {q:'Saya menemukan aplikasi bajakan terpasang di komputer kantor yang saya gunakan. Saya akan ...',o:['Membiarkan karena sudah terpasang sebelumnya','Melaporkannya ke tim TI dan meminta diganti dengan aplikasi berlisensi atau alternatif resmi','Menghapusnya sendiri','Tetap memakainya sambil menunggu pengadaan aplikasi resmi','Melaporkannya kepada atasan'],p:[1,5,3,2,4],ex:'Lapor ke pihak yang tepat <b>dan</b> minta solusi.'},
+  {q:'Di grup WhatsApp kantor beredar berita heboh yang belum jelas kebenarannya. Saya akan ...',o:['Ikut meneruskan ke grup lain agar orang waspada','Mengecek kebenarannya lalu mengingatkan anggota grup jika itu hoaks','Diam saja','Keluar dari grup','Mengecek kebenarannya untuk diri sendiri'],p:[1,5,3,2,4],ex:'<b>Cek fakta lalu ingatkan</b>.'},
+  {q:'Kantor mulai menerapkan sistem pelayanan digital yang baru. Sikap saya ...',o:['Antusias mempelajarinya dan membantu rekan yang kesulitan','Menunggu pelatihan resmi dari kantor','Tetap memakai cara manual yang sudah biasa','Belajar hanya jika sudah diwajibkan','Mempelajarinya sendiri sampai mahir'],p:[5,3,1,2,4],ex:'<b>Terbuka pada teknologi</b> dan peduli tim.'},
+  {q:'Saya perlu mengirimkan data pribadi warga yang saya kelola kepada rekan di unit lain. Saya akan ...',o:['Mengirim lewat sistem resmi kantor yang aman sesuai prosedur','Mengirim lewat WhatsApp pribadi agar cepat','Mencetak dan menyerahkannya langsung','Mengunggahnya ke penyimpanan awan pribadi lalu membagikan tautannya','Meminta izin atasan lalu mengirimkannya lewat email kantor'],p:[5,2,3,1,4],ex:'Data pribadi warga wajib dilindungi. Saluran <b>resmi dan aman</b> = 5. Penyimpanan pribadi paling berisiko bocor.'},
+  {q:'Kantor mengadakan pelatihan analisis data dengan aplikasi baru di luar jam kerja. Saya akan ...',o:['Mengikutinya, menerapkan hasilnya dalam pekerjaan, dan berbagi materi dengan rekan','Mengikutinya bila tidak ada acara lain','Tidak ikut karena di luar jam kerja','Meminta materinya saja','Mengikutinya dan menerapkan hasilnya dalam pekerjaan'],p:[5,3,1,2,4],ex:'Pengembangan diri di bidang TIK, ditambah <b>berbagi ke tim</b> = 5.'}
+ ],
+ antirad:[
+  {q:'Saya melihat unggahan teman kantor di media sosial yang mengajak membenci kelompok agama tertentu. Saya akan ...',o:['Membiarkan karena itu akun pribadinya','Mengingatkannya secara pribadi tentang bahaya ujaran kebencian dan memintanya menghapus unggahan','Melaporkan unggahan tersebut ke platform media sosial','Berhenti mengikuti akunnya','Menegurnya di kolom komentar'],p:[1,5,4,2,3],ex:'Mengingatkan secara pribadi + minta hapus = 5.'},
+  {q:'Teman mengajak saya ikut forum kajian yang mengajarkan bahwa sistem negara harus diganti karena Pancasila dianggap salah. Saya akan ...',o:['Ikut sekali untuk mengetahui isinya','Menolak, menjelaskan bahwa Pancasila adalah kesepakatan bangsa, dan melaporkan forum itu ke pihak berwenang','Menolak tanpa memberi alasan','Menolak dan mengingatkan teman tentang bahayanya','Ikut demi menjaga pertemanan'],p:[2,5,3,4,1],ex:'<b>Tolak, edukasi, laporkan</b>.'},
+  {q:'Grup alumni membagikan video yang mengajak menolak hormat bendera karena dianggap bertentangan dengan agama. Saya akan ...',o:['Menjelaskan bahwa hormat bendera adalah penghormatan pada simbol negara, bukan ibadah, dan melaporkan konten bila provokatif','Keluar dari grup','Diam saja','Membalas dengan video tandingan','Meminta admin grup menghapus video tersebut'],p:[5,2,1,3,4],ex:'Luruskan pemahamannya (<b>hormat bendera bukan ibadah</b>) dan cegah penyebaran.'},
+  {q:'Tetangga baru saya sangat tertutup dan sering didatangi orang tak dikenal larut malam sambil membawa barang mencurigakan. Saya akan ...',o:['Melaporkannya kepada ketua RT agar dilakukan pengecekan sesuai prosedur','Menyebutnya teroris di grup warga','Mendatangi dan menginterogasinya','Diam saja','Menyapa dan berkenalan agar lebih mengenalnya sambil tetap waspada'],p:[5,1,3,2,4],ex:'Waspada boleh, menuduh jangan. <b>Lapor ke ketua RT</b> agar dicek sesuai prosedur = 5. Menuduh di grup bisa jadi fitnah.'},
+  {q:'Rekan kerja sering menyebut kelompok yang berbeda pandangan dengannya sebagai "musuh" dalam obrolan kantor. Saya akan ...',o:['Mengajaknya berdiskusi baik-baik tentang pentingnya menghormati perbedaan','Menjauhinya','Melaporkannya kepada atasan agar dibina','Ikut menimpali agar suasana tidak canggung','Mengalihkan pembicaraan'],p:[5,2,4,1,3],ex:'Paham intoleran dicegah sejak dini lewat <b>dialog</b>. Melapor ke atasan juga baik (4) bila dialog tidak mempan.'},
+  {q:'Seorang teman mengajak saya menjadi relawan yayasan yang ternyata menggalang dana untuk kelompok terlarang. Saya akan ...',o:['Menolak dan melaporkan yayasan tersebut kepada pihak berwenang','Menolak dan memperingatkan teman tentang bahayanya','Menolak ajakannya','Ikut kegiatan mereka sekali untuk mencari tahu','Ikut karena tujuannya terlihat sosial'],p:[5,4,3,2,1],ex:'Pendanaan kelompok terlarang itu serius. <b>Tolak dan laporkan</b> = 5.'}
+ ],
+ hotsTKP:[
+  {q:'Saya ketua panitia. Dua hari sebelum acara, vendor konsumsi membatalkan kontrak. Saya akan ...',o:['Segera mencari vendor pengganti, menghitung ulang anggaran, dan melapor ke atasan dengan rencana cadangan','Melapor ke atasan dan menunggu keputusan','Mengusulkan acara ditunda','Menuntut ganti rugi kepada vendor terlebih dahulu','Mencari vendor pengganti secepatnya'],p:[5,3,2,1,4],ex:'Soal HOTS menilai <b>kepemimpinan saat krisis</b>: bertindak cepat, menghitung dampak, dan tetap berkomunikasi.'},
+  {q:'Atasan baru menerapkan cara kerja yang menurut saya kurang efisien dibanding cara lama. Saya akan ...',o:['Menjalankannya sambil menyampaikan data dan masukan secara santun kepadanya','Menjalankan cara baru tersebut','Tetap memakai cara lama','Mengeluh kepada rekan-rekan','Menyampaikan keberatan di rapat'],p:[5,4,1,2,3],ex:'Loyal <b>dan</b> tetap kritis dengan cara yang tepat: jalankan, lalu beri masukan berbasis data.'},
+  {q:'Saya mengetahui rekan satu tim memanipulasi data capaian kinerja agar tim mendapat penghargaan. Saya akan ...',o:['Mengingatkannya untuk memperbaiki data, lalu melapor kepada atasan bila ia menolak','Langsung melapor kepada atasan','Membiarkan karena menguntungkan tim','Memperbaiki datanya sendiri diam-diam','Menolak ikut menerima penghargaan'],p:[5,4,1,3,2],ex:'Integritas di atas kepentingan tim. Urutan ideal: <b>ingatkan dulu, lapor bila menolak</b>.'},
+  {q:'Saya bertugas di posko bencana. Dua kelompok warga berebut bantuan logistik yang jumlahnya terbatas. Saya akan ...',o:['Menenangkan warga, mendata kebutuhan, dan membagikan bantuan berdasarkan prioritas (lansia, anak, ibu hamil) secara terbuka','Membagi rata seadanya kepada semua yang datang','Mendahulukan kelompok yang paling ramai','Menunda pembagian sampai bantuan tambahan datang','Meminta aparat mengamankan lokasi lalu membagikan bantuan'],p:[5,3,1,2,4],ex:'Pelayanan dalam krisis: <b>adil, terdata, terbuka, dan memprioritaskan kelompok rentan</b>.'},
+  {q:'Saya ditawari promosi jabatan, tetapi harus pindah ke daerah terpencil, sedangkan keluarga ingin saya tetap di kota. Saya akan ...',o:['Mendiskusikannya dengan keluarga, menimbang peluang pengembangan diri dan pengabdian, lalu memutuskan dengan matang','Menolak demi keluarga','Menerima tanpa berdiskusi dengan keluarga','Menerima dan menyiapkan rencana agar keluarga tetap terurus','Menolak dan meminta promosi di kota'],p:[5,2,3,4,1],ex:'TKP menghargai <b>kesiapan ditempatkan di mana saja</b>, tetapi dengan keputusan matang dan komunikasi yang baik.'}
+ ]
+};
+
+/* ================= STRUKTUR UNIT ================= */
+const LV=['Dasar','Menengah','Sulit (HOTS)'];
+const UNITS=[
+ {id:'twk',tag:'UNIT 1 · TWK',name:'Wawasan Kebangsaan',desc:'Pancasila, UUD, sejarah, bahasa, nasionalisme, integritas, bela negara',exam:'30 soal',c:'twk',lessons:[
+  {k:'pancasila',lv:1,title:'Pancasila',sub:'Implementasi sila',pool:'pancasila'},
+  {k:'uud',lv:1,title:'UUD 1945',sub:'Pasal & lembaga',pool:'uud'},
+  {k:'sejarah',lv:1,title:'Sejarah',sub:'Pergerakan & proklamasi',pool:'sejarah'},
+  {k:'bahasa',lv:1,title:'Bahasa Negara',sub:'Kata baku & kalimat efektif',pool:'bahasa'},
+  {k:'nasionalisme',lv:2,title:'Nasionalisme',sub:'Studi kasus',pool:'nasionalisme'},
+  {k:'integritas',lv:2,title:'Integritas',sub:'Antikorupsi & BerAKHLAK',pool:'integritas'},
+  {k:'belanegara',lv:2,title:'Bela Negara',sub:'Ancaman & wawasan nusantara',pool:'belanegara'},
+  {k:'nkri',lv:2,title:'Pilar NKRI',sub:'Negara hukum & demokrasi',pool:'nkri'},
+  {k:'hots',lv:3,title:'Kasus HOTS',sub:'Analisis berita',pool:'hotsTWK'}]},
+ {id:'tiu',tag:'UNIT 2 · TIU',name:'Intelegensia Umum',desc:'Verbal, numerik, figural, analitis',exam:'35 soal',c:'tiu',lessons:[
+  {k:'sinant',lv:1,title:'Sinonim & Antonim',sub:'Verbal',pool:'sinant'},
+  {k:'analogi',lv:1,title:'Analogi Kata',sub:'Verbal',pool:'analogi'},
+  {k:'deret1',lv:1,title:'Deret Dasar',sub:'Pola bilangan',gen:()=>G.deret(1)},
+  {k:'hitung',lv:1,title:'Hitung Cepat',sub:'Persen, pecahan, desimal',gen:G.hitung},
+  {k:'fig1',lv:1,title:'Figural Dasar',sub:'Rotasi & jumlah',gen:()=>Math.random()<.5?G.figRot(1):G.figCount()},
+  {k:'silog',lv:2,title:'Silogisme',sub:'Penalaran logis',pool:'silog'},
+  {k:'xy',lv:2,title:'Hubungan X dan Y',sub:'Perbandingan kuantitatif',gen:()=>G.xy(2)},
+  {k:'aritsos',lv:2,title:'Aritmetika Sosial',sub:'Diskon, untung, perbandingan',gen:G.aritsos},
+  {k:'deret2',lv:2,title:'Deret Lanjut',sub:'Bertingkat & 2 larik',gen:()=>G.deret(2)},
+  {k:'fig2',lv:2,title:'Figural Analogi',sub:'Cermin, analogi, pergeseran',gen:()=>pick([G.figOdd,G.figAna,G.figCells,()=>G.figRot(2)])()},
+  {k:'analitis',lv:3,title:'Penalaran Analitis',sub:'Urutan & jadwal',pool:'analitis'},
+  {k:'cerita',lv:3,title:'Soal Cerita',sub:'Kecepatan, kerja, KPK',gen:G.cerita},
+  {k:'deret3',lv:3,title:'Deret HOTS',sub:'Fibonacci & bertingkat dua',gen:()=>G.deret(3)},
+  {k:'fig3',lv:3,title:'Figural 9 Kotak',sub:'Matriks & dua aturan',gen:()=>Math.random()<.65?G.figNine():G.figAlt()},
+  {k:'tabel',lv:3,title:'Tabel Data',sub:'Interpretasi & persentase',gen:()=>Math.random()<.7?G.tabel():G.xy(3)}]},
+ {id:'tkp',tag:'UNIT 3 · TKP',name:'Karakteristik Pribadi',desc:'Enam aspek TKP, dari pelayanan sampai anti-radikalisme',exam:'45 soal',c:'tkp',lessons:[
+  {k:'pelayanan',lv:1,title:'Pelayanan Publik',sub:'Melayani warga',pool:'pelayanan',tkp:1},
+  {k:'profesional',lv:1,title:'Profesionalisme',sub:'Tanggung jawab & integritas',pool:'profesional',tkp:1},
+  {k:'jejaring',lv:1,title:'Jejaring Kerja',sub:'Tim & koordinasi',pool:'jejaring',tkp:1},
+  {k:'sosbud',lv:2,title:'Sosial Budaya',sub:'Adaptasi & toleransi',pool:'sosbud',tkp:1},
+  {k:'tik',lv:2,title:'TIK',sub:'Literasi & keamanan digital',pool:'tik',tkp:1},
+  {k:'antirad',lv:2,title:'Anti-radikalisme',sub:'Waspada & edukasi',pool:'antirad',tkp:1},
+  {k:'hots',lv:3,title:'Dilema HOTS',sub:'Keputusan sulit',pool:'hotsTKP',tkp:1}]}
 ];
+const NQ=5;
+function makeQs(L,n=NQ){
+ if(L.gen){const out=[],seen=new Set();for(let t=0;t<n*8&&out.length<n;t++){const q=L.gen();const key=(q.fig||'')+q.q+q.o[0];if(!seen.has(key)){seen.add(key);out.push(q)}}return out}
+ return shuffle(P[L.pool]).slice(0,n)}
 
 /* ================= STATE ================= */
 const KEY='kepo-cpns-v1', HEART_MS=10*60*1000, MAXH=5;
 function load(){let d={};try{d=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
- return Object.assign({goal:null,xp:0,days:{},met:{},done:{},hearts:MAXH,hts:Date.now(),sound:true},d)}
+ const s=Object.assign({goal:null,xp:0,days:{},met:{},done:{},hearts:MAXH,hts:Date.now(),sound:true,ver:3},d);if(s.ver!==3){s.done={};s.ver=3}return s}
 const S=load();
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
-const pad=n=>String(n).padStart(2,'0');
 const dk=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
 const today=()=>dk(new Date());
 const todayXP=()=>S.days[today()]||0;
 function regen(){if(S.hearts>=MAXH){S.hts=Date.now();return}
  const n=Math.floor((Date.now()-S.hts)/HEART_MS);if(n>0){S.hearts=Math.min(MAXH,S.hearts+n);S.hts+=n*HEART_MS;if(S.hearts>=MAXH)S.hts=Date.now();save()}}
 function streak(){let n=0,d=new Date();if(!S.met[dk(d)])d.setDate(d.getDate()-1);while(S.met[dk(d)]){n++;d.setDate(d.getDate()-1)}return n}
-function unlocked(u,l){return l===0||!!S.done[UNITS[u].id+'-'+(l-1)]}
-function curNode(){for(let u=0;u<UNITS.length;u++)for(let l=0;l<UNITS[u].lessons.length;l++){if(!S.done[UNITS[u].id+'-'+l])return u+'-'+l}return null}
+const lid=(U,L)=>U.id+'-'+L.k;
+function lvOpen(U,lv){if(lv===1)return true;return U.lessons.filter(L=>L.lv===lv-1).every(L=>S.done[lid(U,L)])}
+function curNode(){for(const U of UNITS)for(const L of U.lessons){if(lvOpen(U,L.lv)&&!S.done[lid(U,L)])return lid(U,L)}return null}
+const totalDone=()=>UNITS.reduce((a,U)=>a+U.lessons.filter(L=>S.done[lid(U,L)]).length,0);
+const totalLessons=UNITS.reduce((a,U)=>a+U.lessons.length,0);
 
 /* ================= ICONS ================= */
 const I={
@@ -441,34 +713,27 @@ const I={
  cross:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></svg>',
  sound:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4l5-4v14l-5-4H4V9Zm12.5 3a3.5 3.5 0 0 0-2-3.2v6.4a3.5 3.5 0 0 0 2-3.2Z"/></svg>',
  mute:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4l5-4v14l-5-4H4V9Z"/><path d="m16 9 5 6m0-6-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
- info:'<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="flex:none;margin-top:2px"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm-1 8v7h2v-7h-2Zm0-3v2h2V7h-2Z"/></svg>'
+ info:'<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="flex:none;margin-top:2px"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm-1 8v7h2v-7h-2Zm0-3v2h2V7h-2Z"/></svg>',
+ dice:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm3 3.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm8 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm-4 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm-4 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm8 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg>'
 };
-/* Kepo: maskot burung kepodang (original) */
 function kepo(size=72,mood='idle'){
  const mouth=mood==='sad'?'<path d="M44 58q6-4 12 0" stroke="#5C3A00" stroke-width="2.4" fill="none" stroke-linecap="round"/>':'';
  const eyes=mood==='happy'?'<path d="M33 41q4-5 8 0M59 41q4-5 8 0" stroke="#1E1B3A" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
   :'<circle cx="37" cy="41" r="4.6" fill="#1E1B3A"/><circle cx="63" cy="41" r="4.6" fill="#1E1B3A"/><circle cx="38.6" cy="39.4" r="1.6" fill="#fff"/><circle cx="64.6" cy="39.4" r="1.6" fill="#fff"/>';
  return `<svg class="kepo" width="${size}" height="${size}" viewBox="0 0 100 100" aria-hidden="true">
  <ellipse cx="50" cy="94" rx="24" ry="4" fill="currentColor" opacity=".12"/>
- <path d="M20 60c-8 4-12 12-10 18 8-2 13-7 15-13Z" fill="#1E1B3A"/>
- <path d="M80 60c8 4 12 12 10 18-8-2-13-7-15-13Z" fill="#1E1B3A"/>
- <ellipse cx="50" cy="56" rx="32" ry="34" fill="#FFC21A"/>
- <ellipse cx="50" cy="66" rx="20" ry="20" fill="#FFE08A"/>
- <path d="M18 40q14-8 28-2 4 2 8 0 14-6 28 2-2 9-14 9-9 0-16-5-7 5-16 5-16 0-18-9Z" fill="#1E1B3A"/>
- ${eyes}
- <path d="M44 48 50 57l6-9Z" fill="#FF7A59"/>${mouth}
- <path d="M44 24q6-10 10-4" stroke="#1E1B3A" stroke-width="3" fill="none" stroke-linecap="round"/>
+ <path d="M20 60c-8 4-12 12-10 18 8-2 13-7 15-13Z" fill="#1E1B3A"/><path d="M80 60c8 4 12 12 10 18-8-2-13-7-15-13Z" fill="#1E1B3A"/>
+ <ellipse cx="50" cy="56" rx="32" ry="34" fill="#FFC21A"/><ellipse cx="50" cy="66" rx="20" ry="20" fill="#FFE08A"/>
+ <path d="M18 40q14-8 28-2 4 2 8 0 14-6 28 2-2 9-14 9-9 0-16-5-7 5-16 5-16 0-18-9Z" fill="#1E1B3A"/>${eyes}
+ <path d="M44 48 50 57l6-9Z" fill="#FF7A59"/>${mouth}<path d="M44 24q6-10 10-4" stroke="#1E1B3A" stroke-width="3" fill="none" stroke-linecap="round"/>
  <rect x="40" y="86" width="5" height="6" rx="2" fill="#FF7A59"/><rect x="55" y="86" width="5" height="6" rx="2" fill="#FF7A59"/></svg>`}
 
-/* ================= SOUND ================= */
+/* ================= SOUND & FX ================= */
 let AC=null;
 function tone(seq){if(!S.sound)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const t0=AC.currentTime;
- seq.forEach(([f,d,st],i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='triangle';o.frequency.value=f;const t=t0+st;
+ seq.forEach(([f,d,st])=>{const o=AC.createOscillator(),g=AC.createGain();o.type='triangle';o.frequency.value=f;const t=t0+st;
  g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.18,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g).connect(AC.destination);o.start(t);o.stop(t+d+.02)})}catch(e){}}
-const sfx={good:()=>tone([[660,.12,0],[990,.2,.09]]),bad:()=>tone([[220,.22,0],[180,.25,.12]]),tap:()=>tone([[520,.05,0]]),
- win:()=>tone([[523,.15,0],[659,.15,.12],[784,.15,.24],[1047,.35,.36]])};
-
-/* ================= CONFETTI ================= */
+const sfx={good:()=>tone([[660,.12,0],[990,.2,.09]]),bad:()=>tone([[220,.22,0],[180,.25,.12]]),tap:()=>tone([[520,.05,0]]),win:()=>tone([[523,.15,0],[659,.15,.12],[784,.15,.24],[1047,.35,.36]])};
 const cv=document.getElementById('fx'),cx=cv.getContext('2d');let parts=[],raf=0;
 function confetti(n=140){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
  cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;
@@ -479,22 +744,19 @@ function step(){cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);cx.cl
  parts.forEach(p=>{p.vy+=.35;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life++;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.life*.1)));cx.restore()});
  parts=parts.filter(p=>p.y<innerHeight+40&&p.life<260);raf=parts.length?requestAnimationFrame(step):0;if(!raf)cx.clearRect(0,0,innerWidth,innerHeight)}
 
-/* ================= UI HELPERS ================= */
+/* ================= UI ================= */
 const app=document.getElementById('app'),modal=document.getElementById('modal'),mbox=document.getElementById('mbox');
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2200)}
 function countUp(el,to,ms=900){const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/ms);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}
-function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 const DAYN=['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
 function greet(){const h=new Date().getHours(),s=streak(),x=todayXP(),g=S.goal||20;
- if(x>=g)return `Target hari ini beres! Streak kamu ${s} hari. Mau tambah satu pelajaran lagi?`;
+ if(x>=g)return `Target hari ini beres! Streak kamu ${s} hari. Coba Latihan Cepat buat pemanasan tambahan?`;
  if(x>0)return `Tinggal ${g-x} XP lagi buat capai target hari ini. Gas!`;
  if(s>0)return `Streak ${s} hari, jangan sampai putus ya. Satu pelajaran aja cukup buat mulai.`;
  return h<11?'Selamat pagi, calon ASN! Pemanasan otak dulu yuk.':h<15?'Siang-siang enaknya latihan 5 soal. Yuk!':h<19?'Sore yang pas buat latihan SKD. Mulai yuk!':'Malam ini latihan sebentar sebelum tidur, gimana?'}
-
-/* ================= HOME ================= */
 function topbar(){const s=streak();regen();
- return `<header class="top"><div class="brand">${kepo(34,'idle').replace('class="kepo"','')}<div>Kepo<small>CPNS 2027</small></div></div>
+ return `<header class="top"><div class="brand">${kepo(34).replace('class="kepo"','')}<div>Kepo<small>CPNS 2027</small></div></div>
  <button class="stat st-streak ${s?'':'off'}" id="bStreak" aria-label="Streak ${s} hari">${I.flame}<span class="tnum">${s}</span></button>
  <button class="stat st-xp" id="bXP" aria-label="Total XP">${I.bolt}<span class="tnum">${S.xp}</span></button>
  <button class="stat st-heart" id="bHeart" aria-label="Hati ${S.hearts}">${I.heart}<span class="tnum">${S.hearts}</span></button>
@@ -503,21 +765,19 @@ function topbar(){const s=streak();regen();
 function home(){
  const g=S.goal||20,x=todayXP(),pct=Math.min(1,x/g),C=2*Math.PI*36;
  const now=new Date(),dow=(now.getDay()+6)%7,mon=new Date(now);mon.setDate(now.getDate()-dow);
- let week='';for(let i=0;i<7;i++){const d=new Date(mon);d.setDate(mon.getDate()+i);const k=dk(d);
-  week+=`<div class="day ${S.met[k]?'met':''} ${k===today()?'today':''}"><i>${I.flame}</i>${DAYN[d.getDay()]}</div>`}
- const cur=curNode();
- let path='';UNITS.forEach((U,u)=>{
-  const doneN=U.lessons.filter((_,l)=>S.done[U.id+'-'+l]).length;
+ let week='';for(let i=0;i<7;i++){const d=new Date(mon);d.setDate(mon.getDate()+i);const k=dk(d);week+=`<div class="day ${S.met[k]?'met':''} ${k===today()?'today':''}"><i>${I.flame}</i>${DAYN[d.getDay()]}</div>`}
+ const cur=curNode();let path='';
+ UNITS.forEach((U,u)=>{const doneN=U.lessons.filter(L=>S.done[lid(U,L)]).length;
   path+=`<section class="unit" style="--c:var(--${U.c});--cd:var(--${U.c}-d);--cbg:var(--${U.c}-bg)">
-  <div class="uhead"><div><div class="tag">${U.tag}</div><h2>${U.name}</h2><p>${U.desc} · di SKD ${U.exam}</p></div>
-  <div class="meta tnum">${doneN}/${U.lessons.length}<span>SELESAI</span></div></div><div class="nodes">`;
-  U.lessons.forEach((L,l)=>{const id=U.id+'-'+l,ok=unlocked(u,l),dn=S.done[id],isCur=cur===u+'-'+l;
-   const off=[0,56,0,-56][l%4];
-   path+=`<div class="nwrap" style="transform:translateX(${off}px)">
-   ${isCur?'<div class="bubble">MULAI</div>':''}
-   <button class="node ${ok?'':'locked'} ${isCur?'cur':''}" data-u="${u}" data-l="${l}" aria-label="${esc(L.title)}${ok?'':' (terkunci)'}">${dn?I.check:ok?I.star:I.lock}${dn>1?`<span class="reps tnum">×${dn}</span>`:''}</button>
-   <div class="nlabel"><b>${L.title}</b>${L.sub}</div></div>`});
-  path+='</div></section>'});
+  <div class="uhead"><div><div class="tag">${U.tag}</div><h2>${U.name}</h2><p>${U.desc} · di SKD ${U.exam}</p></div><div class="meta tnum">${doneN}/${U.lessons.length}<span>SELESAI</span></div></div>`;
+  [1,2,3].forEach(lv=>{const ls=U.lessons.filter(L=>L.lv===lv),open=lvOpen(U,lv);
+   path+=`<div class="lvl ${open?'':'off'}"><span>LEVEL ${lv} · ${LV[lv-1].toUpperCase()}</span>${open?'':`<small>Selesaikan semua Level ${lv-1} untuk membuka</small>`}</div><div class="nodes">`;
+   ls.forEach((L,i)=>{const id=lid(U,L),dn=S.done[id],isCur=cur===id,off=[0,56,0,-56][i%4];
+    path+=`<div class="nwrap" style="transform:translateX(${off}px)">${isCur?'<div class="bubble">MULAI</div>':''}
+    <button class="node ${open?'':'locked'} ${isCur?'cur':''} ${lv===3?'hard':''}" data-u="${u}" data-k="${L.k}" aria-label="${esc(L.title)}${open?'':' (terkunci)'}">${dn?I.check:open?I.star:I.lock}${dn>1?`<span class="reps tnum">×${dn}</span>`:''}</button>
+    <div class="nlabel"><b>${L.title}</b>${L.sub}</div></div>`});
+   path+='</div>'});
+  path+='</section>'});
  app.innerHTML=topbar()+`<main class="screen">
   <div class="mascot-row">${kepo(76,x>=g?'happy':'idle')}<div class="speech">${greet()}</div></div>
   <section class="goal" aria-label="Target harian">
@@ -526,24 +786,24 @@ function home(){
    <b class="tnum"><div>${x}<span>/ ${g} XP</span></div></b></div>
    <div style="min-width:0"><h2>Target harian</h2><p>${x>=g?'Tercapai! Streak aman hari ini.':`Kumpulkan ${g} XP tiap hari agar streak terus menyala.`} <button class="goal-edit" id="bGoal">Ubah</button></p>
    <div class="week">${week}</div></div></section>
+  <button class="quick" id="bQuick"><span class="qi">${I.dice}</span><span><b>Latihan Cepat</b><small>10 soal acak dari semua materi yang sudah terbuka. Soal numerik dan figural selalu baru.</small></span></button>
+  <div class="prog-all"><span>Progres materi</span><span class="tnum">${totalDone()}/${totalLessons} pelajaran</span><div class="track"><i style="width:${totalDone()/totalLessons*100}%"></i></div></div>
   <div class="info">${I.info}<div><strong>Format SKD (acuan seleksi 2024)</strong>: 110 soal dalam 100 menit.
    <table><tr><td>TWK</td><td>30 soal</td><td>ambang 65</td></tr><tr><td>TIU</td><td>35 soal</td><td>ambang 80</td></tr><tr><td>TKP</td><td>45 soal</td><td>ambang 166</td></tr></table>
    Ketentuan CPNS 2027 bisa berubah, pantau pengumuman resmi di SSCASN BKN.</div></div>
   ${path}
-  <p class="foot-note">TKP tidak ada jawaban salah: tiap opsi bernilai 1–5. Di sini, opsi bernilai 5 dihitung "benar". Semua soal ditulis baru mengikuti pola soal SKD.</p></main>`;
+  <p class="foot-note">Tiap pelajaran mengambil 5 soal acak, jadi bisa diulang dengan soal berbeda. TKP tidak ada jawaban salah: tiap opsi bernilai 1–5, dan opsi bernilai 5 dihitung "benar". Semua soal ditulis baru mengikuti pola soal SKD.</p></main>`;
  requestAnimationFrame(()=>{const r=document.getElementById('ringVal');if(r)r.style.strokeDashoffset=C*(1-pct)});
- app.querySelectorAll('.node').forEach(b=>b.onclick=()=>{const u=+b.dataset.u,l=+b.dataset.l;
-  if(!unlocked(u,l)){sfx.tap();toast('Selesaikan pelajaran sebelumnya dulu ya');return}startLesson(u,l)});
- bind()}
-function bind(){
- const g=id=>document.getElementById(id);
+ app.querySelectorAll('.node').forEach(b=>b.onclick=()=>{const U=UNITS[+b.dataset.u],L=U.lessons.find(l=>l.k===b.dataset.k);
+  if(!lvOpen(U,L.lv)){sfx.tap();toast(`Selesaikan semua pelajaran Level ${L.lv-1} dulu ya`);return}startLesson(U,L)});
+ document.getElementById('bQuick').onclick=startQuick;bind()}
+function bind(){const g=id=>document.getElementById(id);
  g('bGoal')&&(g('bGoal').onclick=()=>goalModal());
  g('bSound').onclick=()=>{S.sound=!S.sound;save();g('bSound').innerHTML=S.sound?I.sound:I.mute;sfx.tap()};
  g('bStreak').onclick=()=>toast(streak()?`Streak ${streak()} hari berturut-turut capai target`:'Capai target harian untuk menyalakan streak');
  g('bXP').onclick=()=>toast(`Total ${S.xp} XP terkumpul`);
  g('bHeart').onclick=()=>{regen();toast(S.hearts>=MAXH?'Hati penuh. Salah jawab = kurang 1 hati':`Hati pulih 1 tiap 10 menit (${S.hearts}/${MAXH})`)}}
 
-/* ================= GOAL MODAL ================= */
 const GOALS=[[20,'Santai','±2 pelajaran sehari'],[40,'Serius','±3 pelajaran sehari'],[60,'Ambis','±4 pelajaran sehari']];
 function goalModal(first){let sel=S.goal||40;
  const draw=()=>{mbox.innerHTML=`<div style="display:flex;gap:12px;align-items:center;margin-bottom:8px">${kepo(60,'happy')}<div><h2>${first?'Halo, calon ASN!':'Ubah target harian'}</h2></div></div>
@@ -553,101 +813,91 @@ function goalModal(first){let sel=S.goal||40;
   mbox.querySelectorAll('.gopt').forEach(b=>b.onclick=()=>{sel=+b.dataset.v;sfx.tap();draw()});
   document.getElementById('gOk').onclick=()=>{S.goal=sel;save();modal.hidden=true;if(todayXP()>=S.goal&&!S.met[today()]){S.met[today()]=1;save()}home()}};
  draw();modal.hidden=false}
-modal.onclick=e=>{if(e.target===modal&&S.goal){modal.hidden=true}};
+modal.onclick=e=>{if(e.target===modal&&S.goal)modal.hidden=true};
 
 /* ================= LESSON ================= */
-let L=null;
-function startLesson(u,l){regen();
- if(S.hearts<=0){const wait=Math.ceil((HEART_MS-(Date.now()-S.hts))/60000);
-  mbox.innerHTML=`<div style="display:flex;gap:12px;align-items:center">${kepo(60,'sad')}<h2>Hati kamu habis</h2></div><p>Istirahat sebentar. 1 hati pulih dalam ${wait} menit. Sambil menunggu, baca ulang penjelasan soal yang tadi salah ya.</p><button class="btn" id="hOk">Oke</button>`;
-  modal.hidden=false;document.getElementById('hOk').onclick=()=>modal.hidden=true;return}
- const U=UNITS[u],Ls=U.lessons[l];
- L={u,l,U,Ls,queue:shuffle(Ls.qs.map((_,i)=>i)).map(i=>({i,retry:false})),pos:0,firstRight:0,answered:new Set(),combo:0,t0:Date.now(),sel:null,checked:false,total:Ls.qs.length,doneCount:0,order:null};
- sfx.tap();renderQ()}
-function renderQ(){
- const item=L.queue[L.pos],q=L.Ls.qs[item.i];
- L.order=shuffle(q.o.map((_,k)=>k));L.sel=null;L.checked=false;
- app.innerHTML=`<main class="lesson screen" style="--c:var(--${L.U.c});--cbg:var(--${L.U.c}-bg)">
+let LS=null;
+function heartsGate(){regen();if(S.hearts>0)return true;const wait=Math.ceil((HEART_MS-(Date.now()-S.hts))/60000);
+ mbox.innerHTML=`<div style="display:flex;gap:12px;align-items:center">${kepo(60,'sad')}<h2>Hati kamu habis</h2></div><p>Istirahat sebentar. 1 hati pulih dalam ${wait} menit.</p><button class="btn" id="hOk">Oke</button>`;
+ modal.hidden=false;document.getElementById('hOk').onclick=()=>modal.hidden=true;return false}
+function begin(items,meta){LS=Object.assign({items:items.map(q=>({q:q.q?q:q,retry:false})),pos:0,firstRight:0,combo:0,t0:Date.now(),sel:null,checked:false,total:items.length,doneCount:0,order:null},meta);sfx.tap();renderQ()}
+function startLesson(U,L){if(!heartsGate())return;
+ const qs=makeQs(L).map(q=>Object.assign({},q,{_tkp:!!L.tkp,_c:U.c,_tag:`${U.id.toUpperCase()} · ${L.title.toUpperCase()}`}));
+ begin(qs,{id:lid(U,L),lv:L.lv,c:U.c,title:L.title})}
+function startQuick(){if(!heartsGate())return;const pool=[];UNITS.forEach(U=>U.lessons.forEach(L=>{if(lvOpen(U,L.lv))pool.push([U,L])}));
+ const qs=[],seen=new Set();for(let t=0;t<60&&qs.length<10;t++){const [U,L]=pick(pool);const q=makeQs(L,1)[0];const key=(q.fig||'')+q.q;if(seen.has(key))continue;seen.add(key);qs.push(Object.assign({},q,{_tkp:!!L.tkp,_c:U.c,_tag:`${U.id.toUpperCase()} · ${L.title.toUpperCase()}`}))}
+ begin(qs,{id:null,lv:2,c:'tiu',title:'Latihan Cepat'})}
+function renderQ(){const item=LS.items[LS.pos],q=item.q;LS.order=shuffle(q.o.map((_,k)=>k));LS.sel=null;LS.checked=false;
+ app.innerHTML=`<main class="lesson screen" style="--c:var(--${q._c});--cbg:var(--${q._c}-bg)">
  <div class="lbar"><button class="x" id="lx" aria-label="Keluar">${I.x}</button>
- <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${L.total}" aria-valuenow="${L.doneCount}"><i id="pg"></i></div>
+ <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${LS.total}" aria-valuenow="${LS.doneCount}"><i id="pg"></i></div>
  <div class="stat st-heart">${I.heart}<span class="tnum" id="hh">${S.hearts}</span></div></div>
  <div class="combo" id="combo"></div>
- <div class="qbody"><span class="chip">${item.retry?'ULANGI SOAL':L.U.id.toUpperCase()+' · '+L.Ls.title.toUpperCase()}</span>
- ${q.ctx?`<div class="ctx"><b>Bacaan</b>${q.ctx}</div>`:''}
- ${q.fig?`<div class="figbox">${q.fig}</div>`:''}
+ <div class="qbody"><span class="chip">${item.retry?'ULANGI SOAL':q._tag}</span>
+ ${q.ctx?`<div class="ctx"><b>Bacaan</b>${q.ctx}</div>`:''}${q.fig?`<div class="figbox">${q.fig}</div>`:''}
  <p class="qtext">${q.q}</p>
- <div class="opts ${q.html?'figopts':''}" id="opts">${L.order.map((k,n)=>`<button class="opt" data-k="${k}" aria-label="Opsi ${'ABCDE'[n]}"><span class="k">${'ABCDE'[n]}</span><span>${q.html?q.o[k]:esc(q.o[k])}</span></button>`).join('')}</div></div>
+ <div class="opts ${q.html?'figopts':''}" id="opts">${LS.order.map((k,n)=>`<button class="opt" data-k="${k}" aria-label="Opsi ${'ABCDE'[n]}"><span class="k">${'ABCDE'[n]}</span><span>${q.html?q.o[k]:esc(q.o[k])}</span></button>`).join('')}</div></div>
  <div class="foot"><button class="btn good" id="chk" disabled>Periksa</button></div></main>
  <div class="sheet" id="sheet"><div class="sheet-in" id="sheetIn"></div></div>`;
- requestAnimationFrame(()=>document.getElementById('pg').style.width=(L.doneCount/L.total*100)+'%');
- document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(L.checked)return;sfx.tap();
-  document.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');L.sel=+b.dataset.k;document.getElementById('chk').disabled=false});
+ requestAnimationFrame(()=>document.getElementById('pg').style.width=(LS.doneCount/LS.total*100)+'%');
+ document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(LS.checked)return;sfx.tap();document.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');LS.sel=+b.dataset.k;document.getElementById('chk').disabled=false});
  document.getElementById('chk').onclick=check;
  document.getElementById('lx').onclick=()=>{mbox.innerHTML=`<div style="display:flex;gap:12px;align-items:center">${kepo(60,'sad')}<h2>Yakin berhenti?</h2></div><p>Progres pelajaran ini akan hilang.</p>
   <div style="display:flex;flex-direction:column;gap:10px"><button class="btn" id="mStay">Lanjut belajar</button><button class="btn ghost" id="mQuit" style="color:var(--bad)">Keluar</button></div>`;
-  modal.hidden=false;document.getElementById('mStay').onclick=()=>modal.hidden=true;document.getElementById('mQuit').onclick=()=>{modal.hidden=true;L=null;home()}}}
-function check(){if(L.sel==null||L.checked)return;L.checked=true;
- const item=L.queue[L.pos],q=L.Ls.qs[item.i],tkp=!!L.Ls.tkp;
- const best=tkp?q.p.indexOf(5):q.a,score=tkp?q.p[L.sel]:(L.sel===q.a?5:0);
+  modal.hidden=false;document.getElementById('mStay').onclick=()=>modal.hidden=true;document.getElementById('mQuit').onclick=()=>{modal.hidden=true;LS=null;home()}}}
+function check(){if(LS.sel==null||LS.checked)return;LS.checked=true;
+ const item=LS.items[LS.pos],q=item.q,tkp=q._tkp;const best=tkp?q.p.indexOf(5):q.a,score=tkp?q.p[LS.sel]:(LS.sel===q.a?5:0);
  const res=score===5?'good':(tkp&&score===4)?'mid':'bad';
- document.querySelectorAll('.opt').forEach(b=>{const k=+b.dataset.k;b.disabled=true;b.classList.remove('sel');
-  if(k===best)b.classList.add('right');else if(k===L.sel)b.classList.add('wrong');
+ document.querySelectorAll('.opt').forEach(b=>{const k=+b.dataset.k;b.disabled=true;b.classList.remove('sel');if(k===best)b.classList.add('right');else if(k===LS.sel)b.classList.add('wrong');
   if(tkp)b.insertAdjacentHTML('beforeend',`<span class="pts tnum">${q.p[k]} poin</span>`)});
  const comboEl=document.getElementById('combo');
- if(res==='good'){sfx.good();L.combo++;if(!item.retry)L.firstRight++;if(L.combo>=3){comboEl.textContent=`${L.combo} benar beruntun!`;comboEl.classList.remove('on');void comboEl.offsetWidth;comboEl.classList.add('on')}}
- else{L.combo=0;comboEl.classList.remove('on');
-  if(res==='bad'){sfx.bad();if(S.hearts>=MAXH)S.hts=Date.now();S.hearts=Math.max(0,S.hearts-1);save();document.getElementById('hh').textContent=S.hearts;
-   if(!item.retry)L.queue.push({i:item.i,retry:true})}else{sfx.good();if(!item.retry)L.firstRight+=.5}}
- if(res!=='bad'||item.retry)L.doneCount=Math.min(L.total,L.doneCount+(item.retry||res!=='bad'?1:0));
- document.getElementById('pg').style.width=(L.doneCount/L.total*100)+'%';
- const heads={good:['Mantap, benar!','Pas banget!','Keren!','Betul sekali!'],mid:['Hampir sempurna!'],bad:['Belum tepat']};
- const h=heads[res][Math.floor(Math.random()*heads[res].length)];
- const ans=res==='good'?(tkp?'+5 poin, jawaban terbaik':''):`${tkp?`Kamu dapat ${score} poin. `:''}Jawaban terbaik: ${q.html?'opsi '+'ABCDE'[L.order.indexOf(best)]:esc(q.o[best])}`;
+ if(res==='good'){sfx.good();LS.combo++;if(!item.retry)LS.firstRight++;if(LS.combo>=3){comboEl.textContent=`${LS.combo} benar beruntun!`;comboEl.classList.remove('on');void comboEl.offsetWidth;comboEl.classList.add('on')}}
+ else{LS.combo=0;comboEl.classList.remove('on');
+  if(res==='bad'){sfx.bad();if(S.hearts>=MAXH)S.hts=Date.now();S.hearts=Math.max(0,S.hearts-1);save();document.getElementById('hh').textContent=S.hearts;if(!item.retry)LS.items.push({q,retry:true})}
+  else{sfx.good();if(!item.retry)LS.firstRight+=.5}}
+ if(res!=='bad'||item.retry)LS.doneCount=Math.min(LS.total,LS.doneCount+1);
+ document.getElementById('pg').style.width=(LS.doneCount/LS.total*100)+'%';
+ const heads={good:['Mantap, benar!','Pas banget!','Keren!','Betul sekali!'],mid:['Hampir sempurna!'],bad:['Belum tepat']};const h=pick(heads[res]);
+ const bestTxt=q.html?'opsi '+'ABCDE'[LS.order.indexOf(best)]:esc(q.o[best]);
+ const ans=res==='good'?(tkp?'+5 poin, jawaban terbaik':''):`${tkp?`Kamu dapat ${score} poin. `:''}Jawaban terbaik: ${bestTxt}`;
  const sh=document.getElementById('sheet');sh.className='sheet '+res;
  document.getElementById('sheetIn').innerHTML=`<div class="sh-h"><span class="ic" style="color:var(--${res==='bad'?'bad':res==='good'?'good':'accent-d'})">${res==='bad'?I.cross:res==='good'?I.check:I.star}</span>${h}</div>
- ${ans?`<p class="sh-ans">${ans}</p>`:''}<div class="sh-ex">${q.ex}</div>
- ${res==='bad'&&S.hearts<=0?'':''}<button class="btn ${res==='bad'?'bad':'good'}" id="nx">${res==='bad'&&!item.retry?'Oke, nanti diulang':'Lanjut'}</button>`;
- requestAnimationFrame(()=>sh.classList.add('on'));
- document.getElementById('nx').onclick=next;document.getElementById('nx').focus({preventScroll:true})}
-function next(){if(S.hearts<=0){return fail()}
- L.pos++;if(L.pos>=L.queue.length)return finish();
- document.getElementById('sheet').classList.remove('on');setTimeout(renderQ,180)}
-function fail(){const x=L;L=null;
- app.innerHTML=`<main class="res screen">${kepo(120,'sad')}<h1 style="color:var(--bad)">Hati habis!</h1><p class="sub">Tidak apa-apa, salah itu bagian dari belajar. Hati pulih 1 tiap 10 menit.</p>
+ ${ans?`<p class="sh-ans">${ans}</p>`:''}<div class="sh-ex">${q.ex}</div><button class="btn ${res==='bad'?'bad':'good'}" id="nx">${res==='bad'&&!item.retry?'Oke, nanti diulang':'Lanjut'}</button>`;
+ requestAnimationFrame(()=>sh.classList.add('on'));document.getElementById('nx').onclick=next;document.getElementById('nx').focus({preventScroll:true})}
+function next(){if(S.hearts<=0)return fail();LS.pos++;if(LS.pos>=LS.items.length)return finish();document.getElementById('sheet').classList.remove('on');setTimeout(renderQ,180)}
+function fail(){LS=null;app.innerHTML=`<main class="res screen">${kepo(120,'sad')}<h1 style="color:var(--bad)">Hati habis!</h1><p class="sub">Tidak apa-apa, salah itu bagian dari belajar. Hati pulih 1 tiap 10 menit.</p>
  <div class="actions"><button class="btn" id="rHome">Kembali ke peta</button></div></main>`;document.getElementById('rHome').onclick=home}
-function finish(){
- const secs=Math.round((Date.now()-L.t0)/1000),acc=Math.round(L.firstRight/L.total*100),perfect=L.firstRight>=L.total;
- const id=L.U.id+'-'+L.l,first=!S.done[id];
- const gain=10+Math.round(L.firstRight)+(perfect?5:0);
- const before=todayXP(),g=S.goal||20;
- S.xp+=gain;S.days[today()]=before+gain;S.done[id]=(S.done[id]||0)+1;
+function finish(){const secs=Math.round((Date.now()-LS.t0)/1000),acc=Math.round(LS.firstRight/LS.total*100),perfect=LS.firstRight>=LS.total;
+ const bonus=LS.lv===3?10:LS.lv===2?5:0,gain=10+Math.round(LS.firstRight)+(perfect?5:0)+bonus;
+ const before=todayXP(),g=S.goal||20;S.xp+=gain;S.days[today()]=before+gain;
+ let unlockMsg='';if(LS.id){const [uid,k]=LS.id.split('-');const U=UNITS.find(x=>x.id===uid),L=U.lessons.find(x=>x.k===k);const wasOpen=L.lv<3&&lvOpen(U,L.lv+1);S.done[LS.id]=(S.done[LS.id]||0)+1;
+  if(L.lv<3&&!wasOpen&&lvOpen(U,L.lv+1))unlockMsg=`Level ${L.lv+1} ${U.id.toUpperCase()} terbuka!`}
  const justMet=before<g&&before+gain>=g;if(before+gain>=g)S.met[today()]=1;save();
- const st=streak(),U=L.U;L=null;sfx.win();
+ const st=streak(),again=LS.id?LS.id:null;const meta={lv:LS.lv};LS=null;sfx.win();
  app.innerHTML=`<main class="res screen">${kepo(120,'happy')}
  <h1>${perfect?'Sempurna!':'Pelajaran selesai!'}</h1><p class="sub">${perfect?'Semua benar di percobaan pertama.':'Soal yang salah sudah kamu ulang. Makin paham!'}</p>
  <div class="cards"><div class="card" style="--c:var(--accent-d)"><h3>TOTAL XP</h3><div class="tnum" id="cXP">0</div></div>
  <div class="card" style="--c:var(--good)"><h3>AKURASI</h3><div class="tnum"><span id="cAcc">0</span>%</div></div>
  <div class="card" style="--c:var(--tiu)"><h3>WAKTU</h3><div class="tnum">${Math.floor(secs/60)}:${pad(secs%60)}</div></div></div>
+ ${bonus?`<p class="sub" style="margin:0">Termasuk bonus Level ${meta.lv}: +${bonus} XP</p>`:''}
  <div class="gbar"><div class="row"><span>Target harian</span><span class="tnum">${Math.min(before+gain,g)}/${g} XP</span></div><div class="track"><i id="gb"></i></div></div>
  ${justMet?`<div class="met-banner">Target harian tercapai! Streak sekarang ${st} hari</div>`:''}
- ${first&&!perfect?'':''}
+ ${unlockMsg?`<div class="met-banner" style="background:var(--tiu);color:#fff">${unlockMsg}</div>`:''}
  <div class="actions"><button class="btn" id="rHome" style="--b:var(--accent);--bd:var(--accent-d);color:var(--accent-ink)">Lanjut</button>
- <button class="btn ghost" id="rAgain">Ulangi pelajaran</button></div></main>`;
+ <button class="btn ghost" id="rAgain">${again?'Ulangi dengan soal baru':'Latihan cepat lagi'}</button></div></main>`;
  countUp(document.getElementById('cXP'),gain);countUp(document.getElementById('cAcc'),acc);
  requestAnimationFrame(()=>document.getElementById('gb').style.width=Math.min(100,(before+gain)/g*100)+'%');
- setTimeout(()=>confetti(justMet?220:120),250);if(justMet)setTimeout(sfx.win,1000);
- const u=UNITS.indexOf(U),l=+id.split('-')[1];
- document.getElementById('rHome').onclick=home;document.getElementById('rAgain').onclick=()=>startLesson(u,l)}
+ setTimeout(()=>confetti(justMet||unlockMsg?220:120),250);if(justMet)setTimeout(sfx.win,1000);
+ document.getElementById('rHome').onclick=home;
+ document.getElementById('rAgain').onclick=()=>{if(!again)return startQuick();const [uid,k]=again.split('-');const U=UNITS.find(x=>x.id===uid);startLesson(U,U.lessons.find(x=>x.k===k))}}
 
-/* keyboard: 1-5 pilih, Enter periksa/lanjut */
-addEventListener('keydown',e=>{if(!L||!modal.hidden)return;
- if(/^[1-5]$/.test(e.key)&&!L.checked){const b=document.querySelectorAll('.opt')[+e.key-1];b&&b.click()}
- if(e.key==='Enter'){const nx=document.getElementById('nx'),ck=document.getElementById('chk');
-  if(L.checked&&nx){e.preventDefault();nx.click()}else if(ck&&!ck.disabled){e.preventDefault();ck.click()}}});
-setInterval(()=>{if(!L){const before=S.hearts;regen();if(S.hearts!==before){const h=document.querySelector('#bHeart span');h&&(h.textContent=S.hearts)}}},30000);
-
+addEventListener('keydown',e=>{if(!LS||!modal.hidden)return;
+ if(/^[1-5]$/.test(e.key)&&!LS.checked){const b=document.querySelectorAll('.opt')[+e.key-1];b&&b.click()}
+ if(e.key==='Enter'){const nx=document.getElementById('nx'),ck=document.getElementById('chk');if(LS.checked&&nx){e.preventDefault();nx.click()}else if(ck&&!ck.disabled){e.preventDefault();ck.click()}}});
+setInterval(()=>{if(!LS){const b=S.hearts;regen();if(S.hearts!==b){const h=document.querySelector('#bHeart span');h&&(h.textContent=S.hearts)}}},30000);
 home();if(!S.goal)goalModal(true);
 if('serviceWorker' in navigator&&location.protocol.startsWith('http')){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
+
 </script>
 
 </body></html>
