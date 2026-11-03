@@ -298,6 +298,74 @@ h1,h2,h3{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balanc
 .rvopt .pts{margin-left:auto;font-size:12px;font-weight:800;color:var(--muted)}
 .rvopt.right{border-color:var(--good);background:var(--good-bg)}.rvopt.wrong{border-color:var(--bad);background:var(--bad-bg)}
 .rv .ex{font-size:14px;line-height:1.55;background:var(--surface-2);border-radius:12px;padding:10px 12px}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:.88em;line-height:1.1;margin:0 .12em;font-variant-numeric:tabular-nums}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .2em}
+.mix{white-space:nowrap;display:inline-flex;align-items:center;gap:.06em}
+.scrbtn{position:fixed;z-index:15;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(96px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;background:var(--surface);color:var(--tiu);border:2px solid var(--tiu);box-shadow:0 4px 0 var(--tiu-d);font-weight:800;font-size:13px;letter-spacing:.03em;transition:transform .1s,box-shadow .1s}
+.scrbtn svg{width:18px;height:18px}
+.scrbtn:active{transform:translateY(4px);box-shadow:0 0 0 var(--tiu-d)}
+.scrbtn.on{background:var(--tiu);color:#fff}
+@media (min-width:600px){.scrbtn{right:calc(50% - 270px + 16px)}}
+.scr{position:fixed;left:0;right:0;z-index:14;height:44vh;max-width:540px;margin:0 auto;display:flex;flex-direction:column;background:var(--surface);border-top:2px solid var(--line);border-radius:20px 20px 0 0;box-shadow:0 -10px 30px rgba(15,12,40,.18);animation:up .3s cubic-bezier(.2,.9,.25,1.1)}
+.scr[hidden]{display:none!important}
+.scr-bar{display:flex;align-items:center;gap:8px;padding:8px max(12px,env(safe-area-inset-right,0px)) 6px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
+.scr-bar b{font-family:var(--f-display);font-size:16px}
+.scr-tools{display:flex;gap:4px;flex:1;min-width:0;overflow-x:auto;margin-left:4px}
+.scr-tools button{flex:none;padding:5px 10px;border-radius:999px;border:2px solid var(--line);font-size:12px;font-weight:700;color:var(--muted)}
+.scr-tools button.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.scr canvas{flex:1;width:100%;min-height:0;touch-action:none;cursor:crosshair;display:block;background-color:var(--surface);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:24px 24px}
+body.scr-open .qbody{padding-bottom:46vh}
+.kbd{display:none}
+@media (hover:hover) and (min-width:900px){
+ .opt:hover:not(:disabled):not(.sel){border-color:var(--tiu);background:color-mix(in srgb,var(--tiu) 6%,var(--surface))}
+ .node:not(.locked):hover{transform:translateY(-3px);box-shadow:0 10px 0 var(--cd)}
+ .quick:hover,.tocard:hover{filter:brightness(1.06)}
+ .gopt:hover,.fchip:hover,.qn:hover,.gridbtn:hover{border-color:var(--tiu)}
+ .kbd{display:block;flex:1;margin:0;font-size:13px;color:var(--muted);font-weight:600}
+ kbd{font-family:var(--f-body);font-size:12px;font-weight:800;padding:1px 6px;border:2px solid var(--line);border-bottom-width:3px;border-radius:6px;background:var(--surface);color:var(--ink)}
+}
+@media (min-width:900px){
+ .app{max-width:1120px;padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}
+ .top{margin-bottom:28px}
+ .home{display:grid;grid-template-columns:minmax(320px,380px) 1fr;gap:48px;align-items:start}
+ .home .side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);max-height:calc(100vh - 100px);overflow:auto;padding-bottom:16px;scrollbar-width:thin}
+ .home .pathcol{min-width:0;max-width:700px;width:100%;justify-self:center}
+ .home .nwrap{--sx:1.6}
+ .uhead{padding:20px 24px}.uhead h2{font-size:26px}
+ .lesson{max-width:760px;margin:0 auto}
+ .qtext{font-size:22px}
+ .opt{font-size:16px;padding:14px 16px}
+ .figopts{grid-template-columns:repeat(5,1fr)}
+ .foot{display:flex;align-items:center;gap:24px;margin:0;padding-left:0;padding-right:0;border-top:2px solid var(--line)}
+ .foot .btn{width:auto;min-width:220px;margin-left:auto}
+ .sheet-in{max-width:760px;border-radius:24px 24px 0 0}
+ .sheet-in{display:grid;grid-template-columns:1fr auto;column-gap:24px;align-items:end}
+ .sheet-in .sh-h,.sheet-in .sh-ans,.sheet-in .sh-ex{grid-column:1}
+ .sheet-in .btn{grid-column:2;grid-row:1/span 3;width:auto;min-width:220px;align-self:end;margin-bottom:14px}
+ .sh-ex{max-height:40vh}
+ .modal{place-items:center}
+ .mbox{max-width:520px;border-radius:24px;padding:28px}
+ .res{max-width:640px;margin:0 auto}
+ .rvhead,.rv,.screen > .actions{max-width:860px;margin-left:auto;margin-right:auto}
+ .rvhead{width:100%}
+ .scr{max-width:760px}
+ .scrbtn{right:calc(50% - 380px + 16px)}
+ /* CAT desktop: soal di kiri, navigator di kanan seperti tes CAT */
+ .cat{max-width:1120px;display:grid;grid-template-columns:minmax(0,1fr) 320px;column-gap:32px;grid-template-rows:auto auto auto 1fr auto;align-items:start}
+ .cat > .catbar,.cat > .prog{grid-column:1/-1}
+ .cat > .catmeta,.cat > .qbody,.cat > .foot{grid-column:1}
+ .cat > .catside{grid-column:2;grid-row:3/span 3;display:block;position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+ .cat .gridbtn{display:none}
+ .cat .foot{display:grid}
+ .cat .foot .btn{min-width:0;margin:0}
+ .cat .scrbtn{right:auto;left:max(32px,calc(50% - 560px + 32px));bottom:96px}
+}
+.catside{display:none;background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:16px;margin-top:14px}
+.catside h3{font-size:18px}
+.cs-stat{margin:2px 0 6px;font-size:12px;font-weight:700;color:var(--muted)}
+.catside .qgrid{grid-template-columns:repeat(8,minmax(0,1fr));gap:4px}
+.catside .qn{height:30px;font-size:11px;border-radius:8px;padding:0;min-width:0;border-width:1.5px}
+.catside .btn{margin-top:14px}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media (max-width:380px){.qtext{font-size:17px}.cards div{font-size:22px}.brand small{display:none}}
 </style>
@@ -324,7 +392,8 @@ const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1
 const lcm=(a,b)=>a/gcd(a,b)*b;
 const Fr=(n,d)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d);return {n:n/g,d:d/g}};
 const fAdd=(a,b)=>Fr(a.n*b.d+b.n*a.d,a.d*b.d), fSub=(a,b)=>Fr(a.n*b.d-b.n*a.d,a.d*b.d), fMul=(a,b)=>Fr(a.n*b.n,a.d*b.d);
-function fStr(f){if(f.d===1)return fmtN(f.n);const neg=f.n<0,n=Math.abs(f.n),w=Math.floor(n/f.d),r=n%f.d;return (neg?'−':'')+(w?w+' ':'')+r+'/'+f.d}
+const frac=(n,d)=>`<span class="fr"><span>${n}</span><span>${d}</span></span>`;
+function fStr(f){if(f.d===1)return fmtN(f.n);const neg=f.n<0,n=Math.abs(f.n),w=Math.floor(n/f.d),r=n%f.d;return `<span class="mix">${neg?'−':''}${w?w:''}${frac(r,f.d)}</span>`}
 
 /* ================= FIGURAL SVG ================= */
 const SV=(inner,s=60)=>`<svg class="fsvg" viewBox="0 0 64 64" width="${s}" height="${s}" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="8" fill="none" stroke="currentColor" stroke-width="2" opacity=".3"/>${inner}</svg>`;
@@ -380,8 +449,8 @@ G.hitung=()=>{const T=pick(['persen','pecahan','desimal','pangkat']);
  if(T==='pecahan'){const D=[2,3,4,5,6,8];const f=()=>{const d=pick(D);let n;do{n=R(1,d*2-1)}while(n%d===0);return {n,d}};const a=f(),b=f(),c=f();const op1=pick(['+','−','×']),op2=pick(['+','−']);
   const t1=op1==='×'?fMul(a,b):op1==='+'?fAdd(a,b):fSub(a,b);const ans=op1==='×'?(op2==='+'?fAdd(t1,c):fSub(t1,c)):(op2==='+'?fAdd(t1,c):fSub(t1,c));
   const wrong=[Fr(ans.n+1,ans.d),Fr(ans.n-1,ans.d),Fr(ans.n,ans.d*2),Fr(ans.n*2+1,ans.d*2),fAdd(ans,Fr(1,2)),fAdd(ans,Fr(1,4)),fSub(ans,Fr(1,3)),Fr(ans.n+2,ans.d)];
-  const s=x=>`${x.n}/${x.d}`;
-  return {q:`${s(a)} ${op1} ${s(b)} ${op2} ${s(c)} = ...`,o:mk(fStr(ans),wrong.map(fStr)),a:0,
+  const s=x=>frac(x.n,x.d);
+  return {q:`${s(a)} ${op1} ${s(b)} ${op2} ${s(c)} = ...`,o:mk(fStr(ans),wrong.map(fStr)),a:0,rich:true,
    ex:`${op1==='×'?`Ingat urutan: <b>kali dulu</b>. ${s(a)} × ${s(b)} = ${fStr(t1)}.`:`Samakan penyebut dulu, lalu hitung dari kiri. ${s(a)} ${op1} ${s(b)} = ${fStr(t1)}.`} Kemudian ${fStr(t1)} ${op2} ${s(c)} = <b>${fStr(ans)}</b>.`}}
  if(T==='desimal'){const a=pick([0.25,0.5,0.75,1.5,2.5,0.2,0.4]),b=R(2,20)*0.2,c=R(1,9)/10;const ab=Math.round(a*b*1000)/1000,ans=Math.round((ab+c)*1000)/1000;
   return {q:`${fmtN(a)} × ${fmtN(b)} + ${fmtN(c)} = ...`,o:mk(ans,[Math.round((a*(b+c))*1000)/1000,ans+0.1,ans-0.1,ab,ans*10],fmtN),a:0,
@@ -450,7 +519,7 @@ G.tabel=()=>{const names=shuffle(['Beras','Jagung','Kedelai','Kopi','Teh','Kakao
  const base=names.map(()=>20*R(10,40)),nw=base.map((b,i)=>b*(100+gs[i])/100),yr=R(2021,2024);
  const tbl=`<div class="tblwrap"><table class="dtbl"><caption>Produksi (ton)</caption><thead><tr><th>Komoditas</th><th>${yr}</th><th>${yr+1}</th></tr></thead><tbody>${names.map((n,i)=>`<tr><td>${n}</td><td>${fmtN(base[i])}</td><td>${fmtN(nw[i])}</td></tr>`).join('')}</tbody></table></div>`;
  const T=pick(['pct','max','total']),i=R(0,3);
- if(T==='pct')return {fig:tbl,q:`Persentase kenaikan produksi ${names[i]} dari ${yr} ke ${yr+1} adalah ...`,o:mk(gs[i]+'%',[...gs.filter((_,j)=>j!==i).map(g=>g+'%'),Math.round((nw[i]-base[i])/nw[i]*100)+'%',(gs[i]+5)+'%',(gs[i]*2)+'%',(gs[i]+10)+'%',(gs[i]+15)+'%']),a:0,
+ if(T==='pct')return {fig:tbl,q:`Persentase kenaikan produksi ${names[i]} dari ${yr} ke ${yr+1} adalah ...`,o:mk(gs[i]+'%',[...gs.filter((_,j)=>j!==i).map(g=>g+'%'),Math.round((nw[i]-base[i])/nw[i]*100)+'%',(gs[i]+5)+'%',(gs[i]*2)+'%',(gs[i]+10)+'%',(gs[i]+15)+'%',(gs[i]+20)+'%',(gs[i]+25)+'%',(gs[i]+3)+'%']),a:0,
   ex:`Kenaikan = ${fmtN(nw[i])} − ${fmtN(base[i])} = ${fmtN(nw[i]-base[i])}. Persentase selalu dibagi data <b>tahun awal</b>: ${fmtN(nw[i]-base[i])} ÷ ${fmtN(base[i])} × 100% = <b>${gs[i]}%</b>.`};
  if(T==='max'){const m=gs.indexOf(Math.max(...gs));return {fig:tbl,q:`Komoditas dengan persentase kenaikan produksi tertinggi adalah ...`,o:[names[m],...names.filter((_,j)=>j!==m),'Semua sama'],a:0,
   ex:`Hitung persentase tiap komoditas: ${names.map((n,j)=>`${n} ${gs[j]}%`).join(', ')}. Tertinggi <b>${names[m]}</b>. Hati-hati, kenaikan ton terbesar belum tentu persentasenya terbesar.`}}
@@ -1316,10 +1385,9 @@ function topbar(){const s=streak();regen();
  return `<header class="top"><div class="brand">${kepo(34).replace('class="kepo"','')}<div>Kepo<small>CPNS 2027</small></div></div>
  <button class="stat st-streak ${s?'':'off'}" id="bStreak" aria-label="Streak ${s} hari">${I.flame}<span class="tnum">${s}</span></button>
  <button class="stat st-xp" id="bXP" aria-label="Total XP">${I.bolt}<span class="tnum">${S.xp}</span></button>
- <button class="stat st-heart" id="bHeart" aria-label="Hati ${S.hearts}">${I.heart}<span class="tnum">${S.hearts}</span></button>
  <button class="stat" id="bSound" aria-label="Suara" style="color:var(--muted)">${S.sound?I.sound:I.mute}</button></header>`}
 
-function home(){onCat=false;
+function home(){onCat=false;scrReset();
  const g=S.goal||20,x=todayXP(),pct=Math.min(1,x/g),C=2*Math.PI*36;
  const now=new Date(),dow=(now.getDay()+6)%7,mon=new Date(now);mon.setDate(now.getDate()-dow);
  let week='';for(let i=0;i<7;i++){const d=new Date(mon);d.setDate(mon.getDate()+i);const k=dk(d);week+=`<div class="day ${S.met[k]?'met':''} ${k===today()?'today':''}"><i>${I.flame}</i>${DAYN[d.getDay()]}</div>`}
@@ -1329,13 +1397,13 @@ function home(){onCat=false;
   <div class="uhead"><div><div class="tag">${U.tag}</div><h2>${U.name}</h2><p>${U.desc} · di SKD ${U.exam}</p></div><div class="meta tnum">${doneN}/${U.lessons.length}<span>SELESAI</span></div></div>`;
   [1,2,3].forEach(lv=>{const ls=U.lessons.filter(L=>L.lv===lv),open=lvOpen(U,lv);
    path+=`<div class="lvl ${open?'':'off'}"><span>LEVEL ${lv} · ${LV[lv-1].toUpperCase()}</span>${open?'':`<small>Selesaikan semua Level ${lv-1} untuk membuka</small>`}</div><div class="nodes">`;
-   ls.forEach((L,i)=>{const id=lid(U,L),dn=S.done[id],isCur=cur===id,off=[0,56,0,-56][i%4];
+   ls.forEach((L,i)=>{const id=lid(U,L),dn=S.done[id],isCur=cur===id,off=[0,56,0,-56][i%4]*(innerWidth>=900?1.7:1);
     path+=`<div class="nwrap" style="transform:translateX(${off}px)">${isCur?'<div class="bubble">MULAI</div>':''}
     <button class="node ${open?'':'locked'} ${isCur?'cur':''} ${lv===3?'hard':''}" data-u="${u}" data-k="${L.k}" aria-label="${esc(L.title)}${open?'':' (terkunci)'}">${dn?I.check:open?I.star:I.lock}${dn>1?`<span class="reps tnum">×${dn}</span>`:''}</button>
     <div class="nlabel"><b>${L.title}</b>${L.sub}</div></div>`});
    path+='</div>'});
   path+='</section>'});
- app.innerHTML=topbar()+`<main class="screen">
+ app.innerHTML=topbar()+`<main class="screen home"><aside class="side">
   <div class="mascot-row">${kepo(76,x>=g?'happy':'idle')}<div class="speech">${greet()}</div></div>
   <section class="goal" aria-label="Target harian">
    <div class="ring"><svg width="84" height="84" viewBox="0 0 84 84"><circle class="trk" cx="42" cy="42" r="36" fill="none" stroke-width="9"/>
@@ -1349,8 +1417,8 @@ function home(){onCat=false;
   <div class="info">${I.info}<div><strong>Format SKD (acuan seleksi 2024)</strong>: 110 soal dalam 100 menit.
    <table><tr><td>TWK</td><td>30 soal</td><td>ambang 65</td></tr><tr><td>TIU</td><td>35 soal</td><td>ambang 80</td></tr><tr><td>TKP</td><td>45 soal</td><td>ambang 166</td></tr></table>
    Ketentuan CPNS 2027 bisa berubah, pantau pengumuman resmi di SSCASN BKN.</div></div>
-  ${path}
-  <p class="foot-note">Bank soal berisi sekitar 600 soal tetap ditambah generator soal numerik dan figural. Tiap pelajaran mengambil 5 soal acak, jadi bisa diulang dengan soal berbeda. TKP tidak ada jawaban salah: tiap opsi bernilai 1–5, dan opsi bernilai 5 dihitung "benar". Semua soal ditulis baru mengikuti pola soal SKD.</p></main>`;
+  </aside><div class="pathcol">${path}
+  <p class="foot-note">Bank soal berisi sekitar 600 soal tetap ditambah generator soal numerik dan figural. Tiap pelajaran mengambil 5 soal acak, jadi bisa diulang dengan soal berbeda. TKP tidak ada jawaban salah: tiap opsi bernilai 1–5, dan opsi bernilai 5 dihitung "benar". Semua soal ditulis baru mengikuti pola soal SKD.</p></div></main>`;
  requestAnimationFrame(()=>{const r=document.getElementById('ringVal');if(r)r.style.strokeDashoffset=C*(1-pct)});
  app.querySelectorAll('.node').forEach(b=>b.onclick=()=>{const U=UNITS[+b.dataset.u],L=U.lessons.find(l=>l.k===b.dataset.k);
   if(!lvOpen(U,L.lv)){sfx.tap();toast(`Selesaikan semua pelajaran Level ${L.lv-1} dulu ya`);return}startLesson(U,L)});
@@ -1359,8 +1427,7 @@ function bind(){const g=id=>document.getElementById(id);
  g('bGoal')&&(g('bGoal').onclick=()=>goalModal());
  g('bSound').onclick=()=>{S.sound=!S.sound;save();g('bSound').innerHTML=S.sound?I.sound:I.mute;sfx.tap()};
  g('bStreak').onclick=()=>toast(streak()?`Streak ${streak()} hari berturut-turut capai target`:'Capai target harian untuk menyalakan streak');
- g('bXP').onclick=()=>toast(`Total ${S.xp} XP terkumpul`);
- g('bHeart').onclick=()=>{regen();toast(S.hearts>=MAXH?'Hati penuh. Salah jawab = kurang 1 hati':`Hati pulih 1 tiap 10 menit (${S.hearts}/${MAXH})`)}}
+ g('bXP').onclick=()=>toast(`Total ${S.xp} XP terkumpul`);}
 
 const GOALS=[[20,'Santai','±2 pelajaran sehari'],[40,'Serius','±3 pelajaran sehari'],[60,'Ambis','±4 pelajaran sehari']];
 function goalModal(first){let sel=S.goal||40;
@@ -1375,10 +1442,8 @@ modal.onclick=e=>{if(e.target===modal&&S.goal)modal.hidden=true};
 
 /* ================= LESSON ================= */
 let LS=null;
-function heartsGate(){regen();if(S.hearts>0)return true;const wait=Math.ceil((HEART_MS-(Date.now()-S.hts))/60000);
- mbox.innerHTML=`<div style="display:flex;gap:12px;align-items:center">${kepo(60,'sad')}<h2>Hati kamu habis</h2></div><p>Istirahat sebentar. 1 hati pulih dalam ${wait} menit.</p><button class="btn" id="hOk">Oke</button>`;
- modal.hidden=false;document.getElementById('hOk').onclick=()=>modal.hidden=true;return false}
-function begin(items,meta){LS=Object.assign({items:items.map(q=>({q:q.q?q:q,retry:false})),pos:0,firstRight:0,combo:0,t0:Date.now(),sel:null,checked:false,total:items.length,doneCount:0,order:null},meta);sfx.tap();renderQ()}
+function heartsGate(){return true}
+function begin(items,meta){scrReset();LS=Object.assign({items:items.map(q=>({q:q.q?q:q,retry:false})),pos:0,firstRight:0,combo:0,t0:Date.now(),sel:null,checked:false,total:items.length,doneCount:0,order:null},meta);sfx.tap();renderQ()}
 function startLesson(U,L){if(!heartsGate())return;
  const qs=makeQs(L).map(q=>Object.assign({},q,{_tkp:!!L.tkp,_c:U.c,_tag:`${U.id.toUpperCase()} · ${L.title.toUpperCase()}`}));
  begin(qs,{id:lid(U,L),lv:L.lv,c:U.c,title:L.title})}
@@ -1388,22 +1453,21 @@ function startQuick(){if(!heartsGate())return;const pool=[];UNITS.forEach(U=>U.l
 function renderQ(){onCat=false;const item=LS.items[LS.pos],q=item.q;LS.order=shuffle(q.o.map((_,k)=>k));LS.sel=null;LS.checked=false;
  app.innerHTML=`<main class="lesson screen" style="--c:var(--${q._c});--cbg:var(--${q._c}-bg)">
  <div class="lbar"><button class="x" id="lx" aria-label="Keluar">${I.x}</button>
- <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${LS.total}" aria-valuenow="${LS.doneCount}"><i id="pg"></i></div>
- <div class="stat st-heart">${I.heart}<span class="tnum" id="hh">${S.hearts}</span></div></div>
+ <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${LS.total}" aria-valuenow="${LS.doneCount}"><i id="pg"></i></div></div>
  <div class="combo" id="combo"></div>
  <div class="qbody"><span class="chip">${item.retry?'ULANGI SOAL':q._tag}</span>
  ${q.ctx?`<div class="ctx"><b>Bacaan</b>${q.ctx}</div>`:''}${q.fig?`<div class="figbox">${q.fig}</div>`:''}
  <p class="qtext">${q.q}</p>
- <div class="opts ${q.html?'figopts':''}" id="opts">${LS.order.map((k,n)=>`<button class="opt" data-k="${k}" aria-label="Opsi ${'ABCDE'[n]}"><span class="k">${'ABCDE'[n]}</span><span>${q.html?q.o[k]:esc(q.o[k])}</span></button>`).join('')}</div></div>
- <div class="foot"><button class="btn good" id="chk" disabled>Periksa</button></div></main>
+ <div class="opts ${q.html?'figopts':''}" id="opts">${LS.order.map((k,n)=>`<button class="opt" data-k="${k}" aria-label="Opsi ${'ABCDE'[n]}"><span class="k">${'ABCDE'[n]}</span><span>${q.html||q.rich?q.o[k]:esc(q.o[k])}</span></button>`).join('')}</div></div>
+ ${q._c==='tiu'?scrBtnHTML():''}<div class="foot"><p class="kbd">Tekan <kbd>1</kbd>–<kbd>5</kbd> untuk memilih, <kbd>Enter</kbd> untuk periksa dan lanjut</p><button class="btn good" id="chk" disabled>Periksa</button></div></main>
  <div class="sheet" id="sheet"><div class="sheet-in" id="sheetIn"></div></div>`;
- requestAnimationFrame(()=>document.getElementById('pg').style.width=(LS.doneCount/LS.total*100)+'%');
+ requestAnimationFrame(()=>document.getElementById('pg').style.width=(LS.doneCount/LS.total*100)+'%');if(q._c==='tiu')scrAttach(q);else scrClose(false);
  document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(LS.checked)return;sfx.tap();document.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');LS.sel=+b.dataset.k;document.getElementById('chk').disabled=false});
  document.getElementById('chk').onclick=check;
  document.getElementById('lx').onclick=()=>{mbox.innerHTML=`<div style="display:flex;gap:12px;align-items:center">${kepo(60,'sad')}<h2>Yakin berhenti?</h2></div><p>Progres pelajaran ini akan hilang.</p>
   <div style="display:flex;flex-direction:column;gap:10px"><button class="btn" id="mStay">Lanjut belajar</button><button class="btn ghost" id="mQuit" style="color:var(--bad)">Keluar</button></div>`;
   modal.hidden=false;document.getElementById('mStay').onclick=()=>modal.hidden=true;document.getElementById('mQuit').onclick=()=>{modal.hidden=true;LS=null;home()}}}
-function check(){if(LS.sel==null||LS.checked)return;LS.checked=true;
+function check(){if(LS.sel==null||LS.checked)return;LS.checked=true;scrClose(true);
  const item=LS.items[LS.pos],q=item.q,tkp=q._tkp;const best=tkp?q.p.indexOf(5):q.a,score=tkp?q.p[LS.sel]:(LS.sel===q.a?5:0);
  const res=score===5?'good':(tkp&&score===4)?'mid':'bad';
  document.querySelectorAll('.opt').forEach(b=>{const k=+b.dataset.k;b.disabled=true;b.classList.remove('sel');if(k===best)b.classList.add('right');else if(k===LS.sel)b.classList.add('wrong');
@@ -1411,18 +1475,18 @@ function check(){if(LS.sel==null||LS.checked)return;LS.checked=true;
  const comboEl=document.getElementById('combo');
  if(res==='good'){sfx.good();LS.combo++;if(!item.retry)LS.firstRight++;if(LS.combo>=3){comboEl.textContent=`${LS.combo} benar beruntun!`;comboEl.classList.remove('on');void comboEl.offsetWidth;comboEl.classList.add('on')}}
  else{LS.combo=0;comboEl.classList.remove('on');
-  if(res==='bad'){sfx.bad();if(S.hearts>=MAXH)S.hts=Date.now();S.hearts=Math.max(0,S.hearts-1);save();document.getElementById('hh').textContent=S.hearts;if(!item.retry)LS.items.push({q,retry:true})}
+  if(res==='bad'){sfx.bad();if(!item.retry)LS.items.push({q,retry:true})}
   else{sfx.good();if(!item.retry)LS.firstRight+=.5}}
  if(res!=='bad'||item.retry)LS.doneCount=Math.min(LS.total,LS.doneCount+1);
  document.getElementById('pg').style.width=(LS.doneCount/LS.total*100)+'%';
  const heads={good:['Mantap, benar!','Pas banget!','Keren!','Betul sekali!'],mid:['Hampir sempurna!'],bad:['Belum tepat']};const h=pick(heads[res]);
- const bestTxt=q.html?'opsi '+'ABCDE'[LS.order.indexOf(best)]:esc(q.o[best]);
+ const bestTxt=q.html?'opsi '+'ABCDE'[LS.order.indexOf(best)]:q.rich?q.o[best]:esc(q.o[best]);
  const ans=res==='good'?(tkp?'+5 poin, jawaban terbaik':''):`${tkp?`Kamu dapat ${score} poin. `:''}Jawaban terbaik: ${bestTxt}`;
  const sh=document.getElementById('sheet');sh.className='sheet '+res;
  document.getElementById('sheetIn').innerHTML=`<div class="sh-h"><span class="ic" style="color:var(--${res==='bad'?'bad':res==='good'?'good':'accent-d'})">${res==='bad'?I.cross:res==='good'?I.check:I.star}</span>${h}</div>
  ${ans?`<p class="sh-ans">${ans}</p>`:''}<div class="sh-ex">${q.ex}</div><button class="btn ${res==='bad'?'bad':'good'}" id="nx">${res==='bad'&&!item.retry?'Oke, nanti diulang':'Lanjut'}</button>`;
  requestAnimationFrame(()=>sh.classList.add('on'));document.getElementById('nx').onclick=next;document.getElementById('nx').focus({preventScroll:true})}
-function next(){if(S.hearts<=0)return fail();LS.pos++;if(LS.pos>=LS.items.length)return finish();document.getElementById('sheet').classList.remove('on');setTimeout(renderQ,180)}
+function next(){LS.pos++;if(LS.pos>=LS.items.length)return finish();document.getElementById('sheet').classList.remove('on');setTimeout(renderQ,180)}
 function fail(){LS=null;app.innerHTML=`<main class="res screen">${kepo(120,'sad')}<h1 style="color:var(--bad)">Hati habis!</h1><p class="sub">Tidak apa-apa, salah itu bagian dari belajar. Hati pulih 1 tiap 10 menit.</p>
  <div class="actions"><button class="btn" id="rHome">Kembali ke peta</button></div></main>`;document.getElementById('rHome').onclick=home}
 function finish(){const secs=Math.round((Date.now()-LS.t0)/1000),acc=Math.round(LS.firstRight/LS.total*100),perfect=LS.firstRight>=LS.total;
@@ -1452,7 +1516,36 @@ function finish(){const secs=Math.round((Date.now()-LS.t0)/1000),acc=Math.round(
 addEventListener('keydown',e=>{if(!LS||!modal.hidden)return;
  if(/^[1-5]$/.test(e.key)&&!LS.checked){const b=document.querySelectorAll('.opt')[+e.key-1];b&&b.click()}
  if(e.key==='Enter'){const nx=document.getElementById('nx'),ck=document.getElementById('chk');if(LS.checked&&nx){e.preventDefault();nx.click()}else if(ck&&!ck.disabled){e.preventDefault();ck.click()}}});
-setInterval(()=>{if(!LS){const b=S.hearts;regen();if(S.hearts!==b){const h=document.querySelector('#bHeart span');h&&(h.textContent=S.hearts)}}},30000);
+/* ================= KOTRETAN ================= */
+I.pencil='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1Z"/><path d="M14 7l3 3"/></svg>';
+const SCR={map:new Map(),key:null,open:false,tool:'pen',undo:[],ctx:null,el:null,cv:null,drawing:false,last:null};
+(function(){const el=document.createElement('div');el.className='scr';el.hidden=true;el.setAttribute('role','dialog');el.setAttribute('aria-label','Kotretan');
+ el.innerHTML=`<div class="scr-bar"><b>Kotretan</b><div class="scr-tools"><button class="on" data-t="pen">Pena</button><button data-t="er">Hapus</button><button id="scrUndo" aria-label="Urungkan">↶ Urung</button><button id="scrClr">Bersihkan</button></div><button class="x" id="scrX" aria-label="Tutup kotretan">${I.x}</button></div><canvas id="scrC"></canvas>`;
+ document.body.appendChild(el);SCR.el=el;SCR.cv=el.querySelector('canvas');SCR.ctx=SCR.cv.getContext('2d');
+ el.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{SCR.tool=b.dataset.t;el.querySelectorAll('[data-t]').forEach(x=>x.classList.toggle('on',x===b))});
+ el.querySelector('#scrX').onclick=()=>scrClose(true);
+ el.querySelector('#scrClr').onclick=()=>{scrSnap();SCR.ctx.clearRect(0,0,SCR.cv.width,SCR.cv.height)};
+ el.querySelector('#scrUndo').onclick=()=>{const u=SCR.undo.pop();if(u)SCR.ctx.putImageData(u,0,0)};
+ const cv=SCR.cv,pos=e=>{const r=cv.getBoundingClientRect(),d=cv.width/r.width;return [(e.clientX-r.left)*d,(e.clientY-r.top)*d]};
+ cv.addEventListener('pointerdown',e=>{e.preventDefault();cv.setPointerCapture(e.pointerId);scrSnap();SCR.drawing=true;SCR.last=pos(e);scrDot(SCR.last)});
+ cv.addEventListener('pointermove',e=>{if(!SCR.drawing)return;const evs=e.getCoalescedEvents?e.getCoalescedEvents():[e];for(const ev of evs){const p=pos(ev);scrLine(SCR.last,p);SCR.last=p}});
+ const end=()=>{SCR.drawing=false};cv.addEventListener('pointerup',end);cv.addEventListener('pointercancel',end)})();
+function scrStyle(){const c=SCR.ctx,dpr=SCR.cv.width/SCR.cv.getBoundingClientRect().width||1;c.lineCap='round';c.lineJoin='round';
+ if(SCR.tool==='er'){c.globalCompositeOperation='destination-out';c.lineWidth=24*dpr}else{c.globalCompositeOperation='source-over';c.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue('--ink').trim()||'#1E1B3A';c.fillStyle=c.strokeStyle;c.lineWidth=2.6*dpr}}
+function scrDot(p){scrStyle();const c=SCR.ctx;c.beginPath();c.arc(p[0],p[1],c.lineWidth/2,0,Math.PI*2);c.fill()}
+function scrLine(a,b){scrStyle();const c=SCR.ctx;c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke()}
+function scrSnap(){try{SCR.undo.push(SCR.ctx.getImageData(0,0,SCR.cv.width,SCR.cv.height));if(SCR.undo.length>25)SCR.undo.shift()}catch(e){}}
+function scrBtnHTML(){return `<button class="scrbtn" id="scrBtn" aria-label="Buka kotretan">${I.pencil}<span>Kotretan</span></button>`}
+function scrAttach(key){scrClose(true);SCR.key=key;const b=document.getElementById('scrBtn');if(b)b.onclick=()=>SCR.open?scrClose(true):scrOpen()}
+function scrOpen(){if(SCR.key==null)return;const foot=document.querySelector('.foot'),fh=foot?foot.offsetHeight:0;
+ SCR.el.style.bottom=fh+'px';SCR.el.hidden=false;document.body.classList.add('scr-open');SCR.open=true;SCR.undo=[];
+ const r=SCR.cv.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);SCR.cv.width=Math.round(r.width*dpr);SCR.cv.height=Math.round(r.height*dpr);
+ const saved=SCR.map.get(SCR.key);if(saved){const img=new Image();img.onload=()=>SCR.ctx.drawImage(img,0,0,SCR.cv.width,SCR.cv.height);img.src=saved}
+ const b=document.getElementById('scrBtn');if(b){b.classList.add('on');b.style.bottom=`calc(${fh}px + 44vh + 12px)`}}
+function scrClose(keep){if(!SCR.open)return;if(keep&&SCR.key!=null){try{SCR.map.set(SCR.key,SCR.cv.toDataURL())}catch(e){}}
+ SCR.el.hidden=true;SCR.open=false;document.body.classList.remove('scr-open');const b=document.getElementById('scrBtn');if(b){b.classList.remove('on');b.style.bottom=''}}
+function scrReset(){scrClose(false);SCR.map.clear();SCR.key=null}
+
 /* ================= TRY OUT CAT ================= */
 const TO_KEY='kepo-cpns-to',TO_MIN=100,TO_N=110,PG={twk:65,tiu:80,tkp:166},MAXS={twk:150,tiu:175,tkp:225},SUBN={twk:'TWK',tiu:'TIU',tkp:'TKP'};
 const TO_PLAN={
@@ -1474,10 +1567,10 @@ function toCardHTML(){const H=S.toHist||[],best=H.reduce((m,h)=>Math.max(m,h.tot
 function bindTO(){const c=document.getElementById('toCard');c&&(c.onclick=startTO);const l=document.getElementById('toLast');l&&(l.onclick=showResult)}
 function startTO(){if(TO&&!TO.done){sfx.tap();return openCat()}
  mbox.innerHTML=`<div style="display:flex;gap:12px;align-items:center;margin-bottom:8px">${kepo(60,'idle')}<h2>Try Out SKD</h2></div>
- <ul class="rules"><li><b>${TO_N} soal</b>: TWK 30, TIU 35, TKP 45, berurutan seperti tes CAT.</li><li>Waktu <b>${TO_MIN} menit</b>. Waktu tetap berjalan walaupun kamu keluar dari halaman ini.</li><li>Bebas pindah soal. Tandai <b>Ragu-ragu</b> untuk dicek ulang.</li><li>Nilai dan pembahasan baru muncul setelah selesai. Hati tidak berkurang di mode ini.</li><li>Ambang batas: TWK ${PG.twk}, TIU ${PG.tiu}, TKP ${PG.tkp}. Nilai maksimal 550.</li></ul>
+ <ul class="rules"><li><b>${TO_N} soal</b>: TWK 30, TIU 35, TKP 45, berurutan seperti tes CAT.</li><li>Waktu <b>${TO_MIN} menit</b>. Waktu tetap berjalan walaupun kamu keluar dari halaman ini.</li><li>Bebas pindah soal. Tandai <b>Ragu-ragu</b> untuk dicek ulang.</li><li>Nilai dan pembahasan baru muncul setelah selesai.</li><li>Ambang batas: TWK ${PG.twk}, TIU ${PG.tiu}, TKP ${PG.tkp}. Nilai maksimal 550.</li></ul>
  <div style="display:flex;flex-direction:column;gap:10px"><button class="btn" id="toGo" style="--b:var(--ink);--bd:var(--muted);color:var(--bg)">Mulai sekarang</button><button class="btn ghost" id="toNo">Nanti saja</button></div>`;
  modal.hidden=false;document.getElementById('toNo').onclick=()=>modal.hidden=true;document.getElementById('toGo').onclick=()=>{modal.hidden=true;beginTO()}}
-function beginTO(){const qs=buildTO();TO={qs,ord:qs.map(()=>shuffle([0,1,2,3,4])),ans:qs.map(()=>null),flag:qs.map(()=>false),cur:0,start:Date.now(),end:Date.now()+TO_MIN*60000,done:false};toSave();sfx.win();openCat()}
+function beginTO(){scrReset();const qs=buildTO();TO={qs,ord:qs.map(()=>shuffle([0,1,2,3,4])),ans:qs.map(()=>null),flag:qs.map(()=>false),cur:0,start:Date.now(),end:Date.now()+TO_MIN*60000,done:false};toSave();sfx.win();openCat()}
 function openCat(){if(!TO||TO.done)return home();if(Date.now()>=TO.end){onCat=true;return finishTO()}LS=null;onCat=true;renderCat()}
 function renderCat(){const i=TO.cur,q=TO.qs[i],ord=TO.ord[i],sel=TO.ans[i],n=TO.ans.filter(a=>a!=null).length,left=TO.end-Date.now();
  app.innerHTML=`<main class="lesson cat screen" style="--c:var(--${q._sub});--cbg:var(--${q._sub}-bg)">
@@ -1486,15 +1579,20 @@ function renderCat(){const i=TO.cur,q=TO.qs[i],ord=TO.ord[i],sel=TO.ans[i],n=TO.
  <div class="catmeta"><span class="chip">${SUBN[q._sub]}</span><span class="qno tnum">Soal ${i+1}<small> / ${TO_N}</small></span><button class="gridbtn" id="cg">${I.grid}Daftar soal</button></div>
  <div class="qbody">${q.ctx?`<div class="ctx"><b>Bacaan</b>${q.ctx}</div>`:''}${q.fig?`<div class="figbox">${q.fig}</div>`:''}
  <p class="qtext">${q.q}</p>
- <div class="opts ${q.html?'figopts':''}">${ord.map((k,m)=>`<button class="opt ${k===sel?'sel':''}" data-k="${k}" aria-label="Opsi ${'ABCDE'[m]}"><span class="k">${'ABCDE'[m]}</span><span>${q.html?q.o[k]:esc(q.o[k])}</span></button>`).join('')}</div></div>
- <div class="foot catfoot"><button class="btn ghost" id="cp" ${i===0?'disabled':''}>Sebelumnya</button><button class="btn rg ${TO.flag[i]?'on':''}" id="cr">Ragu-ragu</button><button class="btn" id="cn">${i===TO_N-1?'Selesai':'Berikutnya'}</button></div></main>`;
- window.scrollTo(0,0);
+ <div class="opts ${q.html?'figopts':''}">${ord.map((k,m)=>`<button class="opt ${k===sel?'sel':''}" data-k="${k}" aria-label="Opsi ${'ABCDE'[m]}"><span class="k">${'ABCDE'[m]}</span><span>${q.html||q.rich?q.o[k]:esc(q.o[k])}</span></button>`).join('')}</div></div>
+ ${q._sub==='tiu'?scrBtnHTML():''}<div class="foot catfoot"><button class="btn ghost" id="cp" ${i===0?'disabled':''}>Sebelumnya</button><button class="btn rg ${TO.flag[i]?'on':''}" id="cr">Ragu-ragu</button><button class="btn" id="cn">${i===TO_N-1?'Selesai':'Berikutnya'}</button></div><aside class="catside" id="catside">${catSideHTML()}</aside></main>`;
+ window.scrollTo(0,0);if(q._sub==='tiu')scrAttach('T'+i);else scrClose(false);
  document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{TO.ans[i]=+b.dataset.k;toSave();sfx.tap();document.querySelectorAll('.opt').forEach(x=>x.classList.toggle('sel',x===b));
-  const m=TO.ans.filter(a=>a!=null).length;document.querySelector('.cat-t small').textContent=`${m}/${TO_N} terjawab`;document.querySelector('.cat .prog i').style.width=(m/TO_N*100)+'%'});
+  const m=TO.ans.filter(a=>a!=null).length;document.querySelector('.cat-t small').textContent=`${m}/${TO_N} terjawab`;document.querySelector('.cat .prog i').style.width=(m/TO_N*100)+'%';refreshCatSide()});
  document.getElementById('cp').onclick=()=>{if(TO.cur>0){TO.cur--;toSave();renderCat()}};
  document.getElementById('cn').onclick=()=>{if(TO.cur<TO_N-1){TO.cur++;toSave();renderCat()}else confirmFinish()};
- document.getElementById('cr').onclick=e=>{TO.flag[i]=!TO.flag[i];toSave();e.currentTarget.classList.toggle('on',TO.flag[i]);sfx.tap()};
- document.getElementById('cg').onclick=gridModal;document.getElementById('cx').onclick=exitModal}
+ document.getElementById('cr').onclick=e=>{TO.flag[i]=!TO.flag[i];toSave();e.currentTarget.classList.toggle('on',TO.flag[i]);sfx.tap();refreshCatSide()};
+ document.getElementById('cg').onclick=gridModal;document.getElementById('cx').onclick=exitModal;bindCatSide()}
+function catSideHTML(){const n=TO.ans.filter(a=>a!=null).length,f=TO.flag.filter(Boolean).length;
+ return `<h3>Daftar soal</h3><p class="cs-stat tnum">${n} terjawab · ${TO_N-n} belum · ${f} ragu</p>`+['twk','tiu','tkp'].map(sub=>{const idx=TO.qs.map((q,i)=>q._sub===sub?i:-1).filter(i=>i>=0);
+ return `<div class="gsec">${SUBN[sub]} <small>${idx[0]+1}–${idx[idx.length-1]+1}</small></div><div class="qgrid">${idx.map(i=>`<button class="qn tnum ${TO.ans[i]!=null?'ans':''} ${TO.flag[i]?'flag':''} ${i===TO.cur?'cur':''}" data-i="${i}">${i+1}</button>`).join('')}</div>`}).join('')+`<button class="btn good" id="csFin">Selesai ujian</button>`}
+function bindCatSide(){const el=document.getElementById('catside');if(!el)return;el.querySelectorAll('.qn').forEach(b=>b.onclick=()=>{TO.cur=+b.dataset.i;toSave();renderCat()});const f=document.getElementById('csFin');f&&(f.onclick=confirmFinish)}
+function refreshCatSide(){const el=document.getElementById('catside');if(el){el.innerHTML=catSideHTML();bindCatSide()}}
 function gridModal(){const sec=['twk','tiu','tkp'].map(sub=>{const idx=TO.qs.map((q,i)=>q._sub===sub?i:-1).filter(i=>i>=0);
   return `<h3 class="gsec">${SUBN[sub]} <small>soal ${idx[0]+1}–${idx[idx.length-1]+1}</small></h3><div class="qgrid">${idx.map(i=>`<button class="qn tnum ${TO.ans[i]!=null?'ans':''} ${TO.flag[i]?'flag':''} ${i===TO.cur?'cur':''}" data-i="${i}">${i+1}</button>`).join('')}</div>`}).join('');
  const n=TO.ans.filter(a=>a!=null).length;
@@ -1514,7 +1612,7 @@ function exitModal(){mbox.innerHTML=`<h2>Keluar dari Try Out?</h2><p>Seperti tes
 function scoreTO(t){const sc={twk:0,tiu:0,tkp:0},ok={twk:0,tiu:0,tkp:0},nn={twk:0,tiu:0,tkp:0};
  t.qs.forEach((q,i)=>{const a=t.ans[i];nn[q._sub]++;if(a==null)return;if(q._tkp){sc.tkp+=q.p[a];if(q.p[a]===5)ok.tkp++}else if(a===q.a){sc[q._sub]+=5;ok[q._sub]++}});
  const tot=sc.twk+sc.tiu+sc.tkp;return {sc,ok,n:nn,tot,lulus:sc.twk>=PG.twk&&sc.tiu>=PG.tiu&&sc.tkp>=PG.tkp}}
-function finishTO(){if(!TO||TO.done)return;TO.done=true;TO.fin=Math.min(Date.now(),TO.end);const r=scoreTO(TO);TO.res=r;
+function finishTO(){if(!TO||TO.done)return;scrReset();TO.done=true;TO.fin=Math.min(Date.now(),TO.end);const r=scoreTO(TO);TO.res=r;
  const gain=20+Math.round(r.tot/25),before=todayXP();TO.gain=gain;S.xp+=gain;S.days[today()]=before+gain;TO.justMet=before<(S.goal||20)&&before+gain>=(S.goal||20);if(before+gain>=(S.goal||20))S.met[today()]=1;
  S.toHist=[{d:Date.now(),twk:r.sc.twk,tiu:r.sc.tiu,tkp:r.sc.tkp,tot:r.tot,lulus:r.lulus,dur:TO.fin-TO.start}].concat(S.toHist||[]).slice(0,20);save();toSave();
  if(onCat)showResult();else{toast('Waktu Try Out habis. Nilai kamu sudah tersimpan.');if(document.getElementById('toCard'))home()}}
@@ -1545,7 +1643,7 @@ function showReview(f){onCat=false;const st=(q,i)=>{const a=TO.ans[i];if(a==null
  const card=({q,i,s})=>{const a=TO.ans[i],best=q._tkp?q.p.indexOf(5):q.a,ord=TO.ord[i];
   return `<article class="rv" style="--c:var(--${q._sub})"><div class="meta"><span>No. ${i+1} · ${SUBN[q._sub]} · ${esc(q._lt)}</span><span class="pill ${s}">${lab[s]}${q._tkp&&a!=null?` · ${q.p[a]} poin`:''}</span></div>
   ${q.ctx?`<div class="ctx"><b>Bacaan</b>${q.ctx}</div>`:''}${q.fig?`<div class="figbox">${q.fig}</div>`:''}<p class="qtext">${q.q}</p>
-  <div class="rvopts ${q.html?'figopts':''}">${ord.map((k,m)=>`<div class="rvopt ${k===best?'right':k===a?'wrong':''}"><span class="k">${'ABCDE'[m]}</span><span>${q.html?q.o[k]:esc(q.o[k])}</span>${q._tkp?`<span class="pts tnum">${q.p[k]}</span>`:''}</div>`).join('')}</div>
+  <div class="rvopts ${q.html?'figopts':''}">${ord.map((k,m)=>`<div class="rvopt ${k===best?'right':k===a?'wrong':''}"><span class="k">${'ABCDE'[m]}</span><span>${q.html||q.rich?q.o[k]:esc(q.o[k])}</span>${q._tkp?`<span class="pts tnum">${q.p[k]}</span>`:''}</div>`).join('')}</div>
   <div class="ex">${q.ex}</div></article>`};
  app.innerHTML=`<main class="screen"><div class="rvhead"><div style="display:flex;align-items:center;gap:10px"><button class="x" id="rvBack" aria-label="Kembali">${I.x}</button><h2 style="font-size:22px">Pembahasan Try Out</h2><span class="tnum" style="margin-left:auto;color:var(--muted);font-weight:700">${TO.res.tot}/550</span></div>
  <div class="chips">${F.map(([k,t])=>`<button class="fchip ${k===f?'on':''}" data-f="${k}">${t}</button>`).join('')}</div></div>
