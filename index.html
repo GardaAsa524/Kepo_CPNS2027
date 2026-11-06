@@ -449,6 +449,68 @@ mark{background:color-mix(in srgb,var(--accent) 55%,transparent);color:inherit;b
 .vrow figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12.5px;text-align:center;color:var(--ink)}
 .vrow figcaption{line-height:1.35;max-width:170px}
 .venn{color:var(--ink);max-width:100%}
+.mcard.ach .qi{background:color-mix(in srgb,var(--accent) 22%,var(--surface));color:var(--accent-d)}
+.achp .mtitle{align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.achp .mtitle>div{flex:1 1 200px;min-width:0}.achp h1{font-size:26px}.achp .mtitle p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.sharebtn{width:auto;display:flex;align-items:center;gap:8px;padding:10px 16px;--b:var(--good);--bd:var(--good-d)}
+.sharebtn svg{width:18px;height:18px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:10px;margin-bottom:20px}
+.tile{background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.tile span{font-size:12px;font-weight:700;color:var(--muted)}
+.tile b{font-family:var(--f-display);font-size:28px;line-height:1.1}.tile b small{font-size:14px;color:var(--muted)}
+.achsec{margin-bottom:24px}.achsec h2{font-size:21px;margin-bottom:8px}.achsec h2 small{font-family:var(--f-body);font-size:13px;color:var(--muted)}
+.achsub{margin:-4px 0 8px;font-size:13px;color:var(--muted)}
+.tochart{width:100%;min-width:360px;height:auto;background:var(--surface);border:2px solid var(--line);border-radius:16px;font-family:var(--f-body)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.badge{display:flex;gap:12px;align-items:center;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:12px;min-width:0}
+.badge>div{min-width:0;flex:1}
+.badge b{display:block;font-size:15px}.badge small{display:block;font-size:12.5px;color:var(--muted);line-height:1.35}
+.badge em{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:var(--muted);margin-top:4px}
+.badge.got em{color:var(--good)}
+.medal{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);color:var(--muted);filter:grayscale(1);opacity:.7}
+.medal svg{width:26px;height:26px}
+.badge.got .medal{background:var(--bc);color:#fff;filter:none;opacity:1;box-shadow:0 4px 0 color-mix(in srgb,var(--bc) 60%,#000);animation:pop .5s}
+.badge.got{border-color:color-mix(in srgb,var(--bc) 45%,var(--line))}
+.bp{display:block;height:6px;border-radius:3px;background:var(--surface-2);margin-top:6px;overflow:hidden}.bp i{display:block;height:100%;background:var(--bc)}
+.seg{display:flex;gap:6px;margin:6px 0 12px}.seg:empty{display:none}
+.seg button{flex:1;padding:8px;border-radius:12px;border:2px solid var(--line);font-weight:800;font-size:13px}
+.seg button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.nm{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:4px}
+.nmi{width:100%;font:inherit;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);margin-bottom:12px}
+.shprev{display:grid;place-items:center;background:var(--surface-2);border-radius:14px;padding:10px;min-height:160px}
+.shprev img{max-height:46vh;width:auto;max-width:100%;border-radius:10px;box-shadow:0 6px 20px rgba(15,12,40,.15)}
+.shnote{font-size:12px;color:var(--muted);margin:8px 0 10px}
+.shbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.shbtns .btn{font-size:13px;padding:12px 6px}
+.sht{width:100%;margin-top:10px;font:inherit;font-size:13px;padding:10px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:none}
+.mbox{max-height:92vh;overflow:auto}
+.mtabs{grid-template-columns:repeat(4,1fr)}
+.mtab.mcep b{font-size:16px}
+@media (max-width:480px){.mtabs{grid-template-columns:repeat(2,1fr)}}
+.teaser{width:100%;text-align:left;background:var(--surface);border:2px solid var(--tiu);border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.teaser>b{font-family:var(--f-display);font-size:18px}.teaser p{margin:0;color:var(--muted);font-size:14px}
+.tchips{display:flex;flex-wrap:wrap;gap:6px}.tchips span{font-size:12.5px;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--cbg);color:var(--c)}
+.anal .mtitle{margin-bottom:16px}.anal h1{font-size:26px}.anal .mtitle p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.diag{background:color-mix(in srgb,var(--accent) 16%,var(--surface));border-radius:18px;padding:14px 18px;margin-bottom:18px}
+.diag h2{font-size:20px;margin-bottom:6px}.diag ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14.5px}
+.subs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:24px}
+.subc{background:var(--surface);border:2px solid var(--line);border-top:6px solid var(--c);border-radius:16px;padding:12px 14px;min-width:0}
+.subh{display:flex;justify-content:space-between;align-items:baseline}.subh b{font-family:var(--f-display);font-size:22px;color:var(--c)}
+.subh span{font-family:var(--f-display);font-size:22px;font-weight:800}.subh span.ok{color:var(--good)}.subh span.no{color:var(--bad)}.subh small{font-family:var(--f-body);font-size:12px;color:var(--muted);font-weight:700}
+.subt{margin:2px 0 10px;font-size:12px;color:var(--muted)}
+.arow{display:grid;grid-template-columns:minmax(0,1fr) 70px 40px;gap:8px;align-items:center;font-size:13px;margin-bottom:6px}
+.arow .an{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arow .ab{height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}.arow .ab i{display:block;height:100%;border-radius:4px}
+.arow.good .ab i{background:var(--good)}.arow.mid .ab i{background:var(--accent)}.arow.bad .ab i{background:var(--bad)}
+.arow .av{text-align:right;font-weight:800}
+.pri{background:var(--surface);border:2px solid var(--line);border-left:6px solid var(--c);border-radius:16px;padding:14px;margin-bottom:10px}
+.pri-h{display:flex;gap:12px;align-items:center}.pri-n{flex:none;width:32px;height:32px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:800}
+.pri-h b{display:block;font-size:16px}.pri-h small{display:block;font-size:12.5px;color:var(--muted)}
+.pri-how{font-size:14px;margin:10px 0}.pri-btn{display:flex;flex-wrap:wrap;gap:6px}
+.plan{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.plan li{display:grid;grid-template-columns:70px 1fr;gap:10px;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:10px 12px;font-size:14px}
+.plan li b{font-family:var(--f-display);font-size:16px;color:var(--tiu)}
+.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;max-width:72ch}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media (max-width:380px){.qtext{font-size:17px}.cards div{font-size:22px}.brand small{display:none}}
 </style>
@@ -640,6 +702,38 @@ G.figNine=()=>{const S=shuffle(['c','s','t']),V=pick(['A','B','C']);let cell;
 G.figAlt=()=>{const t=pick(['F','L','P']),step=pick([90,-90]),a0=pick([0,90]);const f=i=>chi(t,a0+step*i,i%2===1);const ans=a0+step*4;const seen=new Set(),o=[];
  const add=(r,m)=>{const kk=ckey(t,r,m);if(!seen.has(kk)&&o.length<5){seen.add(kk);o.push(chi(t,r,m))}};add(ans,false);add(ans,true);add(ans+step,true);add(ans-step,false);add(ans+180,false);add(ans+180,true);
  return {fig:row(f(0),f(1),f(2),f(3),QM),q:'Gambar berikutnya yang tepat adalah ...',o,a:0,html:true,ex:`Ada dua aturan sekaligus: tiap langkah gambar <b>diputar ${Math.abs(step)}°</b> dan <b>bergantian dicerminkan</b> (normal, cermin, normal, cermin). Gambar kelima kembali ke bentuk <b>normal</b>.`}};
+
+/* ===== Generator tambahan: Kosakata & Hitung Kilat ===== */
+const VSYN=[['abrasi','pengikisan'],['absah','sah'],['absolut','mutlak'],['agresi','serangan'],['agunan','jaminan'],['akselerasi','percepatan'],['akurat','teliti'],['almanak','penanggalan'],['ambiguitas','makna ganda'],['arogan','sombong'],['asa','harapan'],['asumsi','anggapan'],['bahtera','perahu'],['bala','bencana'],['berdikari','mandiri'],['bonafide','tepercaya'],['citra','gambaran'],['dampak','akibat'],['daur','siklus'],['dekade','dasawarsa'],['dekadensi','kemerosotan'],['demisioner','habis masa jabatan'],['dikotomi','pembagian dua'],['disparitas','kesenjangan'],['dominasi','penguasaan'],['donasi','sumbangan'],['dosis','takaran'],['ekskavasi','penggalian'],['ekspansi','perluasan'],['ekuilibrium','keseimbangan'],['elaborasi','penjabaran'],['embargo','larangan dagang'],['empati','ikut merasakan'],['estimasi','perkiraan'],['evakuasi','pengungsian'],['evaluasi','penilaian'],['fundamental','mendasar'],['galat','kekeliruan'],['generik','umum'],['getir','pahit'],['glosarium','daftar istilah'],['grasi','pengampunan'],['harmonis','serasi'],['heterogen','beragam'],['homogen','sejenis'],['hiperbola','berlebihan'],['holistik','menyeluruh'],['impulsif','spontan'],['inheren','melekat'],['infiltrasi','penyusupan'],['insentif','perangsang'],['inspeksi','pemeriksaan'],['insting','naluri'],['iterasi','perulangan'],['kampiun','juara'],['kapital','modal'],['kendala','hambatan'],['klimaks','puncak'],['kolaborasi','kerja sama'],['kompatriot','teman sebangsa'],['konkaf','cekung'],['konveks','cembung'],['konsensus','mufakat'],['konservasi','pelestarian'],['konspirasi','persekongkolan'],['kontradiksi','ketidaksesuaian'],['korelasi','hubungan'],['krusial','genting'],['kudeta','perebutan kekuasaan'],['laba','keuntungan'],['mediator','penengah'],['mutakhir','terkini'],['nisbi','relatif'],['orisinal','asli'],['otodidak','belajar sendiri'],['paradigma','kerangka berpikir'],['paripurna','lengkap'],['partikelir','swasta'],['perdeo','cuma-cuma'],['pionir','perintis'],['plagiat','jiplakan'],['prestise','gengsi'],['proteksi','perlindungan'],['rabat','potongan harga'],['ralat','pembetulan'],['ratifikasi','pengesahan'],['residu','sisa'],['restriksi','pembatasan'],['ringkih','rapuh'],['sanksi','hukuman'],['somasi','teguran hukum'],['spesifik','khusus'],['stagnasi','kemacetan'],['strata','lapisan'],['tabiat','watak'],['talenta','bakat'],['tentatif','belum pasti'],['tendensi','kecenderungan'],['termin','tahap'],['tiran','penguasa lalim'],['vandalisme','perusakan'],['verifikasi','pembuktian'],['virtual','maya'],['alokasi','penjatahan'],['apresiasi','penghargaan'],['distorsi','penyimpangan'],['fluktuasi','naik turun'],['gradual','bertahap'],['kapabilitas','kemampuan'],['legislasi','pembuatan undang-undang'],['moderat','tidak ekstrem'],['oposisi','pihak lawan'],['polemik','perdebatan'],['preferensi','pilihan'],['provokasi','hasutan'],['regulasi','peraturan'],['relevan','bersangkutan'],['skeptis','tidak mudah percaya'],['transparan','terbuka'],['urgen','mendesak'],['rehabilitasi','pemulihan'],['reboisasi','penghijauan kembali'],['kuliner','masakan'],['nomaden','berpindah-pindah'],['frustrasi','putus asa'],['efisien','sangkil'],['efektif','mangkus']];
+const VANT=[['absolut','relatif'],['abstrak','konkret'],['aktif','pasif'],['agresif','defensif'],['amatir','profesional'],['anarki','tertib'],['antagonis','protagonis'],['apatis','peduli'],['artifisial','alami'],['defisit','surplus'],['debitur','kreditur'],['deduktif','induktif'],['dinamis','statis'],['eksplisit','implisit'],['ekspor','impor'],['eksklusif','inklusif'],['ekstrovert','introvert'],['efisien','boros'],['heterogen','homogen'],['imigrasi','emigrasi'],['inflasi','deflasi'],['konkaf','konveks'],['konservatif','progresif'],['legal','ilegal'],['makro','mikro'],['maksimal','minimal'],['mayoritas','minoritas'],['monoton','variatif'],['objektif','subjektif'],['optimis','pesimis'],['orisinal','tiruan'],['permanen','temporer'],['prolog','epilog'],['rasional','irasional'],['sporadis','terus-menerus'],['transparan','tertutup'],['universal','parsial'],['vertikal','horizontal'],['verbal','nonverbal'],['gradual','drastis'],['rigid','fleksibel'],['egois','altruis'],['sentralisasi','desentralisasi'],['inferior','superior'],['kredit','debit'],['hulu','hilir'],['laba','rugi'],['senior','junior'],['ofensif','defensif'],['sekuler','religius'],['akut','kronis'],['mobile','statis']].filter(p=>p[0]!=='mobile');
+G.vocab=()=>{const ant=Math.random()<.38;if(ant){const [w,a]=pick(VANT),syn=(VSYN.find(p=>p[0]===w)||[])[1];
+  const pool=shuffle(VANT.map(p=>p[1]).filter(x=>x!==a));const ds=[];if(syn&&syn!==a)ds.push(syn);for(const x of pool){if(ds.length>=4)break;if(!ds.includes(x))ds.push(x)}
+  return {q:`${w.toUpperCase()} &gt;&lt; ...`,o:[a,...ds],a:0,ex:`<b>${w}</b> lawannya <b>${a}</b>.${syn?` Opsi "${syn}" justru sinonimnya, sengaja dipasang sebagai jebakan.`:''} Ingat: di soal antonim, coret dulu opsi yang bermakna sama.`}}
+ const [w,s]=pick(VSYN);const ds=shuffle(VSYN.map(p=>p[1]).filter(x=>x!==s)).slice(0,4);const tip=(VANT.find(p=>p[0]===w)||[])[1];
+ return {q:`${w.toUpperCase()} = ...`,o:[s,...ds],a:0,ex:`<b>${w}</b> artinya <b>${s}</b>.${tip?` Lawan katanya: ${tip}.`:''} Tip: catat kata ini di daftar kosakata harianmu dan ulangi besok.`}};
+G.kilat=()=>{const T=pick(['x25','x125','x11','k5','d100','sq','swap','unit','est']);
+ if(T==='x25'){const n=4*R(6,60)+pick([0,0,2]),a=n*25;return {q:`${n} × 25 = ...`,o:mk(a,[a+25,a-50,n*20,a+100,n*30],fmtN),a:0,ex:`× 25 = × 100 lalu : 4. ${fmtN(n*100)} : 4 = <b>${fmtN(a)}</b>.`}}
+ if(T==='x125'){const n=8*R(2,30),a=n*125;return {q:`${n} × 125 = ...`,o:mk(a,[a+125,a-250,n*120,a+1000,a/10],fmtN),a:0,ex:`× 125 = × 1.000 lalu : 8. ${fmtN(n*1000)} : 8 = <b>${fmtN(a)}</b>.`}}
+ if(T==='x11'){const n=R(12,98),a=n*11,d=Math.floor(n/10),u=n%10;return {q:`${n} × 11 = ...`,o:mk(a,[a+10,a-10,a+100,d*100+u,a+1],fmtN),a:0,ex:`Sisipkan jumlah digit di tengah: ${d} + ${u} = ${d+u}. ${d+u>=10?`Karena ${d+u} ≥ 10, simpan 1 ke depan: `:''}hasilnya <b>${fmtN(a)}</b>.`}}
+ if(T==='k5'){const d=R(1,9),n=d*10+5,a=n*n;return {q:`${n}² = ...`,o:mk(a,[a+100,a-100,d*d*100+25,a+50,(d*(d+1))*10+25],fmtN),a:0,ex:`Akhiran 5: ${d} × ${d+1} = ${d*(d+1)}, lalu tempel 25 → <b>${fmtN(a)}</b>.`}}
+ if(T==='d100'){const x=R(1,9),y=R(1,9),A=100-x,B=100-y,a=A*B;return {q:`${A} × ${B} = ...`,o:mk(a,[a+100,a-10,(100-x-y)*100+x+y,a+1,a-100],fmtN),a:0,ex:`${A} kurang ${x} dari 100, ${B} kurang ${y}. Depan: 100 − ${x} − ${y} = ${100-x-y}. Belakang: ${x} × ${y} = ${pad(x*y)}. Hasil <b>${fmtN(a)}</b>.`}}
+ if(T==='sq'){const m=pick([20,30,40,50,60,70,80]),k=R(1,6),a=(m+k)*(m-k);return {q:`${m+k} × ${m-k} = ...`,o:mk(a,[m*m,a+k*k,m*m+k*k,a-10,a+2*k],fmtN),a:0,ex:`Bentuk (a + b)(a − b) = a² − b². ${m}² − ${k}² = ${fmtN(m*m)} − ${k*k} = <b>${fmtN(a)}</b>.`}}
+ if(T==='swap'){const p=pick([4,8,12,16,24,28,32,36,44,48,52,64,72,84,96]),b=pick([25,50,75,125]),a=p*b/100;return {q:`${p}% dari ${b} = ...`,o:mk(a,[a+1,a*2,a-1,p*b/10,a+5],fmtN),a:0,ex:`Tukar posisinya: ${b}% dari ${p} lebih mudah. ${b}% = ${{25:'¼',50:'½',75:'¾',125:'1¼'}[b]}, jadi hasilnya <b>${fmtN(a)}</b>.`}}
+ if(T==='unit'){const b=pick([2,3,7,8]),cyc={2:[2,4,8,6],3:[3,9,7,1],7:[7,9,3,1],8:[8,4,2,6]}[b],n=R(13,99),r=n%4,a=cyc[(r+3)%4];
+  return {q:`Angka satuan dari ${b}<sup>${n}</sup> adalah ...`,o:mk(a,[0,1,2,3,4,5,6,7,8,9].filter(x=>x!==a)),a:0,ex:`Siklus ${b}: ${cyc.join(', ')}. ${n} : 4 sisa ${r}${r===0?' (sisa 0 = anggota terakhir)':''} → <b>${a}</b>.`}}
+ const p=pick([0.249,0.501,0.198,0.124,0.334]),n=pick([401,799,1203,1598,2004]),a=Math.round(p*n),f={0.249:[1,4],0.501:[1,2],0.198:[1,5],0.124:[1,8],0.334:[1,3]}[p],est=Math.round(n*f[0]/f[1]);
+ const near=x=>Math.round(x/10)*10;const opts=[near(est),near(est*1.5),near(est*0.6),near(est*2),near(est*0.8)];
+ return {q:`Nilai yang paling mendekati ${fmtN(p)} × ${fmtN(n)} adalah ...`,o:[...new Set(opts)].length===5?opts.map(fmtN):mk(near(est),[near(est)+60,near(est)-60,near(est)*2,near(est)+150],fmtN),a:0,ex:`${fmtN(p)} ≈ ${f[0]}/${f[1]} dan ${fmtN(n)} ≈ ${fmtN(Math.round(n/100)*100)}. Perkiraan ≈ <b>${fmtN(near(est))}</b> (hasil persisnya ${fmtN(Math.round(p*n*10)/10)}). Pilih opsi terdekat, tidak perlu menghitung penuh.`}};
+const _cerita=G.cerita,_arit=G.aritsos;
+G.cerita=()=>{const r=Math.random();
+ if(r<.15){const v1=pick([30,40,60,80]),v2=pick([20,40,60,120]);if(v1===v2)return G.cerita();const a=2*v1*v2/(v1+v2);if(a!==Math.round(a*10)/10)return G.cerita();
+  return {q:`Seseorang pergi ke kota tujuan dengan kecepatan rata-rata ${v1} km/jam dan pulang melalui jalan yang sama dengan kecepatan ${v2} km/jam. Kecepatan rata-rata perjalanan pergi-pulang adalah ...`,o:mk(a,[(v1+v2)/2,a+2,a-2,Math.max(v1,v2)-5],v=>fmtN(v)+' km/jam'),a:0,ex:`Jarak pergi dan pulang sama → rumus 2·v₁·v₂/(v₁+v₂) = 2 × ${v1} × ${v2} : ${v1+v2} = <b>${fmtN(a)} km/jam</b>. Jebakan: rata-rata biasa ${fmtN((v1+v2)/2)}.`}}
+ if(r<.28){const n=pick([4,5,6,8,9]),m=R(65,80),k=pick([1,2,3]),out=m-n*k+0;const nm=m+k;// n tersisa, 1 keluar
+  const val=(n+1)*m-n*nm;if(val<30)return G.cerita();return {q:`Rata-rata nilai ${n+1} peserta adalah ${m}. Setelah satu peserta mengundurkan diri, rata-rata ${n} peserta lainnya menjadi ${nm}. Nilai peserta yang mengundurkan diri adalah ...`,o:mk(val,[val+k,val-k,m-k,val+n,m]),a:0,ex:`${n} peserta naik ${k} poin = ${n*k} poin. Jadi yang keluar ${n*k} di bawah rata-rata awal: ${m} − ${n*k} = <b>${val}</b>.`}}
+ return _cerita()};
+G.aritsos=()=>{if(Math.random()<.22){const u=pick([10,20,25,50]),B=R(4,40)*10000,J=B*(100+u)/100;
+  return {q:`Sebuah barang dijual seharga ${rp(J)} dan pedagang memperoleh keuntungan ${u}%. Harga beli barang tersebut adalah ...`,o:mk(B,[J*(100-u)/100,J-u*1000,B+10000,B-10000],rp),a:0,ex:`Harga beli = harga jual × 100/(100 + ${u}) = <b>${rp(B)}</b>. Jebakan: ${rp(J*(100-u)/100)} (mengurangi ${u}% dari harga jual).`}}
+ return _arit()};
 
 /* ================= BANK SOAL (TULISAN) ================= */
 const CTX_ANTRE='Lima peserta, yaitu P, Q, R, S, dan T, mengantre di depan loket. Diketahui:<ul><li>S berada paling belakang.</li><li>P berdiri tepat di depan R.</li><li>T berada di depan P.</li><li>Q tidak berada paling depan dan tidak paling belakang.</li><li>R tidak berdiri tepat di depan S.</li></ul>';
@@ -1348,6 +1442,109 @@ ADD.hotsTKP=[
 ];
 
 
+/* ===== Bank soal tambahan (gelombang 3) ===== */
+ADD.sejarah2=[
+["Pimpinan pasukan Sekutu (Inggris) yang tewas dalam pertempuran di Surabaya pada akhir Oktober 1945 adalah ...",["Letjen Christison","Brigjen A.W.S. Mallaby","Jenderal Spoor","Van Mook","Laksamana Maeda"],1,"<b>Brigjen Mallaby</b> tewas di Surabaya, memicu ultimatum Inggris yang berujung pertempuran 10 November 1945."],
+["Berikut ini candi yang bercorak Buddha, kecuali ...",["Borobudur","Mendut","Pawon","Muara Takus","Prambanan"],4,"<b>Prambanan</b> adalah candi Hindu (Trimurti). Borobudur, Mendut, Pawon, dan Muara Takus bercorak Buddha."],
+["Prasasti Kedukan Bukit (683 M) merupakan peninggalan kerajaan ...",["Kutai","Tarumanegara","Sriwijaya","Mataram Kuno","Majapahit"],2,"<b>Sriwijaya</b>. Prasasti ini menceritakan perjalanan suci Dapunta Hyang."],
+["Kerajaan Hindu tertua di Indonesia yang dikenal dari prasasti Yupa adalah ...",["Tarumanegara","Kutai","Kalingga","Sriwijaya","Singasari"],1,"<b>Kutai</b> di Kalimantan Timur, dengan raja terkenalnya Mulawarman."],
+["Kerajaan Islam pertama di Indonesia adalah ...",["Demak","Samudra Pasai","Banten","Mataram Islam","Gowa-Tallo"],1,"<b>Samudra Pasai</b> di Aceh, abad ke-13. Kerajaan Islam pertama di Jawa adalah Demak."],
+["Karya sastra ciptaan Mpu Prapanca adalah ...",["Sutasoma","Arjunawiwaha","Negarakertagama","Pararaton","Bharatayuddha"],2,"<b>Negarakertagama</b> (Desawarnana), tentang kejayaan Majapahit. Sutasoma karya Mpu Tantular."],
+["Tokoh yang terkenal dengan Sumpah Palapa untuk menyatukan Nusantara adalah ...",["Hayam Wuruk","Raden Wijaya","Gajah Mada","Ken Arok","Kertanegara"],2,"<b>Gajah Mada</b>, mahapatih Majapahit."],
+["Penyebab utama dibubarkannya VOC pada 31 Desember 1799 adalah ...",["Kalah perang melawan Inggris","Korupsi yang merajalela di kalangan pegawainya","Pemberontakan rakyat Jawa","Harga rempah naik","Perintah Raffles"],1,"Utang menumpuk akibat <b>korupsi pegawai</b>, ditambah biaya perang dan persaingan dagang."],
+["Gubernur Jenderal yang membangun Jalan Raya Pos dari Anyer sampai Panarukan adalah ...",["Van den Bosch","Daendels","Raffles","Van Deventer","Van Heutsz"],1,"<b>Herman Willem Daendels</b> (1808–1811), dengan kerja rodi."],
+["Sistem sewa tanah (landrent) di Jawa diperkenalkan oleh ...",["Daendels","Van den Bosch","Thomas Stamford Raffles","Jan Pieterszoon Coen","Van Deventer"],2,"<b>Raffles</b> saat Inggris berkuasa (1811–1816)."],
+["Sistem Tanam Paksa (cultuurstelsel) diberlakukan mulai tahun 1830 oleh ...",["Daendels","Van den Bosch","Raffles","Van Deventer","Douwes Dekker"],1,"<b>Johannes van den Bosch</b>. Petani wajib menanam tanaman ekspor di sebagian tanahnya."],
+["Isi Politik Etis yang dicetuskan Van Deventer adalah ...",["Irigasi, edukasi, emigrasi","Industri, ekspor, edukasi","Irigasi, ekspor, ekonomi","Edukasi, ekonomi, emansipasi","Imigrasi, irigasi, investasi"],0,"Trias Van Deventer: <b>irigasi, edukasi, emigrasi</b> (perpindahan penduduk)."],
+["Tokoh perlawanan dalam Perang Jawa (1825–1830) adalah ...",["Tuanku Imam Bonjol","Pangeran Diponegoro","Sultan Hasanuddin","Pattimura","Teuku Umar"],1,"<b>Pangeran Diponegoro</b>. Imam Bonjol memimpin Perang Padri di Sumatra Barat."],
+["Belanda menyerah tanpa syarat kepada Jepang pada 8 Maret 1942 di ...",["Rengasdengklok","Kalijati, Subang","Linggarjati","Bukittinggi","Ambarawa"],1,"Penyerahan ditandatangani di <b>Kalijati</b>. Sejak itu Jepang menduduki Indonesia."],
+["Semboyan Gerakan Tiga A pada masa pendudukan Jepang adalah ...",["Jepang pelindung, cahaya, dan pemimpin Asia","Asia untuk bangsa Asia saja","Jepang saudara tua Asia","Asia bersatu, Asia merdeka, Asia jaya","Jepang adil, aman, makmur"],0,"Gerakan Tiga A: <b>Nippon pelindung Asia, Nippon cahaya Asia, Nippon pemimpin Asia</b>. Ini alat propaganda Jepang."],
+["Pemberontakan PETA di Blitar pada Februari 1945 dipimpin oleh ...",["Sudirman","Supriyadi","Zainal Mustafa","Gatot Mangkupraja","Kasman Singodimedjo"],1,"<b>Supriyadi</b>. PETA (Pembela Tanah Air) adalah tentara sukarela bentukan Jepang."],
+["Kerja paksa yang diterapkan Jepang terhadap rakyat Indonesia disebut ...",["Kerja rodi","Romusha","Heiho","Seinendan","Keibodan"],1,"<b>Romusha</b>. Kerja rodi adalah istilah masa Daendels. Heiho, Seinendan, Keibodan adalah barisan bentukan Jepang."],
+["Perdana Menteri Jepang yang pada September 1944 menjanjikan kemerdekaan bagi Indonesia adalah ...",["Hideki Tojo","Kuniaki Koiso","Kantaro Suzuki","Terauchi","Yamamoto"],1,"<b>Koiso</b>, melalui Janji Koiso, untuk menarik dukungan rakyat Indonesia."],
+["Rapat raksasa di Lapangan Ikada pada 19 September 1945 penting karena ...",["Membacakan ulang teks proklamasi","Menunjukkan dukungan rakyat kepada pemerintah RI yang baru","Membentuk TKR","Memilih presiden","Menolak kedatangan Sekutu dengan senjata"],1,"Rapat ini membuktikan <b>besarnya dukungan rakyat</b>. Soekarno berpidato singkat agar massa membubarkan diri dengan tertib."],
+["Tanggal 5 Oktober 1945 diperingati sebagai Hari TNI karena pada hari itu dibentuk ...",["BKR","TKR","PETA","TRI","Laskar rakyat"],1,"<b>Tentara Keamanan Rakyat (TKR)</b>. Sebelumnya ada BKR (22 Agustus 1945)."],
+["Perjanjian yang ditandatangani di atas kapal perang Amerika Serikat pada Januari 1948 adalah ...",["Linggarjati","Renville","Roem-Royen","KMB","New York"],1,"<b>Renville</b>. Delegasi Indonesia dipimpin Amir Sjarifuddin, dan wilayah RI makin sempit."],
+["Agresi Militer Belanda II yang menduduki Yogyakarta terjadi pada tanggal ...",["21 Juli 1947","17 Januari 1948","19 Desember 1948","1 Maret 1949","7 Mei 1949"],2,"<b>19 Desember 1948</b>. Pada hari yang sama dibentuk PDRI di Bukittinggi. Agresi I terjadi 21 Juli 1947."],
+["Komisi Tiga Negara (KTN) yang membantu menyelesaikan sengketa Indonesia–Belanda beranggotakan ...",["Australia, Belgia, Amerika Serikat","Inggris, India, Australia","Amerika Serikat, Inggris, Belanda","India, Pakistan, Mesir","Australia, India, Belgia"],0,"<b>Australia</b> (pilihan Indonesia), <b>Belgia</b> (pilihan Belanda), <b>Amerika Serikat</b> (penengah)."],
+["Perjanjian Roem-Royen (7 Mei 1949) menghasilkan kesepakatan bahwa ...",["Belanda mengakui kedaulatan RIS","Pemerintah RI dikembalikan ke Yogyakarta","Wilayah RI hanya Jawa dan Sumatra","Irian Barat diserahkan","Dibentuk negara federal"],1,"Salah satu isinya: <b>pemerintah RI dikembalikan ke Yogyakarta</b> dan kedua pihak menuju KMB."],
+["Pemilu pertama tahun 1955 diselenggarakan pada masa kabinet ...",["Ali Sastroamidjojo I","Burhanuddin Harahap","Natsir","Wilopo","Djuanda"],1,"Kabinet <b>Burhanuddin Harahap</b>, masa demokrasi liberal."],
+["Pidato Presiden Soekarno 17 Agustus 1959 yang kemudian dijadikan GBHN dikenal dengan sebutan ...",["Nawaksara","Manipol","Trikora","Dwikora","Jarek"],1,"<b>Manipol (Manifesto Politik)</b>, yang intinya dirumuskan sebagai USDEK."],
+["Berikut ini isi Trikora (19 Desember 1961), kecuali ...",["Gagalkan pembentukan negara boneka Papua buatan Belanda","Kibarkan Sang Merah Putih di Irian Barat","Bersiap untuk mobilisasi umum","Bentuk negara Papua yang merdeka","Ketiga isi tersebut dibacakan di Yogyakarta"],3,"Trikora justru menolak negara boneka Papua. Pilihan <b>membentuk negara Papua merdeka</b> berlawanan dengan isinya."],
+["Irian Barat resmi bergabung dengan Indonesia melalui ...",["KMB 1949","Perjanjian New York 1962 saja","Penentuan Pendapat Rakyat (Pepera) 1969","Dekrit Presiden 1959","Trikora 1961"],2,"Perjanjian New York 1962 mengatur prosesnya, lalu <b>Pepera 1969</b> memutuskan Irian Barat bergabung dengan Indonesia."],
+["Surat Perintah Sebelas Maret (Supersemar) dikeluarkan pada tahun ...",["1965","1966","1967","1968","1998"],1,"<b>11 Maret 1966</b>, dari Soekarno kepada Letjen Soeharto."],
+["Indonesia menyatakan keluar dari PBB pada tahun 1965 sebagai protes atas ...",["Agresi Belanda","Terpilihnya Malaysia sebagai anggota tidak tetap Dewan Keamanan PBB","Masalah Irian Barat","Perang Dingin","Embargo ekonomi"],1,"Terkait <b>konfrontasi dengan Malaysia</b>. Indonesia kembali menjadi anggota PBB pada 1966."],
+["Berikut ini tuntutan gerakan Reformasi 1998, kecuali ...",["Amandemen UUD 1945","Penghapusan dwifungsi ABRI","Pemberantasan KKN","Pemberian otonomi daerah yang luas","Mempertahankan dwifungsi ABRI"],4,"Reformasi justru menuntut <b>penghapusan</b> dwifungsi ABRI, bersama supremasi hukum dan otonomi daerah."],
+["Presiden yang menggantikan Soeharto pada Mei 1998 adalah ...",["Abdurrahman Wahid","B.J. Habibie","Megawati Soekarnoputri","Amien Rais","Try Sutrisno"],1,"<b>B.J. Habibie</b>. Pada masanya digelar jajak pendapat Timor Timur (1999) dan pemilu 1999."],
+["Perang Padri di Sumatra Barat dipimpin oleh ...",["Teuku Umar","Tuanku Imam Bonjol","Sultan Ageng Tirtayasa","Pangeran Antasari","Si Singamangaraja XII"],1,"<b>Tuanku Imam Bonjol</b> (1803–1838)."],
+["Organisasi-organisasi pemuda kedaerahan melebur menjadi satu organisasi pada tahun 1930 dengan nama ...",["Jong Indonesia","Indonesia Muda","Perhimpunan Indonesia","Pemuda Indonesia","Budi Utomo"],1,"<b>Indonesia Muda</b> (31 Desember 1930), wujud nyata semangat Sumpah Pemuda."]
+];
+ADD.silog=(ADD.silog||[]).concat([
+["Semua peserta seleksi wajib membawa KTP. Sebagian peserta seleksi berasal dari luar kota.<br>Kesimpulannya ...",["Semua yang membawa KTP berasal dari luar kota","Sebagian peserta dari luar kota tidak membawa KTP","Sebagian pembawa KTP berasal dari luar kota","Semua peserta berasal dari luar kota","Tidak dapat disimpulkan"],2,"Peserta dari luar kota pasti membawa KTP. Jadi <b>sebagian pembawa KTP berasal dari luar kota</b>."],
+["Tidak ada pegawai yang boleh merokok di dalam ruangan. Andi merokok di dalam ruangan.<br>Kesimpulannya ...",["Andi pegawai","Andi bukan pegawai","Andi mungkin pegawai","Andi melanggar aturan pegawai","Tidak dapat disimpulkan"],1,"Menurut premis, pegawai tidak merokok di ruangan. Andi merokok di ruangan, jadi menurut premis <b>Andi bukan pegawai</b>. Ingat: percaya penuh pada premis."],
+["Jika jalan tol macet, Rina terlambat. Jika Rina terlambat, rapat ditunda. Rapat tidak ditunda.<br>Kesimpulannya ...",["Jalan tol macet","Rina terlambat","Jalan tol tidak macet","Rapat dibatalkan","Rina datang lebih awal"],2,"Rantai: macet → terlambat → ditunda. Ujungnya tidak terjadi, jadi pangkalnya juga tidak: <b>jalan tol tidak macet</b>."],
+["Setiap atlet nasional rutin berlatih. Sebagian atlet nasional adalah pelajar.<br>Kesimpulan yang tepat ...",["Semua pelajar rutin berlatih","Sebagian pelajar rutin berlatih","Semua yang rutin berlatih adalah atlet nasional","Sebagian atlet nasional tidak rutin berlatih","Tidak ada pelajar yang berlatih"],1,"Pelajar yang atlet nasional pasti rutin berlatih → <b>sebagian pelajar rutin berlatih</b>."],
+["Pernyataan yang setara dengan 'Jika lulus SKD, maka ikut SKB' adalah ...",["Jika ikut SKB, maka lulus SKD","Jika tidak lulus SKD, maka tidak ikut SKB","Jika tidak ikut SKB, maka tidak lulus SKD","Lulus SKD dan tidak ikut SKB","Tidak lulus SKD dan ikut SKB"],2,"Setara = <b>kontraposisi</b>: balik dan ingkari keduanya → jika tidak ikut SKB, maka tidak lulus SKD."],
+["Ingkaran dari 'Semua kendaraan dinas berwarna hitam' adalah ...",["Semua kendaraan dinas tidak berwarna hitam","Tidak ada kendaraan dinas berwarna hitam","Ada kendaraan dinas yang tidak berwarna hitam","Beberapa kendaraan dinas berwarna hitam","Kendaraan dinas berwarna putih"],2,"Ingkaran 'semua' = <b>ada yang tidak</b>."],
+["Hanya pegawai tetap yang mendapat tunjangan kinerja. Sinta mendapat tunjangan kinerja.<br>Kesimpulannya ...",["Sinta pegawai kontrak","Sinta pegawai tetap","Sinta mungkin pegawai tetap","Semua pegawai tetap mendapat tunjangan","Tidak dapat disimpulkan"],1,"'Hanya' membalik arah: tunjangan → pegawai tetap. Sinta dapat tunjangan → <b>Sinta pegawai tetap</b>."],
+["Beberapa buku di rak itu berbahasa Inggris. Semua buku berbahasa Inggris bersampul tebal.<br>Kesimpulannya ...",["Semua buku di rak itu bersampul tebal","Beberapa buku di rak itu bersampul tebal","Semua buku bersampul tebal berbahasa Inggris","Tidak ada buku di rak itu yang bersampul tipis","Tidak dapat disimpulkan"],1,"Coret 'buku berbahasa Inggris' → <b>beberapa buku di rak itu bersampul tebal</b>."],
+["Ani atau Budi akan mewakili kantor. Budi sedang cuti sehingga tidak dapat mewakili.<br>Kesimpulannya ...",["Ani dan Budi tidak mewakili","Ani mewakili kantor","Budi tetap mewakili","Tidak ada yang mewakili","Tidak dapat disimpulkan"],1,"Disjungtif: salah satu pasti mewakili, Budi tidak → <b>Ani mewakili</b>."],
+["Semua sungai di daerah itu tercemar. Sebagian yang tercemar berbau tidak sedap.<br>Kesimpulannya ...",["Semua sungai di daerah itu berbau tidak sedap","Sebagian sungai di daerah itu berbau tidak sedap","Tidak ada sungai yang berbau","Semua yang berbau adalah sungai","Tidak dapat ditarik kesimpulan yang pasti"],4,"'Sebagian yang tercemar' bisa saja bukan sungai di daerah itu. Pola semua + sebagian di predikat → <b>tidak ada kesimpulan pasti</b>."]
+]);
+const CTX_RUANG="Enam pegawai, yaitu J, K, L, M, N, dan O, menempati enam ruangan berjajar bernomor 1 sampai 6. Diketahui:<ul><li>L menempati ruangan nomor 1 dan M menempati ruangan nomor 3.</li><li>O menempati ruangan bernomor genap yang lebih besar daripada nomor ruangan M, tetapi bukan ruangan paling ujung.</li><li>K menempati ruangan tepat di sebelah kanan J.</li><li>N tidak bersebelahan dengan O.</li></ul>";
+const CTX_TABUNG="Lima sahabat, yaitu Ana, Bela, Cici, Dina, dan Eva, memiliki jumlah tabungan yang berbeda. Diketahui:<ul><li>Tabungan Dina lebih banyak daripada gabungan tabungan Ana dan Bela.</li><li>Tabungan Ana lebih banyak daripada tabungan Bela.</li><li>Tabungan Eva paling sedikit.</li><li>Tabungan Cici lebih banyak daripada tabungan Dina.</li></ul>";
+ADD.analitis=(ADD.analitis||[]).concat([
+{ctx:CTX_RUANG,q:"Siapa yang menempati ruangan nomor 2?",o:["J","K","N","O","Tidak dapat ditentukan"],a:2,ex:"O genap, lebih dari 3, bukan ujung → <b>O di 4</b>. J–K berurutan di sisa ruangan {2, 5, 6} → harus (5, 6). Sisa ruangan 2 untuk N, dan N–O tidak bersebelahan ✓. Susunan: L N M O J K. Ruangan 2 = <b>N</b>."},
+{ctx:CTX_RUANG,q:"K menempati ruangan nomor ...",o:["2","4","5","6","Tidak dapat ditentukan"],a:3,ex:"Susunan akhirnya L(1) N(2) M(3) O(4) J(5) <b>K(6)</b>."},
+{ctx:CTX_RUANG,q:"Pernyataan berikut yang benar adalah ...",o:["O bersebelahan dengan M","N menempati ruangan nomor 5","J menempati ruangan paling ujung","L bersebelahan dengan M","K bersebelahan dengan O"],a:0,ex:"Dari susunan L N M O J K, <b>O (4) bersebelahan dengan M (3)</b>."},
+{ctx:CTX_TABUNG,q:"Siapa yang tabungannya paling banyak?",o:["Ana","Bela","Cici","Dina","Eva"],a:2,ex:"Dina > Ana + Bela, jadi Dina > Ana. Ana > Bela. Cici > Dina. Eva paling sedikit. Urutan: <b>Cici</b> > Dina > Ana > Bela > Eva."},
+{ctx:CTX_TABUNG,q:"Siapa yang tabungannya terbanyak keempat?",o:["Ana","Bela","Cici","Dina","Eva"],a:1,ex:"Urutan: Cici, Dina, Ana, <b>Bela</b>, Eva."},
+{ctx:CTX_TABUNG,q:"Pernyataan berikut yang pasti benar adalah ...",o:["Tabungan Ana lebih banyak daripada Dina","Tabungan Bela paling sedikit","Tabungan Dina lebih banyak daripada Ana","Tabungan Eva lebih banyak daripada Bela","Tabungan Ana sama dengan gabungan Bela dan Eva"],a:2,ex:"Dina lebih dari gabungan Ana dan Bela, jadi pasti <b>Dina lebih banyak daripada Ana</b>. Opsi E tidak bisa dipastikan dari data."}
+]);
+
+ADD.pelayanan=ADD.pelayanan.concat([
+["Saya sedang melayani seorang warga ketika datang tamu penting yang menurut atasan harus segera ditemui. Saya akan ...",["Tetap melayani warga sampai selesai, lalu menemui tamu","Meminta izin sopan kepada warga, menitipkan pelayanannya kepada rekan, lalu menemui tamu","Langsung meninggalkan warga untuk menemui tamu","Meminta tamu menunggu tanpa batas waktu","Meminta warga datang kembali besok"],[4,5,2,3,1],"Kedua kebutuhan terpenuhi: warga tetap terlayani lewat rekan, tamu penting segera ditemui. Meninggalkan warga begitu saja dinilai rendah."],
+["Seorang ibu meminta balitanya didahulukan di layanan kesehatan, padahal ada pasien gawat darurat yang sedang ditangani. Saya akan ...",["Menenangkan ibu dengan ramah, menjelaskan bahwa pasien gawat darurat didahulukan, dan memberi perkiraan waktu","Mendahulukan balita karena ibunya terus mendesak","Meminta ibu bersabar tanpa penjelasan","Mengarahkan ibu ke fasilitas kesehatan lain","Memastikan ibu tahu perkiraan waktu tunggunya"],[5,1,2,3,4],"Prioritas medis tetap dijaga, tetapi warga diberi penjelasan dan kepastian waktu."],
+["Kantor pelayanan saya ada di lantai 2, dan ada warga lansia yang tidak sanggup naik tangga. Saya akan ...",["Memintanya didampingi keluarga lain kali","Turun menemui warga tersebut dan melayaninya di lantai 1","Menjelaskan bahwa layanan hanya di lantai 2","Meminta satpam membantunya naik","Mengarahkannya ke kantor cabang lain"],[2,5,1,4,3],"Pelayanan prima mendatangi warga yang kesulitan. Bisa juga diusulkan agar ada loket di lantai 1 untuk ke depannya."],
+["Ada antrean panjang dan beberapa warga mulai protes karena satu loket tutup akibat petugasnya sakit. Saya akan ...",["Membiarkan karena bukan loket saya","Berkoordinasi dengan atasan agar ada petugas pengganti dan menginformasikan perkiraan waktu kepada warga","Melayani lebih cepat dengan melewatkan pemeriksaan berkas","Meminta warga datang lagi besok","Menginformasikan kepada warga bahwa petugasnya sakit"],[1,5,2,3,4],"Solusi sistem (petugas pengganti) ditambah komunikasi kepada warga = 5. Mengurangi pemeriksaan berkas itu berisiko."],
+["Seorang warga menyampaikan bahwa formulir online instansi sering gagal diunggah. Saya akan ...",["Memintanya mencoba lagi nanti","Mencatat kendala secara rinci, melaporkannya ke tim TI, dan membantu warga lewat jalur alternatif","Menyarankannya datang langsung ke kantor","Melaporkan kendala itu ke tim TI","Mengatakan bahwa sistem tidak bermasalah"],[2,5,3,4,1],"Masalah warga diselesaikan hari itu juga, dan akar masalahnya dilaporkan."]
+]);
+ADD.profesional=ADD.profesional.concat([
+["Atasan menugaskan saya membentuk tim teknologi informasi baru, padahal saya belum pernah memimpin tim. Saya akan ...",["Menolak karena belum berpengalaman","Menerima, memetakan kebutuhan dan kemampuan calon anggota, lalu menyusun rencana kerja","Menerima dan meminta atasan menentukan anggotanya","Menerima dan memilih teman dekat sebagai anggota","Menerima dan belajar sambil berjalan"],[1,5,3,2,4],"Tunjukkan kesiapan disertai perencanaan berdasarkan kebutuhan, bukan kedekatan."],
+["Seorang anggota tim saya melakukan kesalahan fatal yang merugikan proyek. Sebagai ketua tim, saya akan ...",["Memarahinya di depan tim","Mengambil tanggung jawab di depan atasan, memperbaiki dampaknya bersama tim, lalu mengevaluasi anggota tersebut secara pribadi","Melaporkan kesalahannya kepada atasan","Mengeluarkannya dari tim","Memperbaiki kesalahan itu sendiri"],[1,5,3,2,4],"Pemimpin ikut bertanggung jawab, fokus pada perbaikan, dan membina tanpa mempermalukan."],
+["Instansi saya sedang melakukan efisiensi anggaran dan tunjangan kegiatan dikurangi. Saya akan ...",["Mengurangi kinerja sesuai berkurangnya tunjangan","Tetap bekerja optimal dan mencari cara kerja yang lebih hemat","Mencari pekerjaan sampingan di jam kerja","Mengeluh kepada rekan","Tetap bekerja seperti biasa"],[2,5,1,3,4],"Profesional tidak bergantung pada insentif. Plusnya: ikut membantu efisiensi."],
+["Saya mendapat promosi jabatan, tetapi harus pindah ke kantor di daerah yang jauh dari keluarga. Saya akan ...",["Menolak promosi","Menerima dan menyiapkan kepindahan dengan matang bersama keluarga","Menerima tetapi meminta segera dipindah kembali","Menunda jawaban sampai batas waktu terakhir","Menerima dengan berat hati"],[1,5,2,3,4],"Siap ditempatkan di mana pun, disertai persiapan dan komunikasi dengan keluarga."],
+["Saya disiplin waktu, tetapi rapat di kantor sering dimulai terlambat karena menunggu peserta. Saya akan ...",["Ikut datang terlambat","Tetap datang tepat waktu dan mengusulkan agar rapat dimulai sesuai jadwal","Mengeluh di grup kantor","Tidak menghadiri rapat","Tetap datang tepat waktu"],[1,5,2,1,4].map((v,i)=>[1,5,2,3,4][i]),"Menjadi contoh <b>dan</b> mendorong perbaikan budaya kerja."]
+]);
+ADD.jejaring=ADD.jejaring.concat([
+["Rekan saya mencuri ide saya dan mempresentasikannya sebagai idenya di depan pimpinan. Saya akan ...",["Membalas dengan menjelekkan rekan itu","Membicarakannya secara pribadi dan baik-baik, serta lain kali mendokumentasikan ide sebelum dibagikan","Langsung memprotes di depan pimpinan","Diam dan tidak mau bekerja sama lagi","Menyampaikan kepada pimpinan bahwa ide itu milik saya"],[1,5,2,3,4],"Selesaikan secara dewasa dan cegah terulang lewat dokumentasi."],
+["Bagian kepegawaian kesulitan mengolah data pegawai, dan saya mahir mengolah data. Saya akan ...",["Membiarkan karena bukan tugas saya","Menawarkan bantuan atau pelatihan singkat setelah berkoordinasi dengan atasan","Membantu jika diminta","Menyindir ketidakmampuan mereka","Mengerjakan data mereka diam-diam"],[1,5,4,2,3],"Kolaborasi lintas unit yang tetap tertib prosedur."],
+["Saya menjadi ketua panitia acara kantor dan anggota tim berbeda pendapat soal konsep acara. Saya akan ...",["Memutuskan sendiri agar cepat","Menampung semua usulan, menilainya dengan tujuan acara, lalu memutuskan bersama","Mengikuti suara terbanyak","Menyerahkan keputusan kepada atasan","Menunda keputusan"],[2,5,4,3,1],"Musyawarah berbasis tujuan menghasilkan keputusan yang didukung tim."],
+["Saya baru masuk kerja dan merasa sulit akrab dengan rekan-rekan lama. Saya akan ...",["Menunggu mereka mendekati saya","Aktif menyapa, ikut kegiatan bersama, dan menawarkan bantuan","Fokus bekerja saja","Mencari teman di unit lain","Bersikap sopan seperlunya"],[1,5,3,2,4],"Membangun relasi secara proaktif."],
+["Unit lain meminta tim saya membantu acara besar di akhir pekan, padahal tim sedang lelah. Saya akan ...",["Menolak atas nama tim","Membicarakannya dengan tim, mengatur pembagian tugas bergiliran, lalu memberi jawaban","Menerima tanpa bertanya kepada tim","Menyerahkan keputusan kepada masing-masing anggota","Menerima sebagian permintaan"],[1,5,2,3,4],"Kolaboratif sekaligus memperhatikan kondisi tim."]
+]);
+ADD.sosbud=ADD.sosbud.concat([
+["Saat liburan di daerah wisata, teman-teman saya mencoret-coret dinding situs bersejarah sebagai kenang-kenangan. Saya akan ...",["Ikut mencoret agar kompak","Mengingatkan bahwa tindakan itu merusak cagar budaya dan mengajak mereka berhenti","Diam saja","Memotret mereka untuk dilaporkan","Menjauh dari mereka"],[1,5,2,4,3],"Menjaga warisan budaya dengan mengingatkan secara langsung."],
+["Lingkungan kerja saya kurang ramah bagi rekan perempuan, misalnya candaan yang merendahkan. Saya akan ...",["Ikut tertawa","Menegur candaan itu dan mengusulkan aturan kerja yang menghormati kesetaraan","Diam saja","Menasihati rekan perempuan untuk tidak terlalu sensitif","Menegur pelakunya secara pribadi"],[1,5,2,1,4].map((v,i)=>[1,5,3,2,4][i]),"Kepekaan gender: hentikan perilakunya dan perbaiki budaya kerjanya."],
+["Ada warga baru di desa tempat saya bertugas yang tidak bisa berbahasa daerah setempat. Saya akan ...",["Membiarkannya belajar sendiri","Membantunya berkomunikasi dan memperkenalkannya kepada warga","Berbicara dengan bahasa daerah saja","Menyarankannya bergaul dengan sesama pendatang","Membantunya jika ia meminta"],[1,5,2,3,4],"Merangkul dan menjembatani perbedaan bahasa."],
+["Saya ditugaskan menyusun acara yang melibatkan peserta dari berbagai agama. Saya akan ...",["Menyusun acara sesuai kebiasaan agama mayoritas","Memastikan jadwal, konsumsi, dan kegiatan menghormati keyakinan semua peserta","Menghapus semua unsur budaya agar netral","Menyerahkan kepada panitia lain","Bertanya kepada beberapa peserta tentang kebutuhannya"],[1,5,2,3,4],"Inklusif sejak perencanaan."],
+["Seorang teman mengajak saya melayat ke rumah tetangga berbeda agama, tetapi saya belum paham tata caranya. Saya akan ...",["Tidak ikut agar tidak salah","Ikut melayat sambil bertanya kepada teman tentang tata krama yang perlu dijaga","Ikut tetapi menunggu di luar","Mengirim pesan duka saja","Ikut dan mengikuti apa yang dilakukan orang lain"],[1,5,3,2,4],"Empati sosial: hadir dan berusaha menghormati tata cara keluarga yang berduka."]
+]);
+ADD.tik=ADD.tik.concat([
+["Saya diminta membeli lisensi perangkat lunak perkantoran baru, dan ada penjual yang menawarkan versi bajakan yang jauh lebih murah. Saya akan ...",["Membeli versi bajakan agar hemat anggaran","Membeli lisensi resmi sesuai prosedur pengadaan","Membeli versi bajakan sambil menunggu anggaran","Menunda pembelian","Bertanya kepada atasan versi mana yang dibeli"],[1,5,2,3,4],"Integritas dan kepatuhan hukum dalam pengadaan TIK."],
+["Grup keluarga sering membagikan informasi kesehatan yang belum jelas kebenarannya. Saya akan ...",["Ikut membagikan agar keluarga waspada","Mengecek sumbernya dan menyampaikan informasi yang benar dengan bahasa yang sopan","Keluar dari grup","Diam saja","Menegur pengirimnya di grup"],[1,5,2,3,4],"Literasi digital: verifikasi dan edukasi dengan santun."],
+["Kantor saya ingin membuat layanan pengaduan berbasis aplikasi, dan saya punya kemampuan membuat prototipe sederhana. Saya akan ...",["Diam karena bukan tugas saya","Menawarkan diri membuat prototipe dan menyusun rencana uji coba bersama tim","Membuatnya sendiri tanpa koordinasi","Menyarankan menyewa vendor saja","Memberi masukan saat rapat"],[1,5,3,2,4],"Inisiatif memanfaatkan kemampuan TIK untuk organisasi, tetap terkoordinasi."],
+["Saya menerima telepon dari orang yang mengaku petugas bank dan meminta kode OTP akun saya. Saya akan ...",["Memberikan kode karena ia tahu nama saya","Menolak, menutup telepon, dan menghubungi bank lewat nomor resmi","Memberikan sebagian kode","Menanyakan identitasnya lebih dulu","Menutup telepon"],[1,5,2,3,4],"OTP tidak boleh diberikan kepada siapa pun. Konfirmasi lewat jalur resmi."],
+["Rekan saya sering memakai komputer kantor untuk menyimpan film dan musik hingga memori penuh. Saya akan ...",["Membiarkan karena komputer miliknya","Mengingatkannya dengan baik dan mengusulkan aturan penggunaan perangkat kantor","Menghapus filenya tanpa izin","Melaporkannya kepada atasan","Ikut menyimpan file pribadi"],[2,5,3,4,1],"Ingatkan dan dorong aturan yang jelas."]
+]);
+ADD.antirad=ADD.antirad.concat([
+["Orang tua saya terpengaruh pesan berantai yang menyebut kelompok agama lain berbahaya. Saya akan ...",["Membenarkan agar tidak berdebat","Mengajak berbicara dengan tenang, menunjukkan sumber yang tepercaya, dan mengajak mengenal tetangga beragam","Memarahi orang tua","Menghapus pesan tanpa penjelasan","Mendiamkan"],[2,5,1,3,2].map((v,i)=>[2,5,1,4,3][i]),"Dialog yang hormat dan berbasis fakta di lingkungan keluarga."],
+["Sebuah akun media sosial mengajak masyarakat menolak hasil pemilu dengan cara kekerasan. Saya akan ...",["Membagikannya untuk diskusi","Melaporkan akun tersebut dan tidak ikut menyebarkan","Mengomentari dengan kemarahan","Mengikuti akun itu untuk memantau","Mengabaikannya"],[1,5,2,3,4],"Ajakan kekerasan harus dilaporkan, bukan dibesar-besarkan."],
+["Di kampus, ada kakak tingkat yang mengajak mahasiswa baru ke kajian tertutup dan melarang mereka bercerita kepada orang tua. Saya akan ...",["Ikut karena sungkan","Menolak, mengingatkan teman lain, dan melapor kepada pihak kampus","Ikut sekali saja","Menolak tanpa bercerita kepada siapa pun","Mencari tahu lewat teman yang ikut"],[1,5,2,4,3],"Kerahasiaan dari orang tua adalah tanda bahaya. Tolak dan laporkan."],
+["Saya diajak menjadi admin grup daring yang isinya menyebut pemerintah kafir dan halal diperangi. Saya akan ...",["Menerima untuk menjaga diskusi tetap sopan","Menolak, keluar dari grup, dan melaporkan grup tersebut","Menolak tetapi tetap menjadi anggota","Menerima sementara","Keluar dari grup"],[2,5,3,1,4],"Narasi takfiri dan ajakan perang harus ditolak dan dilaporkan."],
+["Remaja di lingkungan saya banyak yang menganggur dan mulai sering berkumpul dengan kelompok yang intoleran. Saya akan ...",["Melarang mereka berkumpul","Bersama pengurus RT mengadakan kegiatan positif seperti pelatihan kerja dan olahraga","Melaporkan semuanya ke polisi","Membiarkan","Menasihati mereka satu per satu"],[2,5,3,1,4],"Pencegahan terbaik adalah memberi ruang positif."]
+]);
+
 for(const [k,arr] of Object.entries(ADD)){P[k]=(P[k]||[]).concat(arr.map(x=>{if(!Array.isArray(x))return x;const q={q:x[0],o:x[1],ex:x[3]};if(Array.isArray(x[2]))q.p=x[2];else q.a=x[2];return q}))}
 /* ================= STRUKTUR UNIT ================= */
 const LV=['Dasar','Menengah','Sulit (HOTS)'];
@@ -1356,6 +1553,7 @@ const UNITS=[
   {k:'pancasila',lv:1,title:'Pancasila',sub:'Implementasi sila',pool:'pancasila'},
   {k:'uud',lv:1,title:'UUD 1945',sub:'Pasal & lembaga',pool:'uud'},
   {k:'sejarah',lv:1,title:'Sejarah',sub:'Pergerakan & proklamasi',pool:'sejarah'},
+  {k:'sejarah2',lv:2,extra:1,title:'Sejarah Lanjut',sub:'Kerajaan sampai Reformasi',pool:'sejarah2'},
   {k:'bahasa',lv:1,title:'Bahasa Negara',sub:'Kata baku & kalimat efektif',pool:'bahasa'},
   {k:'nasionalisme',lv:2,title:'Nasionalisme',sub:'Studi kasus',pool:'nasionalisme'},
   {k:'integritas',lv:2,title:'Integritas',sub:'Antikorupsi & BerAKHLAK',pool:'integritas'},
@@ -1364,12 +1562,14 @@ const UNITS=[
   {k:'hots',lv:3,title:'Kasus HOTS',sub:'Analisis berita',pool:'hotsTWK'}]},
  {id:'tiu',tag:'UNIT 2 · TIU',name:'Intelegensia Umum',desc:'Verbal, numerik, figural, analitis',exam:'35 soal',c:'tiu',lessons:[
   {k:'sinant',lv:1,title:'Sinonim & Antonim',sub:'Verbal',pool:'sinant'},
+  {k:'kosakata',lv:1,extra:1,title:'Kosakata Kilat',sub:'Bank sinonim & antonim',gen:()=>G.vocab()},
   {k:'analogi',lv:1,title:'Analogi Kata',sub:'Verbal',pool:'analogi'},
   {k:'deret1',lv:1,title:'Deret Dasar',sub:'Pola bilangan',gen:()=>G.deret(1)},
   {k:'hitung',lv:1,title:'Hitung Cepat',sub:'Persen, pecahan, desimal',gen:G.hitung},
   {k:'fig1',lv:1,title:'Figural Dasar',sub:'Rotasi & jumlah',gen:()=>Math.random()<.5?G.figRot(1):G.figCount()},
   {k:'silog',lv:2,title:'Silogisme',sub:'Penalaran logis',pool:'silog'},
   {k:'xy',lv:2,title:'Hubungan X dan Y',sub:'Perbandingan kuantitatif',gen:()=>G.xy(2)},
+  {k:'kilat',lv:2,extra:1,title:'Hitung Kilat',sub:'Trik ×25, ×11, kuadrat, digit',gen:()=>G.kilat()},
   {k:'aritsos',lv:2,title:'Aritmetika Sosial',sub:'Diskon, untung, perbandingan',gen:G.aritsos},
   {k:'deret2',lv:2,title:'Deret Lanjut',sub:'Bertingkat & 2 larik',gen:()=>G.deret(2)},
   {k:'fig2',lv:2,title:'Figural Analogi',sub:'Cermin, analogi, pergeseran',gen:()=>pick([G.figOdd,G.figAna,G.figCells,()=>G.figRot(2)])()},
@@ -1405,7 +1605,7 @@ function regen(){if(S.hearts>=MAXH){S.hts=Date.now();return}
  const n=Math.floor((Date.now()-S.hts)/HEART_MS);if(n>0){S.hearts=Math.min(MAXH,S.hearts+n);S.hts+=n*HEART_MS;if(S.hearts>=MAXH)S.hts=Date.now();save()}}
 function streak(){let n=0,d=new Date();if(!S.met[dk(d)])d.setDate(d.getDate()-1);while(S.met[dk(d)]){n++;d.setDate(d.getDate()-1)}return n}
 const lid=(U,L)=>U.id+'-'+L.k;
-function lvOpen(U,lv){if(lv===1)return true;return U.lessons.filter(L=>L.lv===lv-1).every(L=>S.done[lid(U,L)])}
+function lvOpen(U,lv){if(lv===1)return true;return U.lessons.filter(L=>L.lv===lv-1&&!L.extra).every(L=>S.done[lid(U,L)])}
 function curNode(){for(const U of UNITS)for(const L of U.lessons){if(lvOpen(U,L.lv)&&!S.done[lid(U,L)])return lid(U,L)}return null}
 const totalDone=()=>UNITS.reduce((a,U)=>a+U.lessons.filter(L=>S.done[lid(U,L)]).length,0);
 const totalLessons=UNITS.reduce((a,U)=>a+U.lessons.length,0);
@@ -1497,6 +1697,7 @@ function home(){onCat=false;scrReset();
   <button class="quick" id="bQuick"><span class="qi">${I.dice}</span><span><b>Latihan Cepat</b><small>10 soal acak dari semua materi yang sudah terbuka. Soal numerik dan figural selalu baru.</small></span></button>
   ${toCardHTML()}
   ${materiCardHTML()}
+  ${achCardHTML()}
   <div class="prog-all"><span>Progres materi</span><span class="tnum">${totalDone()}/${totalLessons} pelajaran</span><div class="track"><i style="width:${totalDone()/totalLessons*100}%"></i></div></div>
   <div class="info">${I.info}<div><strong>Format SKD (acuan seleksi 2024)</strong>: 110 soal dalam 100 menit.
    <table><tr><td>TWK</td><td>30 soal</td><td>ambang 65</td></tr><tr><td>TIU</td><td>35 soal</td><td>ambang 80</td></tr><tr><td>TKP</td><td>45 soal</td><td>ambang 166</td></tr></table>
@@ -1506,7 +1707,7 @@ function home(){onCat=false;scrReset();
  requestAnimationFrame(()=>{const r=document.getElementById('ringVal');if(r)r.style.strokeDashoffset=C*(1-pct)});
  app.querySelectorAll('.node').forEach(b=>b.onclick=()=>{const U=UNITS[+b.dataset.u],L=U.lessons.find(l=>l.k===b.dataset.k);
   if(!lvOpen(U,L.lv)){sfx.tap();toast(`Selesaikan semua pelajaran Level ${L.lv-1} dulu ya`);return}startLesson(U,L)});
- document.getElementById('bQuick').onclick=startQuick;bindTO();document.getElementById('bMateri').onclick=()=>{MV.q='';showMateri();window.scrollTo(0,0)};bind()}
+ document.getElementById('bQuick').onclick=startQuick;bindTO();document.getElementById('bAch').onclick=()=>{showAch();window.scrollTo(0,0)};document.getElementById('bMateri').onclick=()=>{MV.q='';showMateri();window.scrollTo(0,0)};bind()}
 function bind(){const g=id=>document.getElementById(id);
  g('bGoal')&&(g('bGoal').onclick=()=>goalModal());
  g('bSound').onclick=()=>{S.sound=!S.sound;save();g('bSound').innerHTML=S.sound?I.sound:I.mute;sfx.tap()};
@@ -1557,7 +1758,7 @@ function check(){if(LS.sel==null||LS.checked)return;LS.checked=true;scrClose(tru
  document.querySelectorAll('.opt').forEach(b=>{const k=+b.dataset.k;b.disabled=true;b.classList.remove('sel');if(k===best)b.classList.add('right');else if(k===LS.sel)b.classList.add('wrong');
   if(tkp)b.insertAdjacentHTML('beforeend',`<span class="pts tnum">${q.p[k]} poin</span>`)});
  const comboEl=document.getElementById('combo');
- if(res==='good'){sfx.good();LS.combo++;if(!item.retry)LS.firstRight++;if(LS.combo>=3){comboEl.textContent=`${LS.combo} benar beruntun!`;comboEl.classList.remove('on');void comboEl.offsetWidth;comboEl.classList.add('on')}}
+ if(res==='good'){sfx.good();LS.combo++;stt().maxCombo=Math.max(stt().maxCombo||0,LS.combo);if(!item.retry)LS.firstRight++;if(LS.combo>=3){comboEl.textContent=`${LS.combo} benar beruntun!`;comboEl.classList.remove('on');void comboEl.offsetWidth;comboEl.classList.add('on')}}
  else{LS.combo=0;comboEl.classList.remove('on');
   if(res==='bad'){sfx.bad();if(!item.retry)LS.items.push({q,retry:true})}
   else{sfx.good();if(!item.retry)LS.firstRight+=.5}}
@@ -1578,7 +1779,8 @@ function finish(){const secs=Math.round((Date.now()-LS.t0)/1000),acc=Math.round(
  const before=todayXP(),g=S.goal||20;S.xp+=gain;S.days[today()]=before+gain;
  let unlockMsg='';if(LS.id){const [uid,k]=LS.id.split('-');const U=UNITS.find(x=>x.id===uid),L=U.lessons.find(x=>x.k===k);const wasOpen=L.lv<3&&lvOpen(U,L.lv+1);S.done[LS.id]=(S.done[LS.id]||0)+1;
   if(L.lv<3&&!wasOpen&&lvOpen(U,L.lv+1))unlockMsg=`Level ${L.lv+1} ${U.id.toUpperCase()} terbuka!`}
- const justMet=before<g&&before+gain>=g;if(before+gain>=g)S.met[today()]=1;save();
+ stt().lessons=(stt().lessons||0)+1;if(perfect)stt().perfect=(stt().perfect||0)+1;
+ const justMet=before<g&&before+gain>=g;if(before+gain>=g)S.met[today()]=1;save();achCheck();
  const st=streak(),again=LS.id?LS.id:null;const meta={lv:LS.lv};LS=null;sfx.win();
  app.innerHTML=`<main class="res screen">${kepo(120,'happy')}
  <h1>${perfect?'Sempurna!':'Pelajaran selesai!'}</h1><p class="sub">${perfect?'Semua benar di percobaan pertama.':'Soal yang salah sudah kamu ulang. Makin paham!'}</p>
@@ -1811,6 +2013,26 @@ MATERI.twk=[
 <li>Astagatra = Trigatra (geografi, kekayaan alam, penduduk) + Pancagatra (ideologi, politik, ekonomi, sosbud, hankam).</li>
 <li>Politik luar negeri <b>bebas aktif</b>.</li></ul>
 <div class="trik"><b>Trik cepat</b>Kalau opsi menyebut "angkat senjata" untuk warga sipil biasa, itu hampir pasti bukan jawaban terbaik. Bela negara di soal CPNS lebih sering non-fisik dan sesuai profesi.</div>`},
+{id:'sejarah2',t:'Sejarah Nasional: Kerajaan sampai Reformasi',lesson:'sejarah2',kisi:'Mengenal kerajaan Hindu-Buddha dan Islam, masa kolonial, pendudukan Jepang, revolusi fisik, serta Orde Lama, Orde Baru, dan Reformasi.',body:`
+<h4>Kerajaan</h4>
+<ul><li><b>Hindu-Buddha</b>: Kutai (tertua, prasasti Yupa), Tarumanegara, Sriwijaya (prasasti Kedukan Bukit), Mataram Kuno (Borobudur dan Prambanan), Singasari, Majapahit (Gajah Mada, Sumpah Palapa; Negarakertagama karya Mpu Prapanca, Sutasoma karya Mpu Tantular).</li>
+<li><b>Islam</b>: Samudra Pasai (pertama), Demak (pertama di Jawa), Banten, Mataram Islam, Gowa-Tallo, Ternate-Tidore.</li>
+<li>Candi Buddha: Borobudur, Mendut, Pawon, Muara Takus. Candi Hindu: Prambanan, Dieng.</li></ul>
+<h4>Masa kolonial</h4>
+<div class="tw"><table><tr><th>Tokoh/lembaga</th><th>Kebijakan</th></tr>
+<tr><td>VOC (1602–1799)</td><td>Monopoli dagang; bubar 31 Des 1799 karena korupsi dan utang</td></tr>
+<tr><td>Daendels (1808–1811)</td><td>Jalan Raya Pos Anyer–Panarukan, kerja rodi</td></tr>
+<tr><td>Raffles (1811–1816)</td><td>Sistem sewa tanah (landrent)</td></tr>
+<tr><td>Van den Bosch (1830)</td><td>Tanam Paksa (cultuurstelsel)</td></tr>
+<tr><td>Van Deventer (1901)</td><td>Politik Etis: irigasi, edukasi, emigrasi</td></tr></table></div>
+<p>Perlawanan: Perang Padri (Imam Bonjol), Perang Jawa 1825–1830 (Diponegoro), Aceh (Teuku Umar, Cut Nyak Dien), Pattimura, Hasanuddin.</p>
+<h4>Pendudukan Jepang (1942–1945)</h4>
+<ul><li>Belanda menyerah di Kalijati, 8 Maret 1942.</li><li>Propaganda Gerakan Tiga A; organisasi PETA, Heiho, Seinendan, Keibodan; kerja paksa Romusha.</li><li>Pemberontakan PETA Blitar (Supriyadi, 1945). Janji kemerdekaan PM Koiso (1944).</li></ul>
+<h4>Revolusi fisik (1945–1949)</h4>
+<p>BKR → TKR (5 Okt 1945, Hari TNI) · Pertempuran Surabaya (Mallaby tewas) · Linggarjati → Agresi Militer I (21 Jul 1947) → KTN (Australia, Belgia, AS) → Renville (Jan 1948) → Agresi Militer II (19 Des 1948) dan PDRI → Serangan Umum 1 Maret 1949 → Roem-Royen (7 Mei 1949) → KMB → pengakuan kedaulatan 27 Des 1949.</p>
+<h4>Orde Lama, Orde Baru, Reformasi</h4>
+<ul><li>Demokrasi liberal: pemilu pertama 1955 (Kabinet Burhanuddin Harahap).</li><li>Demokrasi Terpimpin (1959–1965): Dekrit 5 Juli 1959, Manipol-USDEK, Trikora 1961, Dwikora 1964, keluar dari PBB 1965.</li><li>Orde Baru: Supersemar 1966, Pepera Irian Barat 1969.</li><li>Reformasi: Soeharto mundur 21 Mei 1998, B.J. Habibie presiden; tuntutan amandemen UUD, hapus dwifungsi ABRI, berantas KKN, otonomi daerah.</li></ul>
+<div class="trik"><b>Trik cepat</b>Hafalkan perjanjian revolusi dengan urutan <b>L-R-R-K</b>: Linggarjati, Renville, Roem-Royen, KMB. Wilayah RI makin sempit di Linggarjati dan Renville, lalu pulih setelah Roem-Royen dan KMB.</div>`},
 {id:'gagasan',t:'Bahasa: Gagasan Utama & Paragraf',lesson:'bahasa',kisi:'Menentukan gagasan utama, kalimat utama, simpulan, dan jenis paragraf dari bacaan pendek.',body:`
 <h4>Intinya</h4>
 <p>Gagasan utama adalah <b>ide yang memayungi semua kalimat</b> dalam paragraf. Kalimat lain hanya contoh, alasan, atau rincian.</p>
@@ -2251,10 +2473,126 @@ figural9:CSG(G.figNine(),'contoh berganti tiap dibuka')
 };
 MATERI.tiu.forEach(t=>{if(TIU_EX[t.id])t.body+=`<h4>Contoh soal dan pembahasan</h4>`+TIU_EX[t.id]});
 
+/* ===== Materi: Cara Cepat TIU ===== */
+MATERI.cepat=[
+{id:'c-strategi',u:'tiu',t:'Strategi Waktu & Urutan',lesson:null,kisi:'SKD berisi 110 soal dalam 100 menit, tanpa nilai minus. Cara membagi waktu menentukan berapa soal TIU yang sempat kamu kerjakan.',body:`
+<h4>Anggaran waktu yang disarankan</h4>
+<div class="tw"><table><tr><th>Subtes</th><th>Soal</th><th>Target waktu</th><th>Per soal</th></tr>
+<tr><td>TKP</td><td>45</td><td>25–30 menit</td><td>±35 detik</td></tr>
+<tr><td>TWK</td><td>30</td><td>20–25 menit</td><td>±45 detik</td></tr>
+<tr><td>TIU</td><td>35</td><td>40–50 menit</td><td>±75 detik</td></tr>
+<tr><td>Cek ulang</td><td>-</td><td>5 menit</td><td>soal ragu-ragu</td></tr></table></div>
+<h4>Aturan main di ruang CAT</h4>
+<ul><li><b>Tidak ada nilai minus.</b> Jangan pernah meninggalkan soal kosong. Sisa 1 menit? Isi semua yang kosong.</li>
+<li><b>Aturan 90 detik.</b> Kalau satu soal TIU belum ketemu jalannya dalam 90 detik, tandai ragu-ragu, tebak sementara, lalu lompat.</li>
+<li><b>Ambil yang cepat dulu</b> di TIU: sinonim, antonim, analogi, deret, hitung cepat. Simpan soal cerita panjang, analitis, dan tabel untuk putaran kedua.</li>
+<li>Banyak peserta mulai dari TKP atau TWK agar ambang batas aman lebih dulu, lalu mencurahkan sisa waktu ke TIU. Coba keduanya di Try Out Kepo, lalu pakai urutan yang hasilnya terbaik untukmu.</li></ul>
+<div class="trik"><b>Trik cepat</b>Di TIU, jangan menghitung sampai tuntas kalau opsi jawabannya sudah bisa dibedakan dari digit terakhir atau perkiraan. Lihat topik "Main dari Opsi".</div>`},
+{id:'c-opsi',u:'tiu',t:'Main dari Opsi: Eliminasi & Substitusi',lesson:'hitung',kisi:'Memanfaatkan pilihan jawaban untuk menemukan jawaban tanpa menghitung penuh: cek digit terakhir, perkiraan, kelipatan, dan memasukkan opsi ke soal.',body:`
+<h4>Empat jurus</h4>
+<ol><li><b>Digit terakhir</b>: hitung angka satuannya saja, lalu coret opsi yang angka satuannya beda.</li>
+<li><b>Perkiraan (estimasi)</b>: bulatkan angka, misalnya 0,249 × 803 ≈ ¼ × 800 = 200. Pilih opsi terdekat.</li>
+<li><b>Kelipatan</b>: kalau hasil pasti genap atau habis dibagi 3, 5, atau 9, coret opsi yang tidak memenuhi. Cek habis dibagi 3 atau 9: jumlahkan digitnya.</li>
+<li><b>Substitusi</b>: untuk soal persamaan, masukkan opsi satu per satu ke soal. Mulai dari opsi tengah supaya tahu harus naik atau turun.</li></ol>
+${CS('(3.456 + 2.789) × 5 = ...',['31.225','31.220','30.228','31.234','32.226'],0,'<p>Jangan hitung penuh. Digit satuan: 6 + 9 = 15 → 5, lalu 5 × 5 = 25 → <b>5</b>. Hanya satu opsi yang berakhiran 5.</p>',{keep:true,tag:'digit terakhir'})}
+${CS('Sebuah bilangan dikali 3, lalu dikurangi 7, hasilnya 41. Bilangan tersebut adalah ...',['12','14','16','18','20'],2,'<p>Coba opsi tengah (16): 16 × 3 − 7 = 48 − 7 = <b>41</b> ✓. Kalau hasilnya terlalu kecil, naik ke opsi berikutnya; kalau terlalu besar, turun.</p>',{keep:true,tag:'substitusi'})}`},
+{id:'c-kali',u:'tiu',t:'Perkalian & Pembagian Kilat',lesson:'kilat',kisi:'Trik menghitung perkalian besar tanpa coret-coret panjang.',body:`
+<div class="tw"><table><tr><th>Bentuk</th><th>Trik</th><th>Contoh</th></tr>
+<tr><td>× 5</td><td>× 10, lalu : 2</td><td>86 × 5 = 860 : 2 = 430</td></tr>
+<tr><td>× 25</td><td>× 100, lalu : 4</td><td>48 × 25 = 4.800 : 4 = 1.200</td></tr>
+<tr><td>× 125</td><td>× 1.000, lalu : 8</td><td>64 × 125 = 64.000 : 8 = 8.000</td></tr>
+<tr><td>: 5</td><td>× 2, lalu : 10</td><td>235 : 5 = 470 : 10 = 47</td></tr>
+<tr><td>× 11 (2 digit)</td><td>Sisipkan jumlah kedua digit di tengah</td><td>34 × 11 = 3(3+4)4 = 374</td></tr>
+<tr><td>Kuadrat akhiran 5</td><td>puluhan × (puluhan + 1), tempel 25</td><td>65² → 6 × 7 = 42 → 4.225</td></tr>
+<tr><td>Dekat 100</td><td>(100 − a)(100 − b) = [100 − a − b] lalu tempel a × b (2 digit)</td><td>97 × 96 → 93 | 12 → 9.312</td></tr>
+<tr><td>Selisih kuadrat</td><td>(a + b)(a − b) = a² − b²</td><td>53 × 47 = 50² − 3² = 2.491</td></tr></table></div>
+<div class="awas"><b>Awas</b>Trik × 11 kalau jumlah digitnya ≥ 10, simpan 1 ke depan: 78 × 11 → 7(15)8 → 858.</div>
+${CS('48 × 25 = ...',['1.150','1.200','1.250','1.020','1.120'],1,'<p>× 25 sama dengan × 100 lalu : 4. 4.800 : 4 = <b>1.200</b>.</p>',{keep:true})}
+${CS('97 × 96 = ...',['9.312','9.216','9.412','9.302','9.112'],0,'<p>97 kurang 3 dari 100, 96 kurang 4. Bagian depan: 100 − 3 − 4 = 93. Bagian belakang: 3 × 4 = 12. Gabungkan: <b>9.312</b>.</p>',{keep:true})}`},
+{id:'c-persen',u:'tiu',t:'Persen & Pecahan Kilat',lesson:'hitung',kisi:'Mengubah persen menjadi pecahan, menukar urutan persen, dan menghitung kenaikan atau penurunan berantai dengan pengali.',body:`
+<ul><li>Hafalkan pecahan sakti: 12,5% = 1/8, 37,5% = 3/8, 62,5% = 5/8, 87,5% = 7/8, 16⅔% = 1/6, 33⅓% = 1/3, 66⅔% = 2/3.</li>
+<li><b>a% dari b = b% dari a.</b> 36% dari 25 lebih mudah dihitung sebagai 25% dari 36 = 9.</li>
+<li><b>Ubah ke pengali.</b> Naik 15% = × 1,15; turun 20% = × 0,8. Perubahan berantai tinggal dikalikan.</li>
+<li>Naik x% lalu turun x% <b>selalu</b> lebih kecil dari semula: hasilnya turun x²/100 %.</li></ul>
+${CS('36% dari 25 adalah ...',['8','9','9,5','10','12'],1,'<p>Tukar posisinya: 25% dari 36 = ¼ × 36 = <b>9</b>.</p>',{keep:true})}
+${CS('Harga sebuah barang naik 20%, lalu turun 20%. Dibanding harga awal, harga akhirnya ...',['Sama','Naik 4%','Turun 4%','Turun 2%','Naik 2%'],2,'<p>Pengali: 1,2 × 0,8 = 0,96, berarti <b>turun 4%</b>. Rumus kilat: x²/100 = 20²/100 = 4%.</p>',{keep:true})}`},
+{id:'c-digit',u:'tiu',t:'Digit Satuan Bilangan Pangkat',lesson:'kilat',kisi:'Menentukan angka satuan dari bilangan berpangkat besar dengan pola berulang.',body:`
+<div class="tw"><table><tr><th>Angka satuan</th><th>Pola pangkat 1, 2, 3, 4, ...</th><th>Siklus</th></tr>
+<tr><td>0, 1, 5, 6</td><td>tetap</td><td>1</td></tr>
+<tr><td>4</td><td>4, 6, 4, 6</td><td>2</td></tr><tr><td>9</td><td>9, 1, 9, 1</td><td>2</td></tr>
+<tr><td>2</td><td>2, 4, 8, 6</td><td>4</td></tr><tr><td>3</td><td>3, 9, 7, 1</td><td>4</td></tr>
+<tr><td>7</td><td>7, 9, 3, 1</td><td>4</td></tr><tr><td>8</td><td>8, 4, 2, 6</td><td>4</td></tr></table></div>
+<p>Caranya: bagi pangkat dengan panjang siklus, lihat <b>sisanya</b>. Sisa 0 berarti ambil anggota terakhir siklus.</p>
+${CS('Angka satuan dari 7<sup>23</sup> adalah ...',['1','3','5','7','9'],1,'<p>Siklus 7: 7, 9, 3, 1 (panjang 4). 23 : 4 = 5 sisa <b>3</b> → anggota ke-3 = <b>3</b>.</p>',{keep:true})}`},
+{id:'c-deret',u:'tiu',t:'Deret dalam 20 Detik',lesson:'deret2',kisi:'Urutan pengecekan pola agar deret angka dan huruf cepat terpecahkan.',body:`
+<ol><li>Naik pelan → cek <b>selisih</b>. Selisihnya berpola? → deret bertingkat.</li>
+<li>Naik cepat → cek <b>kali</b> (×2, ×3) atau kuadrat/pangkat tiga.</li>
+<li>Naik-turun → <b>dua larik</b> (ganjil-genap). Ditanya dua angka → hampir pasti dua larik.</li>
+<li>Suku = jumlah dua suku sebelumnya → <b>Fibonacci</b>.</li>
+<li>Pola bergantian (+3, ×2, +3, ×2).</li></ol>
+<p><b>Deret huruf</b>: hafalkan patokan <b>A=1, E=5, J=10, O=15, T=20, Y=25</b> ("AEJOT-Y"). Huruf lain tinggal dihitung dari patokan terdekat.</p>
+${CS('A, E, I, M, Q, ...',['T','U','V','R','W'],1,'<p>A=1, E=5, I=9, M=13, Q=17 → selalu +4. Berikutnya 21. Dari patokan T=20, maju satu → <b>U</b>.</p>',{keep:true})}
+${CS('2, 6, 12, 20, 30, ...',['40','42','44','36','48'],1,'<p>Selisihnya 4, 6, 8, 10 → berikutnya 12. 30 + 12 = <b>42</b>. Pola lain: 1×2, 2×3, 3×4, 4×5, 5×6, jadi berikutnya 6×7 = 42.</p>',{keep:true})}`},
+{id:'c-perb',u:'tiu',t:'Perbandingan & Pekerjaan Kilat',lesson:'aritsos',kisi:'Rumus cepat untuk perbandingan berbalik nilai, tambahan pekerja, dan pekerjaan atau keran yang bekerja bersama.',body:`
+<p class="rumus">Berbalik nilai: orang₁ × hari₁ = orang₂ × hari₂<br>Kerja bersama dua pihak: (a × b) / (a + b)</p>
+<ul><li><b>Tambahan pekerja di tengah proyek</b>: hitung <b>sisa pekerjaan</b> (orang × sisa hari), bagi dengan sisa waktu yang baru, lalu kurangi jumlah pekerja awal.</li>
+<li><b>Keran mengisi dan membuang</b>: kecepatan bersih = 1/isi − 1/buang.</li></ul>
+${CS('Sebuah proyek dikerjakan 20 orang dan dijadwalkan selesai 30 hari. Setelah berjalan 10 hari, proyek diminta selesai 10 hari lebih cepat. Tambahan pekerja yang dibutuhkan adalah ...',['10 orang','15 orang','20 orang','25 orang','40 orang'],2,'<p>Sisa pekerjaan = 20 orang × 20 hari = 400 orang-hari. Sisa waktu baru = 20 − 10 = 10 hari. Butuh 400 : 10 = 40 orang. Tambahan = 40 − 20 = <b>20 orang</b>.</p>',{keep:true})}
+${CS('Keran A dapat mengisi bak dalam 6 jam, keran B dalam 3 jam. Jika keduanya dibuka bersamaan, bak penuh dalam ...',['1,5 jam','2 jam','2,5 jam','4,5 jam','9 jam'],1,'<p>(6 × 3) : (6 + 3) = 18 : 9 = <b>2 jam</b>.</p>',{keep:true})}`},
+{id:'c-gerak',u:'tiu',t:'Kecepatan Kilat',lesson:'cerita',kisi:'Rumus cepat berpapasan, menyusul, dan kecepatan rata-rata pergi-pulang.',body:`
+<p class="rumus">Berpapasan: waktu = jarak / (v₁ + v₂)<br>Menyusul: waktu = jarak selisih / (v₂ − v₁)<br>Pergi-pulang jarak sama: v rata-rata = 2·v₁·v₂ / (v₁ + v₂)</p>
+<div class="awas"><b>Awas jebakan</b>Kecepatan rata-rata pergi-pulang <b>bukan</b> (v₁ + v₂)/2. Hasilnya selalu sedikit lebih kecil dari rata-rata biasa.</div>
+${CS('Andi pergi ke kantor dengan kecepatan 60 km/jam dan pulang lewat jalan yang sama dengan kecepatan 40 km/jam. Kecepatan rata-rata perjalanan pergi-pulang adalah ...',['45 km/jam','48 km/jam','50 km/jam','52 km/jam','46 km/jam'],1,'<p>2 × 60 × 40 : (60 + 40) = 4.800 : 100 = <b>48 km/jam</b>. Opsi 50 km/jam adalah jebakan rata-rata biasa.</p>',{keep:true})}`},
+{id:'c-untung',u:'tiu',t:'Untung-Rugi & Diskon Kilat',lesson:'aritsos',kisi:'Mencari harga beli dari harga jual, persen untung, dan diskon berantai tanpa menghitung bertahap panjang.',body:`
+<p class="rumus">Harga beli = harga jual × 100 / (100 + %untung)<br>Harga beli = harga jual × 100 / (100 − %rugi)<br>Diskon berantai a% lalu b%: total = a + b − (a × b)/100</p>
+${CS('Sebuah barang dijual Rp360.000 dengan keuntungan 20%. Harga belinya adalah ...',['Rp288.000','Rp300.000','Rp320.000','Rp340.000','Rp432.000'],1,'<p>360.000 × 100/120 = <b>Rp300.000</b>. Jebakan: 360.000 × 80% = 288.000, padahal 20% dihitung dari harga beli, bukan harga jual.</p>',{keep:true})}
+${CS('Toko memberi diskon 30%, lalu diskon tambahan 20%. Besar diskon totalnya setara dengan ...',['50%','44%','46%','40%','56%'],1,'<p>30 + 20 − (30 × 20)/100 = 50 − 6 = <b>44%</b>.</p>',{keep:true})}`},
+{id:'c-rata',u:'tiu',t:'Rata-rata Kilat',lesson:'cerita',kisi:'Menghitung rata-rata dengan angka patokan dan mencari nilai yang masuk atau keluar dari kelompok.',body:`
+<ul><li><b>Pakai patokan</b>: pilih angka bulat di tengah data, hitung selisih tiap data, lalu rata-ratakan selisihnya.</li>
+<li><b>Data masuk/keluar</b>: nilai = rata-rata baru ± (perubahan rata-rata × banyak data yang terdampak).</li></ul>
+${CS('Rata-rata dari 78, 82, 80, 84, dan 76 adalah ...',['78','79','80','81','82'],2,'<p>Patokan 80. Selisihnya: −2, +2, 0, +4, −4. Jumlahnya 0, jadi rata-ratanya tepat <b>80</b>.</p>',{keep:true})}
+${CS('Rata-rata nilai 5 siswa adalah 70. Setelah satu siswa keluar, rata-rata 4 siswa sisanya menjadi 72. Nilai siswa yang keluar adalah ...',['60','62','64','66','68'],1,'<p>Cara biasa: 5 × 70 − 4 × 72 = 350 − 288 = 62. Cara kilat: 4 siswa naik 2 poin = 8 poin; jadi yang keluar 8 di bawah rata-rata awal: 70 − 8 = <b>62</b>.</p>',{keep:true})}`},
+{id:'c-logika',u:'tiu',t:'Silogisme & Analitis Kilat',lesson:'silog',kisi:'Mencoret kata penghubung untuk menarik kesimpulan cepat, serta mengeliminasi opsi pada soal analitis.',body:`
+<h4>Jurus coret kata tengah</h4>
+<p>Cari kata yang muncul di kedua premis, coret, lalu sambungkan sisanya. Kata "semua", "sebagian", "tidak" ikut dibawa.</p>
+<div class="tw"><table><tr><th>Premis 1</th><th>Premis 2</th><th>Kesimpulan</th></tr>
+<tr><td>Semua A adalah B</td><td>Semua B adalah C</td><td>Semua A adalah C</td></tr>
+<tr><td>Semua A adalah B</td><td>Tidak ada B yang C</td><td>Tidak ada A yang C</td></tr>
+<tr><td>Sebagian A adalah B</td><td>Semua B adalah C</td><td>Sebagian A adalah C</td></tr>
+<tr><td>Sebagian A adalah B</td><td>Tidak ada B yang C</td><td>Sebagian A bukan C</td></tr>
+<tr><td>Semua A adalah B</td><td>Sebagian B adalah C</td><td>Tidak ada kesimpulan pasti</td></tr></table></div>
+${CS('Beberapa mahasiswa menjadi guru les. Tidak ada guru les yang menjadi penyanyi.<br>Kesimpulannya ...',['Semua mahasiswa bukan penyanyi','Beberapa mahasiswa bukan penyanyi','Beberapa penyanyi adalah mahasiswa','Semua guru les adalah mahasiswa','Tidak dapat disimpulkan'],1,'<p>Coret "guru les" yang muncul di kedua premis. Sisa: beberapa mahasiswa ... tidak menjadi penyanyi → <b>beberapa mahasiswa bukan penyanyi</b>.</p>',{keep:true})}
+<h4>Analitis: cek dari opsi</h4>
+<p>Untuk soal "susunan yang mungkin", tidak perlu menyusun sendiri. Uji satu syarat ke semua opsi, coret yang melanggar, lalu lanjut ke syarat berikutnya.</p>
+${CS('Lima buku P, Q, R, S, dan T disusun berjajar. P harus bersebelahan dengan Q, dan S harus bersebelahan dengan T. Susunan yang memenuhi adalah ...',['P, R, Q, S, T','S, P, T, Q, R','R, Q, P, T, S','Q, S, P, T, R','T, P, S, Q, R'],2,'<p>Uji syarat "P bersebelahan Q": hanya opsi C (Q, P) yang lolos. Syarat kedua (T, S bersebelahan) juga terpenuhi. Jawabannya <b>R, Q, P, T, S</b>.</p>',{keep:true})}`},
+{id:'c-verbal',u:'tiu',t:'Verbal Kilat',lesson:'kosakata',kisi:'Menebak arti kata sulit dari imbuhan asing dan akar kata, serta trik cepat soal antonim dan analogi.',body:`
+<h4>Imbuhan asing yang sering muncul</h4>
+<div class="tw"><table><tr><th>Imbuhan</th><th>Arti</th><th>Contoh</th></tr>
+<tr><td>a-, in-, im-, il-, ir-, non-, nir-</td><td>tidak</td><td>apolitis, inefisien, ilegal, irasional, nirlaba</td></tr>
+<tr><td>anti-, kontra-</td><td>melawan</td><td>antipati, kontradiksi</td></tr>
+<tr><td>dis-, de-</td><td>kebalikan/menghilangkan</td><td>disharmoni, devaluasi</td></tr>
+<tr><td>re-</td><td>kembali</td><td>reboisasi, rekonstruksi</td></tr>
+<tr><td>pre-, pra-</td><td>sebelum</td><td>prasejarah, preventif</td></tr>
+<tr><td>pasca-, post-</td><td>sesudah</td><td>pascapanen, postmodern</td></tr>
+<tr><td>trans-</td><td>melintas</td><td>transmigrasi, transnasional</td></tr>
+<tr><td>sub-</td><td>bawah</td><td>subordinat, subsektor</td></tr>
+<tr><td>-isme</td><td>paham</td><td>hedonisme, heroisme</td></tr></table></div>
+<ul><li><b>Antonim</b>: coret dulu opsi yang merupakan sinonim. Biasanya tersisa dua, pilih yang benar-benar berlawanan.</li>
+<li><b>Analogi</b>: buat kalimat penghubung pendek, lalu uji ke opsi dengan urutan yang sama.</li></ul>
+${CS('ANTIPATI = ...',['Simpati','Empati','Rasa tidak suka','Rasa iba','Acuh tak acuh'],2,'<p>"Anti-" berarti melawan, "pati" dari <i>pathos</i> (perasaan). Antipati = perasaan menentang, <b>rasa tidak suka</b>. Simpati dan empati justru kebalikannya.</p>',{keep:true})}
+${CS('SPORADIS &gt;&lt; ...',['Jarang','Kadang-kadang','Terus-menerus','Acak','Sesekali'],2,'<p>Sporadis = muncul sesekali. Coret sinonimnya (jarang, kadang-kadang, sesekali, acak). Yang tersisa dan berlawanan: <b>terus-menerus</b>.</p>',{keep:true})}`},
+{id:'c-figural',u:'tiu',t:'Figural Kilat',lesson:'fig2',kisi:'Daftar periksa cepat untuk menemukan aturan perubahan gambar.',body:`
+<h4>Periksa dengan urutan ini (berhenti begitu ketemu)</h4>
+<ol><li>Arah atau putaran (rotasi 45°/90°/180°).</li><li>Cermin (bentuk terbalik).</li><li>Jumlah elemen (titik, garis, sisi).</li><li>Posisi elemen bergeser.</li><li>Warna atau arsiran berpindah/bergantian.</li><li>Gabungan dua gambar atau bagian yang sama dihilangkan.</li></ol>
+<div class="trik"><b>Trik cepat</b>Fokus pada <b>satu elemen paling mencolok</b> dulu (titik hitam, ujung panah). Setelah aturannya ketemu, coret opsi yang tidak cocok, baru periksa elemen kedua.</div>
+${CSG(G.figRot(2),'contoh berganti tiap dibuka')}`}
+];
+
 /* ================= LAMAN MATERI ================= */
 I.book='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5"/><path d="M9 7h7M9 10.5h5"/></svg>';
 I.search='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>';
-const MSUB=[['twk','TWK','Wawasan Kebangsaan'],['tiu','TIU','Intelegensia Umum'],['tkp','TKP','Karakteristik Pribadi']];
+const MSUB=[['twk','TWK','Wawasan Kebangsaan'],['tiu','TIU','Intelegensia Umum'],['tkp','TKP','Karakteristik Pribadi'],['cepat','Cara Cepat','Trik kilat TIU']];
+const MCOL=k=>k==='cepat'?'tiu':k;
 let MV={sub:'twk',q:''};
 function materiCardHTML(){const tot=MSUB.reduce((a,[k])=>a+MATERI[k].length,0),rd=Object.keys(S.read||{}).length;
  return `<button class="mcard" id="bMateri"><span class="qi">${I.book}</span><span><b>Materi & Kisi-kisi</b><small>${tot} topik ringkas TWK, TIU, TKP · ${rd} sudah dibaca</small></span></button>`}
@@ -2265,16 +2603,16 @@ function showMateri(sub,focus){onCat=false;scrReset();LS=null;if(sub)MV.sub=sub;
  const list=q?MSUB.flatMap(([k])=>MATERI[k].map(t=>Object.assign({_s:k},t))).filter(t=>(t.t+' '+t.kisi+' '+stripTags(t.body)).toLowerCase().includes(q))
   :MATERI[MV.sub].map(t=>Object.assign({_s:MV.sub},t));
  const U=k=>UNITS.find(u=>u.id===k);
- const card=t=>{const done=S.read&&S.read[t.id],L=t.lesson&&U(t._s).lessons.find(l=>l.k===t.lesson);
-  return `<article class="mt" id="m-${t.id}" style="--c:var(--${t._s});--cbg:var(--${t._s}-bg)">
-  <header><span class="chip">${t._s.toUpperCase()}</span><h3>${hl('>'+esc(t.t)+'<',q).slice(1,-1)}</h3></header>
+ const card=t=>{const done=S.read&&S.read[t.id],us=t.u||t._s,UU=U(us),L=t.lesson&&UU&&UU.lessons.find(l=>l.k===t.lesson);
+  return `<article class="mt" id="m-${t.id}" style="--c:var(--${MCOL(t._s)});--cbg:var(--${MCOL(t._s)}-bg)">
+  <header><span class="chip">${t._s==="cepat"?"CARA CEPAT TIU":t._s.toUpperCase()}</span><h3>${hl('>'+esc(t.t)+'<',q).slice(1,-1)}</h3></header>
   <div class="kisi"><b>Kisi-kisi</b>${hl('>'+esc(t.kisi)+'<',q).slice(1,-1)}</div>
   <div class="mbody">${hl(t.body,q)}</div>
-  <footer><button class="rd ${done?'on':''}" data-id="${t.id}">${done?I.check+' Sudah dibaca':'Tandai sudah dibaca'}</button>${L?`<button class="go" data-s="${t._s}" data-k="${L.k}">Latihan: ${esc(L.title)} →</button>`:''}</footer></article>`};
+  <footer><button class="rd ${done?'on':''}" data-id="${t.id}">${done?I.check+' Sudah dibaca':'Tandai sudah dibaca'}</button>${L?`<button class="go" data-s="${us}" data-k="${L.k}">Latihan: ${esc(L.title)} →</button>`:''}</footer></article>`};
  const nav=list.map(t=>`<a href="#m-${t.id}" class="mnav-i ${S.read&&S.read[t.id]?'done':''}" data-id="${t.id}">${esc(t.t)}</a>`).join('');
  app.innerHTML=topbar()+`<main class="screen materi">
  <div class="mhead"><div class="mtitle"><button class="x" id="mBack" aria-label="Kembali ke beranda">${I.x}</button><div><h1>Materi & Kisi-kisi SKD</h1><p>Rangkuman ringan per topik sesuai kisi-kisi KepmenPAN-RB 321/2024.</p></div></div>
- <div class="mtabs" role="tablist">${MSUB.map(([k,s,n])=>`<button role="tab" aria-selected="${!q&&MV.sub===k}" class="mtab ${!q&&MV.sub===k?'on':''}" data-s="${k}" style="--c:var(--${k})"><b>${s}</b><small>${n}</small></button>`).join('')}</div>
+ <div class="mtabs" role="tablist">${MSUB.map(([k,s,n])=>`<button role="tab" aria-selected="${!q&&MV.sub===k}" class="mtab ${!q&&MV.sub===k?'on':''} ${k==='cepat'?'mcep':''}" data-s="${k}" style="--c:var(--${k==='cepat'?'accent-d':k})"><b>${s}</b><small>${n}</small></button>`).join('')}</div>
  <label class="msearch">${I.search}<input id="mq" type="search" placeholder="Cari materi, misalnya: pasal 33, deret, gratifikasi" value="${esc(MV.q)}" autocomplete="off"></label></div>
  <div class="mgrid"><nav class="mnav" aria-label="Daftar topik">${q?`<p class="mres">${list.length} topik cocok</p>`:''}${nav}</nav>
  <div class="mlist">${list.length?list.map(card).join(''):'<p class="foot-note">Tidak ada materi yang cocok. Coba kata kunci lain.</p>'}</div></div></main>`;
@@ -2285,7 +2623,7 @@ function showMateri(sub,focus){onCat=false;scrReset();LS=null;if(sub)MV.sub=sub;
  document.querySelectorAll('.mnav-i').forEach(a=>a.onclick=e=>{e.preventDefault();const el=document.getElementById('m-'+a.dataset.id);el&&el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
  document.querySelectorAll('.rd').forEach(b=>b.onclick=()=>{S.read=S.read||{};const id=b.dataset.id;
   if(S.read[id]){delete S.read[id];save();b.classList.remove('on');b.innerHTML='Tandai sudah dibaca';sync(id,false);return}
-  S.read[id]=1;S.xp+=3;const bf=todayXP();S.days[today()]=bf+3;if(bf<(S.goal||20)&&bf+3>=(S.goal||20)){S.met[today()]=1;toast('Target harian tercapai!')}else toast('+3 XP. Materi ditandai sudah dibaca');save();
+  S.read[id]=1;S.xp+=3;setTimeout(achCheck,50);const bf=todayXP();S.days[today()]=bf+3;if(bf<(S.goal||20)&&bf+3>=(S.goal||20)){S.met[today()]=1;toast('Target harian tercapai!')}else toast('+3 XP. Materi ditandai sudah dibaca');save();
   b.classList.add('on');b.innerHTML=I.check+' Sudah dibaca';sfx.good();sync(id,true);const x=document.querySelector('#bXP span');x&&(x.textContent=S.xp)});
  const sync=(id,on)=>{const a=document.querySelector(`.mnav-i[data-id="${id}"]`);a&&a.classList.toggle('done',on)};
  document.querySelectorAll('.go').forEach(b=>b.onclick=()=>{const U2=UNITS.find(u=>u.id===b.dataset.s),L=U2.lessons.find(l=>l.k===b.dataset.k);
@@ -2296,8 +2634,8 @@ function showMateri(sub,focus){onCat=false;scrReset();LS=null;if(sub)MV.sub=sub;
 /* ================= TRY OUT CAT ================= */
 const TO_KEY='kepo-cpns-to',TO_MIN=100,TO_N=110,PG={twk:65,tiu:80,tkp:166},MAXS={twk:150,tiu:175,tkp:225},SUBN={twk:'TWK',tiu:'TIU',tkp:'TKP'};
 const TO_PLAN={
- twk:[['pancasila',4],['uud',4],['sejarah',3],['bahasa',3],['nasionalisme',3],['integritas',4],['belanegara',3],['nkri',3],['hots',3]],
- tiu:[['sinant',4],['analogi',4],['silog',4],['analitis',3],['deret1',2],['deret2',2],['deret3',1],['hitung',2],['xy',2],['aritsos',3],['cerita',2],['tabel',1],['fig1',1],['fig2',2],['fig3',2]],
+ twk:[['pancasila',3],['uud',4],['sejarah',2],['sejarah2',2],['bahasa',3],['nasionalisme',3],['integritas',4],['belanegara',3],['nkri',3],['hots',3]],
+ tiu:[['sinant',2],['kosakata',2],['analogi',4],['silog',4],['analitis',3],['deret1',2],['deret2',2],['deret3',1],['hitung',1],['kilat',1],['xy',2],['aritsos',3],['cerita',2],['tabel',1],['fig1',1],['fig2',2],['fig3',2]],
  tkp:[['pelayanan',7],['profesional',7],['jejaring',6],['sosbud',6],['tik',6],['antirad',7],['hots',6]]};
 I.clock='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>';
 I.grid='<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>';
@@ -2306,7 +2644,7 @@ try{TO=JSON.parse(localStorage.getItem(TO_KEY)||'null')}catch(e){TO=null}
 function toSave(){try{TO?localStorage.setItem(TO_KEY,JSON.stringify(TO)):localStorage.removeItem(TO_KEY)}catch(e){}}
 function fmtT(ms){const s=Math.max(0,Math.ceil(ms/1000)),h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return (h?h+':'+pad(m):pad(m))+':'+pad(x)}
 function buildTO(){const qs=[];for(const sub of ['twk','tiu','tkp']){const U=UNITS.find(u=>u.id===sub);
- for(const [k,n] of TO_PLAN[sub]){const L=U.lessons.find(l=>l.k===k);for(const q of makeQs(L,n))qs.push(Object.assign({},q,{_sub:sub,_tkp:!!L.tkp,_lt:L.title}))}}return qs}
+ for(const [k,n] of TO_PLAN[sub]){const L=U.lessons.find(l=>l.k===k);for(const q of makeQs(L,n))qs.push(Object.assign({},q,{_sub:sub,_tkp:!!L.tkp,_lt:L.title,_k:L.k}))}}return qs}
 function toCardHTML(){const H=S.toHist||[],best=H.reduce((m,h)=>Math.max(m,h.tot),0),last=H[0];
  if(TO&&!TO.done){const n=TO.ans.filter(a=>a!=null).length;
   return `<button class="tocard live" id="toCard"><span class="qi">${I.clock}</span><span><b>Lanjutkan Try Out</b><small>${n}/${TO_N} terjawab · sisa waktu <span class="tnum" id="toLeft">${fmtT(TO.end-Date.now())}</span></small></span></button>`}
@@ -2319,7 +2657,7 @@ function startTO(){if(TO&&!TO.done){sfx.tap();return openCat()}
  modal.hidden=false;document.getElementById('toNo').onclick=()=>modal.hidden=true;document.getElementById('toGo').onclick=()=>{modal.hidden=true;beginTO()}}
 function beginTO(){scrReset();const qs=buildTO();TO={qs,ord:qs.map(()=>shuffle([0,1,2,3,4])),ans:qs.map(()=>null),flag:qs.map(()=>false),cur:0,start:Date.now(),end:Date.now()+TO_MIN*60000,done:false};toSave();sfx.win();openCat()}
 function openCat(){if(!TO||TO.done)return home();if(Date.now()>=TO.end){onCat=true;return finishTO()}LS=null;onCat=true;renderCat()}
-function renderCat(){const i=TO.cur,q=TO.qs[i],ord=TO.ord[i],sel=TO.ans[i],n=TO.ans.filter(a=>a!=null).length,left=TO.end-Date.now();
+function renderCat(){toFlush();TO._cur=TO.cur;TO._t0=Date.now();const i=TO.cur,q=TO.qs[i],ord=TO.ord[i],sel=TO.ans[i],n=TO.ans.filter(a=>a!=null).length,left=TO.end-Date.now();
  app.innerHTML=`<main class="lesson cat screen" style="--c:var(--${q._sub});--cbg:var(--${q._sub}-bg)">
  <div class="catbar"><button class="x" id="cx" aria-label="Keluar">${I.x}</button><div class="cat-t"><b>Try Out SKD</b><small class="tnum">${n}/${TO_N} terjawab</small></div><div class="timer tnum ${left<5*60000?'low':''}" id="tmr" aria-label="Sisa waktu">${fmtT(left)}</div></div>
  <div class="prog"><i style="width:${n/TO_N*100}%"></i></div>
@@ -2355,13 +2693,13 @@ function confirmFinish(){const un=TO.ans.filter(a=>a==null).length,fl=TO.flag.fi
  modal.hidden=false;document.getElementById('fBack').onclick=()=>modal.hidden=true;document.getElementById('fYes').onclick=()=>{modal.hidden=true;finishTO()}}
 function exitModal(){mbox.innerHTML=`<h2>Keluar dari Try Out?</h2><p>Seperti tes CAT asli, <b>waktu tetap berjalan</b> walaupun kamu keluar. Kamu bisa melanjutkan dari beranda selama waktu masih ada.</p>
  <div style="display:flex;flex-direction:column;gap:10px"><button class="btn" id="eStay">Lanjut mengerjakan</button><button class="btn ghost" id="eOut">Keluar sementara</button><button class="btn ghost" id="eEnd" style="color:var(--bad)">Akhiri dan lihat nilai</button></div>`;
- modal.hidden=false;document.getElementById('eStay').onclick=()=>modal.hidden=true;document.getElementById('eOut').onclick=()=>{modal.hidden=true;home()};document.getElementById('eEnd').onclick=()=>{modal.hidden=true;confirmFinish()}}
+ modal.hidden=false;document.getElementById('eStay').onclick=()=>modal.hidden=true;document.getElementById('eOut').onclick=()=>{modal.hidden=true;toFlush();toSave();home()};document.getElementById('eEnd').onclick=()=>{modal.hidden=true;confirmFinish()}}
 function scoreTO(t){const sc={twk:0,tiu:0,tkp:0},ok={twk:0,tiu:0,tkp:0},nn={twk:0,tiu:0,tkp:0};
  t.qs.forEach((q,i)=>{const a=t.ans[i];nn[q._sub]++;if(a==null)return;if(q._tkp){sc.tkp+=q.p[a];if(q.p[a]===5)ok.tkp++}else if(a===q.a){sc[q._sub]+=5;ok[q._sub]++}});
  const tot=sc.twk+sc.tiu+sc.tkp;return {sc,ok,n:nn,tot,lulus:sc.twk>=PG.twk&&sc.tiu>=PG.tiu&&sc.tkp>=PG.tkp}}
-function finishTO(){if(!TO||TO.done)return;scrReset();TO.done=true;TO.fin=Math.min(Date.now(),TO.end);const r=scoreTO(TO);TO.res=r;
+function finishTO(){if(!TO||TO.done)return;toFlush();scrReset();TO.done=true;TO.fin=Math.min(Date.now(),TO.end);const r=scoreTO(TO);TO.res=r;
  const gain=20+Math.round(r.tot/25),before=todayXP();TO.gain=gain;S.xp+=gain;S.days[today()]=before+gain;TO.justMet=before<(S.goal||20)&&before+gain>=(S.goal||20);if(before+gain>=(S.goal||20))S.met[today()]=1;
- S.toHist=[{d:Date.now(),twk:r.sc.twk,tiu:r.sc.tiu,tkp:r.sc.tkp,tot:r.tot,lulus:r.lulus,dur:TO.fin-TO.start}].concat(S.toHist||[]).slice(0,20);save();toSave();
+ S.toHist=[{d:Date.now(),twk:r.sc.twk,tiu:r.sc.tiu,tkp:r.sc.tkp,tot:r.tot,lulus:r.lulus,dur:TO.fin-TO.start}].concat(S.toHist||[]).slice(0,20);stt().toCount=(stt().toCount||0)+1;if(r.lulus)stt().pgCount=(stt().pgCount||0)+1;save();toSave();achCheck();
  if(onCat)showResult();else{toast('Waktu Try Out habis. Nilai kamu sudah tersimpan.');if(document.getElementById('toCard'))home()}}
 function showResult(){if(!TO||!TO.res)return home();onCat=false;LS=null;const r=TO.res,dur=TO.fin-TO.start,timeout=TO.fin>=TO.end;
  const short=['twk','tiu','tkp'].filter(s=>r.sc[s]<PG[s]);
@@ -2374,15 +2712,16 @@ function showResult(){if(!TO||!TO.res)return home();onCat=false;LS=null;const r=
  <p class="sub">${timeout?'Waktu habis, jawaban dikumpulkan otomatis. ':''}${r.lulus?'Ketiga subtes melewati ambang batas. Pertahankan!':`Yang perlu dikejar: ${short.map(s=>`${SUBN[s]} (kurang ${PG[s]-r.sc[s]} poin)`).join(', ')}.`}</p>
  <div class="totbox"><span>Total nilai</span><b class="tnum" id="tTot">0</b><small>/ 550</small></div>
  ${['twk','tiu','tkp'].map(bar).join('')}
+ ${analysisTeaser()}
  <div class="cards"><div class="card" style="--c:var(--tiu)"><h3>WAKTU</h3><div class="tnum">${Math.floor(dur/60000)}:${pad(Math.floor(dur/1000)%60)}</div></div>
  <div class="card" style="--c:var(--accent-d)"><h3>XP</h3><div class="tnum">+${TO.gain}</div></div>
  <div class="card" style="--c:var(--good)"><h3>TERBAIK</h3><div class="tnum">${best}</div></div></div>
  ${TO.justMet?'<div class="met-banner">Target harian tercapai!</div>':''}
- <div class="actions"><button class="btn" id="tRev" style="--b:var(--ink);--bd:var(--muted);color:var(--bg)">Lihat pembahasan</button><button class="btn ghost" id="tHome">Kembali ke beranda</button></div></main>`;
+ <div class="actions"><button class="btn good" id="tShare">Bagikan hasil</button><button class="btn" id="tRev" style="--b:var(--ink);--bd:var(--muted);color:var(--bg)">Lihat pembahasan</button><button class="btn ghost" id="tHome">Kembali ke beranda</button></div></main>`;
  window.scrollTo(0,0);countUp(document.getElementById('tTot'),r.tot,1200);
  requestAnimationFrame(()=>setTimeout(()=>document.querySelectorAll('.sbar .track i').forEach(e=>e.style.width=e.dataset.w+'%'),80));
  if(r.lulus){sfx.win();setTimeout(()=>confetti(200),300)}
- document.getElementById('tRev').onclick=()=>showReview('all');document.getElementById('tHome').onclick=home}
+ document.getElementById('tRev').onclick=()=>showReview('all');document.getElementById('tShare').onclick=()=>shareModal('to');document.getElementById('tAnal').onclick=showAnalysis;document.getElementById('tHome').onclick=home}
 function showReview(f){onCat=false;const st=(q,i)=>{const a=TO.ans[i];if(a==null)return 'skip';if(q._tkp)return q.p[a]===5?'ok':'part';return a===q.a?'ok':'no'};
  const items=TO.qs.map((q,i)=>({q,i,s:st(q,i)})).filter(({q,i,s})=>f==='all'||(f==='wrong'&&s!=='ok')||(f==='flag'&&TO.flag[i])||f===q._sub);
  const F=[['all','Semua'],['wrong','Salah / kosong'],['flag','Ragu-ragu'],['twk','TWK'],['tiu','TIU'],['tkp','TKP']];
@@ -2406,6 +2745,209 @@ setInterval(()=>{if(!TO||TO.done)return;const left=TO.end-Date.now();if(left<=0)
  if(onCat){const t=document.getElementById('tmr');if(t){t.textContent=fmtT(left);t.classList.toggle('low',left<5*60000)}}else{const h=document.getElementById('toLeft');h&&(h.textContent=fmtT(left))}},1000);
 if(TO&&!TO.done&&Date.now()>=TO.end){finishTO()}
 
+/* ================= ANALISIS HASIL TRY OUT ================= */
+const TGT={twk:45,tiu:75,tkp:35};
+const METODE=[
+ {id:'hafal',n:'Materi hafalan',sub:'twk',keys:['pancasila','uud','sejarah','sejarah2','bahasa'],how:'Pakai <b>ingat aktif</b>: baca satu topik 10 menit, tutup, lalu tulis ulang 5 poin terpenting dari ingatan. Ulangi besok, 3 hari lagi, dan seminggu lagi (<b>jeda berulang</b>). Membaca ulang saja tanpa mengingat jauh kurang efektif.'},
+ {id:'kasus',n:'Soal kasus TWK',sub:'twk',keys:['nasionalisme','integritas','belanegara','nkri','hots'],how:'Latih cara membaca kasus: garis bawahi masalah intinya, hubungkan ke sila, pasal, atau nilai, lalu cocokkan dengan pembahasan. Fokus pada <b>alasan opsi lain salah</b>, karena opsi pengecoh di soal kasus biasanya terdengar benar.'},
+ {id:'verbal',n:'Verbal',sub:'tiu',keys:['sinant','kosakata','analogi'],how:'Kumpulkan 10 kata sulit per hari, pelajari imbuhan asing di tab Cara Cepat, dan ulangi kosakata kemarin sebelum menambah yang baru. Untuk analogi, biasakan membuat kalimat penghubung.'},
+ {id:'logika',n:'Logika',sub:'tiu',keys:['silog','analitis'],how:'Selalu <b>gambar</b>: panah untuk silogisme, kotak atau tabel untuk analitis. Kerjakan tanpa timer sampai konsisten benar, baru tambahkan batas waktu.'},
+ {id:'numerik',n:'Numerik',sub:'tiu',keys:['deret1','deret2','deret3','hitung','kilat','xy','aritsos','cerita','tabel'],how:'Latihan singkat bertimer: 5 soal dengan target 60–75 detik per soal. Pelajari trik di tab Cara Cepat, dan tulis rumus yang sering lupa di kertas kecil untuk dibaca setiap pagi.'},
+ {id:'figural',n:'Figural',sub:'tiu',keys:['fig1','fig2','fig3'],how:'Pakai daftar periksa 6 atribut (rotasi, cermin, jumlah, posisi, warna, gabungan) dan fokus pada satu elemen paling mencolok. Latih 10 soal singkat per hari agar mata terbiasa.'},
+ {id:'tkp',n:'TKP',sub:'tkp',keys:null,how:'Baca ulang ciri opsi bernilai 5, lalu setiap soal tanyakan: opsi mana yang <b>paling proaktif, menyelesaikan akar masalah, dan tetap sesuai aturan</b>? Bandingkan pilihanmu dengan pembahasan, terutama soal yang hanya dapat 3–4 poin.'}];
+const metodeOf=(sub,k)=>METODE.find(m=>m.sub===sub&&(!m.keys||m.keys.includes(k)))||METODE[0];
+function lessonKey(q){if(q._k)return q._k;const U=UNITS.find(u=>u.id===q._sub),L=U&&U.lessons.find(l=>l.title===q._lt);return L?L.k:'?'}
+function materiFor(sub,k){const grp=metodeOf(sub,k).keys||[];const t=(MATERI[sub]||[]).find(x=>x.lesson===k)||(MATERI[sub]||[]).find(x=>grp.includes(x.lesson));const c=sub==='tiu'?((MATERI.cepat||[]).find(x=>x.lesson===k)||(MATERI.cepat||[]).find(x=>grp.includes(x.lesson))):null;return {t,c}}
+function toFlush(){if(TO&&TO._cur!=null&&TO._t0){TO.tq=TO.tq||[];TO.tq[TO._cur]=(TO.tq[TO._cur]||0)+Math.min(Date.now()-TO._t0,10*60000);TO._t0=null}}
+function analyze(T){const tp={},sub={twk:{t:0,n:0,skip:0},tiu:{t:0,n:0,skip:0},tkp:{t:0,n:0,skip:0}};
+ T.qs.forEach((q,i)=>{const k=lessonKey(q),key=q._sub+':'+k,a=T.ans[i];const x=tp[key]=tp[key]||{sub:q._sub,k,title:q._lt,n:0,ok:0,pts:0};
+  x.n++;if(a!=null){if(q._tkp){x.pts+=q.p[a];if(q.p[a]===5)x.ok++}else if(a===q.a)x.ok++}
+  const s=sub[q._sub];s.n++;s.t+=(T.tq&&T.tq[i])||0;if(a==null)s.skip++});
+ const list=Object.values(tp).map(x=>Object.assign(x,{pct:x.sub==='tkp'?x.pts/(5*x.n):x.ok/x.n}));
+ const fail={};['twk','tiu','tkp'].forEach(s=>fail[s]=T.res&&T.res.sc[s]<PG[s]);list.forEach(x=>x.pri=(1-x.pct)*x.n*(x.sub==='tkp'?5:5)*(fail[x.sub]?1.6:1));
+ const weak=list.filter(x=>x.sub==='tkp'?x.pct<.84:x.pct<.67).sort((a,b)=>(b.pri-a.pri)||(a.pct-b.pct));
+ return {list,weak,sub,hasTime:!!(T.tq&&T.tq.some(Boolean))}}
+function diagnosis(T,A){const r=T.res,out=[];
+ const short=['twk','tiu','tkp'].filter(s=>r.sc[s]<PG[s]);
+ if(short.length)out.push(`Subtes yang belum lolos: ${short.map(s=>`<b>${SUBN[s]}</b> (kurang ${PG[s]-r.sc[s]} poin)`).join(', ')}.`);else out.push('Ketiga subtes sudah melewati ambang batas. Fokus berikutnya adalah menaikkan total nilai agar bersaing di peringkat formasi.');
+ if(A.weak.length)out.push(`Topik terlemah: ${A.weak.slice(0,3).map(w=>`<b>${esc(w.title)}</b> (${w.sub==='tkp'?Math.round(w.pct*100)+'% poin':w.ok+'/'+w.n+' benar'})`).join(', ')}.`);
+ const sk=['twk','tiu','tkp'].filter(s=>A.sub[s].skip);if(sk.length)out.push(`Ada soal yang dibiarkan kosong (${sk.map(s=>SUBN[s]+' '+A.sub[s].skip).join(', ')}). SKD tidak mengenal nilai minus, jadi selalu isi semua soal.`);
+ if(A.hasTime){const slow=['twk','tiu','tkp'].filter(s=>A.sub[s].n&&A.sub[s].t/A.sub[s].n/1000>TGT[s]*1.25);
+  if(slow.length)out.push(`Waktu: ${slow.map(s=>`${SUBN[s]} rata-rata ${Math.round(A.sub[s].t/A.sub[s].n/1000)} detik per soal (target ±${TGT[s]} detik)`).join('; ')}. Latih kecepatan dengan trik di tab Cara Cepat.`)}
+ return out}
+function showAnalysis(){if(!TO||!TO.res)return home();onCat=false;scrReset();const A=analyze(TO),r=TO.res;window._A=A;
+ const lvl=x=>x.sub==='tkp'?(x.pct>=.84?'good':x.pct>=.7?'mid':'bad'):(x.pct>=.8?'good':x.pct>=.5?'mid':'bad');
+ const topicRows=sub=>A.list.filter(x=>x.sub===sub).sort((a,b)=>a.pct-b.pct).map(x=>`<div class="arow ${lvl(x)}"><span class="an">${esc(x.title)}</span><span class="ab"><i style="width:${Math.max(4,x.pct*100)}%"></i></span><span class="av tnum">${x.sub==='tkp'?Math.round(x.pct*100)+'%':x.ok+'/'+x.n}</span></div>`).join('');
+ const timeCell=s=>A.hasTime&&A.sub[s].n?`${Math.round(A.sub[s].t/60000)} menit · ${Math.round(A.sub[s].t/A.sub[s].n/1000)} dtk/soal`:'–';
+ const pri=(()=>{const out=[],cnt={};for(const w of A.weak){if((cnt[w.sub]||0)<2){out.push(w);cnt[w.sub]=(cnt[w.sub]||0)+1}if(out.length===4)break}for(const w of A.weak){if(out.length>=4)break;if(!out.includes(w))out.push(w)}return out})();
+ const priCard=(w,i)=>{const m=metodeOf(w.sub,w.k),{t,c}=materiFor(w.sub,w.k);
+  return `<article class="pri" style="--c:var(--${w.sub});--cbg:var(--${w.sub}-bg)"><div class="pri-h"><span class="pri-n">${i+1}</span><div><b>${esc(w.title)}</b><small>${SUBN[w.sub]} · ${w.sub==='tkp'?Math.round(w.pct*100)+'% dari poin maksimal':w.ok+' dari '+w.n+' benar'} · ${m.n}</small></div></div>
+  <p class="pri-how"><b>Cara belajar:</b> ${m.how}</p>
+  <div class="pri-btn">${t?`<button class="go" data-m="${w.sub}|${t.id}">Baca materi</button>`:''}${c?`<button class="go" data-m="cepat|${c.id}">Trik cepat</button>`:''}<button class="go" data-l="${w.sub}|${w.k}">Latihan ${esc(w.title)}</button></div></article>`};
+ const p=pri.map(w=>w.title);const tiuWeak=pri.some(w=>w.sub==='tiu');
+ const plan=[
+  ['Hari 1',pri[0]?`Pelajari <b>${esc(p[0])}</b>: baca materinya, lalu kerjakan pelajarannya 2 kali.`:'Kerjakan Latihan Cepat 2 kali.'],
+  ['Hari 2',pri[1]?`Pelajari <b>${esc(p[1])}</b> dengan cara yang sama. Awali dengan mengingat 5 poin dari hari 1.`:'Ulangi topik hari 1 dengan ingat aktif.'],
+  ['Hari 3',pri[2]?`Pelajari <b>${esc(p[2])}</b>. Awali dengan mengingat poin hari 1 dan 2.`:'Baca topik materi yang belum ditandai sudah dibaca.'],
+  ['Hari 4',tiuWeak?'Baca tab <b>Cara Cepat</b> (strategi waktu dan trik hitung), lalu latihan Hitung Kilat 2 kali dengan target 60 detik per soal.':'Latihan Cepat 2 kali, lalu baca ulang pembahasan soal yang salah.'],
+  ['Hari 5',`Ulangi topik hari 1–3 tanpa membuka materi dulu (ingat aktif). Kerjakan lagi pelajaran yang skornya masih di bawah 80%.`],
+  ['Hari 6','Buka pembahasan Try Out ini, filter <b>Salah / kosong</b>, dan tulis alasan jawaban benar untuk tiap soal dengan kalimatmu sendiri.'],
+  ['Hari 7','Kerjakan <b>Try Out baru</b> dengan simulasi waktu penuh, lalu bandingkan hasil analisisnya dengan yang ini.']];
+ app.innerHTML=topbar()+`<main class="screen anal">
+ <div class="mtitle"><button class="x" id="anBack" aria-label="Kembali ke hasil">${I.x}</button><div><h1>Analisis & Rencana Belajar</h1><p>Try Out ${fmtD(TO.fin||Date.now())} · total ${r.tot}/550</p></div></div>
+ <section class="diag"><h2>Diagnosis singkat</h2><ul>${diagnosis(TO,A).map(x=>`<li>${x}</li>`).join('')}</ul></section>
+ <section class="subs">${['twk','tiu','tkp'].map(s=>`<div class="subc" style="--c:var(--${s})"><div class="subh"><b>${SUBN[s]}</b><span class="tnum ${r.sc[s]>=PG[s]?'ok':'no'}">${r.sc[s]}<small>/${MAXS[s]} · ambang ${PG[s]}</small></span></div><p class="subt">Waktu: ${timeCell(s)} (target ±${TGT[s]} dtk/soal)${A.sub[s].skip?` · ${A.sub[s].skip} kosong`:''}</p>${topicRows(s)}</div>`).join('')}</section>
+ <section class="achsec"><h2>Topik prioritas</h2>${pri.length?`<p class="achsub">Diurutkan dari yang paling perlu diperbaiki. Kerjakan berurutan, jangan sekaligus.</p>${pri.map(priCard).join('')}`:'<p class="achsub">Tidak ada topik di bawah target. Pertahankan dengan Latihan Cepat dan Try Out rutin, lalu kejar total nilai yang lebih tinggi.</p>'}</section>
+ <section class="achsec"><h2>Rencana 7 hari</h2><ol class="plan">${plan.map(([d,t])=>`<li><b>${d}</b><span>${t}</span></li>`).join('')}</ol></section>
+ <section class="achsec"><h2>Prinsip belajar efektif</h2><ul class="tips">
+ <li><b>Ingat aktif, bukan membaca ulang.</b> Tutup materi, lalu coba jelaskan atau kerjakan soal dari ingatan. Bagian yang lupa adalah yang perlu dipelajari.</li>
+ <li><b>Jeda berulang.</b> Ulangi topik pada hari ke-1, 3, 7, dan 14. Sedikit setiap hari lebih awet daripada belajar semalam suntuk.</li>
+ <li><b>Pelajari kesalahan.</b> Untuk setiap soal salah, tulis kenapa jawabanmu salah dan kenapa kunci benar. Pola kesalahan yang sama biasanya berulang.</li>
+ <li><b>Latihan bertimer.</b> Setelah konsep paham, pasang target waktu agar terbiasa dengan tekanan CAT.</li>
+ <li><b>Campur topik.</b> Latihan Cepat yang mengacak materi melatih otak memilih strategi yang tepat, persis seperti saat ujian.</li>
+ <li><b>Try Out berkala.</b> Sekali seminggu cukup. Selalu baca analisisnya, lalu sesuaikan rencana.</li></ul></section>
+ <div class="actions" style="max-width:640px;margin:0 auto"><button class="btn" id="anRev">Lihat pembahasan soal</button><button class="btn ghost" id="anRes">Kembali ke hasil</button></div></main>`;
+ bind();window.scrollTo(0,0);
+ document.getElementById('anBack').onclick=showResult;document.getElementById('anRes').onclick=showResult;document.getElementById('anRev').onclick=()=>showReview('wrong');
+ document.querySelectorAll('.pri [data-m]').forEach(b=>b.onclick=()=>{const [s,id]=b.dataset.m.split('|');MV.q='';showMateri(s,id)});
+ document.querySelectorAll('.pri [data-l]').forEach(b=>b.onclick=()=>{const [s,k]=b.dataset.l.split('|');const U=UNITS.find(u=>u.id===s),L=U.lessons.find(l=>l.k===k);if(!L)return;if(!lvOpen(U,L.lv)){toast(`Pelajaran ini masih terkunci. Selesaikan Level ${L.lv-1} ${SUBN[s]} dulu ya`);return}startLesson(U,L)})}
+function analysisTeaser(){const A=analyze(TO),w=(()=>{const o=[],c={};for(const x of A.weak){if((c[x.sub]||0)<2){o.push(x);c[x.sub]=(c[x.sub]||0)+1}if(o.length===3)break}return o})();
+ return `<div class="teaser"><b>Yang perlu dipelajari lebih</b>${w.length?`<div class="tchips">${w.map(x=>`<span style="--c:var(--${x.sub});--cbg:var(--${x.sub}-bg)">${SUBN[x.sub]} · ${esc(x.title)}</span>`).join('')}</div>`:'<p>Tidak ada topik di bawah target. Mantap!</p>'}<button class="btn" id="tAnal" style="--b:var(--tiu);--bd:var(--tiu-d)">Lihat analisis & rencana belajar</button></div>`}
+
+/* ================= PAPAN PENCAPAIAN ================= */
+I.trophy='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4Z"/><path d="M16 5h3v2a3 3 0 0 1-3 3M8 5H5v2a3 3 0 0 0 3 3M12 13v4M8 20h8M9.5 17h5"/></svg>';
+I.target='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>';
+I.share='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="m8.2 10.8 7.6-4M8.2 13.2l7.6 4"/></svg>';
+const PG_SUM=PG.twk+PG.tiu+PG.tkp;
+const stt=()=>{S.stats=S.stats||{};return S.stats};
+const TH=()=>S.toHist||[];
+const toCount=()=>Math.max(stt().toCount||0,TH().length);
+const bestTO=()=>TH().reduce((m,h)=>Math.max(m,h.tot),0);
+const bestSub=k=>TH().reduce((m,h)=>Math.max(m,h[k]||0),0);
+const lessonsDone=()=>Math.max(stt().lessons||0,Object.values(S.done||{}).reduce((a,b)=>a+b,0));
+const subDone=k=>{const U=UNITS.find(u=>u.id===k);return U.lessons.filter(L=>S.done[lid(U,L)]).length};
+const subTotal=k=>UNITS.find(u=>u.id===k).lessons.length;
+const readN=()=>Object.keys(S.read||{}).length;
+const materiN=()=>MSUB.reduce((a,[k])=>a+MATERI[k].length,0);
+function bestStreak(){const ks=Object.keys(S.met||{}).sort();let best=0,run=0,prev=null;for(const k of ks){const d=new Date(k+'T00:00:00');if(prev&&Math.round((d-prev)/864e5)===1)run++;else run=1;best=Math.max(best,run);prev=d}return best}
+const ACH_G=[['to','Try Out',I.clock,'tiu'],['lat','Latihan',I.star,'good'],['kon','Konsistensi',I.flame,'accent-d'],['mat','Materi',I.book,'tkp']];
+const ACH=[
+ {id:'to1',g:'to',n:'Debut Try Out',d:'Selesaikan Try Out pertama',v:()=>[toCount(),1]},
+ {id:'to3',g:'to',n:'Pejuang Simulasi',d:'Selesaikan 3 Try Out',v:()=>[toCount(),3]},
+ {id:'to10',g:'to',n:'Veteran CAT',d:'Selesaikan 10 Try Out',v:()=>[toCount(),10]},
+ {id:'pg1',g:'to',n:'Tembus Passing Grade',d:'Lolos ambang batas ketiga subtes',v:()=>[TH().some(h=>h.lulus)?1:0,1]},
+ {id:'pg3',g:'to',n:'Konsisten Lolos',d:'Lolos passing grade di 3 Try Out',v:()=>[stt().pgCount||TH().filter(h=>h.lulus).length,3]},
+ {id:'s400',g:'to',n:'Skor 400',d:'Raih total nilai minimal 400',v:()=>[bestTO(),400]},
+ {id:'s450',g:'to',n:'Skor 450',d:'Raih total nilai minimal 450',v:()=>[bestTO(),450]},
+ {id:'s500',g:'to',n:'Skor 500',d:'Raih total nilai minimal 500',v:()=>[bestTO(),500]},
+ {id:'twk120',g:'to',n:'Jago Kebangsaan',d:'Nilai TWK minimal 120',v:()=>[bestSub('twk'),120]},
+ {id:'tiu150',g:'to',n:'Otak Encer',d:'Nilai TIU minimal 150',v:()=>[bestSub('tiu'),150]},
+ {id:'tkp200',g:'to',n:'Hati ASN',d:'Nilai TKP minimal 200',v:()=>[bestSub('tkp'),200]},
+ {id:'kilat',g:'to',n:'Kilat',d:'Lolos passing grade dengan sisa waktu 20 menit atau lebih',v:()=>[TH().some(h=>h.lulus&&h.dur<=80*60000)?1:0,1]},
+ {id:'l1',g:'lat',n:'Langkah Pertama',d:'Selesaikan 1 pelajaran',v:()=>[lessonsDone(),1]},
+ {id:'l25',g:'lat',n:'Rajin Latihan',d:'Selesaikan 25 pelajaran',v:()=>[lessonsDone(),25]},
+ {id:'l100',g:'lat',n:'Mesin Latihan',d:'Selesaikan 100 pelajaran',v:()=>[lessonsDone(),100]},
+ {id:'perf5',g:'lat',n:'Tanpa Cela',d:'5 pelajaran sempurna tanpa salah',v:()=>[stt().perfect||0,5]},
+ {id:'combo10',g:'lat',n:'Combo 10',d:'Jawab benar 10 kali beruntun',v:()=>[stt().maxCombo||0,10]},
+ {id:'twkall',g:'lat',n:'Penguasa TWK',d:'Selesaikan semua pelajaran TWK',v:()=>[subDone('twk'),subTotal('twk')]},
+ {id:'tiuall',g:'lat',n:'Penguasa TIU',d:'Selesaikan semua pelajaran TIU',v:()=>[subDone('tiu'),subTotal('tiu')]},
+ {id:'tkpall',g:'lat',n:'Penguasa TKP',d:'Selesaikan semua pelajaran TKP',v:()=>[subDone('tkp'),subTotal('tkp')]},
+ {id:'st3',g:'kon',n:'Api Kecil',d:'Streak 3 hari berturut-turut',v:()=>[bestStreak(),3]},
+ {id:'st7',g:'kon',n:'Seminggu Penuh',d:'Streak 7 hari berturut-turut',v:()=>[bestStreak(),7]},
+ {id:'st30',g:'kon',n:'Sebulan Membara',d:'Streak 30 hari berturut-turut',v:()=>[bestStreak(),30]},
+ {id:'xp500',g:'kon',n:'500 XP',d:'Kumpulkan 500 XP',v:()=>[S.xp,500]},
+ {id:'xp2000',g:'kon',n:'2.000 XP',d:'Kumpulkan 2.000 XP',v:()=>[S.xp,2000]},
+ {id:'m1',g:'mat',n:'Kutu Buku',d:'Baca 1 topik materi',v:()=>[readN(),1]},
+ {id:'m10',g:'mat',n:'Rajin Membaca',d:'Baca 10 topik materi',v:()=>[readN(),10]},
+ {id:'mall',g:'mat',n:'Khatam Materi',d:'Baca semua topik materi',v:()=>[readN(),materiN()]}];
+function achCheck(quiet){S.ach=S.ach||{};const now=Date.now(),news=[];
+ for(const a of ACH){const [c,m]=a.v();if(c>=m&&!S.ach[a.id]){S.ach[a.id]=now;news.push(a)}}
+ if(news.length){save();if(!quiet)setTimeout(()=>{toast((news.length>1?news.length+' pencapaian baru: ':'Pencapaian baru: ')+news.map(a=>a.n).join(', '));sfx.win()},900)}return news}
+const achGot=()=>ACH.filter(a=>S.ach&&S.ach[a.id]).length;
+function achCardHTML(){return `<button class="mcard ach" id="bAch"><span class="qi">${I.trophy}</span><span><b>Papan Pencapaian</b><small>${achGot()}/${ACH.length} lencana terbuka${bestTO()?` · skor TO terbaik ${bestTO()}`:''}</small></span></button>`}
+const fmtD=t=>new Date(t).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
+function toChart(){const h=TH().slice(0,10).reverse();if(!h.length)return '';
+ const W=560,Hh=190,l=40,r=30,t=20,b=30,iw=W-l-r,ih=Hh-t-b,y=v=>t+ih-(v/550)*ih,x=i=>l+(h.length===1?iw/2:i*iw/(h.length-1));
+ const grid=[0,110,220,330,440,550].map(v=>`<line x1="${l}" x2="${W-r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${l-6}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${v}</text>`).join('');
+ const pts=h.map((d,i)=>`${x(i)},${y(d.tot)}`).join(' ');
+ return `<section class="achsec"><h2>Riwayat nilai Try Out</h2><p class="achsub">${h.length} Try Out terakhir. Garis putus-putus: jumlah ambang batas (${PG_SUM}). Titik hijau = lolos ketiga subtes.</p>
+ <div class="tw"><svg class="tochart" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Grafik nilai Try Out">${grid}
+ <line x1="${l}" x2="${W-r}" y1="${y(PG_SUM)}" y2="${y(PG_SUM)}" stroke="var(--muted)" stroke-dasharray="5 5"/>
+ <polyline points="${pts}" fill="none" stroke="var(--tiu)" stroke-width="3" stroke-linejoin="round"/>
+ ${h.map((d,i)=>`<circle cx="${x(i)}" cy="${y(d.tot)}" r="6" fill="var(--${d.lulus?'good':'bad'})" stroke="var(--surface)" stroke-width="2"/><text x="${x(i)}" y="${y(d.tot)-11}" text-anchor="middle" font-size="11" font-weight="800" fill="var(--ink)">${d.tot}</text><text x="${x(i)}" y="${Hh-10}" text-anchor="middle" font-size="10.5" fill="var(--muted)">TO ${toCount()-h.length+i+1}</text>`).join('')}</svg></div></section>`}
+function showAch(){onCat=false;scrReset();LS=null;achCheck(true);
+ const tiles=[['Skor TO terbaik',bestTO()?bestTO()+'<small>/550</small>':'–'],['Try Out',toCount()],['Pelajaran selesai',lessonsDone()],['Streak terbaik',bestStreak()+'<small> hari</small>'],['Total XP',S.xp]];
+ const badge=a=>{const [c,m]=a.v(),got=S.ach&&S.ach[a.id],g=ACH_G.find(x=>x[0]===a.g);
+  return `<div class="badge ${got?'got':''}" style="--bc:var(--${g[3]})"><span class="medal">${g[2]}</span><div><b>${a.n}</b><small>${a.d}</small>
+  ${got?`<em>Terbuka ${fmtD(got)}</em>`:`<span class="bp"><i style="width:${Math.min(100,c/m*100)}%"></i></span><em class="tnum">${Math.min(c,m)}/${m}</em>`}</div></div>`};
+ app.innerHTML=topbar()+`<main class="screen achp">
+ <div class="mtitle"><button class="x" id="aBack" aria-label="Kembali ke beranda">${I.x}</button><div><h1>Papan Pencapaian</h1><p>${achGot()} dari ${ACH.length} lencana terbuka</p></div>
+ <button class="btn sharebtn" id="aShare">${I.share}Bagikan</button></div>
+ <div class="tiles">${tiles.map(([k,v])=>`<div class="tile"><span>${k}</span><b class="tnum">${v}</b></div>`).join('')}</div>
+ ${toChart()}
+ ${ACH_G.map(([g,name])=>{const list=ACH.filter(a=>a.g===g);return `<section class="achsec"><h2>${name} <small>${list.filter(a=>S.ach&&S.ach[a.id]).length}/${list.length}</small></h2><div class="badges">${list.map(badge).join('')}</div></section>`}).join('')}
+ </main>`;
+ bind();document.getElementById('aBack').onclick=home;document.getElementById('aShare').onclick=()=>shareModal('sum')}
+
+/* ---------- kartu bagikan (canvas) ---------- */
+const CC={bg:'#F5F3FA',ink:'#1E1B3A',muted:'#6B6788',line:'#E2DEEF',surf:'#FFFFFF',twk:'#E0453A',tiu:'#5A57D6',tkp:'#0F9E8D',acc:'#FFB400',good:'#1E9E5A',bad:'#D93848'};
+function svgImg(svg,color){return new Promise(res=>{const s=svg.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" ').replace(/currentColor/g,color);const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s)})}
+function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+const FD='"Baloo 2", "Trebuchet MS", sans-serif',FB='"Plus Jakarta Sans", system-ui, sans-serif';
+async function drawCard(mode){try{await document.fonts.ready}catch(e){}
+ const W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
+ c.fillStyle=CC.bg;c.fillRect(0,0,W,H);
+ c.fillStyle=CC.acc;rr(c,0,0,W,250,0);c.fill();
+ for(let i=0;i<14;i++){c.fillStyle='rgba(255,255,255,.18)';c.beginPath();c.arc(80+i*80,250,22+(i%3)*8,0,7);c.fill()}
+ const mascot=await svgImg(kepo(200,'happy').replace('class="kepo" ',''),CC.ink);if(mascot)c.drawImage(mascot,W-260,30,200,200);
+ c.fillStyle=CC.ink;c.font=`800 64px ${FD}`;c.fillText('Kepo CPNS 2027',64,118);
+ c.font=`700 30px ${FB}`;c.fillStyle='#5C3A00';c.fillText(mode==='to'?'Hasil Try Out SKD':'Pencapaian Belajar SKD',64,168);
+ const nm=(S.name||'').trim();if(nm){c.font=`800 30px ${FB}`;c.fillStyle=CC.ink;c.fillText(nm.slice(0,32),64,212)}
+ const h=mode==='to'?TH()[0]:TH().reduce((b,x)=>!b||x.tot>b.tot?x:b,null);
+ let y=300;
+ c.fillStyle=CC.surf;rr(c,48,y,W-96,480,36);c.fill();
+ if(h){c.fillStyle=CC.muted;c.font=`800 26px ${FB}`;c.fillText(mode==='to'?('TRY OUT · '+fmtD(h.d).toUpperCase()):'SKOR TRY OUT TERBAIK',96,y+66);
+  c.fillStyle=CC.ink;c.font=`800 150px ${FD}`;const sc=String(h.tot);c.fillText(sc,92,y+210);const sw=c.measureText(sc).width;
+  c.font=`700 44px ${FD}`;c.fillStyle=CC.muted;c.fillText('/ 550',100+sw,y+206);
+  const lab=h.lulus?'LOLOS PASSING GRADE':'BELUM LOLOS',lc=h.lulus?CC.good:CC.bad;c.font=`800 26px ${FB}`;const lw=c.measureText(lab).width+44;
+  c.fillStyle=lc;rr(c,W-96-lw,y+40,lw,52,26);c.fill();c.fillStyle='#fff';c.fillText(lab,W-96-lw+22,y+75);
+  [['twk','TWK',150],['tiu','TIU',175],['tkp','TKP',225]].forEach(([k,n,mx],i)=>{const yy=y+270+i*66,bx=230,bw=W-96-48-bx-140;
+   c.fillStyle=CC.ink;c.font=`800 32px ${FD}`;c.fillText(n,96,yy+24);
+   c.fillStyle=CC.line;rr(c,bx,yy,bw,26,13);c.fill();c.fillStyle=CC[k];rr(c,bx,yy,Math.max(26,bw*h[k]/mx),26,13);c.fill();
+   c.fillStyle=CC.ink;c.fillRect(bx+bw*PG[k]/mx-2,yy-8,4,42);
+   c.font=`800 30px ${FB}`;c.fillStyle=h[k]>=PG[k]?CC.good:CC.bad;c.fillText(String(h[k]),bx+bw+24,yy+24);c.fillStyle=CC.muted;c.font=`600 22px ${FB}`;c.fillText('/'+mx,bx+bw+24+c.measureText(String(h[k])).width*1.25,yy+24)});
+ }else{c.fillStyle=CC.ink;c.font=`800 54px ${FD}`;c.fillText('Belum ada Try Out',96,y+150);c.font=`600 30px ${FB}`;c.fillStyle=CC.muted;c.fillText('Sedang menyiapkan diri lewat latihan harian.',96,y+210)}
+ y=820;const stats=[['Streak terbaik',bestStreak()+' hari'],['Pelajaran',String(lessonsDone())],['Lencana',achGot()+'/'+ACH.length]];
+ stats.forEach(([k,v],i)=>{const bw=(W-96-2*24)/3,bx=48+i*(bw+24);c.fillStyle=CC.surf;rr(c,bx,y,bw,150,28);c.fill();c.fillStyle=CC.muted;c.font=`700 24px ${FB}`;c.fillText(k,bx+28,y+50);c.fillStyle=CC.ink;c.font=`800 56px ${FD}`;c.fillText(v,bx+28,y+118)});
+ y=1010;const got=ACH.filter(a=>S.ach&&S.ach[a.id]).sort((a,b)=>S.ach[b.id]-S.ach[a.id]).slice(0,4);
+ c.fillStyle=CC.ink;c.font=`800 30px ${FD}`;c.fillText(got.length?'Lencana terbaru':'Lencana pertama sedang dikejar',64,y+10);
+ for(let i=0;i<got.length;i++){const a=got[i],g=ACH_G.find(x=>x[0]===a.g),col={tiu:CC.tiu,good:CC.good,'accent-d':'#D18E00',tkp:CC.tkp}[g[3]];
+  const bw=(W-96-3*20)/4,bx=48+i*(bw+20),by=y+40;c.fillStyle=CC.surf;rr(c,bx,by,bw,170,26);c.fill();
+  c.fillStyle=col;c.beginPath();c.arc(bx+bw/2,by+58,38,0,7);c.fill();const ic=await svgImg(g[2],'#ffffff');if(ic)c.drawImage(ic,bx+bw/2-22,by+36,44,44);
+  c.fillStyle=CC.ink;c.font=`800 22px ${FB}`;c.textAlign='center';c.fillText(a.n.length>18?a.n.slice(0,17)+'…':a.n,bx+bw/2,by+132);c.textAlign='left'}
+ c.fillStyle=CC.ink;rr(c,0,H-90,W,90,0);c.fill();c.fillStyle='#fff';c.font=`700 26px ${FB}`;c.fillText('Latihan SKD CPNS gaya game · TWK · TIU · TKP · Try Out CAT',64,H-36);
+ return cv}
+function shareText(mode){const h=mode==='to'?TH()[0]:null,b=bestTO(),bl=TH().some(x=>x.lulus&&x.tot===b);
+ if(h)return `Hasil Try Out SKD saya di Kepo CPNS: ${h.tot}/550 (TWK ${h.twk}, TIU ${h.tiu}, TKP ${h.tkp})${h.lulus?', lolos passing grade!':'. Masih dikejar terus!'} Yuk latihan bareng buat CPNS 2027.`;
+ return `Progres latihan SKD CPNS 2027 saya di Kepo CPNS: ${b?`skor Try Out terbaik ${b}/550${bl?' (lolos passing grade)':''}, `:''}${lessonsDone()} pelajaran selesai, streak terbaik ${bestStreak()} hari, ${achGot()} dari ${ACH.length} lencana terbuka. Yuk latihan bareng!`}
+async function shareModal(mode){if(mode==='to'&&!TH().length)mode='sum';
+ mbox.innerHTML=`<h2>Bagikan pencapaian</h2>
+ <div class="seg">${TH().length?`<button data-m="sum" class="${mode==='sum'?'on':''}">Ringkasan</button><button data-m="to" class="${mode==='to'?'on':''}">Try Out terakhir</button>`:''}</div>
+ <label class="nm" for="shName">Nama di kartu (opsional)</label><input id="shName" class="nmi" maxlength="32" placeholder="Misalnya: Garda" value="${esc(S.name||'')}">
+ <div class="shprev" id="shPrev"><p>Menyiapkan kartu…</p></div>
+ <p class="shnote">Di HP, tekan lama gambar untuk menyimpan atau membagikannya. Di laptop, klik kanan lalu salin atau simpan gambar.</p>
+ <div class="shbtns"><button class="btn" id="shImg">Salin gambar</button><button class="btn ghost" id="shTxt">Salin teks</button></div>
+ <textarea id="shT" class="sht" readonly rows="3">${esc(shareText(mode))}</textarea><button class="btn ghost" id="shClose" style="margin-top:10px">Tutup</button>`;
+ modal.hidden=false;let cv=null;
+ const render=async()=>{cv=await drawCard(mode);const p=document.getElementById('shPrev');if(p){p.innerHTML='';const im=new Image();im.alt='Kartu pencapaian Kepo CPNS';im.src=cv.toDataURL('image/png');p.appendChild(im)}};
+ render();
+ mbox.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>shareModal(b.dataset.m));
+ let tm;document.getElementById('shName').oninput=e=>{S.name=e.target.value;save();clearTimeout(tm);tm=setTimeout(render,350)};
+ document.getElementById('shClose').onclick=()=>modal.hidden=true;
+ document.getElementById('shTxt').onclick=()=>{const t=document.getElementById('shT');try{navigator.clipboard.writeText(t.value).then(()=>toast('Teks disalin'),()=>{t.select();toast('Tekan Ctrl+C / salin untuk menyalin teks')})}catch(e){t.select();toast('Tekan Ctrl+C / salin untuk menyalin teks')}};
+ document.getElementById('shImg').onclick=()=>{if(!cv)return;try{const blob=new Promise(r=>cv.toBlob(r,'image/png'));navigator.clipboard.write([new ClipboardItem({'image/png':blob})]).then(()=>toast('Gambar disalin. Tempel di WhatsApp atau media sosial.'),()=>toast('Browser ini tidak mengizinkan salin gambar. Tekan lama gambar atau klik kanan untuk menyimpannya.'))}catch(e){toast('Browser ini tidak mengizinkan salin gambar. Tekan lama gambar atau klik kanan untuk menyimpannya.')}}}
+
+achCheck(true);
 home();if(!S.goal)goalModal(true);
 if('serviceWorker' in navigator&&location.protocol.startsWith('http')){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
 
