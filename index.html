@@ -366,6 +366,89 @@ body.scr-open .qbody{padding-bottom:46vh}
 .catside .qgrid{grid-template-columns:repeat(8,minmax(0,1fr));gap:4px}
 .catside .qn{height:30px;font-size:11px;border-radius:8px;padding:0;min-width:0;border-width:1.5px}
 .catside .btn{margin-top:14px}
+.mcard{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--surface);color:var(--ink);border:2px solid var(--line);border-radius:20px;padding:14px 16px;box-shadow:0 5px 0 var(--line);margin-bottom:14px;transition:transform .1s,box-shadow .1s}
+.mcard:active{transform:translateY(5px);box-shadow:0 0 0 var(--line)}
+.mcard .qi{flex:none;width:44px;height:44px;border-radius:14px;background:var(--tkp-bg);color:var(--tkp);display:grid;place-items:center}
+.mcard .qi svg{width:26px;height:26px}
+.mcard b{display:block;font-family:var(--f-display);font-size:19px}
+.mcard small{display:block;font-size:13px;color:var(--muted);line-height:1.35}
+.mhead{display:flex;flex-direction:column;gap:14px;margin-bottom:18px}
+.mtitle{display:flex;gap:10px;align-items:flex-start}
+.mtitle h1{font-size:26px}
+.mtitle p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.mtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mtab{border:2px solid var(--line);border-radius:16px;padding:10px 8px;text-align:center;background:var(--surface);box-shadow:0 4px 0 var(--line);transition:transform .1s}
+.mtab b{display:block;font-family:var(--f-display);font-size:20px;color:var(--c);line-height:1.1}
+.mtab small{display:block;font-size:11px;color:var(--muted);font-weight:700;line-height:1.2}
+.mtab.on{background:var(--c);border-color:var(--c);box-shadow:0 4px 0 color-mix(in srgb,var(--c) 60%,#000)}
+.mtab.on b,.mtab.on small{color:#fff}
+.msearch{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:14px;padding:0 12px;background:var(--surface)}
+.msearch svg{width:20px;height:20px;color:var(--muted);flex:none}
+.msearch input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:15px;padding:12px 0;color:var(--ink);outline:none}
+.msearch:focus-within{border-color:var(--tiu)}
+.mgrid{display:block}
+.mnav{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 62px);background:var(--bg);z-index:3;padding-top:6px}
+.mnav-i{flex:none;padding:6px 12px;border-radius:999px;border:2px solid var(--line);font-size:13px;font-weight:700;color:var(--ink);text-decoration:none;background:var(--surface)}
+.mnav-i.done{border-color:var(--good);color:var(--good-ink);background:var(--good-bg)}
+.mres{flex:none;margin:0;align-self:center;font-size:13px;font-weight:700;color:var(--muted)}
+.mlist{display:flex;flex-direction:column;gap:16px;min-width:0}
+.mt{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:18px;scroll-margin-top:130px;min-width:0}
+.mt header{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:10px}
+.mt h3{font-size:24px}
+.kisi{background:var(--cbg);border-radius:12px;padding:10px 12px;font-size:14px;line-height:1.5;margin-bottom:12px}
+.kisi b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin-bottom:2px}
+.mbody{font-size:15px;line-height:1.6}
+.mbody h4{font-family:var(--f-body);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+.mbody p{margin:0 0 8px}
+.mbody ul,.mbody ol{margin:0 0 8px;padding-left:20px}
+.mbody li{margin-bottom:4px}
+.mbody .tw{overflow-x:auto;margin:6px 0 10px}
+.mbody table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+.mbody th,.mbody td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.mbody th{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.mbody .trik,.mbody .awas{border-radius:12px;padding:10px 12px;margin:10px 0;font-size:14px}
+.mbody .trik{background:color-mix(in srgb,var(--accent) 18%,var(--surface))}
+.mbody .awas{background:var(--bad-bg);color:var(--ink)}
+.mbody .trik b:first-child,.mbody .awas b:first-child{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.mbody .awas b:first-child{color:var(--bad)}
+.mbody code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92em;background:var(--surface-2);padding:1px 5px;border-radius:5px}
+.mbody .rumus{font-variant-numeric:tabular-nums;background:var(--surface-2);border-radius:10px;padding:8px 12px;margin:6px 0 10px;font-weight:700}
+mark{background:color-mix(in srgb,var(--accent) 55%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+.mt footer{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:2px solid var(--line)}
+.rd{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:2px solid var(--line);font-weight:700;font-size:13px}
+.rd svg{width:16px;height:16px}
+.rd.on{background:var(--good);border-color:var(--good);color:#fff}
+.go{padding:8px 14px;border-radius:999px;font-weight:800;font-size:13px;color:var(--c);background:var(--cbg)}
+@media (min-width:900px){
+ .materi .mgrid{display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;align-items:start}
+ .materi .mnav{flex-direction:column;overflow:auto;position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);max-height:calc(100vh - 110px);padding:0;gap:4px;background:none}
+ .materi .mnav-i{border:0;border-radius:10px;padding:8px 12px;background:none;color:var(--muted)}
+ .materi .mnav-i:hover{background:var(--surface-2);color:var(--ink)}
+ .materi .mnav-i.done{background:none;color:var(--good)}
+ .materi .mnav-i.done::before{content:"✓ "}
+ .mt{padding:24px 28px;scroll-margin-top:90px}
+ .mbody{max-width:72ch}
+ .mhead{max-width:860px}
+}
+
+.cs{border:2px solid var(--line);border-radius:16px;padding:14px;margin:12px 0;background:var(--bg)}
+.cs-l{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--tiu);margin-bottom:6px}
+.cs .ctx{margin-bottom:8px}.cs .figbox{margin-bottom:8px}
+.cs-q{font-weight:700;margin:0 0 8px}
+.cs-o{margin:0 0 10px;padding-left:24px}
+.cs-o li{margin-bottom:3px;padding:2px 6px;border-radius:8px}
+.cs-o.figopts{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;padding-left:22px}
+.cs:has(details[open]) .cs-o li[data-ok="true"]{background:var(--good-bg);color:var(--good-ink);font-weight:700}
+.cs summary{cursor:pointer;display:inline-block;font-weight:800;font-size:13px;color:var(--tiu);padding:6px 12px;border:2px solid var(--tiu);border-radius:999px;list-style:none}
+.cs summary::-webkit-details-marker{display:none}
+.cs details[open] summary{background:var(--tiu);color:#fff}
+.cs-p{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--surface-2);font-size:14.5px}
+.cs-p p:last-child{margin-bottom:0}
+.cs-a{font-size:14px}
+.vrow{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 10px}
+.vrow figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12.5px;text-align:center;color:var(--ink)}
+.vrow figcaption{line-height:1.35;max-width:170px}
+.venn{color:var(--ink);max-width:100%}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media (max-width:380px){.qtext{font-size:17px}.cards div{font-size:22px}.brand small{display:none}}
 </style>
@@ -1413,6 +1496,7 @@ function home(){onCat=false;scrReset();
    <div class="week">${week}</div></div></section>
   <button class="quick" id="bQuick"><span class="qi">${I.dice}</span><span><b>Latihan Cepat</b><small>10 soal acak dari semua materi yang sudah terbuka. Soal numerik dan figural selalu baru.</small></span></button>
   ${toCardHTML()}
+  ${materiCardHTML()}
   <div class="prog-all"><span>Progres materi</span><span class="tnum">${totalDone()}/${totalLessons} pelajaran</span><div class="track"><i style="width:${totalDone()/totalLessons*100}%"></i></div></div>
   <div class="info">${I.info}<div><strong>Format SKD (acuan seleksi 2024)</strong>: 110 soal dalam 100 menit.
    <table><tr><td>TWK</td><td>30 soal</td><td>ambang 65</td></tr><tr><td>TIU</td><td>35 soal</td><td>ambang 80</td></tr><tr><td>TKP</td><td>45 soal</td><td>ambang 166</td></tr></table>
@@ -1422,7 +1506,7 @@ function home(){onCat=false;scrReset();
  requestAnimationFrame(()=>{const r=document.getElementById('ringVal');if(r)r.style.strokeDashoffset=C*(1-pct)});
  app.querySelectorAll('.node').forEach(b=>b.onclick=()=>{const U=UNITS[+b.dataset.u],L=U.lessons.find(l=>l.k===b.dataset.k);
   if(!lvOpen(U,L.lv)){sfx.tap();toast(`Selesaikan semua pelajaran Level ${L.lv-1} dulu ya`);return}startLesson(U,L)});
- document.getElementById('bQuick').onclick=startQuick;bindTO();bind()}
+ document.getElementById('bQuick').onclick=startQuick;bindTO();document.getElementById('bMateri').onclick=()=>{MV.q='';showMateri();window.scrollTo(0,0)};bind()}
 function bind(){const g=id=>document.getElementById(id);
  g('bGoal')&&(g('bGoal').onclick=()=>goalModal());
  g('bSound').onclick=()=>{S.sound=!S.sound;save();g('bSound').innerHTML=S.sound?I.sound:I.mute;sfx.tap()};
@@ -1545,6 +1629,669 @@ function scrOpen(){if(SCR.key==null)return;const foot=document.querySelector('.f
 function scrClose(keep){if(!SCR.open)return;if(keep&&SCR.key!=null){try{SCR.map.set(SCR.key,SCR.cv.toDataURL())}catch(e){}}
  SCR.el.hidden=true;SCR.open=false;document.body.classList.remove('scr-open');const b=document.getElementById('scrBtn');if(b){b.classList.remove('on');b.style.bottom=''}}
 function scrReset(){scrClose(false);SCR.map.clear();SCR.key=null}
+
+const MATERI={};
+MATERI.twk=[
+{id:'pancasila',t:'Implementasi Pancasila',lesson:'pancasila',kisi:'Memahami kedudukan dan fungsi Pancasila, nilai-nilainya, lalu menerapkan tiap sila pada kasus sehari-hari, di masyarakat, dan di tempat kerja.',body:`
+<h4>Intinya</h4>
+<p>Pancasila artinya "lima dasar". Rumusan resminya ada di <b>Pembukaan UUD 1945 alinea keempat</b> dan disahkan PPKI tanggal <b>18 Agustus 1945</b>. Di soal, Pancasila jarang ditanya hafalan. Yang lebih sering: kamu diberi kasus, lalu diminta menentukan sila mana yang diterapkan atau dilanggar.</p>
+<h4>Fungsi dan kedudukan (sering ditanya)</h4>
+<ul>
+<li><b>Dasar negara</b>: pedoman mengatur pemerintahan dan hukum.</li>
+<li><b>Pandangan hidup</b>: pedoman sikap sehari-hari (gotong royong, toleransi).</li>
+<li><b>Sumber dari segala sumber hukum</b>: tidak boleh ada aturan yang bertentangan dengan Pancasila (UU 12/2011 Pasal 2).</li>
+<li><b>Ideologi negara</b>: arah pembangunan politik, ekonomi, sosial, hukum.</li>
+<li><b>Kepribadian bangsa, jiwa bangsa, perjanjian luhur, cita-cita bangsa.</b></li>
+</ul>
+<h4>Tiga tingkat nilai</h4>
+<div class="tw"><table><tr><th>Nilai</th><th>Artinya</th><th>Contoh</th></tr>
+<tr><td>Dasar</td><td>Isi kelima sila, tidak berubah</td><td>Ketuhanan, kemanusiaan, persatuan, kerakyatan, keadilan</td></tr>
+<tr><td>Instrumental</td><td>Aturan pelaksanaannya</td><td>UUD, UU, peraturan pemerintah</td></tr>
+<tr><td>Praksis</td><td>Perilaku nyata</td><td>Kerja bakti, toleransi di kantor</td></tr></table></div>
+<p>Notonegoro juga membagi nilai menjadi <b>material</b> (berguna bagi jasmani), <b>vital</b> (berguna untuk beraktivitas), dan <b>kerohanian</b> (kebenaran, keindahan, kebaikan, religius).</p>
+<h4>Asal mula Pancasila (kausa)</h4>
+<ul><li><b>Materialis</b>: bahannya dari adat, budaya, dan agama bangsa Indonesia sendiri.</li>
+<li><b>Formalis</b>: bentuk rumusannya disusun BPUPKI dan Panitia Sembilan.</li>
+<li><b>Efisien</b>: disahkan PPKI menjadi dasar negara.</li>
+<li><b>Finalis</b>: tujuannya menjadi dasar negara.</li></ul>
+<h4>Peta cepat sila → kata kunci kasus</h4>
+<div class="tw"><table><tr><th>Sila</th><th>Lambang</th><th>Kata kunci di soal</th></tr>
+<tr><td>1. Ketuhanan</td><td>Bintang</td><td>ibadah, toleransi antarumat, tidak memaksakan agama</td></tr>
+<tr><td>2. Kemanusiaan</td><td>Rantai</td><td>HAM, persamaan derajat, tenggang rasa, menolong korban bencana, tidak semena-mena</td></tr>
+<tr><td>3. Persatuan</td><td>Pohon beringin</td><td>kepentingan bangsa di atas pribadi, cinta tanah air, rela berkorban, Bhinneka</td></tr>
+<tr><td>4. Kerakyatan</td><td>Kepala banteng</td><td>musyawarah, tidak memaksakan kehendak, menghormati hasil keputusan, wakil rakyat</td></tr>
+<tr><td>5. Keadilan sosial</td><td>Padi dan kapas</td><td>gotong royong, hak seimbang dengan kewajiban, tidak boros atau bermewah-mewah, pemerataan, menghargai karya orang lain</td></tr></table></div>
+<div class="trik"><b>Trik cepat</b>Cari kata kerja utama di kasus. "Musyawarah" hampir selalu sila 4. "Gotong royong" dan "hidup sederhana" sila 5. "Menolong orang beda bangsa" sila 2. "Mendahulukan kepentingan bangsa" sila 3.</div>
+<div class="awas"><b>Awas jebakan</b>Gotong royong untuk kepentingan umum (kerja bakti) masuk sila 5, tetapi gotong royong yang menekankan persatuan antarsuku bisa dimaksudkan sila 3. Baca konteks kalimat terakhir soal.</div>`},
+{id:'sejarah',t:'Sejarah Perumusan & Kemerdekaan',lesson:'sejarah',kisi:'Mengenal tokoh, organisasi, dan peristiwa penting dari pergerakan nasional sampai reformasi, terutama proses lahirnya Pancasila dan UUD 1945.',body:`
+<h4>Garis waktu yang wajib hafal</h4>
+<div class="tw"><table><tr><th>Tanggal</th><th>Peristiwa</th></tr>
+<tr><td>20 Mei 1908</td><td>Budi Utomo berdiri → Hari Kebangkitan Nasional</td></tr>
+<tr><td>1912</td><td>Indische Partij (Tiga Serangkai), Muhammadiyah (K.H. Ahmad Dahlan)</td></tr>
+<tr><td>28 Okt 1928</td><td>Sumpah Pemuda di Kongres Pemuda II (ketua Soegondo Djojopoespito)</td></tr>
+<tr><td>22 Des 1928</td><td>Kongres Perempuan I → Hari Ibu</td></tr>
+<tr><td>1 Mar 1945</td><td>BPUPKI dibentuk (ketua dr. Radjiman Wedyodiningrat)</td></tr>
+<tr><td>29 Mei–1 Jun 1945</td><td>Sidang I BPUPKI: dasar negara. Pengusul: Yamin (29/5), Soepomo (31/5), Soekarno (1/6)</td></tr>
+<tr><td>22 Jun 1945</td><td>Panitia Sembilan menyusun Piagam Jakarta</td></tr>
+<tr><td>10–17 Jul 1945</td><td>Sidang II BPUPKI: rancangan UUD</td></tr>
+<tr><td>7 Agu 1945</td><td>PPKI dibentuk (ketua Soekarno, wakil Hatta)</td></tr>
+<tr><td>16 Agu 1945</td><td>Peristiwa Rengasdengklok, naskah proklamasi dirumuskan di rumah Laksamana Maeda</td></tr>
+<tr><td>17 Agu 1945</td><td>Proklamasi di Jl. Pegangsaan Timur 56. Pengetik naskah: Sayuti Melik</td></tr>
+<tr><td>18 Agu 1945</td><td>PPKI mengesahkan UUD 1945, memilih presiden dan wakil presiden</td></tr>
+<tr><td>19 Agu 1945</td><td>PPKI membentuk 8 provinsi dan 12 kementerian</td></tr>
+<tr><td>10 Nov 1945</td><td>Pertempuran Surabaya → Hari Pahlawan</td></tr>
+<tr><td>19 Des 1948</td><td>PDRI di Bukittinggi → Hari Bela Negara</td></tr>
+<tr><td>27 Des 1949</td><td>Pengakuan kedaulatan hasil KMB, RIS berdiri</td></tr>
+<tr><td>5 Jul 1959</td><td>Dekrit Presiden: kembali ke UUD 1945</td></tr>
+<tr><td>21 Mei 1998</td><td>Soeharto mundur, awal Reformasi</td></tr></table></div>
+<h4>Tiga usulan dasar negara di sidang BPUPKI</h4>
+<ul><li><b>Muhammad Yamin</b>: peri kebangsaan, peri kemanusiaan, peri ketuhanan, peri kerakyatan, kesejahteraan rakyat.</li>
+<li><b>Soepomo</b>: persatuan, kekeluargaan, keseimbangan lahir batin, musyawarah, keadilan rakyat.</li>
+<li><b>Soekarno</b>: kebangsaan, internasionalisme, mufakat, kesejahteraan sosial, ketuhanan. Ia memperkenalkan nama "Pancasila", lalu bisa diperas jadi Trisila dan Ekasila (gotong royong).</li></ul>
+<h4>Perubahan sila pertama</h4>
+<p>Di Piagam Jakarta, sila pertama berbunyi "Ketuhanan dengan kewajiban menjalankan syariat Islam bagi pemeluk-pemeluknya". Pada 18 Agustus 1945 diubah menjadi "Ketuhanan Yang Maha Esa" <b>demi persatuan</b>, setelah ada keberatan dari wakil Indonesia bagian timur.</p>
+<div class="trik"><b>Trik cepat</b>BPUPKI = merancang (ketua Radjiman). PPKI = mengesahkan (ketua Soekarno). Kalau soal bertanya "siapa yang mengesahkan", jawabannya hampir pasti PPKI.</div>`},
+{id:'uud',t:'Implementasi UUD 1945',lesson:'uud',kisi:'Memahami isi Pembukaan dan pasal-pasal penting UUD 1945, sistem ketatanegaraan, lembaga negara, hak dan kewajiban warga negara, serta penerapannya.',body:`
+<h4>Pembukaan UUD 1945 (4 alinea)</h4>
+<ol><li>Kemerdekaan hak segala bangsa, penjajahan harus dihapuskan.</li>
+<li>Perjuangan pergerakan kemerdekaan sudah sampai di depan pintu gerbang.</li>
+<li>Pernyataan kemerdekaan atas berkat rahmat Allah.</li>
+<li><b>Tujuan negara</b> + <b>dasar negara (Pancasila)</b>: melindungi segenap bangsa, memajukan kesejahteraan umum, mencerdaskan kehidupan bangsa, ikut melaksanakan ketertiban dunia.</li></ol>
+<h4>Sejarah konstitusi</h4>
+<p>UUD 1945 (1945–1949) → Konstitusi RIS (1949–1950) → UUDS 1950 (1950–1959) → kembali ke UUD 1945 lewat Dekrit 5 Juli 1959 → <b>diamandemen 4 kali (1999–2002)</b> oleh MPR.</p>
+<h4>Pasal yang paling sering keluar</h4>
+<div class="tw"><table><tr><th>Pasal</th><th>Isi singkat</th></tr>
+<tr><td>1 (1), (2), (3)</td><td>Negara kesatuan berbentuk republik; kedaulatan di tangan rakyat; negara hukum</td></tr>
+<tr><td>3</td><td>MPR mengubah dan menetapkan UUD</td></tr>
+<tr><td>6A, 7</td><td>Presiden dipilih langsung; menjabat 5 tahun, maksimal 2 periode</td></tr>
+<tr><td>7A, 7B</td><td>Pemberhentian presiden: usul DPR → diperiksa MK → diputus MPR</td></tr>
+<tr><td>18, 18B</td><td>Pemerintahan daerah; pengakuan masyarakat hukum adat</td></tr>
+<tr><td>20, 20A</td><td>DPR membentuk UU; fungsi legislasi, anggaran, pengawasan</td></tr>
+<tr><td>22</td><td>Perppu dalam kegentingan yang memaksa</td></tr>
+<tr><td>22E</td><td>Pemilu LUBER JURDIL</td></tr>
+<tr><td>23E</td><td>BPK memeriksa keuangan negara</td></tr>
+<tr><td>24, 24A, 24B, 24C</td><td>Kekuasaan kehakiman (MA, MK); Komisi Yudisial; wewenang MK</td></tr>
+<tr><td>25A</td><td>Negara kepulauan berciri nusantara</td></tr>
+<tr><td>26</td><td>Warga negara dan penduduk</td></tr>
+<tr><td>27 (1), (2), (3)</td><td>Sama di depan hukum; hak atas pekerjaan; hak dan wajib bela negara</td></tr>
+<tr><td>28A–28J</td><td>Hak asasi manusia. 28E (3): berserikat dan berpendapat. 28J: HAM dibatasi UU</td></tr>
+<tr><td>29</td><td>Ketuhanan; kebebasan beragama dan beribadah</td></tr>
+<tr><td>30</td><td>Pertahanan dan keamanan (Sishankamrata)</td></tr>
+<tr><td>31</td><td>Pendidikan; anggaran minimal 20% (ayat 4)</td></tr>
+<tr><td>32</td><td>Kebudayaan dan bahasa daerah</td></tr>
+<tr><td>33</td><td>Perekonomian; kekayaan alam untuk kemakmuran rakyat (ayat 3)</td></tr>
+<tr><td>34</td><td>Fakir miskin dan anak telantar dipelihara negara; jaminan sosial</td></tr>
+<tr><td>35–36B</td><td>Bendera, bahasa, lambang negara, lagu kebangsaan</td></tr>
+<tr><td>37 (5)</td><td>Bentuk NKRI tidak dapat diubah</td></tr></table></div>
+<h4>Lembaga negara dalam satu tarikan napas</h4>
+<ul><li><b>Legislatif</b>: MPR, DPR, DPD.</li><li><b>Eksekutif</b>: Presiden dan wakil presiden, dibantu menteri.</li><li><b>Yudikatif</b>: MA dan MK. Komisi Yudisial mengawasi hakim.</li><li><b>Eksaminatif</b>: BPK.</li></ul>
+<div class="trik"><b>Trik cepat</b>MK = "penjaga konstitusi": uji UU terhadap UUD, sengketa lembaga negara, bubarkan parpol, sengketa hasil pemilu. MA = uji peraturan di bawah UU terhadap UU.</div>
+<div class="awas"><b>Awas jebakan</b>Pasal 27 ayat (3) memakai kata "pembelaan negara", sedangkan Pasal 30 ayat (1) memakai "pertahanan dan keamanan negara". Keduanya sering ditukar di opsi.</div>`},
+{id:'nasionalisme',t:'Nasionalisme',lesson:'nasionalisme',kisi:'Memahami makna nasionalisme dan patriotisme, membedakannya dari paham sempit, serta menunjukkan sikap kebangsaan dalam kasus nyata, termasuk penggunaan bahasa dan simbol negara.',body:`
+<h4>Intinya</h4>
+<p>Nasionalisme adalah rasa cinta dan setia pada bangsa sendiri. Versi Indonesia disebut <b>nasionalisme Pancasila</b>: bangga dan setia pada Indonesia, tetapi tetap menghormati bangsa lain dan terbuka bekerja sama.</p>
+<h4>Definisi tokoh (sering keluar)</h4>
+<ul><li><b>Hans Kohn</b>: kesetiaan tertinggi individu diserahkan kepada negara kebangsaan.</li>
+<li><b>Ernest Renan</b>: bangsa terbentuk karena keinginan untuk hidup bersama.</li>
+<li><b>Otto Bauer</b>: bangsa adalah kesatuan perangai karena persamaan nasib.</li></ul>
+<h4>Bedakan istilahnya</h4>
+<div class="tw"><table><tr><th>Istilah</th><th>Artinya</th><th>Sikap</th></tr>
+<tr><td>Nasionalisme Pancasila</td><td>Cinta bangsa tanpa merendahkan bangsa lain</td><td>Dianjurkan</td></tr>
+<tr><td>Patriotisme</td><td>Cinta tanah air yang diwujudkan dengan rela berkorban</td><td>Dianjurkan</td></tr>
+<tr><td>Chauvinisme</td><td>Menganggap bangsa sendiri paling unggul, bangsa lain rendah</td><td>Dihindari</td></tr>
+<tr><td>Primordialisme</td><td>Ikatan berlebihan pada suku, agama, daerah</td><td>Dihindari</td></tr>
+<tr><td>Etnosentrisme</td><td>Menilai budaya lain dengan ukuran budaya sendiri</td><td>Dihindari</td></tr>
+<tr><td>Kosmopolitanisme</td><td>Merasa warga dunia, lepas dari bangsa tertentu</td><td>Hati-hati</td></tr>
+<tr><td>Separatisme</td><td>Ingin memisahkan diri dari negara</td><td>Ancaman</td></tr></table></div>
+<h4>Prinsip nasionalisme</h4>
+<p>Kesatuan, kebebasan, kesamaan, kepribadian, dan prestasi.</p>
+<h4>Simbol negara (UU 24/2009)</h4>
+<ul><li>Bendera Merah Putih wajib dihormati; dikibarkan setengah tiang tanda berkabung.</li>
+<li>Saat lagu Indonesia Raya diperdengarkan di acara resmi, hadirin wajib <b>berdiri tegak dengan sikap hormat</b>.</li>
+<li>Bahasa Indonesia wajib dipakai untuk nama bangunan, jalan, permukiman, dan nota kesepahaman dengan pihak asing.</li>
+<li>Lambang Garuda Pancasila dirancang Sultan Hamid II.</li></ul>
+<div class="trik"><b>Trik cepat</b>Opsi yang membela Indonesia sambil merendahkan bangsa lain hampir selalu salah. Jawaban terbaik biasanya yang konstruktif: berprestasi, melestarikan, mempromosikan dengan santun.</div>`},
+{id:'nkri',t:'Pilar NKRI & Bhinneka Tunggal Ika',lesson:'nkri',kisi:'Memahami empat konsensus dasar (Pancasila, UUD 1945, NKRI, Bhinneka Tunggal Ika), bentuk negara, sistem pemerintahan, demokrasi, negara hukum, dan sikap menjaga keutuhan bangsa.',body:`
+<h4>Empat konsensus dasar berbangsa</h4>
+<p><b>Pancasila, UUD 1945, NKRI, dan Bhinneka Tunggal Ika.</b> Dulu populer disebut "empat pilar".</p>
+<h4>NKRI</h4>
+<ul><li>Bentuk negara <b>kesatuan</b>, bentuk pemerintahan <b>republik</b>, sistem <b>presidensial</b> (presiden = kepala negara sekaligus kepala pemerintahan, menteri bertanggung jawab kepada presiden).</li>
+<li>Bentuk NKRI <b>tidak dapat diubah</b> (Pasal 37 ayat 5).</li>
+<li>Otonomi daerah: <b>desentralisasi</b> (urusan diserahkan ke daerah), <b>dekonsentrasi</b> (wewenang dilimpahkan ke gubernur sebagai wakil pusat), <b>tugas pembantuan</b>.</li>
+<li>Daerah khusus/istimewa: Aceh, DIY (gubernurnya Sultan yang bertakhta), Papua (otsus sejak UU 21/2001).</li>
+<li>Wilayah: negara kepulauan (Deklarasi Djuanda 1957, diakui UNCLOS 1982).</li></ul>
+<h4>Bhinneka Tunggal Ika</h4>
+<p>Artinya "berbeda-beda tetapi tetap satu". Diambil dari <b>kitab Sutasoma karya Mpu Tantular</b> (Majapahit). Inti sikapnya: toleransi, menghargai perbedaan, tidak diskriminatif, dan mengutamakan persatuan.</p>
+<h4>Demokrasi dan negara hukum</h4>
+<ul><li>Demokrasi Pancasila: musyawarah mufakat, hak seimbang dengan kewajiban. Voting boleh sebagai jalan terakhir.</li>
+<li>Pemilu LUBER JURDIL. Penyelenggara: KPU (pelaksana), Bawaslu (pengawas), DKPP (etik).</li>
+<li>Ciri negara hukum: supremasi hukum, persamaan di depan hukum, perlindungan HAM, peradilan bebas, asas praduga tak bersalah.</li>
+<li>Hierarki aturan (UU 12/2011): UUD 1945 → TAP MPR → UU/Perppu → PP → Perpres → Perda Provinsi → Perda Kabupaten/Kota.</li>
+<li>Hak DPR: interpelasi (minta keterangan), angket (menyelidiki), menyatakan pendapat.</li></ul>
+<div class="trik"><b>Trik cepat</b>Kasus main hakim sendiri = melanggar prinsip negara hukum. Kasus memaksakan kehendak mayoritas = melanggar Bhinneka dan demokrasi Pancasila. Penyelesaian terbaik: musyawarah + sesuai aturan.</div>`},
+{id:'integritas',t:'Integritas & Antikorupsi',lesson:'integritas',kisi:'Memahami nilai integritas (jujur, konsisten, bertanggung jawab), bentuk-bentuk korupsi, gratifikasi, konflik kepentingan, nilai dasar ASN BerAKHLAK, dan sikap antikorupsi.',body:`
+<h4>Intinya</h4>
+<p>Integritas artinya <b>satu kata dengan perbuatan</b>: pikiran, ucapan, dan tindakan selaras dengan nilai yang benar, termasuk saat tidak ada yang mengawasi.</p>
+<h4>Kenali jenis pelanggarannya</h4>
+<div class="tw"><table><tr><th>Istilah</th><th>Cirinya</th></tr>
+<tr><td>Korupsi</td><td>Memperkaya diri atau orang lain dengan merugikan keuangan negara</td></tr>
+<tr><td>Kolusi</td><td>Kongkalikong antarpihak secara melawan hukum (mis. pejabat dan kontraktor)</td></tr>
+<tr><td>Nepotisme</td><td>Mendahulukan keluarga atau kerabat dalam jabatan atau proyek</td></tr>
+<tr><td>Suap</td><td>Pemberian dengan kesepakatan imbal balik</td></tr>
+<tr><td>Gratifikasi</td><td>Pemberian dalam arti luas terkait jabatan; wajib lapor ke KPK maks. <b>30 hari kerja</b></td></tr>
+<tr><td>Pungli</td><td>Petugas meminta bayaran di luar ketentuan</td></tr>
+<tr><td>Pemerasan</td><td>Memaksa orang memberi sesuatu dengan menyalahgunakan kekuasaan</td></tr>
+<tr><td>Penggelapan dalam jabatan</td><td>Memakai uang atau barang yang dikuasai karena jabatan</td></tr>
+<tr><td>Konflik kepentingan</td><td>Kepentingan pribadi bisa memengaruhi keputusan jabatan → wajib diungkapkan dan mundur</td></tr></table></div>
+<h4>Sembilan nilai antikorupsi (KPK)</h4>
+<p>Jujur, peduli, mandiri, disiplin, tanggung jawab, kerja keras, sederhana, berani, adil.</p>
+<h4>Nilai dasar ASN: BerAKHLAK</h4>
+<ul><li><b>Ber</b>orientasi pelayanan: ramah, cekatan, solutif.</li><li><b>A</b>kuntabel: bertanggung jawab, memakai fasilitas negara sesuai peruntukan.</li><li><b>K</b>ompeten: terus belajar.</li><li><b>H</b>armonis: menghargai perbedaan.</li><li><b>L</b>oyal: setia pada Pancasila, UUD, NKRI, menjaga rahasia jabatan.</li><li><b>A</b>daptif: cepat menyesuaikan diri dan berinovasi.</li><li><b>K</b>olaboratif: mau bekerja sama.</li></ul>
+<h4>Lembaga dan istilah</h4>
+<ul><li>KPK dibentuk dengan UU 30/2002. UU Tipikor: UU 31/1999 jo. UU 20/2001.</li><li>LHKPN = laporan harta pejabat ke KPK.</li><li>Whistleblower = pelapor pelanggaran. Justice collaborator = pelaku yang bekerja sama dengan penegak hukum.</li><li>Hari Antikorupsi Sedunia: 9 Desember.</li></ul>
+<div class="awas"><b>Awas jebakan</b>"Niat mengembalikan" tidak membuat penggelapan jadi boleh. "Semua orang juga melakukannya" bukan pembenaran. Di soal, jawaban yang kompromi dengan kecurangan kecil selalu salah.</div>`},
+{id:'belanegara',t:'Bela Negara',lesson:'belanegara',kisi:'Memahami hak dan kewajiban bela negara, nilai dasar bela negara, bentuk ancaman, sistem pertahanan semesta, wawasan nusantara, dan ketahanan nasional.',body:`
+<h4>Dasar hukum</h4>
+<ul><li>Pasal 27 ayat (3): setiap warga negara <b>berhak dan wajib</b> ikut serta dalam upaya pembelaan negara.</li>
+<li>Pasal 30: pertahanan dan keamanan; Sishankamrata dengan TNI dan Polri sebagai kekuatan utama, rakyat sebagai pendukung.</li>
+<li>UU 3/2002 (Pertahanan Negara) dan UU 23/2019 (Pengelolaan Sumber Daya Nasional untuk Pertahanan).</li></ul>
+<h4>Lima nilai dasar bela negara (UU 23/2019)</h4>
+<ol><li>Cinta tanah air</li><li>Sadar berbangsa dan bernegara</li><li>Setia kepada Pancasila sebagai ideologi negara</li><li>Rela berkorban untuk bangsa dan negara</li><li>Kemampuan awal bela negara (sehat jasmani-rohani, disiplin, ulet)</li></ol>
+<h4>Bentuk bela negara</h4>
+<p><b>Fisik</b>: dengan kekuatan bersenjata (TNI, Komponen Cadangan). <b>Non-fisik</b>: sesuai peran masing-masing, misalnya pelajar belajar sungguh-sungguh, ASN melayani dengan jujur, warga ikut siskamling, nakes bertugas saat pandemi, warga melawan hoaks.</p>
+<h4>Komponen pertahanan</h4>
+<p><b>Utama</b>: TNI. <b>Cadangan</b>: warga terlatih secara sukarela. <b>Pendukung</b>: warga negara, sumber daya alam, sumber daya buatan, sarana prasarana.</p>
+<h4>Jenis ancaman</h4>
+<ul><li><b>Militer</b>: memakai kekuatan bersenjata (agresi, pelanggaran wilayah oleh pesawat tempur asing, pemberontakan bersenjata).</li>
+<li><b>Nonmiliter</b>: ideologi, politik, ekonomi, sosial budaya, teknologi (hoaks, narkoba, radikalisme, krisis ekonomi, wabah).</li>
+<li><b>Hibrida</b>: gabungan keduanya.</li></ul>
+<h4>Wawasan nusantara & ketahanan nasional</h4>
+<ul><li>Wawasan nusantara: <b>cara pandang</b> bangsa tentang diri dan lingkungannya sebagai satu kesatuan (politik, ekonomi, sosbud, hankam). Laut menyatukan, bukan memisahkan.</li>
+<li>Ketahanan nasional: <b>kondisi dinamis</b> berupa keuletan dan ketangguhan menghadapi ancaman.</li>
+<li>Astagatra = Trigatra (geografi, kekayaan alam, penduduk) + Pancagatra (ideologi, politik, ekonomi, sosbud, hankam).</li>
+<li>Politik luar negeri <b>bebas aktif</b>.</li></ul>
+<div class="trik"><b>Trik cepat</b>Kalau opsi menyebut "angkat senjata" untuk warga sipil biasa, itu hampir pasti bukan jawaban terbaik. Bela negara di soal CPNS lebih sering non-fisik dan sesuai profesi.</div>`},
+{id:'gagasan',t:'Bahasa: Gagasan Utama & Paragraf',lesson:'bahasa',kisi:'Menentukan gagasan utama, kalimat utama, simpulan, dan jenis paragraf dari bacaan pendek.',body:`
+<h4>Intinya</h4>
+<p>Gagasan utama adalah <b>ide yang memayungi semua kalimat</b> dalam paragraf. Kalimat lain hanya contoh, alasan, atau rincian.</p>
+<h4>Letak kalimat utama</h4>
+<div class="tw"><table><tr><th>Jenis paragraf</th><th>Letak kalimat utama</th><th>Ciri</th></tr>
+<tr><td>Deduktif</td><td>Awal</td><td>Umum → khusus</td></tr>
+<tr><td>Induktif</td><td>Akhir</td><td>Ada penanda: jadi, dengan demikian, oleh karena itu</td></tr>
+<tr><td>Campuran</td><td>Awal dan akhir</td><td>Kalimat akhir menegaskan ulang kalimat awal</td></tr>
+<tr><td>Deskriptif/naratif</td><td>Menyebar</td><td>Gagasan utama harus disimpulkan sendiri</td></tr></table></div>
+<h4>Langkah menjawab</h4>
+<ol><li>Baca kalimat pertama dan terakhir dulu.</li><li>Tanyakan: "Paragraf ini sebenarnya membahas apa?"</li><li>Coret opsi yang hanya berisi satu detail.</li><li>Coret opsi yang terlalu luas atau menambah informasi di luar bacaan.</li></ol>
+<div class="awas"><b>Awas jebakan</b>Opsi yang kalimatnya persis sama dengan salah satu kalimat bacaan belum tentu gagasan utama. Seringnya itu hanya detail pendukung.</div>`},
+{id:'kalimat',t:'Bahasa: Kalimat Efektif & Ejaan',lesson:'bahasa',kisi:'Menentukan kalimat efektif, penulisan kata baku, penggunaan huruf kapital, tanda baca, kata depan, dan imbuhan sesuai EYD Edisi V.',body:`
+<h4>Ciri kalimat efektif</h4>
+<ul><li><b>Lengkap strukturnya</b>: minimal ada subjek dan predikat. Hindari "Dalam rapat itu membahas..." (subjek hilang karena diawali kata depan).</li>
+<li><b>Hemat</b>: tidak ada pleonasme, seperti "naik ke atas", "para peserta-peserta", "sangat ... sekali", "agar supaya", "sejak dari".</li>
+<li><b>Logis</b>: "Waktu dan tempat kami persilakan" kurang logis.</li>
+<li><b>Tepat pilihan kata</b>: "membahas" (bukan "membahas tentang"), "daripada" hanya untuk membandingkan.</li>
+<li><b>Paralel</b>: bentuk kata dalam perincian seragam (pembuatan, penyusunan, pelaksanaan).</li></ul>
+<h4>Kata baku yang sering muncul</h4>
+<div class="tw"><table><tr><th>Baku</th><th>Tidak baku</th></tr>
+<tr><td>apotek, analisis, risiko, sistem, kualitas</td><td>apotik, analisa, resiko, sistim, kwalitas</td></tr>
+<tr><td>ijazah, jadwal, sekadar, nasihat, napas</td><td>ijasah, jadual, sekedar, nasehat, nafas</td></tr>
+<tr><td>silakan, karier, andal, teknik, hakikat</td><td>silahkan, karir, handal, tehnik, hakekat</td></tr>
+<tr><td>mengubah, menerjemahkan, menyukseskan</td><td>merubah, menterjemahkan, mensukseskan</td></tr></table></div>
+<h4>Aturan ejaan yang sering keluar</h4>
+<ul><li><b>Di/ke sebagai kata depan</b> (diikuti tempat) ditulis terpisah: di atas, ke sana. <b>Di- sebagai imbuhan</b> (diikuti kata kerja) ditulis serangkai: diletakkan.</li>
+<li>Huruf kapital untuk nama diri dan lembaga (Universitas Padjadjaran), unsur nama geografi (Pulau Bali), nama suku (suku Sunda: "suku" kecil).</li>
+<li>Bilangan di awal kalimat ditulis dengan huruf.</li>
+<li>Gelar di belakang nama dipisahkan koma: Ahmad Fauzi, M.Si.</li>
+<li>Akronim nama diri dari gabungan suku kata: huruf awal kapital (Bappenas).</li>
+<li>Huruf miring untuk judul buku/majalah/koran dan istilah asing.</li>
+<li>Pedoman ejaan terbaru: <b>EYD Edisi V</b> (2022).</li></ul>
+<div class="trik"><b>Trik cepat</b>Kata dasar berawalan k, p, t, s luluh saat diberi me-: kirim → mengirim, pukul → memukul, tulis → menulis, sapu → menyapu. Kecuali gugus konsonan serapan: mengkritik, memproduksi.</div>`},
+{id:'hotstwk',t:'Strategi Soal HOTS TWK',lesson:'hots',kisi:'Menganalisis kasus berita atau peristiwa nyata lalu menentukan nilai, pasal, atau sikap kebangsaan yang paling tepat.',body:`
+<h4>Pola soal HOTS TWK</h4>
+<p>Soal diawali cerita atau kutipan berita (tambang, pilkada, hoaks, demonstrasi, toleransi), lalu bertanya: nilai apa yang tercermin, analisis paling tepat, atau sikap terbaik.</p>
+<h4>Langkah menjawab</h4>
+<ol><li><b>Temukan masalah inti</b> di kalimat terakhir cerita.</li>
+<li><b>Hubungkan</b> dengan sila, pasal, atau nilai yang paling langsung.</li>
+<li><b>Pilih opsi yang seimbang</b>: menghormati hak, tetap sesuai hukum, dan menjaga persatuan.</li>
+<li><b>Coret opsi ekstrem</b>: "membatalkan semua", "menutup total", "mengikuti mayoritas saja", "memaksa".</li></ol>
+<h4>Kerangka analisis yang sering cocok</h4>
+<ul><li>Konflik kepentingan umum vs hak warga → musyawarah + ganti rugi adil (sila 4 dan 5).</li>
+<li>Pemaksaan oleh ormas atau mayoritas → negara hukum + kebebasan beragama (Pasal 1 ayat 3, Pasal 29).</li>
+<li>Hoaks SARA → literasi digital, jangan sebar, laporkan (sila 3).</li>
+<li>Kekayaan alam tidak dinikmati warga sekitar → Pasal 33 ayat (3) dan sila 5.</li>
+<li>Unjuk rasa tertib → Pasal 28E ayat (3); jika merusak → dibatasi Pasal 28J.</li>
+<li>Masyarakat adat → Pasal 18B ayat (2).</li></ul>
+<div class="trik"><b>Trik cepat</b>Di soal HOTS, opsi yang terdengar "tegas" sering bukan yang terbaik. Yang benar biasanya yang <b>proporsional</b>: tegas pada aturan, tetapi tetap dialogis.</div>`}
+];
+
+MATERI.tiu=[
+{id:'sinant',t:'Sinonim & Antonim',lesson:'sinant',kisi:'Menentukan persamaan kata (sinonim) dan lawan kata (antonim), termasuk kata serapan dan istilah yang jarang dipakai sehari-hari.',body:`
+<h4>Intinya</h4>
+<p>Sinonim = kata yang artinya sama atau mirip. Antonim = kata yang artinya berlawanan. Soal SKD sering memakai kata serapan dan kata "jarang pakai", jadi kuncinya adalah <b>memperkaya kosakata</b>.</p>
+<h4>Langkah menjawab</h4>
+<ol><li>Masukkan kata soal ke dalam kalimat sederhana, lalu ganti dengan tiap opsi.</li>
+<li>Untuk kata serapan, ingat kata Inggrisnya: konklusi (<i>conclusion</i>) = kesimpulan, rekognisi (<i>recognition</i>) = pengakuan.</li>
+<li>Untuk antonim, coret dulu opsi yang justru sinonim. Pembuat soal sering menyelipkannya.</li></ol>
+<h4>Kosakata yang sering muncul</h4>
+<div class="tw"><table><tr><th>Kata</th><th>Sinonim</th><th>Antonim</th></tr>
+<tr><td>nisbi</td><td>relatif</td><td>mutlak</td></tr>
+<tr><td>mangkus / sangkil</td><td>efektif / efisien</td><td>-</td></tr>
+<tr><td>konkret</td><td>nyata</td><td>abstrak</td></tr>
+<tr><td>eksplisit</td><td>tersurat</td><td>implisit (tersirat)</td></tr>
+<tr><td>sporadis</td><td>kadang-kadang</td><td>terus-menerus</td></tr>
+<tr><td>friksi</td><td>perselisihan</td><td>kerukunan</td></tr>
+<tr><td>apatis</td><td>acuh tak acuh</td><td>peduli</td></tr>
+<tr><td>stagnan</td><td>mandek</td><td>berkembang</td></tr>
+<tr><td>permanen</td><td>tetap</td><td>temporer</td></tr>
+<tr><td>progresif</td><td>maju</td><td>konservatif</td></tr>
+<tr><td>defisit</td><td>kekurangan</td><td>surplus</td></tr>
+<tr><td>eksklusif</td><td>khusus/terpisah</td><td>inklusif</td></tr>
+<tr><td>otonom</td><td>berdiri sendiri</td><td>bergantung</td></tr>
+<tr><td>kredibel</td><td>dapat dipercaya</td><td>-</td></tr>
+<tr><td>elaborasi</td><td>penjabaran terperinci</td><td>penyederhanaan</td></tr>
+<tr><td>kontemporer</td><td>masa kini</td><td>kuno</td></tr></table></div>
+<div class="awas"><b>Awas jebakan</b>Kata yang bunyinya mirip artinya bisa jauh berbeda: elaborasi vs kolaborasi, kompatibel vs kompetitif, otonom vs otomatis, temporer vs kontemporer.</div>`},
+{id:'analogi',t:'Analogi Kata & Kalimat',lesson:'analogi',kisi:'Menemukan hubungan antara dua kata atau dua pernyataan, lalu memilih pasangan lain yang hubungannya sama.',body:`
+<h4>Intinya</h4>
+<p>Buat <b>kalimat penghubung</b> untuk pasangan pertama, lalu uji kalimat yang sama ke setiap opsi. Yang lolos dengan urutan yang sama adalah jawabannya.</p>
+<p>Contoh: PILOT : PESAWAT → "Pilot <i>mengemudikan</i> pesawat." Uji: "Nakhoda mengemudikan kapal" ✓, "Masinis mengemudikan rel" ✗.</p>
+<h4>Pola hubungan yang sering keluar</h4>
+<div class="tw"><table><tr><th>Pola</th><th>Contoh</th></tr>
+<tr><td>Profesi : alat</td><td>Petani : cangkul, Nelayan : jala</td></tr>
+<tr><td>Profesi : tempat kerja</td><td>Guru : sekolah, Dokter : rumah sakit</td></tr>
+<tr><td>Alat : fungsi</td><td>Pena : menulis, Gunting : memotong</td></tr>
+<tr><td>Alat ukur : besaran</td><td>Termometer : suhu, Barometer : tekanan udara</td></tr>
+<tr><td>Bahan : hasil olahan</td><td>Kedelai : tahu, Susu : mentega</td></tr>
+<tr><td>Sebab : akibat</td><td>Hujan : banjir, Kemarau : kekeringan</td></tr>
+<tr><td>Keadaan : cara mengatasi</td><td>Lapar : makan, Haus : minum</td></tr>
+<tr><td>Anggota : kelompok</td><td>Paus : mamalia, Merah : warna</td></tr>
+<tr><td>Bagian : keseluruhan</td><td>Roda : mobil, Baling-baling : helikopter</td></tr>
+<tr><td>Hewan : hasil</td><td>Lebah : madu, Ulat : sutra</td></tr></table></div>
+<h4>Analogi dua bagian kosong</h4>
+<p>Bentuknya "KUAS : .... = .... : PENULIS". Isi tiap opsi ke kedua titik, lalu baca utuh. Kuas : <b>pelukis</b> = <b>pena</b> : penulis.</p>
+<div class="awas"><b>Awas jebakan</b>Urutan harus sama. "Ulat : sutra" (penghasil : hasil) tidak sama dengan "Madu : lebah" (hasil : penghasil).</div>`},
+{id:'pola',t:'Pola Kalimat (SPOK)',lesson:'analogi',kisi:'Mengenali unsur kalimat (subjek, predikat, objek, pelengkap, keterangan) dan menentukan kalimat yang polanya sama.',body:`
+<h4>Unsur kalimat</h4>
+<ul><li><b>Subjek (S)</b>: yang dibicarakan, menjawab "siapa/apa".</li>
+<li><b>Predikat (P)</b>: yang dilakukan atau keadaan subjek.</li>
+<li><b>Objek (O)</b>: dikenai tindakan; bisa menjadi subjek saat kalimat dipasifkan.</li>
+<li><b>Pelengkap (Pel)</b>: melengkapi predikat, tetapi <b>tidak bisa</b> dipasifkan. Contoh: "Ia belajar <i>menari</i>."</li>
+<li><b>Keterangan (K)</b>: waktu, tempat, cara, alat, tujuan. Posisinya bisa dipindah-pindah.</li></ul>
+<h4>Pola yang sering diuji</h4>
+<p>SP, SPO, SPK, SPOK, SPPel, SPOPel, SPPelK.</p>
+<div class="trik"><b>Trik cepat</b>Bedakan objek dan pelengkap dengan uji pasif: "Adik membaca <u>buku</u>" → "Buku dibaca adik" ✓ (objek). "Ayah menjadi <u>guru</u>" → tidak bisa dipasifkan (pelengkap).</div>`},
+{id:'silog',t:'Silogisme & Logika',lesson:'silog',kisi:'Menarik kesimpulan yang sah dari dua atau lebih pernyataan, serta menentukan ingkaran dan pernyataan yang setara.',body:`
+<h4>Rumus kesimpulan</h4>
+<div class="tw"><table><tr><th>Nama</th><th>Premis</th><th>Kesimpulan</th></tr>
+<tr><td>Modus ponens</td><td>p → q; p</td><td>q</td></tr>
+<tr><td>Modus tollens</td><td>p → q; tidak q</td><td>tidak p</td></tr>
+<tr><td>Silogisme</td><td>p → q; q → r</td><td>p → r</td></tr>
+<tr><td>Disjungtif</td><td>p atau q; tidak p</td><td>q</td></tr>
+<tr><td>Kategorial</td><td>Semua A adalah B; x adalah A</td><td>x adalah B</td></tr></table></div>
+<h4>Tidak sah (jebakan favorit)</h4>
+<ul><li>p → q; q benar → <b>tidak bisa</b> menyimpulkan p.</li>
+<li>p → q; tidak p → <b>tidak bisa</b> menyimpulkan tidak q.</li>
+<li>Semua A adalah B; x adalah B → <b>tidak bisa</b> menyimpulkan x adalah A.</li>
+<li>Dua premis "sebagian" → tidak ada kesimpulan pasti.</li></ul>
+<h4>Ingkaran dan kesetaraan</h4>
+<div class="tw"><table><tr><th>Pernyataan</th><th>Ingkaran</th></tr>
+<tr><td>Semua A adalah B</td><td>Ada A yang bukan B</td></tr>
+<tr><td>Ada A yang B</td><td>Semua A bukan B</td></tr>
+<tr><td>p dan q</td><td>tidak p atau tidak q</td></tr>
+<tr><td>p atau q</td><td>tidak p dan tidak q</td></tr>
+<tr><td>Jika p maka q</td><td>p dan tidak q</td></tr></table></div>
+<p>Setara dengan "jika p maka q": <b>jika tidak q maka tidak p</b> (kontraposisi), atau <b>tidak p atau q</b>.</p>
+<div class="trik"><b>Trik cepat</b>Kalau satu premis memakai "sebagian/beberapa", kesimpulan juga memakai "sebagian". Kata "hanya jika" artinya arah panahnya dibalik: "p hanya jika q" = "jika p maka q".</div>`},
+{id:'analitis',t:'Penalaran Analitis',lesson:'analitis',kisi:'Menyusun urutan, posisi, jadwal, atau kelompok berdasarkan beberapa syarat, lalu menjawab beberapa pertanyaan dari satu bacaan.',body:`
+<h4>Langkah kerja</h4>
+<ol><li><b>Gambar dulu</b>: kotak berurutan (kursi 1–6, lantai, hari), tabel, atau garis bilangan.</li>
+<li>Isi syarat yang <b>pasti</b> lebih dulu (mis. "S paling belakang", "H hari Rabu").</li>
+<li>Gabungkan syarat yang mengikat dua orang sekaligus ("tepat di sebelah", "sehari sebelum").</li>
+<li>Coba kemungkinan sisanya, lalu coret yang melanggar syarat.</li>
+<li>Pakai susunan akhir untuk semua pertanyaan dari bacaan yang sama.</li></ol>
+<h4>Kata kunci syarat</h4>
+<ul><li>"Tepat di sebelah kanan/depan" = bersebelahan langsung.</li><li>"Di sebelah kiri/depan" (tanpa "tepat") = boleh berjarak.</li><li>"Hanya jika" = syarat wajib.</li><li>"Tidak bersama" = tidak boleh dalam satu kelompok.</li></ul>
+<h4>Soal hari dan tanggal</h4>
+<p>Satu minggu 7 hari. Cari <b>sisa bagi 7</b>. Contoh: 100 hari setelah Rabu → 100 : 7 sisa 2 → Rabu + 2 = Jumat.</p>
+<div class="trik"><b>Trik cepat</b>Untuk pertanyaan "pernyataan berikut yang pasti benar", cek tiap opsi terhadap susunan akhir. Untuk "yang mungkin benar", cukup satu susunan yang memenuhi syarat.</div>`},
+{id:'bilangan',t:'Hitung Cepat: Pecahan, Desimal, Persen',lesson:'hitung',kisi:'Mengoperasikan bilangan bulat, pecahan, desimal, persen, pangkat, dan akar dengan cepat, termasuk urutan operasi.',body:`
+<h4>Urutan operasi</h4>
+<p class="rumus">Kurung → pangkat/akar → kali/bagi (dari kiri) → tambah/kurang (dari kiri)</p>
+<h4>Pecahan</h4>
+<ul><li>Tambah/kurang: samakan penyebut dulu (pakai KPK).</li><li>Kali: atas × atas, bawah × bawah.</li><li>Bagi: balik pecahan kedua, lalu kalikan.</li><li>Pecahan campuran: 2½ = 5/2.</li></ul>
+<h4>Pecahan sakti (hafalkan)</h4>
+<div class="tw"><table><tr><th>Persen</th><th>Pecahan</th><th>Desimal</th></tr>
+<tr><td>50%</td><td>1/2</td><td>0,5</td></tr><tr><td>25%</td><td>1/4</td><td>0,25</td></tr><tr><td>75%</td><td>3/4</td><td>0,75</td></tr>
+<tr><td>20%</td><td>1/5</td><td>0,2</td></tr><tr><td>12,5%</td><td>1/8</td><td>0,125</td></tr><tr><td>37,5%</td><td>3/8</td><td>0,375</td></tr>
+<tr><td>33⅓%</td><td>1/3</td><td>0,333...</td></tr><tr><td>16⅔%</td><td>1/6</td><td>0,1666...</td></tr><tr><td>6,25%</td><td>1/16</td><td>0,0625</td></tr></table></div>
+<h4>Desimal</h4>
+<ul><li>Perkalian: kalikan seperti bilangan bulat, lalu jumlah angka di belakang koma = jumlah dari kedua bilangan. 0,05 × 0,03 = 0,0015.</li>
+<li>Pembagian: geser koma pembagi sampai bulat, geser koma yang dibagi sebanyak itu juga.</li></ul>
+<h4>Pangkat dan akar</h4>
+<ul><li>a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup>; a<sup>m</sup> : a<sup>n</sup> = a<sup>m−n</sup>; (a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup>; a<sup>0</sup> = 1.</li>
+<li>Hafalkan kuadrat 1–30 dan pangkat tiga 1–10.</li>
+<li>√ selalu bernilai positif. √(a×b) = √a × √b.</li></ul>
+<h4>KPK dan FPB</h4>
+<p>KPK untuk soal "bersamaan lagi" (lampu berkedip, jadwal bertemu). FPB untuk soal "dibagi rata sebanyak-banyaknya" (membagi kue ke kantong).</p>
+<div class="trik"><b>Trik cepat</b>Kalau opsi jawabannya berjauhan, cukup perkirakan. 24,8% × 401 ≈ ¼ × 400 = 100. Cari opsi yang paling dekat.</div>`},
+{id:'deret',t:'Pola Bilangan & Deret',lesson:'deret1',kisi:'Menemukan pola deret angka atau huruf (aritmetika, geometri, bertingkat, Fibonacci, dua larik, kuadrat) dan menentukan suku berikutnya.',body:`
+<h4>Urutan memeriksa pola</h4>
+<ol><li><b>Selisih</b> antarsuku (tambah/kurang tetap?).</li><li><b>Rasio</b> (dikali/dibagi tetap?).</li><li><b>Selisih tingkat dua</b> (selisihnya membentuk pola?).</li><li>Angka naik-turun tidak jelas → <b>dua larik</b>: pisahkan posisi ganjil dan genap.</li><li><b>Fibonacci</b>: suku = jumlah dua suku sebelumnya.</li><li>Bilangan khusus: kuadrat (1, 4, 9, 16), pangkat tiga (1, 8, 27), prima (2, 3, 5, 7, 11).</li><li>Operasi bergantian: +2, ×2, +2, ×2.</li></ol>
+<h4>Deret huruf</h4>
+<p>Ubah huruf menjadi angka (A=1, B=2, ..., Z=26), lalu cari polanya seperti deret angka.</p>
+<div class="tw"><table><tr><th>Huruf</th><th>A</th><th>E</th><th>J</th><th>O</th><th>T</th><th>Z</th></tr><tr><td>Nomor</td><td>1</td><td>5</td><td>10</td><td>15</td><td>20</td><td>26</td></tr></table></div>
+<h4>Rumus deret (jika ditanya suku jauh)</h4>
+<p class="rumus">Aritmetika: U<sub>n</sub> = a + (n−1)b<br>Geometri: U<sub>n</sub> = a · r<sup>n−1</sup></p>
+<div class="trik"><b>Trik cepat</b>Kalau ditanya dua suku sekaligus ("..., ..."), hampir pasti deret dua larik.</div>`},
+{id:'xy',t:'Hubungan X dan Y',lesson:'xy',kisi:'Membandingkan dua nilai x dan y hasil perhitungan, lalu menentukan x > y, x < y, x = y, atau tidak dapat ditentukan.',body:`
+<h4>Intinya</h4>
+<p>Hitung x dan y sampai bisa dibandingkan. Tidak perlu selalu sampai angka akhir; cukup sampai jelas mana yang lebih besar.</p>
+<h4>Teknik cepat</h4>
+<ul><li><b>Coret yang sama</b> di kedua ruas. Contoh: x = 37 × 49, y = 37 × 51 → bandingkan 49 dan 51 saja.</li>
+<li>Pecahan vs desimal: ubah ke bentuk yang sama.</li>
+<li>Persen: "a% dari b" = "b% dari a". 20% dari 75 = 75% dari 20.</li>
+<li>(a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup>, jadi selalu lebih besar dari a<sup>2</sup> + b<sup>2</sup> untuk a, b positif.</li></ul>
+<div class="awas"><b>Awas jebakan</b>Persamaan kuadrat punya dua akar. x<sup>2</sup> = 25 berarti x = 5 <b>atau</b> −5. Kalau y = 5, hubungannya <b>tidak dapat ditentukan</b>, kecuali soal memberi syarat x &gt; 0. Sementara √25 selalu 5.</div>`},
+{id:'perbandingan',t:'Perbandingan Senilai, Berbalik & Skala',lesson:'aritsos',kisi:'Menyelesaikan soal perbandingan senilai, berbalik nilai, perbandingan umur/jumlah, dan skala peta.',body:`
+<h4>Senilai vs berbalik nilai</h4>
+<div class="tw"><table><tr><th>Jenis</th><th>Ciri</th><th>Cara</th></tr>
+<tr><td>Senilai</td><td>Satu naik, yang lain ikut naik (bensin–jarak, barang–harga)</td><td>a₁/b₁ = a₂/b₂</td></tr>
+<tr><td>Berbalik nilai</td><td>Satu naik, yang lain turun (pekerja–hari, kecepatan–waktu)</td><td>a₁ × b₁ = a₂ × b₂</td></tr></table></div>
+<p>Contoh berbalik: 6 orang selesai 12 hari. Agar selesai 8 hari: 6 × 12 = 72, 72 : 8 = 9 orang (tambah 3).</p>
+<h4>Perbandingan bagian</h4>
+<p>Umur A : B = 7 : 2, selisih 30 tahun → selisih bagian 5 = 30 → 1 bagian = 6 → B = 12, A = 42. Selalu cari <b>nilai 1 bagian</b> dulu.</p>
+<h4>Skala</h4>
+<p class="rumus">Jarak sebenarnya = jarak peta × penyebut skala</p>
+<p>1 km = 100.000 cm. Skala 1 : 500.000, jarak peta 4 cm → 2.000.000 cm = 20 km.</p>`},
+{id:'aritsos',t:'Aritmetika Sosial',lesson:'aritsos',kisi:'Menghitung untung, rugi, diskon, bunga tunggal, pajak, dan harga beli/jual dalam soal cerita.',body:`
+<h4>Rumus pokok</h4>
+<p class="rumus">Untung = jual − beli &nbsp;·&nbsp; % untung = untung/beli × 100%<br>Harga jual = beli × (100% + %untung)<br>Bunga tunggal = modal × %bunga × waktu(tahun)</p>
+<ul><li>Persentase untung/rugi selalu dihitung dari <b>harga beli</b>.</li>
+<li>Bunga per tahun, waktu dalam bulan → kalikan bulan/12.</li>
+<li>Bruto = neto + tara. Tara = berat kemasan.</li></ul>
+<h4>Diskon bertingkat</h4>
+<p>Diskon 20% lalu 10% <b>bukan</b> 30%. Hitung bertahap: × 80% lalu × 90% = × 72% (diskon total 28%).</p>
+<div class="trik"><b>Trik cepat</b>Ubah persen jadi pengali: naik 15% = ×1,15; turun 25% = ×0,75. Soal berlapis tinggal dikalikan berurutan.</div>`},
+{id:'cerita',t:'Soal Cerita: Kecepatan, Debit, Kerja',lesson:'cerita',kisi:'Menyelesaikan soal jarak-kecepatan-waktu (berpapasan, menyusul), debit, pekerjaan bersama, rata-rata, dan KPK dalam bentuk cerita.',body:`
+<h4>Jarak, kecepatan, waktu</h4>
+<p class="rumus">J = K × W &nbsp;·&nbsp; Berpapasan: W = J/(K₁ + K₂) &nbsp;·&nbsp; Menyusul: W = selisih jarak/(K₂ − K₁)</p>
+<ul><li>2,5 jam = 2 jam 30 menit (bukan 2 jam 50 menit).</li><li>km/jam ke m/detik: kalikan 5/18.</li></ul>
+<h4>Debit</h4><p class="rumus">Debit = volume/waktu &nbsp;·&nbsp; 1 liter = 1 dm³ = 1.000 cm³</p>
+<h4>Pekerjaan bersama</h4>
+<p>A selesai a hari, B selesai b hari. Berdua: <b>(a × b)/(a + b)</b> hari. Kalau salah satu sudah bekerja lebih dulu, hitung sisa pekerjaannya dulu.</p>
+<h4>Rata-rata</h4>
+<p class="rumus">Jumlah data = rata-rata × banyak data</p>
+<p>Data baru bergabung: nilai baru = jumlah setelah − jumlah sebelum.</p>
+`},
+{id:'satuan',t:'Satuan, Bangun, Himpunan & Statistika',lesson:'tabel',kisi:'Mengonversi satuan, menghitung luas dan volume bangun, menyelesaikan soal himpunan, serta menghitung rata-rata, median, modus, dan peluang sederhana.',body:`
+<h4>Konversi satuan</h4>
+<ul><li>Panjang: km–hm–dam–m–dm–cm–mm, tiap turun satu tangga <b>×10</b>.</li>
+<li>Luas: tiap tangga <b>×100</b> (m² → dm² ×100). 1 hektare = 10.000 m², 1 are = 100 m².</li>
+<li>Volume: tiap tangga <b>×1.000</b>. 1 liter = 1 dm³ = 1.000 cm³ (mL).</li>
+<li>Massa: 1 ton = 10 kuintal = 1.000 kg. 1 kg = 1.000 g.</li>
+<li>Waktu: 1 jam = 60 menit = 3.600 detik.</li></ul>
+<h4>Bangun datar dan ruang</h4>
+<div class="tw"><table><tr><th>Bangun</th><th>Rumus</th></tr>
+<tr><td>Persegi panjang</td><td>Luas p × l; keliling 2(p + l)</td></tr>
+<tr><td>Segitiga</td><td>Luas ½ × alas × tinggi</td></tr>
+<tr><td>Trapesium</td><td>Luas ½ × (a + b) × t</td></tr>
+<tr><td>Lingkaran</td><td>Luas πr²; keliling 2πr</td></tr>
+<tr><td>Kubus / balok</td><td>Volume s³ / p × l × t</td></tr>
+<tr><td>Tabung / kerucut</td><td>Volume πr²t / ⅓πr²t</td></tr></table></div>
+<p>Teorema Pythagoras: c² = a² + b². Tripel cepat: 3-4-5, 5-12-13, 8-15-17, 7-24-25.</p>
+<h4>Himpunan</h4>
+<p class="rumus">n(A ∪ B) = n(A) + n(B) − n(A ∩ B)</p>
+<p>Contoh: 30 siswa suka matematika, 25 suka IPA, 10 suka keduanya → yang suka minimal salah satu = 30 + 25 − 10 = 45.</p>
+<h4>Statistika dan peluang</h4>
+<ul><li><b>Rata-rata</b> = jumlah data : banyak data. <b>Median</b> = nilai tengah setelah diurutkan. <b>Modus</b> = nilai paling sering muncul.</li>
+<li><b>Peluang</b> = banyak kejadian yang diharapkan : banyak semua kemungkinan. Nilainya 0 sampai 1.</li>
+<li>Aturan perkalian: 3 baju dan 4 celana → 3 × 4 = 12 pasangan.</li></ul>`},
+{id:'tabel',t:'Tabel & Interpretasi Data',lesson:'tabel',kisi:'Membaca tabel atau grafik, lalu menghitung selisih, persentase kenaikan, rata-rata, dan perbandingan antardata.',body:`
+<h4>Langkah</h4>
+<ol><li>Baca judul, satuan, dan tahun setiap kolom.</li><li>Tentukan data yang benar-benar diperlukan; abaikan sisanya.</li><li>Hitung secukupnya. Sering cukup perkiraan.</li></ol>
+<p class="rumus">% kenaikan = (baru − lama)/lama × 100%</p>
+<div class="awas"><b>Awas jebakan</b>Kenaikan terbesar dalam angka (ton, rupiah) belum tentu kenaikan terbesar dalam persen. Persentase selalu dibagi data <b>awal</b>.</div>`},
+{id:'figural',t:'Figural: Analogi, Ketidaksamaan, Serial',lesson:'fig2',kisi:'Menemukan pola perubahan gambar (rotasi, cermin, jumlah, posisi, warna) pada analogi gambar, gambar yang berbeda, dan seri gambar.',body:`
+<h4>Hal yang perlu dicek (urut dari yang paling sering)</h4>
+<ol><li><b>Rotasi</b>: berputar 45°, 90°, atau 180°? Searah atau berlawanan jarum jam?</li>
+<li><b>Pencerminan</b>: dibalik kiri-kanan atau atas-bawah.</li>
+<li><b>Jumlah</b>: titik, garis, atau sisi bertambah/berkurang tetap.</li>
+<li><b>Posisi</b>: elemen bergeser satu langkah.</li>
+<li><b>Warna/arsiran</b>: bergantian atau berpindah.</li>
+<li><b>Bentuk luar ↔ dalam</b> bertukar.</li></ol>
+<h4>Jenis soal</h4>
+<ul><li><b>Analogi gambar</b>: A : B = C : ? → terapkan perubahan A→B ke C.</li>
+<li><b>Ketidaksamaan</b>: empat gambar sama-sama hasil rotasi, satu gambar dicerminkan.</li>
+<li><b>Serial</b>: lanjutkan pola gambar berurutan.</li></ul>
+<div class="trik"><b>Trik cepat</b>Untuk membedakan rotasi dan cermin, fokus pada satu "tangan" atau tonjolan yang paling khas. Rotasi tidak pernah mengubah arah putaran urutan sudut-sudutnya; cermin selalu membaliknya.</div>`},
+{id:'figural9',t:'Figural 9 Kotak',lesson:'fig3',kisi:'Melengkapi gambar pada matriks 3×3 dengan menemukan aturan per baris dan per kolom.',body:`
+<h4>Cara membaca</h4>
+<ol><li>Cek <b>per baris</b>: apakah tiap baris memuat ketiga bentuk/warna yang berbeda?</li>
+<li>Cek <b>per kolom</b>: apakah jumlah elemen sama dengan nomor kolom/baris?</li>
+<li>Cek <b>diagonal</b> bila baris dan kolom tidak cocok.</li>
+<li>Cek operasi: gambar 1 + gambar 2 = gambar 3 (gabung), atau bagian yang sama dihilangkan.</li></ol>
+<div class="trik"><b>Trik cepat</b>Pisahkan atributnya: bentuk, jumlah, dan warna. Tentukan masing-masing untuk kotak kosong, lalu cari opsi yang cocok di ketiganya sekaligus.</div>`}
+];
+
+MATERI.tkp=[
+{id:'strategitkp',t:'Cara Menjawab Soal TKP',lesson:null,kisi:'TKP menilai perilaku dalam situasi kerja. Setiap opsi bernilai 1 sampai 5 dan tidak ada jawaban yang benar-benar salah. Ambang batas 166 dari 225.',body:`
+<h4>Prinsip dasar</h4>
+<p>Bayangkan dirimu sebagai <b>ASN ideal</b>, bukan dirimu yang sekarang. Pilih sikap yang paling bermanfaat bagi masyarakat dan organisasi, dilakukan dengan cara paling profesional.</p>
+<h4>Ciri opsi bernilai 5</h4>
+<ul><li><b>Proaktif dan langsung bertindak</b>, tidak menunggu perintah atau menunda.</li>
+<li><b>Menyelesaikan akar masalah</b>, bukan sekadar menghindar.</li>
+<li><b>Tetap sesuai aturan/SOP</b> dan berintegritas.</li>
+<li><b>Melibatkan atau peduli pada orang lain</b> (tim, warga, rekan).</li>
+<li>Sering paling lengkap: melakukan A <b>dan</b> B.</li></ul>
+<h4>Ciri opsi bernilai rendah</h4>
+<ul><li>Menolak, menghindar, pura-pura tidak tahu, membiarkan.</li>
+<li>Melempar tanggung jawab ke orang lain atau atasan tanpa usaha.</li>
+<li>Mengutamakan kepentingan pribadi, kenyamanan, atau imbalan.</li>
+<li>Emosional: marah, menyindir, mempermalukan di depan umum.</li>
+<li>Melanggar aturan demi cepat atau demi pertemanan.</li></ul>
+<h4>Membedakan 5 dan 4</h4>
+<p>Opsi bernilai 4 biasanya <b>benar tetapi kurang lengkap</b>: misalnya hanya melapor tanpa memberi solusi, atau membantu tetapi menunda. Kalau dua opsi sama-sama baik, pilih yang <b>dampaknya lebih luas dan lebih cepat</b>.</p>
+<div class="trik"><b>Trik cepat</b>Jangan habiskan waktu di TKP. Di Try Out, kerjakan TKP dengan ritme sekitar 30–40 detik per soal agar sisa waktu bisa dipakai untuk TIU.</div>`},
+{id:'pelayanan',t:'Pelayanan Publik',lesson:'pelayanan',kisi:'Kemampuan memberikan pelayanan yang prima, ramah, cepat, adil, dan sesuai standar kepada masyarakat.',body:`
+<h4>Dasar</h4>
+<p>Menurut <b>UU 25/2009</b>, pelayanan publik adalah kegiatan memenuhi kebutuhan layanan barang, jasa, dan administrasi bagi setiap warga negara sesuai aturan.</p>
+<h4>Ciri pelayan publik yang baik</h4>
+<ul><li><b>Berorientasi pelayanan</b>: mengutamakan kepuasan warga, sesuai SOP.</li>
+<li><b>Berorientasi kualitas</b>: kompeten dan terus memperbaiki layanan.</li>
+<li><b>Responsif</b>: cepat menanggapi keluhan, sopan, informatif.</li>
+<li><b>Tidak diskriminatif</b>: tidak membedakan status sosial, politik, agama, suku, fisik.</li>
+<li><b>Peduli keselamatan</b> (K3) dan kelompok rentan (lansia, difabel, ibu hamil, kondisi darurat).</li></ul>
+<h4>Kata kunci jawaban terbaik</h4>
+<p>Sopan, cepat, transparan, responsif, adil, solutif, tetap sesuai standar layanan.</p>
+<h4>Pola situasi yang sering muncul</h4>
+<ul><li>Warga marah → tenang, dengarkan, cek, beri solusi.</li>
+<li>Warga minta didahulukan karena kenal pejabat → tolak sopan, tetap sesuai antrean.</li>
+<li>Kondisi darurat/kelompok rentan → dahulukan sesuai ketentuan layanan prioritas.</li>
+<li>Sistem gangguan → layanan tetap jalan dengan cara alternatif, sambil lapor.</li>
+<li>Diberi imbalan → tolak dengan sopan dan jelaskan layanan tidak dipungut biaya.</li></ul>`},
+{id:'profesional',t:'Profesionalisme',lesson:'profesional',kisi:'Kemampuan bekerja dengan integritas, disiplin, tanggung jawab, semangat berprestasi, dan kemauan terus belajar.',body:`
+<h4>Kata kunci jawaban terbaik</h4>
+<p>Integritas, semangat berprestasi, mampu menyusun rencana kerja, meningkatkan kinerja, ulet, semangat belajar.</p>
+<h4>Ciri sikap profesional</h4>
+<ul><li>Menyelesaikan tugas tepat waktu dan berkualitas; mengatur prioritas.</li>
+<li>Mengakui dan segera memperbaiki kesalahan sendiri.</li>
+<li>Menerima kritik sebagai bahan perbaikan.</li>
+<li>Siap ditempatkan dan diberi tugas baru; belajar cepat.</li>
+<li>Memisahkan urusan pribadi dan pekerjaan.</li>
+<li>Menjaga rahasia jabatan dan menolak manipulasi data.</li></ul>
+<h4>Pola situasi</h4>
+<ul><li>Tugas menumpuk/bentrok → diskusikan prioritas dengan atasan.</li>
+<li>Instruksi tidak jelas → klarifikasi sebelum mulai.</li>
+<li>Target tinggi → terima, susun rencana, komunikasikan kendala.</li>
+<li>Diminta memalsukan data → tolak sopan, jelaskan aturan, sajikan data sebenarnya.</li></ul>`},
+{id:'jejaring',t:'Jejaring Kerja',lesson:'jejaring',kisi:'Kemampuan membangun dan menjaga hubungan kerja, bekerja sama dalam tim, berkoordinasi lintas unit, dan memimpin.',body:`
+<h4>Kata kunci jawaban terbaik</h4>
+<p>Bekerja sama, beradaptasi, toleransi dan tenggang rasa, komunikatif, etika sosial yang tinggi.</p>
+<h4>Ciri sikap yang dinilai tinggi</h4>
+<ul><li>Aktif berkenalan dan membangun relasi di lingkungan baru.</li>
+<li>Mendahulukan kepentingan tim; mendukung keputusan bersama walau usulan sendiri ditolak.</li>
+<li>Menyelesaikan konflik lewat dialog, bukan menegur di depan umum.</li>
+<li>Berkoordinasi lintas unit dengan jadwal dan tindak lanjut yang jelas.</li>
+<li>Berbagi informasi dan ilmu, tetapi tetap sesuai prosedur data.</li>
+<li>Sebagai pemimpin: merangkul, membagi peran sesuai kekuatan, mengapresiasi seluruh tim.</li></ul>
+<div class="awas"><b>Awas jebakan</b>"Melaporkan ke atasan" terdengar aman, tetapi biasanya hanya bernilai 2–3 kalau kamu belum mencoba menyelesaikannya sendiri lebih dulu.</div>`},
+{id:'sosbud',t:'Sosial Budaya',lesson:'sosbud',kisi:'Kemampuan beradaptasi dan menghargai keberagaman suku, agama, budaya, generasi, dan kondisi sosial dalam lingkungan kerja maupun masyarakat.',body:`
+<h4>Kata kunci jawaban terbaik</h4>
+<p>Mengelola keragaman, membangun jejaring sosial, mengelola konflik, empati, serta peka terhadap kesetaraan gender dan disabilitas.</p>
+<h4>Ciri sikap yang dinilai tinggi</h4>
+<ul><li>Mempelajari dan menghormati adat setempat saat ditempatkan di daerah baru.</li>
+<li>Menghormati ibadah dan hari raya rekan yang berbeda agama, bahkan membantu.</li>
+<li>Mengingatkan dengan halus candaan berbau SARA.</li>
+<li>Memperlakukan semua orang setara: perempuan, difabel, lansia, pendatang.</li>
+<li>Ikut kegiatan sosial: kerja bakti, ronda, menolong korban bencana.</li>
+<li>Saat adat berbenturan dengan keselamatan atau layanan, cari jalan tengah lewat dialog dengan tokoh adat.</li></ul>`},
+{id:'tik',t:'Teknologi Informasi & Komunikasi',lesson:'tik',kisi:'Kemampuan memanfaatkan TIK untuk bekerja dan melayani, terbuka pada teknologi baru, serta menjaga keamanan data dan etika digital.',body:`
+<h4>Kata kunci jawaban terbaik</h4>
+<p>Menyaring informasi, memakai media sosial secara positif dan bijak, cepat mempelajari teknologi baru dan menularkannya ke rekan, serta menjaga keamanan data.</p>
+<h4>Ciri sikap yang dinilai tinggi</h4>
+<ul><li>Antusias mempelajari aplikasi baru dan membantu rekan yang kesulitan.</li>
+<li>Mengusulkan digitalisasi untuk mempercepat layanan.</li>
+<li>Menjaga kata sandi, memakai jaringan aman, mencadangkan data di penyimpanan resmi.</li>
+<li>Waspada phishing dan file mencurigakan (.apk dari nomor tak dikenal): jangan dibuka, verifikasi, laporkan.</li>
+<li>Tidak menyebarkan hoaks; cek fakta dan ingatkan orang lain.</li>
+<li>Melindungi data pribadi warga; tidak mengunggah dokumen internal.</li>
+<li>Melaporkan insiden (virus, peretasan, perangkat hilang) secepatnya ke tim TI.</li></ul>`},
+{id:'antirad',t:'Anti-radikalisme',lesson:'antirad',kisi:'Kemampuan mengenali paham radikal, menolak ajakan kekerasan atau anti-Pancasila, dan mencegah penyebarannya dengan cara yang tepat.',body:`
+<h4>Kenali radikalisme</h4>
+<p>Paham atau gerakan yang ingin mengubah sistem negara secara drastis dengan cara kekerasan, menolak Pancasila dan NKRI, serta intoleran terhadap kelompok lain. Ciri umum: menganggap kelompok lain musuh atau sesat, menolak hormat bendera dan demokrasi, menghalalkan kekerasan.</p>
+<h4>Kata kunci jawaban terbaik</h4>
+<p>Toleran, menghargai perbedaan, antiterorisme dan antiradikalisme, menjaga keutuhan NKRI, memperkuat nasionalisme.</p>
+<h4>Pola jawaban terbaik</h4>
+<ul><li><b>Tolak tegas</b> ajakan bergabung, menyebarkan selebaran, atau berdonasi tidak jelas.</li>
+<li><b>Edukasi</b>: ingatkan secara pribadi dan baik-baik bahwa Pancasila adalah kesepakatan bangsa.</li>
+<li><b>Laporkan</b> ke pihak berwenang bila ada indikasi bahaya (rencana kekerasan, kelompok terlarang).</li>
+<li><b>Konten digital</b>: jangan disebar, laporkan ke platform atau kanal aduan pemerintah.</li>
+<li><b>Pencegahan</b>: libatkan pemuda dalam kegiatan positif; terima mantan anggota yang ingin kembali ke masyarakat.</li></ul>
+<div class="awas"><b>Awas jebakan</b>"Ikut sekali untuk tahu isinya" dan "menjauhi saja" terdengar netral, tetapi bernilai rendah. Menuduh tanpa bukti di grup warga juga bernilai rendah karena bisa menjadi fitnah.</div>`}
+];
+
+/* ===== Contoh soal untuk laman Materi TIU ===== */
+function CS(q,o,a,steps,opt={}){const ord=opt.keep?o.map((_,i)=>i):shuffle(o.map((_,i)=>i)),na=ord.indexOf(a);
+ return `<div class="cs"><div class="cs-l">Contoh soal${opt.tag?' · '+opt.tag:''}</div>${opt.ctx?`<div class="ctx">${opt.ctx}</div>`:''}${opt.fig?`<div class="figbox">${opt.fig}</div>`:''}<p class="cs-q">${q}</p>
+ <ol class="cs-o ${opt.html?'figopts':''}" type="A">${ord.map(i=>`<li data-ok="${i===a}">${o[i]}</li>`).join('')}</ol>
+ <details><summary>Lihat pembahasan</summary><div class="cs-p">${steps}<p class="cs-a">Jawaban: <b>${'ABCDE'[na]}</b>${opt.html?'':' ('+o[a]+')'}</p></div></details></div>`}
+function CSG(q,tag){return CS(q.q,q.o,q.a,q.ex,{fig:q.fig,html:q.html||q.rich,ctx:q.ctx,tag})}
+const XYO2=['x &gt; y','x &lt; y','x = y','x dan y tidak dapat ditentukan','x = 2y'];
+function venn(kind,a,b){const T=(x,y,t)=>`<text x="${x}" y="${y}" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">${t}</text>`;
+ const C=(cx,cy,r,f)=>`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${f}" fill-opacity=".22" stroke="currentColor" stroke-width="2"/>`;
+ let g='';if(kind==='all')g=C(80,55,46,'var(--tiu)')+C(80,62,24,'var(--accent)')+T(80,66,a)+T(80,24,b);
+ else if(kind==='some')g=C(62,55,36,'var(--accent)')+C(100,55,36,'var(--tiu)')+T(46,59,a)+T(116,59,b)+T(81,59,'•');
+ else g=C(46,55,30,'var(--accent)')+C(118,55,30,'var(--tiu)')+T(46,59,a)+T(118,59,b);
+ return `<svg class="venn" viewBox="0 0 164 110" width="164" height="110" role="img" aria-label="Diagram ${kind}">${g}</svg>`}
+MATERI.tiu.find(t=>t.id==='silog').body=`
+<h4>Silogisme itu apa?</h4>
+<p>Silogisme adalah cara menarik kesimpulan dari dua pernyataan (premis) atau lebih. Soal tidak menanyakan apa yang benar di dunia nyata, tetapi <b>apa yang pasti benar menurut pernyataan di soal</b>. Jadi, lupakan dulu pengetahuanmu sendiri dan percaya penuh pada premis.</p>
+<h4>Langkah 1. Ubah kalimat jadi panah</h4>
+<p>Kalimat "jika ... maka ..." dan "semua ... adalah ..." bisa ditulis sebagai panah satu arah:</p>
+<ul><li>"Jika hujan, jalan basah" → <b>hujan → basah</b></li>
+<li>"Semua PNS ikut apel" → <b>PNS → apel</b></li></ul>
+<p>Bayangkan panah sebagai <b>jalan satu arah</b>: dari pangkal pasti sampai ke ujung, tetapi tidak sebaliknya.</p>
+<h4>Langkah 2. Empat cara membaca panah: dua sah, dua jebakan</h4>
+<div class="tw"><table><tr><th>Yang diketahui</th><th>Bolehkah disimpulkan?</th><th>Contoh hujan → basah</th></tr>
+<tr><td>Pangkal terjadi</td><td>✅ Ujung pasti terjadi</td><td>Hujan → jalan pasti basah</td></tr>
+<tr><td>Ujung TIDAK terjadi</td><td>✅ Pangkal pasti TIDAK terjadi</td><td>Jalan tidak basah → pasti tidak hujan</td></tr>
+<tr><td>Ujung terjadi</td><td>❌ Tidak pasti</td><td>Jalan basah → mungkin disiram, bukan hujan</td></tr>
+<tr><td>Pangkal TIDAK terjadi</td><td>❌ Tidak pasti</td><td>Tidak hujan → jalan bisa tetap basah</td></tr></table></div>
+<div class="trik"><b>Cara mengingat</b>Ikuti panah maju, atau mundur sambil menambahkan "tidak" di kedua sisi. Dua gerakan lain adalah jebakan.</div>
+<h4>Langkah 3. Sambungkan panah (rantai)</h4>
+<p>Kalau ujung panah pertama sama dengan pangkal panah kedua, sambungkan: <b>A → B</b> dan <b>B → C</b> jadi <b>A → C</b>. Rantai bisa panjang, dan aturan Langkah 2 tetap berlaku untuk rantai utuh.</p>
+<h4>Langkah 4. Kalau ada "semua", "sebagian", "tidak ada", pakai gambar lingkaran</h4>
+<div class="vrow"><figure>${venn('all','A','B')}<figcaption><b>Semua A adalah B</b><br>A ada di dalam B</figcaption></figure>
+<figure>${venn('some','A','B')}<figcaption><b>Sebagian A adalah B</b><br>A dan B beririsan</figcaption></figure>
+<figure>${venn('none','A','B')}<figcaption><b>Tidak ada A yang B</b><br>A dan B terpisah</figcaption></figure></div>
+<p>Gambar premis satu per satu, lalu lihat apa yang <b>pasti</b> berlaku di semua kemungkinan gambar. Aturan praktis:</p>
+<ul><li>Ada "sebagian" di premis → kesimpulan juga "sebagian".</li>
+<li>Dua premis sama-sama "sebagian" → tidak ada kesimpulan pasti.</li>
+<li>Ada premis negatif ("tidak ada", "bukan") → kesimpulan juga negatif.</li></ul>
+<h4>Langkah 5. Ingkaran (lawan pernyataan)</h4>
+<div class="tw"><table><tr><th>Pernyataan</th><th>Ingkarannya</th></tr>
+<tr><td>Semua A adalah B</td><td>Ada A yang bukan B</td></tr>
+<tr><td>Ada A yang B</td><td>Semua A bukan B</td></tr>
+<tr><td>p dan q</td><td>tidak p atau tidak q</td></tr>
+<tr><td>p atau q</td><td>tidak p dan tidak q</td></tr>
+<tr><td>Jika p maka q</td><td>p dan tidak q</td></tr></table></div>
+<p>Pernyataan yang <b>setara</b> dengan "jika p maka q": "jika tidak q maka tidak p" (kontraposisi), atau "tidak p atau q".</p>
+<h4>Latihan pemahaman bertahap</h4>
+${CS('Jika hari libur, kantor tutup. Hari ini libur.<br>Kesimpulannya ...',['Kantor buka','Kantor tutup','Kantor mungkin tutup','Hari ini bukan libur','Tidak dapat disimpulkan'],1,'<p>Ubah ke panah: <b>libur → tutup</b>. Yang diketahui: pangkalnya terjadi (hari ini libur). Ikuti panah maju → <b>kantor tutup</b>.</p>',{tag:'level 1'})}
+${CS('Jika rajin berlatih, Dina lolos seleksi. Dina tidak lolos seleksi.<br>Kesimpulannya ...',['Dina rajin berlatih','Dina tidak rajin berlatih','Dina lolos seleksi','Dina mungkin rajin berlatih','Tidak dapat disimpulkan'],1,'<p>Panah: <b>rajin → lolos</b>. Yang diketahui: ujungnya <b>tidak</b> terjadi. Mundur sambil menambah "tidak" di kedua sisi → <b>tidak rajin</b>.</p><p>Cek logikanya: kalau Dina rajin, ia pasti lolos. Ternyata tidak lolos, jadi ia pasti tidak rajin.</p>',{tag:'level 1'})}
+${CS('Jika listrik padam, lampu mati. Lampu mati.<br>Kesimpulannya ...',['Listrik padam','Listrik tidak padam','Lampu rusak','Listrik mungkin tidak padam','Tidak dapat ditarik kesimpulan yang pasti'],4,'<p>Panah: <b>padam → mati</b>. Yang diketahui: ujungnya terjadi (lampu mati). Ini <b>jebakan</b>, karena lampu bisa mati karena hal lain, misalnya bohlamnya putus.</p><p>Jadi tidak ada kesimpulan pasti. Opsi A terasa benar, tetapi tidak dijamin oleh premis.</p>',{tag:'level 2 · jebakan'})}
+${CS('Jika harga cabai naik, harga sambal naik. Jika harga sambal naik, penjual pecel menaikkan harga. Penjual pecel tidak menaikkan harga.<br>Kesimpulannya ...',['Harga cabai naik','Harga sambal naik','Harga cabai tidak naik','Harga sambal turun','Penjual pecel rugi'],2,'<p>Sambungkan panah: <b>cabai naik → sambal naik → pecel naik</b>, jadi <b>cabai naik → pecel naik</b>.</p><p>Ujung rantai (pecel naik) tidak terjadi. Mundur dengan "tidak" → <b>harga cabai tidak naik</b>. Opsi D salah karena "tidak naik" belum tentu "turun".</p>',{tag:'level 2 · rantai'})}
+${CS('Semua pegawai baru mengikuti orientasi. Sebagian pegawai baru adalah lulusan teknik.<br>Kesimpulan yang tepat adalah ...',['Semua lulusan teknik mengikuti orientasi','Sebagian lulusan teknik mengikuti orientasi','Semua peserta orientasi adalah lulusan teknik','Sebagian pegawai baru tidak mengikuti orientasi','Tidak dapat disimpulkan'],1,`<div class="vrow"><figure>${venn('all','baru','orient')}<figcaption>Premis 1</figcaption></figure><figure>${venn('some','teknik','baru')}<figcaption>Premis 2</figcaption></figure></div><p>Pegawai baru seluruhnya ada di dalam lingkaran "orientasi". Sebagian pegawai baru juga lulusan teknik. Jadi lulusan teknik <b>yang pegawai baru</b> pasti ikut orientasi, sehingga <b>sebagian lulusan teknik mengikuti orientasi</b>.</p><p>Ada kata "sebagian" di premis, maka kesimpulannya juga "sebagian". Opsi A berlebihan.</p>`,{tag:'level 3 · lingkaran'})}
+${CS('Semua anggota tim memakai rompi. Raka memakai rompi.<br>Kesimpulannya ...',['Raka anggota tim','Raka bukan anggota tim','Raka pemimpin tim','Semua pemakai rompi anggota tim','Tidak dapat ditarik kesimpulan yang pasti'],4,`<div class="vrow"><figure>${venn('all','tim','rompi')}<figcaption>Raka bisa di dalam atau di luar lingkaran "tim"</figcaption></figure></div><p>Lingkaran "tim" ada di dalam "pemakai rompi". Raka ada di lingkaran rompi, tetapi bisa di bagian yang <b>bukan</b> tim. Ini sama dengan jebakan "ujung terjadi" di panah.</p>`,{tag:'level 3 · jebakan'})}
+${CS('Ingkaran dari "Jika saya lulus SKD, saya ikut SKB" adalah ...',['Jika saya tidak lulus SKD, saya tidak ikut SKB','Saya lulus SKD dan saya tidak ikut SKB','Saya tidak lulus SKD atau saya ikut SKB','Jika saya ikut SKB, saya lulus SKD','Saya tidak lulus SKD dan saya ikut SKB'],1,'<p>Pernyataan "jika p maka q" hanya terbukti bohong dalam satu keadaan: <b>p terjadi tetapi q tidak</b>. Jadi ingkarannya: <b>lulus SKD dan tidak ikut SKB</b>.</p><p>Opsi C adalah pernyataan yang <b>setara</b> (bukan ingkaran), dan opsi A adalah jebakan klasik.</p>',{tag:'ingkaran'})}
+<div class="trik"><b>Ringkasan 10 detik</b>1) Ubah jadi panah atau lingkaran. 2) Sambungkan. 3) Maju boleh, mundur boleh asal pakai "tidak". 4) Ada "sebagian", kesimpulan ikut "sebagian". 5) Ragu? Pilih "tidak dapat disimpulkan" hanya jika memang ada kemungkinan lain.</div>`;
+const TIU_EX={
+sinant:CS('MANGKUS = ...',['Efisien','Efektif','Sangkil','Tepat waktu','Hemat'],1,'<p>Mangkus dan sangkil adalah padanan baku untuk istilah serapan: <b>mangkus = efektif</b> (berhasil mencapai tujuan), <b>sangkil = efisien</b> (hemat sumber daya). Opsi "sangkil" dan "efisien" sengaja dipasang sebagai jebakan.</p>')
+ +CS('EKSPLISIT &gt;&lt; ...',['Jelas','Tersurat','Implisit','Gamblang','Terbuka'],2,'<p>Eksplisit = tersurat, terang-terangan. Lawannya <b>implisit</b> (tersirat). Jelas, tersurat, gamblang, dan terbuka justru bermakna mirip eksplisit, jadi coret semuanya dulu.</p>'),
+analogi:CS('SEMEN : TEMBOK = BENANG : ...',['Jarum','Kain','Penjahit','Gulungan','Mesin jahit'],1,'<p>Buat kalimat penghubung: "Semen adalah <b>bahan</b> untuk membuat tembok." Uji ke opsi: "Benang adalah bahan untuk membuat <b>kain</b>" ✓. Jarum dan mesin jahit adalah alat, bukan hasil.</p>')
+ +CS('TERMOMETER : .... = .... : TEKANAN UDARA',['Suhu – Barometer','Panas – Higrometer','Demam – Barometer','Suhu – Anemometer','Dokter – Barometer'],0,'<p>Isi tiap opsi ke kedua titik, lalu baca utuh. "Termometer mengukur <b>suhu</b>, <b>barometer</b> mengukur tekanan udara" ✓. Higrometer untuk kelembapan, anemometer untuk kecepatan angin.</p>'),
+pola:CS('Pola kalimat "Para siswa membersihkan ruang kelas setiap Jumat" adalah ...',['SPO','SPOK','SPK','SPPel','SPOPel'],1,'<p>Pecah kalimatnya: <b>Para siswa</b> (S) · <b>membersihkan</b> (P) · <b>ruang kelas</b> (O, bisa dipasifkan: "ruang kelas dibersihkan para siswa") · <b>setiap Jumat</b> (K waktu). Polanya <b>SPOK</b>.</p>'),
+analitis:CS('Siapa yang duduk di kursi nomor 1?',['A','B','C','D','Tidak dapat ditentukan'],3,'<div class="tw"><table><tr><th>Langkah</th><th>Kursi 1</th><th>2</th><th>3</th><th>4</th></tr><tr><td>B di kursi 2</td><td></td><td>B</td><td></td><td></td></tr><tr><td>A bukan di ujung → kursi 3</td><td></td><td>B</td><td>A</td><td></td></tr><tr><td>C tepat di kanan A</td><td></td><td>B</td><td>A</td><td>C</td></tr><tr><td>Sisa D</td><td><b>D</b></td><td>B</td><td>A</td><td>C</td></tr></table></div><p>Isi yang pasti dulu, lalu syarat yang mengikat dua orang.</p>',{ctx:'Empat teman, yaitu A, B, C, dan D, duduk di kursi bernomor 1–4 dari kiri. B duduk di kursi 2. A tidak duduk di ujung. C duduk tepat di sebelah kanan A.'}),
+bilangan:CS('Hasil dari 3/4 + 25% × 0,8 adalah ...',['0,8','0,95','1,05','0,4','0,75'],1,'<p>Kali dulu: 25% × 0,8 = ¼ × 0,8 = <b>0,2</b>. Lalu tambah: 3/4 = 0,75, jadi 0,75 + 0,2 = <b>0,95</b>.</p><p>Jebakan: kalau dijumlah dulu, (0,75 + 0,25) × 0,8 = 0,8.</p>')
+ +CS('Andi berenang setiap 4 hari dan Budi setiap 6 hari. Jika mereka berenang bersama pada hari Senin, mereka akan berenang bersama lagi pada hari ...',['Jumat','Sabtu','Minggu','Senin','Kamis'],1,'<p>"Bersama lagi" = <b>KPK</b>. KPK 4 dan 6 = 12 hari. 12 dibagi 7 sisa 5. Senin + 5 hari = <b>Sabtu</b>.</p>'),
+deret:CS('3, 4, 6, 9, 13, 18, ...',['22','23','24','25','26'],2,'<p>Selisihnya: +1, +2, +3, +4, +5. Selisih bertambah 1, jadi berikutnya <b>+6</b>: 18 + 6 = <b>24</b>.</p>')
+ +CS('2, 50, 4, 45, 8, 40, ..., ...',['16, 35','10, 35','16, 30','12, 35','16, 36'],0,'<p>Angka naik-turun → pisahkan. Posisi ganjil: 2, 4, 8 (×2) → <b>16</b>. Posisi genap: 50, 45, 40 (−5) → <b>35</b>.</p>'),
+xy:CS('x = 12,5% dari 64<br>y = 1/8 dari 72<br>Hubungan x dan y yang tepat adalah ...',XYO2,1,'<p>12,5% = 1/8. Jadi x = 64 : 8 = <b>8</b> dan y = 72 : 8 = <b>9</b>. Maka <b>x &lt; y</b>.</p>',{keep:true})
+ +CS('x² − 9 = 0<br>y = 3<br>Hubungan x dan y yang tepat adalah ...',XYO2,3,'<p>x² = 9, jadi x = <b>3 atau −3</b>. Kalau x = 3 maka x = y; kalau x = −3 maka x &lt; y. Karena ada dua kemungkinan, jawabannya <b>tidak dapat ditentukan</b>.</p>',{keep:true}),
+perbandingan:CS('Persediaan pakan cukup untuk 40 ekor ayam selama 15 hari. Jika ditambah 20 ekor ayam, persediaan itu cukup untuk ...',['8 hari','10 hari','12 hari','20 hari','22,5 hari'],1,'<p>Makin banyak ayam, makin cepat habis → <b>berbalik nilai</b>. Total = 40 × 15 = 600 "jatah ayam-hari". Ayam sekarang 60 ekor → 600 : 60 = <b>10 hari</b>.</p>')
+ +CS('Jarak dua kota 60 km. Pada peta, jaraknya 3 cm. Skala peta tersebut adalah ...',['1 : 200.000','1 : 2.000.000','1 : 20.000.000','1 : 600.000','1 : 180.000'],1,'<p>Samakan satuan: 60 km = 6.000.000 cm. Skala = 3 : 6.000.000 = <b>1 : 2.000.000</b>.</p>'),
+aritsos:CS('Sebuah baju seharga Rp250.000 didiskon 20%, lalu didiskon lagi 10%. Harga akhirnya adalah ...',['Rp175.000','Rp180.000','Rp182.500','Rp200.000','Rp225.000'],1,'<p>Bertahap: 250.000 × 80% = 200.000, lalu 200.000 × 90% = <b>Rp180.000</b>. Kalau langsung 30%, hasilnya Rp175.000 (jebakan).</p>')
+ +CS('Pedagang membeli 20 kg jeruk seharga Rp300.000, lalu menjual semuanya Rp18.000/kg. Persentase keuntungannya adalah ...',['15%','16⅔%','20%','25%','30%'],2,'<p>Harga jual total = 20 × 18.000 = 360.000. Untung = 60.000. Persen dihitung dari <b>harga beli</b>: 60.000/300.000 = <b>20%</b>. Kalau dibagi harga jual, hasilnya 16⅔% (jebakan).</p>'),
+cerita:CS('Jarak kota A dan B 210 km. Pukul 07.00 Ani berangkat dari A dengan kecepatan 40 km/jam, dan pada saat yang sama Beni berangkat dari B menuju A dengan kecepatan 30 km/jam. Mereka berpapasan pukul ...',['09.30','10.00','10.30','08.30','12.15'],1,'<p>Berlawanan arah → kecepatan <b>dijumlah</b>: 40 + 30 = 70 km/jam. Waktu = 210 : 70 = 3 jam. 07.00 + 3 jam = <b>10.00</b>.</p>')
+ +CS('Pak Ali dapat menyelesaikan pekerjaan dalam 10 hari, sedangkan Pak Budi dalam 15 hari. Jika bekerja bersama, pekerjaan selesai dalam ...',['5 hari','6 hari','7,5 hari','12,5 hari','25 hari'],1,'<p>Rumus cepat: (10 × 15) : (10 + 15) = 150 : 25 = <b>6 hari</b>. Cara lain: per hari 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6, jadi 6 hari.</p>'),
+tabel:CS('Produk dengan persentase kenaikan penjualan tertinggi adalah ...',['P','Q','R','P dan R sama','Tidak dapat ditentukan'],0,'<p>P: 100/400 = <b>25%</b>. Q: 50/250 = 20%. R: 120/600 = 20%. Tertinggi <b>P</b>, walaupun kenaikan unit terbesar milik R.</p>',{ctx:'<div class="tw"><table class="dtbl"><tr><th>Produk</th><th>2023</th><th>2024</th></tr><tr><td>P</td><td>400</td><td>500</td></tr><tr><td>Q</td><td>250</td><td>300</td></tr><tr><td>R</td><td>600</td><td>720</td></tr></table></div>'}),
+satuan:CS('Dari 40 pegawai, 25 orang suka kopi, 20 orang suka teh, dan 8 orang tidak suka keduanya. Banyak pegawai yang suka kopi dan teh adalah ...',['5','8','12','13','17'],3,'<p>Yang suka minimal salah satu = 40 − 8 = 32. Pakai rumus: 25 + 20 − x = 32 → x = <b>13</b>.</p>')
+ +CS('2,5 m³ + 300 dm³ = ... liter',['2.530','2.800','5.500','28.000','280'],1,'<p>1 m³ = 1.000 dm³ = 1.000 liter. Jadi 2,5 m³ = 2.500 liter, ditambah 300 liter = <b>2.800 liter</b>.</p>'),
+figural:CSG(G.figAna(),'contoh berganti tiap dibuka')+CSG(G.figOdd(),'contoh berganti tiap dibuka'),
+figural9:CSG(G.figNine(),'contoh berganti tiap dibuka')
+};
+MATERI.tiu.forEach(t=>{if(TIU_EX[t.id])t.body+=`<h4>Contoh soal dan pembahasan</h4>`+TIU_EX[t.id]});
+
+/* ================= LAMAN MATERI ================= */
+I.book='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5"/><path d="M9 7h7M9 10.5h5"/></svg>';
+I.search='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>';
+const MSUB=[['twk','TWK','Wawasan Kebangsaan'],['tiu','TIU','Intelegensia Umum'],['tkp','TKP','Karakteristik Pribadi']];
+let MV={sub:'twk',q:''};
+function materiCardHTML(){const tot=MSUB.reduce((a,[k])=>a+MATERI[k].length,0),rd=Object.keys(S.read||{}).length;
+ return `<button class="mcard" id="bMateri"><span class="qi">${I.book}</span><span><b>Materi & Kisi-kisi</b><small>${tot} topik ringkas TWK, TIU, TKP · ${rd} sudah dibaca</small></span></button>`}
+function stripTags(h){return h.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ')}
+function hl(html,q){if(!q)return html;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');return html.replace(/>([^<]+)</g,(m,t)=>'>'+t.replace(re,'<mark>$1</mark>')+'<')}
+function showMateri(sub,focus){onCat=false;scrReset();LS=null;if(sub)MV.sub=sub;
+ const q=MV.q.trim().toLowerCase();
+ const list=q?MSUB.flatMap(([k])=>MATERI[k].map(t=>Object.assign({_s:k},t))).filter(t=>(t.t+' '+t.kisi+' '+stripTags(t.body)).toLowerCase().includes(q))
+  :MATERI[MV.sub].map(t=>Object.assign({_s:MV.sub},t));
+ const U=k=>UNITS.find(u=>u.id===k);
+ const card=t=>{const done=S.read&&S.read[t.id],L=t.lesson&&U(t._s).lessons.find(l=>l.k===t.lesson);
+  return `<article class="mt" id="m-${t.id}" style="--c:var(--${t._s});--cbg:var(--${t._s}-bg)">
+  <header><span class="chip">${t._s.toUpperCase()}</span><h3>${hl('>'+esc(t.t)+'<',q).slice(1,-1)}</h3></header>
+  <div class="kisi"><b>Kisi-kisi</b>${hl('>'+esc(t.kisi)+'<',q).slice(1,-1)}</div>
+  <div class="mbody">${hl(t.body,q)}</div>
+  <footer><button class="rd ${done?'on':''}" data-id="${t.id}">${done?I.check+' Sudah dibaca':'Tandai sudah dibaca'}</button>${L?`<button class="go" data-s="${t._s}" data-k="${L.k}">Latihan: ${esc(L.title)} →</button>`:''}</footer></article>`};
+ const nav=list.map(t=>`<a href="#m-${t.id}" class="mnav-i ${S.read&&S.read[t.id]?'done':''}" data-id="${t.id}">${esc(t.t)}</a>`).join('');
+ app.innerHTML=topbar()+`<main class="screen materi">
+ <div class="mhead"><div class="mtitle"><button class="x" id="mBack" aria-label="Kembali ke beranda">${I.x}</button><div><h1>Materi & Kisi-kisi SKD</h1><p>Rangkuman ringan per topik sesuai kisi-kisi KepmenPAN-RB 321/2024.</p></div></div>
+ <div class="mtabs" role="tablist">${MSUB.map(([k,s,n])=>`<button role="tab" aria-selected="${!q&&MV.sub===k}" class="mtab ${!q&&MV.sub===k?'on':''}" data-s="${k}" style="--c:var(--${k})"><b>${s}</b><small>${n}</small></button>`).join('')}</div>
+ <label class="msearch">${I.search}<input id="mq" type="search" placeholder="Cari materi, misalnya: pasal 33, deret, gratifikasi" value="${esc(MV.q)}" autocomplete="off"></label></div>
+ <div class="mgrid"><nav class="mnav" aria-label="Daftar topik">${q?`<p class="mres">${list.length} topik cocok</p>`:''}${nav}</nav>
+ <div class="mlist">${list.length?list.map(card).join(''):'<p class="foot-note">Tidak ada materi yang cocok. Coba kata kunci lain.</p>'}</div></div></main>`;
+ bind();
+ document.getElementById('mBack').onclick=home;
+ document.querySelectorAll('.mtab').forEach(b=>b.onclick=()=>{MV.q='';showMateri(b.dataset.s);window.scrollTo(0,0)});
+ const inp=document.getElementById('mq');let tmr;inp.oninput=()=>{clearTimeout(tmr);tmr=setTimeout(()=>{MV.q=inp.value;const pos=inp.selectionStart;showMateri();const n=document.getElementById('mq');n.focus();try{n.setSelectionRange(pos,pos)}catch(e){}},250)};
+ document.querySelectorAll('.mnav-i').forEach(a=>a.onclick=e=>{e.preventDefault();const el=document.getElementById('m-'+a.dataset.id);el&&el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+ document.querySelectorAll('.rd').forEach(b=>b.onclick=()=>{S.read=S.read||{};const id=b.dataset.id;
+  if(S.read[id]){delete S.read[id];save();b.classList.remove('on');b.innerHTML='Tandai sudah dibaca';sync(id,false);return}
+  S.read[id]=1;S.xp+=3;const bf=todayXP();S.days[today()]=bf+3;if(bf<(S.goal||20)&&bf+3>=(S.goal||20)){S.met[today()]=1;toast('Target harian tercapai!')}else toast('+3 XP. Materi ditandai sudah dibaca');save();
+  b.classList.add('on');b.innerHTML=I.check+' Sudah dibaca';sfx.good();sync(id,true);const x=document.querySelector('#bXP span');x&&(x.textContent=S.xp)});
+ const sync=(id,on)=>{const a=document.querySelector(`.mnav-i[data-id="${id}"]`);a&&a.classList.toggle('done',on)};
+ document.querySelectorAll('.go').forEach(b=>b.onclick=()=>{const U2=UNITS.find(u=>u.id===b.dataset.s),L=U2.lessons.find(l=>l.k===b.dataset.k);
+  if(!lvOpen(U2,L.lv)){toast(`Pelajaran ini masih terkunci. Selesaikan Level ${L.lv-1} dulu ya`);return}startLesson(U2,L)});
+ if(focus){const el=document.getElementById('m-'+focus);el&&el.scrollIntoView({block:'start'})}}
+
 
 /* ================= TRY OUT CAT ================= */
 const TO_KEY='kepo-cpns-to',TO_MIN=100,TO_N=110,PG={twk:65,tiu:80,tkp:166},MAXS={twk:150,tiu:175,tkp:225},SUBN={twk:'TWK',tiu:'TIU',tkp:'TKP'};
